@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gabmus/gnome-feeds">
+    <file compressed="true">org.gabmus.gnome-feeds.service.desktop</file>
+
+    <file preprocess="xml-stripblanks">aboutdialog.glade</file>
+    <file preprocess="xml-stripblanks">ui/menu.xml</file>
+    <file preprocess="xml-stripblanks">ui/shortcutsWindow.xml</file>
+    
+    <file preprocess="xml-stripblanks">icons/org.gabmus.gnome-feeds.svg</file>
+    <file preprocess="xml-stripblanks">icons/org.gabmus.gnome-feeds-symbolic.svg</file>
+
+  </gresource>
+</gresources>

@@ -1,0 +1,15 @@
+data/org.gabmus.hydrapaper.appdata.xml.in
+data/org.gabmus.hydrapaper.desktop.in
+data/ui/choose_folder_dialog.glade
+data/ui/headerbar.glade
+data/ui/menu.xml
+data/ui/menu.xml data/ui/shortcutsWindow.xml
+data/ui/wallpapers_flowbox.glade
+data/ui/wallpapers_folders_view.glade
+hydrapaper/apply_wallpapers.py
+hydrapaper/__main__.py
+hydrapaper/main_stack.py
+hydrapaper/monitor_parser.py
+hydrapaper/settings_box.py
+hydrapaper/wallpaper_flowbox_item.py
+hydrapaper/wallpapers_flowbox.py

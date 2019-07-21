@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <menu id="generalMenu">
+        <section>
+            <item>
+                <attribute name="label" translatable="yes">placeholder</attribute>
+                <attribute name="action">app.placeholder_action</attribute>
+            </item>
+        </section>
+        <section>
+            <item>
+                <attribute name="label" translatable="yes">Preferences</attribute>
+                <attribute name="action">app.settings</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Shortcuts</attribute>
+                <attribute name="action">app.shortcuts</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">About</attribute>
+                <attribute name="action">app.about</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Quit</attribute>
+                <attribute name="action">app.quit</attribute>
+            </item>
+        </section>
+    </menu>
+</interface>
