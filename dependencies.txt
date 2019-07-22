@@ -1,0 +1,4 @@
+#python-html5lib
+python-lxml
+python-requests
+python email utils (email.utils, maybe built in?)

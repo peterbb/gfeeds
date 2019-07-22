@@ -3,10 +3,10 @@ import requests
 from .confManager import ConfManager
 from .sha import shasum
 
-confman = Confmanager()
+confman = ConfManager()
 
 def download(link):
-    dest_path = confman.cache_path.join(shasum(link)+'.rss')
+    dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
     print(_('Downloading `{0}`...').format(link))
     req = requests.get(link)
     if req.status_code == 200:
@@ -25,5 +25,7 @@ def download(link):
             with open(dest_path, 'w') as fd:
                 fd.write(req.text)
                 fd.close()
+        return dest_path
     else:
         print(_('Error downloading `{0}`, code `{1}`').format(link, req.status_code))
+        return None

@@ -1,6 +1,7 @@
 from lxml import etree
 from email.utils import parsedate_to_datetime
 from gettext import gettext as _
+from .download_manager import download
 
 """
 quick XML parsing notes
@@ -28,6 +29,7 @@ class FeedItem:
         self.title = ''
         self.link = ''
         self.guid = ''
+        self.guid_permalink = False
         self.description = ''
         self.pub_date = None
         self.parent_feed = parent_feed
@@ -40,16 +42,26 @@ class FeedItem:
                 self.link = el.text
             elif tag == 'guid':
                 self.guid = el.text
+                self.guid_permalink = el.attrib.has_key('isPermaLink') and el.attrib.get('isPermaLink') != 'false'
             elif tag == 'description':
                 self.description = el.text
             elif tag == 'pubdate': # should be 'pubDate' but it's lower()
                 self.pub_date = parsedate_to_datetime(el.text)
+            elif tag == 'category':
+                # as far as I can tell, the category tag refers to tags for the article
+                # at this time I have no need for them.
+                pass
             else:
-                print(_('WARNING: unrecognized tag {0}').format(el.tag))
+                print(_('WARNING: [{0}] unrecognized tag {1}').format(self, el.tag))
 
     def __repr__(self):
         return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
 
+    def download_item(self):
+        link = self.guid if self.guid_permalink else self.link
+        download(link)
+
+        
 class Feed:
     def __init__(self, feedpath):
         with open(feedpath, 'r') as fd:
@@ -61,6 +73,7 @@ class Feed:
         self.link = ''
         self.description = ''
         self.language = ''
+        self.image_url = ''
         self.items = []
 
         for el in root[0]: # root[0] should be channel
@@ -73,10 +86,15 @@ class Feed:
                 self.description = el.text
             elif tag == 'language':
                 self.language = el.text
+            elif tag == 'image':
+                for iel in el:
+                    if iel.tag == 'url':
+                        self.image_url = iel.text
+                        break
             elif tag == 'item':
                 self.items.append(FeedItem(el, self))
             else:
-                print(_('WARNING: unrecognized tag {0}').format(el.tag))
+                print(_('WARNING: [{0}] unrecognized tag {1}').format(self, el.tag))
 
     def __repr__(self):
         return f'Feed Object `{self.title}`; {len(self.items)} items'

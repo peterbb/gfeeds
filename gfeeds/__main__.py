@@ -23,6 +23,19 @@ from gi.repository import Gtk, Gio
 from .confManager import ConfManager
 from .app_window import GFeedsAppWindow
 
+def test():
+    from .download_manager import download
+    from .rss_parser import Feed
+    confman = ConfManager()
+    feeds = []
+    for f in confman.conf['feeds']:
+        feeds.append(Feed(download(f)))
+
+    for f in feeds:
+        print(f)
+
+    exit(0)
+
 class GFeedsApplication(Gtk.Application):
     def __init__(self, **kwargs):
         super().__init__(
@@ -119,6 +132,9 @@ class GFeedsApplication(Gtk.Application):
 
 
 def main():
+
+    test()
+
     application = GFeedsApplication()
 
     try:
