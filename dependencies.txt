@@ -1,4 +1,5 @@
 #python-html5lib
+webkit2gtk
 python-lxml
 python-requests
 python email utils (email.utils, maybe built in?)

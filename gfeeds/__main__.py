@@ -133,8 +133,6 @@ class GFeedsApplication(Gtk.Application):
 
 def main():
 
-    test()
-
     application = GFeedsApplication()
 
     try:
