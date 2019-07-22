@@ -3,6 +3,7 @@ from gi.repository import Gtk, WebKit2
 from .confManager import ConfManager
 from .leaflet import GFeedsLeaflet
 from .sidebar import GFeedsSidebar
+from .headerbar import GFeedHeaderbar
 
 from .download_manager import download
 from .rss_parser import Feed
@@ -39,7 +40,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
         try: import operator; keyfun = operator.attrgetter('pub_date')
         except ImportError: keyfun = lambda x: x.pub_date
-        
+
         self.feeds_items.sort(key=keyfun, reverse=True)
 
         self.sidebar = GFeedsSidebar()
@@ -51,6 +52,15 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.leaflet.add(self.sidebar)
         self.right_box.pack_start(self.webkitview, True, True, 0)
         self.leaflet.add(self.right_box)
+        self.leaflet.connect('notify::folded', self.on_main_leaflet_folded)
+
+        self.size_group_left = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
+        self.size_group_right = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
+        self.size_group_left.add_widget(self.sidebar)
+        self.size_group_right.add_widget(self.right_box)
+        self.headerbar = GFeedHeaderbar(self.size_group_left, self.size_group_right)
+        self.set_titlebar(self.headerbar)
+        
 
         self.add(self.leaflet)
 
@@ -70,3 +80,11 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
     def on_sidebar_row_activated(self, listbox, row):
         self.webkitview.load_uri(row.feeditem.link)
+
+    def on_main_leaflet_folded(self, *args):
+        target = None
+        if self.leaflet.folded:
+            target = self.headerbar.left_headerbar if self.leaflet.get_visible_child() == self.sidebar else self.headerbar.right_headerbar
+        else:
+            target = self.headerbar.right_headerbar
+        self.headerbar.headergroup.set_focus(target)
