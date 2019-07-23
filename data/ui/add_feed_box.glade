@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkBox" id="container_box">
+    <property name="width_request">250</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="margin_left">12</property>
+    <property name="margin_right">12</property>
+    <property name="margin_top">12</property>
+    <property name="margin_bottom">12</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">6</property>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">start</property>
+        <property name="label" translatable="yes">&lt;big&gt;New feed URL&lt;/big&gt;</property>
+        <property name="use_markup">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkEntry" id="url_entry">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="placeholder_text" translatable="yes">https://...</property>
+        <property name="input_purpose">url</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="confirm_btn">
+        <property name="label">gtk-add</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="use_stock">True</property>
+        <style>
+          <class name="suggested-action"/>
+        </style>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+  </object>
+</interface>

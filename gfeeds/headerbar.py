@@ -1,6 +1,37 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 from .leaflet import GFeedsLeaflet
+from .confManger import ConfManager
+
+class AddFeedPopover(Gtk.Popover):
+    def __init__(self, relative_to, **kwargs):
+        super().__init__(**kwargs)
+        self.confman = ConfManager()
+        
+        self.builder = Gtk.Builder.new_from_resource(
+            '/org/gabmus/gnome-feeds/ui/add_feed_box.glade'
+        )
+        self.set_modal(True)
+        self.set_relative_to(relative_to)
+        relative_to.connect('clicked', self.on_relative_to_clicked)
+        self.container_box = self.builder.get_object('container_box')
+        self.confirm_btn = self.builder.get_object('confirm_btn')
+        self.confirm_btn.connect('clicked', self.on_confirm_btn_clicked)
+        self.url_entry = self.builder.get_object('url_entry')
+
+        self.add(self.container_box)
+
+    def on_confirm_btn_clicked(self, *args):
+        # TODO:
+        # 1. verify the new feed is an url and is not dead
+        # 2. try to parse it and see if it's parsable
+        # 3. add it to the config, SAVE THE CONFIG
+        # 4. refresh the articles list, remember to keep datetime ordering
+        print(self.url_entry.get_text())
+
+    def on_relative_to_clicked(self, *args):
+        self.popup()
+
 
 class GFeedHeaderbar(Handy.TitleBar):
     def __init__(self, size_group_left, size_group_right, open_externally_func, back_btn_func, **kwargs):
@@ -47,7 +78,7 @@ class GFeedHeaderbar(Handy.TitleBar):
             'open-menu-symbolic',
             Gtk.IconSize.BUTTON
         )
-        self.menu_btn.set_tooltip_text('Menu')
+        self.menu_btn.set_tooltip_text(_('Menu'))
         self.menu_popover = Gtk.PopoverMenu()
         self.menu_builder = Gtk.Builder.new_from_resource('/org/gabmus/gnome-feeds/ui/menu.xml')
         self.menu = self.menu_builder.get_object('generalMenu')
@@ -56,6 +87,14 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.menu_popover.set_modal(True)
         self.menu_btn.connect('clicked', self.on_menu_btn_clicked)
         self.left_headerbar.pack_end(self.menu_btn)
+
+        self.add_btn = Gtk.Button.new_from_icon_name(
+            'list-add-symbolic',
+            Gtk.IconSize.BUTTON
+        )
+        self.add_btn.set_tooltip_text(_('Add new feed'))
+        self.add_popover = AddFeedPopover(self.add_btn)
+        self.left_headerbar.pack_start(self.add_btn)
 
     def on_back_button_clicked(self, *args):
         self.leaflet.set_visible_child(self.left_headerbar)
