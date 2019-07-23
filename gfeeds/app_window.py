@@ -1,9 +1,10 @@
 from gettext import gettext as _
-from gi.repository import Gtk, WebKit2
+from gi.repository import Gtk
 from .confManager import ConfManager
 from .leaflet import GFeedsLeaflet
 from .sidebar import GFeedsSidebar
 from .headerbar import GFeedHeaderbar
+from .webview import GFeedsWebView
 
 from .download_manager import download
 from .rss_parser import Feed
@@ -45,20 +46,23 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.sidebar = GFeedsSidebar()
         self.sidebar.listbox.connect('row-activated', self.on_sidebar_row_activated)
 
-        self.webkitview = WebKit2.WebView()
-        self.webkitview.set_hexpand(True)
-        self.webkitview.set_size_request(300, 500)
+        self.webview = GFeedsWebView()
 
         self.leaflet = GFeedsLeaflet()
         self.leaflet.add(self.sidebar)
-        self.leaflet.add(self.webkitview)
+        self.leaflet.add(self.webview)
         self.leaflet.connect('notify::folded', self.on_main_leaflet_folded)
 
         self.size_group_left = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
         self.size_group_right = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
         self.size_group_left.add_widget(self.sidebar)
-        self.size_group_right.add_widget(self.webkitview)
-        self.headerbar = GFeedHeaderbar(self.size_group_left, self.size_group_right)
+        self.size_group_right.add_widget(self.webview)
+        self.headerbar = GFeedHeaderbar(
+            self.size_group_left,
+            self.size_group_right,
+            self.webview.open_externally,
+            self.on_back_button_clicked    
+        )
         self.set_titlebar(self.headerbar)
         
 
@@ -79,15 +83,21 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.confman.save_conf()
 
     def on_sidebar_row_activated(self, listbox, row):
-        self.webkitview.load_uri(row.feeditem.link)
+        self.webview.load_uri(row.feeditem.link)
+        self.headerbar.open_externally_btn.set_sensitive(True)
+        self.leaflet.set_visible_child(self.webview)
+        self.headerbar.leaflet.set_visible_child(self.headerbar.right_headerbar)
+        self.on_main_leaflet_folded()
 
     def on_main_leaflet_folded(self, *args):
         target = None
         # other = None
         if self.leaflet.folded:
-            target = self.headerbar.left_headerbar if self.leaflet.get_visible_child() == self.sidebar else self.headerbar.right_headerbar
+            target = self.headerbar.leaflet.get_visible_child()
+            self.headerbar.back_button.show()
         else:
             target = self.headerbar.right_headerbar
+            self.headerbar.back_button.hide()
         # for c in self.headerbar.leaflet.get_children():
         #     if c != target:
         #         other = c
@@ -95,3 +105,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.headerbar.headergroup.set_focus(target)
         # target.set_show_close_button(True)
         # other.set_show_close_button(False)
+
+    def on_back_button_clicked(self, *args):
+        self.leaflet.set_visible_child(self.sidebar)
+        self.on_main_leaflet_folded()

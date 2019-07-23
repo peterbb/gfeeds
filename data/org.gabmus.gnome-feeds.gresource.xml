@@ -4,6 +4,7 @@
     <file compressed="true">org.gabmus.gnome-feeds.service.desktop</file>
 
     <file preprocess="xml-stripblanks">aboutdialog.glade</file>
+    <file preprocess="xml-stripblanks">ui/webview_filler.glade</file>
     <file preprocess="xml-stripblanks">ui/menu.xml</file>
     <file preprocess="xml-stripblanks">ui/shortcutsWindow.xml</file>
     
