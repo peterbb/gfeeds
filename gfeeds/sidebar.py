@@ -14,7 +14,7 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         for l in self.labels:
             l.set_use_markup(True)
             l.set_line_wrap(True)
-            l.set_hexpand(True)
+            l.set_hexpand(False)
             l.set_halign(Gtk.Align.START)
             self.box.pack_start(l, False, False, 3)
 
@@ -23,7 +23,6 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
 class GFeedsSidebarListBox(Gtk.ListBox):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.set_size_request(300, 500)
         
 
     def populate(self, feeditems_l):
@@ -42,6 +41,7 @@ class GFeedsSidebar(Gtk.ScrolledWindow):
         super().__init__(**kwargs)
         self.listbox = GFeedsSidebarListBox()
         self.populate = self.listbox.populate
+        self.set_size_request(300, 500)
         
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.add(self.listbox)

@@ -15,7 +15,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
         self.set_title('GNOME Feeds')
         self.set_icon_name('org.gabmus.gnome-feeds')
-        self.right_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
         
         # accel_group is for keyboard shortcuts
         self.accel_group = Gtk.AccelGroup()
@@ -47,17 +46,18 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.sidebar.listbox.connect('row-activated', self.on_sidebar_row_activated)
 
         self.webkitview = WebKit2.WebView()
+        self.webkitview.set_hexpand(True)
+        self.webkitview.set_size_request(300, 500)
 
         self.leaflet = GFeedsLeaflet()
         self.leaflet.add(self.sidebar)
-        self.right_box.pack_start(self.webkitview, True, True, 0)
-        self.leaflet.add(self.right_box)
+        self.leaflet.add(self.webkitview)
         self.leaflet.connect('notify::folded', self.on_main_leaflet_folded)
 
         self.size_group_left = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
         self.size_group_right = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
         self.size_group_left.add_widget(self.sidebar)
-        self.size_group_right.add_widget(self.right_box)
+        self.size_group_right.add_widget(self.webkitview)
         self.headerbar = GFeedHeaderbar(self.size_group_left, self.size_group_right)
         self.set_titlebar(self.headerbar)
         
@@ -83,8 +83,15 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
     def on_main_leaflet_folded(self, *args):
         target = None
+        # other = None
         if self.leaflet.folded:
             target = self.headerbar.left_headerbar if self.leaflet.get_visible_child() == self.sidebar else self.headerbar.right_headerbar
         else:
             target = self.headerbar.right_headerbar
+        # for c in self.headerbar.leaflet.get_children():
+        #     if c != target:
+        #         other = c
+        #         break
         self.headerbar.headergroup.set_focus(target)
+        # target.set_show_close_button(True)
+        # other.set_show_close_button(False)
