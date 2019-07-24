@@ -11,6 +11,7 @@
     
     <file preprocess="xml-stripblanks">icons/org.gabmus.gnome-feeds.svg</file>
     <file preprocess="xml-stripblanks">icons/org.gabmus.gnome-feeds-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/ephy-reader-mode-symbolic.svg</file>
 
   </gresource>
 </gresources>

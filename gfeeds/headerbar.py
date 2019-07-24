@@ -1,7 +1,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 from .leaflet import GFeedsLeaflet
-from .confManger import ConfManager
+from .confManager import ConfManager
 
 class AddFeedPopover(Gtk.Popover):
     def __init__(self, relative_to, **kwargs):
@@ -34,9 +34,18 @@ class AddFeedPopover(Gtk.Popover):
 
 
 class GFeedHeaderbar(Handy.TitleBar):
-    def __init__(self, size_group_left, size_group_right, open_externally_func, back_btn_func, **kwargs):
+    def __init__(
+            self,
+            size_group_left,
+            size_group_right,
+            back_btn_func,
+            webview,
+            **kwargs):
         super().__init__(**kwargs)
         self.back_btn_func = back_btn_func
+        self.webview = webview
+        self.webview.connect('gfeeds_webview_load_start', self.on_load_start)
+        self.webview.connect('gfeeds_webview_load_end', self.on_load_end)
         
         self.headergroup = Handy.HeaderGroup()
         self.leaflet = GFeedsLeaflet()
@@ -71,8 +80,18 @@ class GFeedHeaderbar(Handy.TitleBar):
         )
         self.open_externally_btn.set_tooltip_text(_('Open externally'))
         self.open_externally_btn.set_sensitive(False)
-        self.open_externally_btn.connect('clicked', open_externally_func)
+        self.open_externally_btn.connect('clicked', self.webview.open_externally)
         self.right_headerbar.pack_end(self.open_externally_btn)
+
+        self.reader_mode_btn = Gtk.ToggleButton()
+        self.reader_mode_btn.set_tooltip_text(_('Reader mode'))
+        self.reader_mode_btn.add(Gtk.Image.new_from_icon_name(
+            'ephy-reader-mode-symbolic',
+            Gtk.IconSize.BUTTON
+        ))
+        self.reader_mode_btn.connect('toggled', self.webview.set_enable_reader_mode)
+        self.reader_mode_btn.set_sensitive(False)
+        self.right_headerbar.pack_start(self.reader_mode_btn)
 
         self.menu_btn = Gtk.Button.new_from_icon_name(
             'open-menu-symbolic',
@@ -102,3 +121,10 @@ class GFeedHeaderbar(Handy.TitleBar):
 
     def on_menu_btn_clicked(self, *args):
         self.menu_popover.popup()
+
+    def on_load_start(self, *args):
+        self.reader_mode_btn.set_sensitive(False)
+        self.reader_mode_btn.set_active(False)
+
+    def on_load_end(self, *args):
+        self.reader_mode_btn.set_sensitive(True)

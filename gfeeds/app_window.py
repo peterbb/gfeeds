@@ -60,8 +60,8 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.headerbar = GFeedHeaderbar(
             self.size_group_left,
             self.size_group_right,
-            self.webview.open_externally,
-            self.on_back_button_clicked    
+            self.on_back_button_clicked,
+            self.webview
         )
         self.set_titlebar(self.headerbar)
         
