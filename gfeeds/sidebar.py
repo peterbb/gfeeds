@@ -11,7 +11,6 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.origin_label = Gtk.Label(f'<i>{escape(self.feeditem.parent_feed.title)}</i>')
         self.date_label = Gtk.Label(str(self.feeditem.pub_date))
         self.icon = Gtk.Image.new_from_file(self.feeditem.parent_feed.favicon_path)
-        self.icon.set_pixel_size(32)
         self.super_box.pack_start(self.icon, False, False, 6)
         self.labels = [self.title_label, self.origin_label, self.date_label]
         self.box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
