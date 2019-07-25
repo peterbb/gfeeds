@@ -45,13 +45,16 @@ class FeedItem:
             if tag == 'title':
                 self.title = el.text
             elif tag == 'link':
-                self.link = el.text
+                if el.text:
+                    self.link = el.text
+                elif 'href' in el.attrib.keys():
+                    self.link = el.attrib['href']
             elif tag == 'guid':
                 self.guid = el.text
                 self.guid_permalink = el.attrib.has_key('isPermaLink') and el.attrib.get('isPermaLink') != 'false'
             elif tag == 'description':
                 self.description = el.text
-            elif tag in ['date', 'pubdate']: # should be 'pubDate' but it's lower()
+            elif tag in ['date', 'pubdate', 'published']: # should be 'pubDate' but it's lower()
                 try:
                     self.pub_date = parsedate_to_datetime(el.text)
                 except:
@@ -99,13 +102,25 @@ class Feed:
         self.image_url = ''
         self.items = []
 
-        for el in [*root.xpath('//channel')[0], *root.xpath('//item')]: # root[0] should be channel
+        items_xpath = root.xpath('//item')
+        if len(items_xpath) == 0:
+            items_xpath = root.xpath('//entry')
+        channel_xpath = root.xpath('//channel')
+        if len(channel_xpath) == 0:
+            channel_xpath = root
+        else:
+            channel_xpath = channel_xpath[0]
+
+        for el in [*channel_xpath, *items_xpath]: # root[0] should be channel
             tag = el.tag.lower()
             print(tag)
             if tag == 'title':
                 self.title = el.text
-            elif tag == 'link' and el.text:
-                self.link = el.text
+            elif tag == 'link':
+                if el.text:
+                    self.link = el.text
+                elif 'href' in el.attrib.keys():
+                    self.link = el.attrib['href']
             elif tag == 'description':
                 self.description = el.text
             elif tag == 'language':
@@ -115,7 +130,7 @@ class Feed:
                     if iel.tag == 'url':
                         self.image_url = iel.text
                         break
-            elif tag == 'item':
+            elif tag in ['item', 'entry']:
                 self.items.append(FeedItem(el, self))
             else:
                 pass

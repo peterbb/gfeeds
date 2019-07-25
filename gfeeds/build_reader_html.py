@@ -355,14 +355,18 @@ body.dark mark {
 """
 
 from lxml.html import html5parser, tostring
+from gettext import gettext as _
 
 def build_reader_html(og_html):
     root = html5parser.fromstring(og_html if type(og_html) == str else og_html.decode())
-    article_els = root.xpath(
-        '//x:article',
-        namespaces={'x': 'http://www.w3.org/1999/xhtml'}
-    )
-    article_s = tostring(
-        article_els[0]
-    ).decode().replace('<html:', '<').replace('</html:', '</')
+    try:
+        article_els = root.xpath(
+            '//x:article',
+            namespaces={'x': 'http://www.w3.org/1999/xhtml'}
+        )
+        article_s = tostring(
+            article_els[0]
+        ).decode().replace('<html:', '<').replace('</html:', '</')
+    except:
+        article_s = '<h1><i>'+_('Reader mode unavailable for this site')+'</i></h1>'
     return f'<html><head><style>{css}</style><body>{article_s}</body></html>'
