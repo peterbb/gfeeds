@@ -1,7 +1,12 @@
 from lxml import etree
 from email.utils import parsedate_to_datetime
 from gettext import gettext as _
-from .download_manager import download
+from .download_manager import download, download_raw
+from .get_favicon import get_favicon
+from os.path import isfile
+from .confManager import ConfManager
+from .sha import shasum
+from PIL import Image
 
 """
 quick XML parsing notes
@@ -52,7 +57,8 @@ class FeedItem:
                 # at this time I have no need for them.
                 pass
             else:
-                print(_('WARNING: [{0}] unrecognized tag {1}').format(self, el.tag))
+                pass
+                #print(_('WARNING: [{0}] unrecognized tag {1}').format(self, el.tag))
 
     def __repr__(self):
         return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
@@ -61,13 +67,15 @@ class FeedItem:
         link = self.guid if self.guid_permalink else self.link
         download(link)
 
-        
+
 class Feed:
     def __init__(self, feedpath):
         with open(feedpath, 'r') as fd:
             tree = etree.parse(fd)
             fd.close()
         root = tree.getroot()
+
+        self.confman = ConfManager()
         
         self.title = ''
         self.link = ''
@@ -94,7 +102,25 @@ class Feed:
             elif tag == 'item':
                 self.items.append(FeedItem(el, self))
             else:
-                print(_('WARNING: [{0}] unrecognized tag {1}').format(self, el.tag))
+                pass
+                # print(_('WARNING: [{0}] unrecognized tag {1}').format(self, el.tag))
+        
+        self.favicon_path = self.confman.thumbs_cache_path+'/'+shasum(self.link)+'.png'
+        if not isfile(self.favicon_path):
+            if self.image_url:
+                download_raw(self.image_url, self.favicon_path)
+            else:
+                get_favicon(self.link, self.favicon_path)
+        if isfile(self.favicon_path):
+            try:
+                favicon = Image.open(self.favicon_path)
+                if favicon.width > 32:
+                    favicon.thumbnail((32, 32), Image.ANTIALIAS)
+                    favicon.save(self.favicon_path, 'PNG')
+                favicon.close()
+            except:
+                print(_('Error resizing favicon for feed {0}').format(self.title))
+
 
     def __repr__(self):
         return f'Feed Object `{self.title}`; {len(self.items)} items'

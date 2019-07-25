@@ -72,7 +72,6 @@ class GFeedsWebView(Gtk.Stack):
             resource.get_data(None, self._get_data_cb, None)
 
     def set_enable_reader_mode(self, togglebtn):
-        print('RECEIVED')
         state = togglebtn.get_active()
         if state:
             self.webkitview.load_html(build_reader_html(self.html))

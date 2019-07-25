@@ -5,10 +5,14 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
     def __init__(self, feeditem, **kwargs):
         super().__init__(**kwargs)
         self.feeditem = feeditem
-        
+        self.super_box = Gtk.Box(orientation = Gtk.Orientation.HORIZONTAL)
+
         self.title_label = Gtk.Label(f'<big><b>{escape(self.feeditem.title)}</b></big>')
         self.origin_label = Gtk.Label(f'<i>{escape(self.feeditem.parent_feed.title)}</i>')
         self.date_label = Gtk.Label(str(self.feeditem.pub_date))
+        self.icon = Gtk.Image.new_from_file(self.feeditem.parent_feed.favicon_path)
+        self.icon.set_pixel_size(32)
+        self.super_box.pack_start(self.icon, False, False, 6)
         self.labels = [self.title_label, self.origin_label, self.date_label]
         self.box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
         for l in self.labels:
@@ -18,7 +22,8 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
             l.set_halign(Gtk.Align.START)
             self.box.pack_start(l, False, False, 3)
 
-        self.add(self.box)
+        self.super_box.pack_start(self.box, True, True, 6)
+        self.add(self.super_box)
 
 class GFeedsSidebarListBox(Gtk.ListBox):
     def __init__(self, **kwargs):

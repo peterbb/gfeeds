@@ -357,7 +357,7 @@ body.dark mark {
 from lxml.html import html5parser, tostring
 
 def build_reader_html(og_html):
-    root = html5parser.fromstring(og_html.decode())
+    root = html5parser.fromstring(og_html if type(og_html) == str else og_html.decode())
     article_els = root.xpath(
         '//x:article',
         namespaces={'x': 'http://www.w3.org/1999/xhtml'}

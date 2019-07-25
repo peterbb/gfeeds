@@ -5,6 +5,14 @@ from .sha import shasum
 
 confman = ConfManager()
 
+def download_raw(link, dest):
+    req = requests.get(link)
+    if req.status_code == 200:
+        with open(dest, 'wb') as fd:
+            for chunk in req.iter_content(1024):
+                fd.write(chunk)
+            fd.close()
+
 def download(link):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
     print(_('Downloading `{0}`...').format(link))
