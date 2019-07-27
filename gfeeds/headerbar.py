@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Gdk, Handy
 from .leaflet import GFeedsLeaflet
 from .confManager import ConfManager
 
@@ -93,6 +93,14 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.reader_mode_btn.set_sensitive(False)
         self.right_headerbar.pack_start(self.reader_mode_btn)
 
+        self.share_btn = Gtk.Button.new_from_icon_name(
+            'emblem-shared-symbolic',
+            Gtk.IconSize.BUTTON
+        )
+        self.share_btn.set_tooltip_text('Share')
+        self.share_btn.connect('clicked', self.copy_article_uri)
+        self.right_headerbar.pack_start(self.share_btn)
+
         self.menu_btn = Gtk.Button.new_from_icon_name(
             'open-menu-symbolic',
             Gtk.IconSize.BUTTON
@@ -107,6 +115,13 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.menu_btn.connect('clicked', self.on_menu_btn_clicked)
         self.left_headerbar.pack_end(self.menu_btn)
 
+        self.refresh_btn = Gtk.Button.new_from_icon_name(
+            'view-refresh-symbolic',
+            Gtk.IconSize.BUTTON
+        )
+        self.refresh_btn.set_tooltip_text(_('Refresh feeds'))
+        self.left_headerbar.pack_end(self.refresh_btn)
+
         self.add_btn = Gtk.Button.new_from_icon_name(
             'list-add-symbolic',
             Gtk.IconSize.BUTTON
@@ -114,6 +129,8 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.add_btn.set_tooltip_text(_('Add new feed'))
         self.add_popover = AddFeedPopover(self.add_btn)
         self.left_headerbar.pack_start(self.add_btn)
+
+        self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
     def on_back_button_clicked(self, *args):
         self.leaflet.set_visible_child(self.left_headerbar)
@@ -128,3 +145,7 @@ class GFeedHeaderbar(Handy.TitleBar):
 
     def on_load_end(self, *args):
         self.reader_mode_btn.set_sensitive(True)
+
+    def copy_article_uri(self, *args):
+        self.clipboard.set_text(self.webview.uri, -1)
+        self.clipboard.store()

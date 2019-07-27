@@ -1,4 +1,4 @@
-from lxml import etree, objectify
+import feedparser
 from email.utils import parsedate_to_datetime
 from datetime import datetime
 from gettext import gettext as _
@@ -9,134 +9,51 @@ from .confManager import ConfManager
 from .sha import shasum
 from PIL import Image
 
-"""
-quick XML parsing notes
-
-<?xml version="1.0"?>               IGNORE THIS
-<rss version="2.0">                 THIS IS THE ROOT
-    <channel>                       THIS IS ROOT'S 0th AND ONLY CHILD
-        <title>Phoronix</title>
-        <link>https://www.phoronix.com/</link>
-        <description>Linux Hardware Reviews &amp; News</description>
-        <language>en-us</language>
-        <item>
-            <title>RadeonSI Gallium3D Driver Adds Navi Wave32 Support</title>
-            <link>http://www.phoronix.com/scan.php?page=news_item&amp;px=RadeonSI-Wave32-Lands</link>
-            <guid>http://www.phoronix.com/scan.php?page=news_item&amp;px=RadeonSI-Wave32-Lands</guid>
-            <description>One of the new features to the RDNA architecture with Navi is support for single cycle issue Wave32 execution on SIMD32. Up to now the RadeonSI code was using just Wave64 but now there is support in this AMD open-source Linux OpenGL driver for Wave32...</description>
-            <pubDate>Sat, 20 Jul 2019 07:19:33 -0400</pubDate>
-        </item>
-        <item>
-        ...
-"""
-
 class FeedItem:
-    def __init__(self, item, parent_feed):
-        self.title = ''
-        self.link = ''
-        self.guid = ''
-        self.guid_permalink = False
-        self.description = ''
+    def __init__(self, fp_item, parent_feed):
+        self.fp_item = fp_item
+
+        self.title = self.fp_item.get('title', '')
+        self.link = self.fp_item.get('link', '')
+        # self.description = self.fp_item.get('description', '')
+        self.pub_date_str = self.fp_item.get(
+            'published',
+            self.fp_item.get('updated', '')
+        )
         self.pub_date = None
         self.parent_feed = parent_feed
 
-        for el in item:
-            tag = el.tag.lower()
-            if tag == 'title':
-                self.title = el.text
-            elif tag == 'link':
-                if el.text:
-                    self.link = el.text
-                elif 'href' in el.attrib.keys():
-                    self.link = el.attrib['href']
-            elif tag == 'guid':
-                self.guid = el.text
-                self.guid_permalink = el.attrib.has_key('isPermaLink') and el.attrib.get('isPermaLink') != 'false'
-            elif tag == 'description':
-                self.description = el.text
-            elif tag in ['date', 'pubdate', 'published']: # should be 'pubDate' but it's lower()
-                try:
-                    self.pub_date = parsedate_to_datetime(el.text)
-                except:
-                    print(_('Error: failed to parse datetime from rfc'))
-                if not self.pub_date:
-                    try:
-                        self.pub_date = datetime.fromisoformat(el.text)
-                    except:
-                        print(_('Error: failed to parse datetime from iso format'))
-            elif tag == 'category':
-                # as far as I can tell, the category tag refers to tags for the article
-                # at this time I have no need for them.
-                pass
-            else:
-                pass
-                #print(_('WARNING: [{0}] unrecognized tag {1}').format(self, el.tag))
+        try:
+            self.pub_date = parsedate_to_datetime(self.pub_date_str)
+        except:
+            try:
+                self.pub_date = datetime.fromisoformat(self.pub_date_str)
+            except:
+                print(_('Error: unable to parse datetime'))
+
 
     def __repr__(self):
         return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
 
     def download_item(self):
-        link = self.guid if self.guid_permalink else self.link
-        download(link)
+        download(self.link)
 
 
 class Feed:
     def __init__(self, feedpath):
         with open(feedpath, 'r') as fd:
-            tree = etree.parse(fd)
+            self.fp_feed = feedparser.parse(fd.read())
             fd.close()
-        root = tree.getroot()
-        for elem in root.getiterator():
-            if not hasattr(elem.tag, 'find'): continue
-            i = elem.tag.find('}')
-            if i >=0:
-                elem.tag = elem.tag[i+1:]
-        objectify.deannotate(root, cleanup_namespaces=True)
 
         self.confman = ConfManager()
         
-        self.title = ''
-        self.link = ''
-        self.description = ''
-        self.language = ''
-        self.image_url = ''
-        self.items = []
+        self.title = self.fp_feed.feed.get('title', '')
+        self.link = self.fp_feed.feed.get('link', '')
+        self.description = self.fp_feed.feed.get('subtitle', '')
+        # self.language = self.fp_feed.get('', '')
+        self.image_url = self.fp_feed.get('image', {'href': ''})['href']
+        self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
 
-        items_xpath = root.xpath('//item')
-        if len(items_xpath) == 0:
-            items_xpath = root.xpath('//entry')
-        channel_xpath = root.xpath('//channel')
-        if len(channel_xpath) == 0:
-            channel_xpath = root
-        else:
-            channel_xpath = channel_xpath[0]
-
-        for el in [*channel_xpath, *items_xpath]: # root[0] should be channel
-            tag = el.tag.lower()
-            print(tag)
-            if tag == 'title':
-                self.title = el.text
-            elif tag == 'link':
-                if el.text:
-                    self.link = el.text
-                elif 'href' in el.attrib.keys():
-                    self.link = el.attrib['href']
-            elif tag == 'description':
-                self.description = el.text
-            elif tag == 'language':
-                self.language = el.text
-            elif tag == 'image':
-                for iel in el:
-                    if iel.tag == 'url':
-                        self.image_url = iel.text
-                        break
-            elif tag in ['item', 'entry']:
-                self.items.append(FeedItem(el, self))
-            else:
-                pass
-                # print(_('WARNING: [{0}] unrecognized tag {1}').format(self, el.tag))
-        print(self)
-        
         self.favicon_path = self.confman.thumbs_cache_path+'/'+shasum(self.link)+'.png'
         if not isfile(self.favicon_path):
             if self.image_url:
@@ -146,8 +63,8 @@ class Feed:
         if isfile(self.favicon_path):
             try:
                 favicon = Image.open(self.favicon_path)
-                if favicon.width > 32:
-                    favicon.thumbnail((32, 32), Image.ANTIALIAS)
+                if favicon.width != 32:
+                    favicon = favicon.resize((32, 32), Image.BILINEAR)
                     favicon.save(self.favicon_path, 'PNG')
                 favicon.close()
             except:

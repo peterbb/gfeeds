@@ -21,7 +21,7 @@ class ConfManager(metaclass=Singleton):
         'feeds': [
             'https://www.phoronix.com/rss.php',
             'https://feeds.feedburner.com/d0od?format=xml', #OMG! Ubuntu!
-            'http://rss.slashdot.org/Slashdot/slashdotMain' #Slashdot linux
+            'http://rss.slashdot.org/Slashdot/slashdotMain?format=xml' #Slashdot
         ],
         'windowsize': {
             'width': 600,

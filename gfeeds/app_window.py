@@ -29,19 +29,11 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         for s in shortcuts_l:
             self.add_accelerator(s['combo'], s['cb'])
 
+        try: import operator; self.keyfun = operator.attrgetter('pub_date')
+        except ImportError: self.keyfun = lambda x: x.pub_date
 
         self.feeds = []
         self.feeds_items = []
-        for f in self.confman.conf['feeds']:
-            n_feed = Feed(download(f))
-            self.feeds.append(n_feed)
-            for i in n_feed.items:
-                self.feeds_items.append(i)
-
-        try: import operator; keyfun = operator.attrgetter('pub_date')
-        except ImportError: keyfun = lambda x: x.pub_date
-
-        self.feeds_items.sort(key=keyfun, reverse=True)
 
         self.sidebar = GFeedsSidebar()
         self.sidebar.listbox.connect('row-activated', self.on_sidebar_row_activated)
@@ -63,11 +55,24 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.on_back_button_clicked,
             self.webview
         )
+        self.headerbar.refresh_btn.connect('clicked', self.refresh_feeds)
         self.set_titlebar(self.headerbar)
         
-
         self.add(self.leaflet)
 
+        self.refresh_feeds()
+        
+
+    def refresh_feeds(self, *args):
+        self.feeds = []
+        self.feeds_items = []
+        for f in self.confman.conf['feeds']:
+            n_feed = Feed(download(f))
+            self.feeds.append(n_feed)
+            for i in n_feed.items:
+                self.feeds_items.append(i)
+
+        self.feeds_items.sort(key=self.keyfun, reverse=True)
         self.sidebar.populate(self.feeds_items)
         
 
