@@ -149,3 +149,4 @@ class GFeedHeaderbar(Handy.TitleBar):
     def copy_article_uri(self, *args):
         self.clipboard.set_text(self.webview.uri, -1)
         self.clipboard.store()
+        self.webview.show_notif()
