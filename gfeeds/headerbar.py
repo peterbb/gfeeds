@@ -2,6 +2,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Gdk, Handy
 from .leaflet import GFeedsLeaflet
 from .confManager import ConfManager
+from .spinner_button import SpinnerButton
 
 class AddFeedPopover(Gtk.Popover):
     def __init__(self, relative_to, **kwargs):
@@ -115,11 +116,7 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.menu_btn.connect('clicked', self.on_menu_btn_clicked)
         self.left_headerbar.pack_end(self.menu_btn)
 
-        self.refresh_btn = Gtk.Button.new_from_icon_name(
-            'view-refresh-symbolic',
-            Gtk.IconSize.BUTTON
-        )
-        self.refresh_btn.set_tooltip_text(_('Refresh feeds'))
+        self.refresh_btn = SpinnerButton()
         self.left_headerbar.pack_end(self.refresh_btn)
 
         self.add_btn = Gtk.Button.new_from_icon_name(

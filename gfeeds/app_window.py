@@ -1,5 +1,6 @@
 from gettext import gettext as _
 from gi.repository import Gtk
+import threading
 from .confManager import ConfManager
 from .leaflet import GFeedsLeaflet
 from .sidebar import GFeedsSidebar
@@ -55,7 +56,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.on_back_button_clicked,
             self.webview
         )
-        self.headerbar.refresh_btn.connect('clicked', self.refresh_feeds)
+        self.headerbar.refresh_btn.btn.connect('clicked', self.refresh_feeds)
         self.set_titlebar(self.headerbar)
         
         self.add(self.leaflet)
@@ -63,7 +64,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.refresh_feeds()
         
 
-    def refresh_feeds(self, *args):
+    def refresh_feeds_async_worker(self, *args):
         self.feeds = []
         self.feeds_items = []
         for f in self.confman.conf['feeds']:
@@ -71,9 +72,24 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.feeds.append(n_feed)
             for i in n_feed.items:
                 self.feeds_items.append(i)
-
         self.feeds_items.sort(key=self.keyfun, reverse=True)
+
+
+    def refresh_feeds(self, *args):
+        self.headerbar.refresh_btn.set_spinning(True)
+        
+        t = threading.Thread(
+            group = None,
+            target = self.refresh_feeds_async_worker,
+            name = None
+        )
+        t.start()
+        while t.is_alive():
+            while Gtk.events_pending():
+                Gtk.main_iteration()
+
         self.sidebar.populate(self.feeds_items)
+        self.headerbar.refresh_btn.set_spinning(False)
         
 
     def add_accelerator(self, shortcut, callback):
