@@ -1,8 +1,9 @@
 from gettext import gettext as _
 from gi.repository import Gtk, WebKit2, GObject
 from subprocess import Popen
-from .build_reader_html import build_reader_html
 from time import time
+from .build_reader_html import build_reader_html
+from .confManager import ConfManager
 
 class GFeedsWebView(Gtk.Stack):
     __gsignals__ = {
@@ -19,6 +20,7 @@ class GFeedsWebView(Gtk.Stack):
     }
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.confman = ConfManager()
         self.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.set_hexpand(True)
         self.set_size_request(300, 500)
@@ -104,7 +106,11 @@ class GFeedsWebView(Gtk.Stack):
     def set_enable_reader_mode(self, togglebtn):
         state = togglebtn.get_active()
         if state:
-            self.webkitview.load_html(build_reader_html(self.html))
+            self.webkitview.load_html(
+                build_reader_html(
+                    self.html, self.confman.conf['dark_reader']
+                )
+            )
         else:
             self.webkitview.load_uri(self.uri)
 

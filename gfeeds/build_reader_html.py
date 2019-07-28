@@ -354,10 +354,20 @@ body.dark mark {
 }
 """
 
+dark_mode_css = """
+body {
+  background-color: #181818;
+}
+
+article, h1, h2, h3, h4, h5, h6, h7 {
+  color: white !important;
+}
+"""
+
 from lxml.html import html5parser, tostring
 from gettext import gettext as _
 
-def build_reader_html(og_html):
+def build_reader_html(og_html, dark_mode=False):
     root = html5parser.fromstring(og_html if type(og_html) == str else og_html.decode())
     try:
         article_els = root.xpath(
@@ -369,4 +379,5 @@ def build_reader_html(og_html):
         ).decode().replace('<html:', '<').replace('</html:', '</')
     except:
         article_s = '<h1><i>'+_('Reader mode unavailable for this site')+'</i></h1>'
-    return f'<html><head><style>{css}</style><body>{article_s}</body></html>'
+    
+    return f'<html><head><style>{dark_mode_css if dark_mode else ""}{css}</style><body>{article_s}</body></html>'

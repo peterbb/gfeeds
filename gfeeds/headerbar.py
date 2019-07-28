@@ -17,18 +17,9 @@ class AddFeedPopover(Gtk.Popover):
         relative_to.connect('clicked', self.on_relative_to_clicked)
         self.container_box = self.builder.get_object('container_box')
         self.confirm_btn = self.builder.get_object('confirm_btn')
-        self.confirm_btn.connect('clicked', self.on_confirm_btn_clicked)
         self.url_entry = self.builder.get_object('url_entry')
 
         self.add(self.container_box)
-
-    def on_confirm_btn_clicked(self, *args):
-        # TODO:
-        # 1. verify the new feed is an url and is not dead
-        # 2. try to parse it and see if it's parsable
-        # 3. add it to the config, SAVE THE CONFIG
-        # 4. refresh the articles list, remember to keep datetime ordering
-        print(self.url_entry.get_text())
 
     def on_relative_to_clicked(self, *args):
         self.popup()

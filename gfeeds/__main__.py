@@ -22,6 +22,7 @@ import argparse
 from gi.repository import Gtk, Gio
 from .confManager import ConfManager
 from .app_window import GFeedsAppWindow
+from .settings_window import GFeedsSettingsWindow
 
 def test():
     from .download_manager import download
@@ -99,12 +100,11 @@ class GFeedsApplication(Gtk.Application):
         shortcuts_win.show_all()
 
     def show_settings_window(self, *args):
-        pass
-        #settings_win = GFeedsSettingsWindow()
-        #settings_win.set_transient_for(self.window)
-        #settings_win.set_attached_to(self.window)
-        #settings_win.set_modal(True)
-        #settings_win.present()
+        settings_win = GFeedsSettingsWindow()
+        settings_win.set_transient_for(self.window)
+        settings_win.set_attached_to(self.window)
+        settings_win.set_modal(True)
+        settings_win.present()
 
     def do_activate(self):
         self.add_window(self.window)
