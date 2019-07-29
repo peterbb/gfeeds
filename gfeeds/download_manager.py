@@ -35,7 +35,7 @@ def download(link):
             with open(dest_path, 'w') as fd:
                 fd.write(req.text)
                 fd.close()
-        return dest_path
+        return (dest_path, link)
     else:
         print(_('Error downloading `{0}`, code `{1}`').format(link, req.status_code))
         return None

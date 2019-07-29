@@ -23,8 +23,11 @@ from gi.repository import Gtk, Gio
 from .confManager import ConfManager
 from .app_window import GFeedsAppWindow
 from .settings_window import GFeedsSettingsWindow
-from .opml_manager import opml_to_rss_list
-from .opml_file_chooser import GFeedsOpmlFileChooserDialog
+from .opml_manager import opml_to_rss_list, feeds_list_to_opml
+from .opml_file_chooser import (
+    GFeedsOpmlFileChooserDialog,
+    GFeedsOpmlSavePathChooserDialog
+)
 import threading
 
 def test():
@@ -111,7 +114,17 @@ class GFeedsApplication(Gtk.Application):
             self.window.headerbar.add_popover.confirm_btn.set_sensitive(True)
 
     def export_opml(self, *args):
-        print('export')
+        dialog = GFeedsOpmlSavePathChooserDialog(self.window)
+        res = dialog.run()
+        dialog.close()
+        if res == Gtk.ResponseType.OK:
+            save_path = dialog.get_filename()
+            if save_path[-5:].lower() != '.opml':
+                save_path += '.opml'
+            opml_out = feeds_list_to_opml(self.window.feeds)
+            with open(save_path, 'w') as fd:
+                fd.write(opml_out)
+                fd.close()
 
     def show_about_dialog(self, *args):
         about_builder = Gtk.Builder.new_from_resource(

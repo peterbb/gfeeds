@@ -40,13 +40,17 @@ class FeedItem:
 
 
 class Feed:
-    def __init__(self, feedpath):
+    def __init__(self, download_res):
+        if not download_res:
+            return None
+        feedpath = download_res[0]
         with open(feedpath, 'r') as fd:
             self.fp_feed = feedparser.parse(fd.read())
             fd.close()
 
         self.confman = ConfManager()
         
+        self.rss_link = download_res[1]
         self.title = self.fp_feed.feed.get('title', '')
         self.link = self.fp_feed.feed.get('link', '')
         self.description = self.fp_feed.feed.get('subtitle', '')
