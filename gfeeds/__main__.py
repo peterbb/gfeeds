@@ -23,6 +23,9 @@ from gi.repository import Gtk, Gio
 from .confManager import ConfManager
 from .app_window import GFeedsAppWindow
 from .settings_window import GFeedsSettingsWindow
+from .opml_manager import opml_to_rss_list
+from .opml_file_chooser import GFeedsOpmlFileChooserDialog
+import threading
 
 def test():
     from .download_manager import download
@@ -53,6 +56,14 @@ class GFeedsApplication(Gtk.Application):
 
         actions = [
             {
+                'name': 'import_opml',
+                'func': self.import_opml
+            },
+            {
+                'name': 'export_opml',
+                'func': self.export_opml
+            },
+            {
                 'name': 'settings',
                 'func': self.show_settings_window
             },
@@ -74,6 +85,33 @@ class GFeedsApplication(Gtk.Application):
             c_action = Gio.SimpleAction.new(a['name'], None)
             c_action.connect('activate', a['func'])
             self.add_action(c_action)
+
+    def import_opml(self, *args):
+        dialog = GFeedsOpmlFileChooserDialog(self.window)
+        res = dialog.run()
+        dialog.close()
+        if res == Gtk.ResponseType.OK:
+            n_feeds_urls_l = opml_to_rss_list(dialog.get_filename())
+            self.window.headerbar.refresh_btn.set_spinning(True)
+            self.window.headerbar.add_popover.confirm_btn.set_sensitive(False)
+
+            for url in n_feeds_urls_l:
+                t = threading.Thread(
+                    group = None,
+                    target = self.window.add_new_feed_async_worker,
+                    name = None,
+                    args = (url,)
+                )
+                t.start()
+                while t.is_alive():
+                    while Gtk.events_pending():
+                        Gtk.main_iteration()
+
+            self.window.headerbar.refresh_btn.set_spinning(False)
+            self.window.headerbar.add_popover.confirm_btn.set_sensitive(True)
+
+    def export_opml(self, *args):
+        print('export')
 
     def show_about_dialog(self, *args):
         about_builder = Gtk.Builder.new_from_resource(

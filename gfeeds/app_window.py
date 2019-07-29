@@ -95,8 +95,14 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.headerbar.refresh_btn.set_spinning(False)
         self.headerbar.add_popover.confirm_btn.set_sensitive(True)
 
-    def add_new_feed_async_worker(self):
-        url = self.headerbar.add_popover.url_entry.get_text()
+    def add_new_feed_async_worker(self, url = None):
+        if not url:
+            url = self.headerbar.add_popover.url_entry.get_text()
+            if not 'http://' in url or not 'https://' in url:
+                url = 'http://' + url
+        if url in self.confman.conf['feeds']:
+            print(_('Feed {0} exists already, skipping').format(url))
+            return
         try:
             n_feed = Feed(download(url))
             self.feeds.append(n_feed)
@@ -118,7 +124,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         t = threading.Thread(
             group = None,
             target = self.add_new_feed_async_worker,
-            name = None,
+            name = None
         )
         t.start()
         while t.is_alive():
@@ -141,6 +147,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
     def on_sidebar_row_activated(self, listbox, row):
         self.webview.load_uri(row.feeditem.link)
+        # self.webview.load_uri('https://xda-developers.com') # this causes problems
         self.headerbar.open_externally_btn.set_sensitive(True)
         self.leaflet.set_visible_child(self.webview)
         self.headerbar.leaflet.set_visible_child(self.headerbar.right_headerbar)

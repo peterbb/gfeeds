@@ -12,6 +12,8 @@ def download_raw(link, dest):
             for chunk in req.iter_content(1024):
                 fd.write(chunk)
             fd.close()
+    else:
+        raise requests.HTTPError
 
 def download(link):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')

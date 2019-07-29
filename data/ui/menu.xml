@@ -3,9 +3,14 @@
     <menu id="generalMenu">
         <section>
             <item>
-                <attribute name="label" translatable="yes">placeholder</attribute>
-                <attribute name="action">app.placeholder_action</attribute>
+                <attribute name="label" translatable="yes">Import OPML</attribute>
+                <attribute name="action">app.import_opml</attribute>
             </item>
+            <item>
+                <attribute name="label" translatable="yes">Export OPML</attribute>
+                <attribute name="action">app.export_opml</attribute>
+            </item>
+
         </section>
         <section>
             <item>

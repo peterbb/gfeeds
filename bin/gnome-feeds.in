@@ -24,6 +24,7 @@ import gettext
 import locale
 
 sys.path.insert(1, '@pythondir@')
+os.environ['WEBKIT_DISABLE_COMPOSITING_MODE'] = '1'
 
 VERSION = '@VERSION@'
 pkgdatadir = '@pkgdatadir@'

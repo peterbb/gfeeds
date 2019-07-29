@@ -84,7 +84,7 @@ class GFeedsWebView(Gtk.Stack):
     def load_uri(self, uri, *args, **kwargs):
         self.set_visible_child(self.overlay_container)
         self.uri = uri
-        self.webkitview.load_uri(uri, *args, **kwargs)
+        self.webkitview.load_uri(uri) # , *args, **kwargs)
         self.on_load_start()
 
     def open_externally(self, *args):
