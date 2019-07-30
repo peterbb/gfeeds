@@ -15,8 +15,7 @@ def opml_to_rss_list(opml_path):
         print(_('Error parsing OPML file `{0}`').format(opml_path))
         return []
 
-OPML_PREFIX = '''
-<?xml version="1.0" encoding="UTF-8"?>
+OPML_PREFIX = '''<?xml version="1.0" encoding="UTF-8"?>
 <opml version="2.0">
   <head>
     <title>Subscriptions</title>
