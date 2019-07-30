@@ -24,6 +24,8 @@ import gettext
 import locale
 
 sys.path.insert(1, '@pythondir@')
+
+# compositing causes issues for webkit in some website with nvidia drivers
 os.environ['WEBKIT_DISABLE_COMPOSITING_MODE'] = '1'
 
 VERSION = '@VERSION@'

@@ -31,7 +31,6 @@ class FeedItem:
             except:
                 print(_('Error: unable to parse datetime'))
 
-
     def __repr__(self):
         return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
 
