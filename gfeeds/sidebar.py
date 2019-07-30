@@ -1,5 +1,6 @@
 from gi.repository import Gtk
 from xml.sax.saxutils import escape
+from .confManager import ConfManager
 
 class GFeedsSidebarRow(Gtk.ListBoxRow):
     def __init__(self, feeditem, **kwargs):
@@ -27,8 +28,20 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
 class GFeedsSidebarListBox(Gtk.ListBox):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.set_sort_func(self.gfeeds_sort_func, None, False)
+        self.confman = ConfManager()
         self.get_style_context().add_class('sidebar')
+
+        self.set_sort_from_confman()
+        self.confman.connect(
+            'gfeeds_new_first_changed',
+            self.set_sort_from_confman
+        )
+
+    def set_sort_from_confman(self, *args):
+        if self.confman.conf['new_first']:
+            self.set_sort_func(self.gfeeds_sort_new_first_func, None, False)
+        else:
+            self.set_sort_func(self.gfeeds_sort_old_first_func, None, False)
 
     def add_new_items(self, feeditems_l):
         for i in feeditems_l:
@@ -44,8 +57,11 @@ class GFeedsSidebarListBox(Gtk.ListBox):
                 break
         self.add_new_items(feeditems_l)
 
-    def gfeeds_sort_func(self, row1, row2, data, notify_destroy):
+    def gfeeds_sort_new_first_func(self, row1, row2, data, notify_destroy):
         return row1.feeditem.pub_date < row2.feeditem.pub_date
+
+    def gfeeds_sort_old_first_func(self, row1, row2, data, notify_destroy):
+        return row1.feeditem.pub_date > row2.feeditem.pub_date
 
 
 class GFeedsSidebar(Gtk.ScrolledWindow):

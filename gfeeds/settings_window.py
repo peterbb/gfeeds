@@ -85,7 +85,7 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
             {
                 'title': _('Show newer articles first'),
                 'conf_key': 'new_first',
-                'signal': None # TODO: add signal
+                'signal': 'gfeeds_new_first_changed'
             }
         ]
         for s in toggle_settings:

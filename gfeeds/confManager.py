@@ -8,7 +8,7 @@ import json
 
 class ConfManagerSignaler(GObject.Object):
     __gsignals__ = {
-        'placeholder': (
+        'gfeeds_new_first_changed': (
             GObject.SIGNAL_RUN_FIRST,
             None,
             (str,)
