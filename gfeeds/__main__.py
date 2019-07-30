@@ -28,6 +28,7 @@ from .opml_file_chooser import (
     GFeedsOpmlFileChooserDialog,
     GFeedsOpmlSavePathChooserDialog
 )
+from .manage_feeds_window import GFeedsManageFeedsWindow
 import threading
 
 def test():
@@ -59,6 +60,10 @@ class GFeedsApplication(Gtk.Application):
 
         actions = [
             {
+                'name': 'manage_feeds',
+                'func': self.manage_feeds
+            },
+            {
                 'name': 'import_opml',
                 'func': self.import_opml
             },
@@ -88,6 +93,13 @@ class GFeedsApplication(Gtk.Application):
             c_action = Gio.SimpleAction.new(a['name'], None)
             c_action.connect('activate', a['func'])
             self.add_action(c_action)
+
+    def manage_feeds(self, *args):
+        mf_win = GFeedsManageFeedsWindow(
+            self.window,
+            self.window.feeds
+        )
+        mf_win.present()
 
     def import_opml(self, *args):
         dialog = GFeedsOpmlFileChooserDialog(self.window)

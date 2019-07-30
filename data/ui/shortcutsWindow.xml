@@ -13,19 +13,25 @@
                 <property name="title" translatable="yes">Quit</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;J</property>
+                <property name="title" translatable="yes">Next article</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;K</property>
+                <property name="title" translatable="yes">Previous article</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;R</property>
+                <property name="title" translatable="yes">Refresh articles</property>
+              </object>
+            </child>
             <!--<child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;shift&gt;J</property>
-                <property name="title" translatable="yes">Next system/action</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;shift&gt;K</property>
-                <property name="title" translatable="yes">Previous system/action</property>
-              </object>
-            </child>
-            <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;shift&gt;H</property>
                 <property name="title" translatable="yes">Show/Focus sidebar</property>

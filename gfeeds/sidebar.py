@@ -57,3 +57,29 @@ class GFeedsSidebar(Gtk.ScrolledWindow):
         
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.add(self.listbox)
+
+    def select_next_article(self, *args):
+        target = None
+        current_row = self.listbox.get_selected_row()
+        if not current_row:
+            target = self.listbox.get_row_at_index(0)
+        else:
+            target = self.listbox.get_row_at_index(
+                current_row.get_index()+1
+            )
+        if target:
+            self.listbox.select_row(target)
+            self.listbox.emit('row-activated', target)
+
+    def select_prev_article(self, *args):
+        target = None
+        current_row = self.listbox.get_selected_row()
+        if not current_row:
+            return
+        else:
+            target = self.listbox.get_row_at_index(
+                current_row.get_index()-1
+            )
+        if target:
+            self.listbox.select_row(target)
+            self.listbox.emit('row-activated', target)

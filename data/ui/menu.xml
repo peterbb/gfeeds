@@ -3,6 +3,10 @@
     <menu id="generalMenu">
         <section>
             <item>
+                <attribute name="label" translatable="yes">Manage Feeds</attribute>
+                <attribute name="action">app.manage_feeds</attribute>
+            </item>
+            <item>
                 <attribute name="label" translatable="yes">Import OPML</attribute>
                 <attribute name="action">app.import_opml</attribute>
             </item>

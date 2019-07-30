@@ -17,18 +17,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
         self.set_title('GNOME Feeds')
         self.set_icon_name('org.gabmus.gnome-feeds')
-        
-        # accel_group is for keyboard shortcuts
-        self.accel_group = Gtk.AccelGroup()
-        self.add_accel_group(self.accel_group)
-        shortcuts_l = [
-            {
-                'combo': '<Control>q',
-                'cb': self.emit_destroy
-            }
-        ]
-        for s in shortcuts_l:
-            self.add_accelerator(s['combo'], s['cb'])
 
         try: import operator; self.keyfun = operator.attrgetter('pub_date')
         except ImportError: self.keyfun = lambda x: x.pub_date
@@ -61,6 +49,30 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.set_titlebar(self.headerbar)
         
         self.add(self.leaflet)
+
+        # accel_group is for keyboard shortcuts
+        self.accel_group = Gtk.AccelGroup()
+        self.add_accel_group(self.accel_group)
+        shortcuts_l = [
+            {
+                'combo': '<Control>q',
+                'cb': self.emit_destroy
+            },
+            {
+                'combo': '<Control>r',
+                'cb': self.refresh_feeds
+            },
+            {
+                'combo': '<Control>j',
+                'cb': self.sidebar.select_next_article
+            },
+            {
+                'combo': '<Control>k',
+                'cb': self.sidebar.select_prev_article
+            }
+        ]
+        for s in shortcuts_l:
+            self.add_accelerator(s['combo'], s['cb'])
 
         self.refresh_feeds()
         
