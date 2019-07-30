@@ -175,6 +175,7 @@ class GFeedsApplication(Gtk.Application):
             pass
         self.window.present()
         self.window.show_all()
+        self.window.refresh_feeds()
 
     def do_command_line(self, args):
         """

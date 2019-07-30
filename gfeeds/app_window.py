@@ -73,8 +73,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         ]
         for s in shortcuts_l:
             self.add_accelerator(s['combo'], s['cb'])
-
-        self.refresh_feeds()
         
 
     def refresh_feeds_async_worker(self, *args):
@@ -85,8 +83,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.feeds.append(n_feed)
             for i in n_feed.items:
                 self.feeds_items.append(i)
-        # sorting happens in the listbox
-        # self.feeds_items.sort(key=self.keyfun, reverse=True)
+            GLib.idle_add(
+                lambda: self.sidebar.listbox.add_new_items(n_feed.items)
+            )
 
 
     def refresh_feeds(self, *args):
@@ -103,7 +102,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             while Gtk.events_pending():
                 Gtk.main_iteration()
 
-        self.sidebar.populate(self.feeds_items)
+        # self.sidebar.populate(self.feeds_items)
         self.headerbar.refresh_btn.set_spinning(False)
         self.headerbar.add_popover.confirm_btn.set_sensitive(True)
 
