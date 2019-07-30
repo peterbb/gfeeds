@@ -1,12 +1,18 @@
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk, Pango, Gdk
 from xml.sax.saxutils import escape
 from .confManager import ConfManager
+import cairo
 
 class GFeedsSidebarRow(Gtk.ListBoxRow):
     def __init__(self, feeditem, **kwargs):
         super().__init__(**kwargs)
+        self.get_style_context().add_class('activatable')
         self.feeditem = feeditem
         self.super_box = Gtk.Box(orientation = Gtk.Orientation.HORIZONTAL)
+        self.colored_box = Gtk.DrawingArea()
+        self.colored_box.connect('draw', self.draw_color)
+        self.colored_box.set_size_request(8, 20)
+        self.colored_box.set_margin_right(6)
 
         self.title_label = Gtk.Label(
             f'<big><b>{escape(self.feeditem.title)}</b></big>'
@@ -21,6 +27,7 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.icon = Gtk.Image.new_from_file(
             self.feeditem.parent_feed.favicon_path
         )
+        self.super_box.pack_start(self.colored_box, False, False, 0)
         self.super_box.pack_start(self.icon, False, False, 6)
         self.box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
 
@@ -36,6 +43,28 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
 
         self.super_box.pack_start(self.box, True, True, 6)
         self.add(self.super_box)
+
+    def draw_color(self, da, ctx):
+        ctx.set_source_rgb(
+            self.feeditem.parent_feed.color[0],
+            self.feeditem.parent_feed.color[1],
+            self.feeditem.parent_feed.color[2],
+        )
+        ctx.set_line_width(20 / 4)
+        ctx.set_tolerance(0.1)
+        ctx.set_line_join(cairo.LINE_JOIN_BEVEL)
+        ctx.save()
+        ctx.new_path()
+        ctx.move_to(0, 0)
+        ctx.rel_line_to(8,0)
+        ctx.rel_line_to(0,800)
+        ctx.rel_line_to(-8,0)
+        ctx.rel_line_to(0,-800)
+        # ctx.close_path()
+        ctx.fill()
+        ctx.restore()
+
+        ctx.close_path()
 
 class GFeedsSidebarListBox(Gtk.ListBox):
     def __init__(self, **kwargs):

@@ -8,6 +8,7 @@ from os.path import isfile
 from .confManager import ConfManager
 from .sha import shasum
 from PIL import Image
+from .colorthief import ColorThief
 
 class FeedItem:
     def __init__(self, fp_item, parent_feed):
@@ -56,6 +57,7 @@ class Feed:
         # self.language = self.fp_feed.get('', '')
         self.image_url = self.fp_feed.get('image', {'href': ''})['href']
         self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
+        self.color = [0, 0, 0]
 
         self.favicon_path = self.confman.thumbs_cache_path+'/'+shasum(self.link)+'.png'
         if not isfile(self.favicon_path):
@@ -69,6 +71,8 @@ class Feed:
                 if favicon.width != 32:
                     favicon = favicon.resize((32, 32), Image.BILINEAR)
                     favicon.save(self.favicon_path, 'PNG')
+                self.color = ColorThief(favicon).get_color(quality=1)
+                self.color = [c/255.0 for c in self.color]
                 favicon.close()
             except:
                 print(_('Error resizing favicon for feed {0}').format(self.title))
