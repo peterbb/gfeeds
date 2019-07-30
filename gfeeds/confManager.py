@@ -12,6 +12,11 @@ class ConfManagerSignaler(GObject.Object):
             GObject.SIGNAL_RUN_FIRST,
             None,
             (str,)
+        ),
+        'gfeeds_repopulation_required': (
+            GObject.SIGNAL_RUN_FIRST,
+            None,
+            (str,)
         )
     }
 

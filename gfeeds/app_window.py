@@ -14,6 +14,10 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.confman = ConfManager()
+        self.confman.connect(
+            'gfeeds_repopulation_required',
+            self.refresh_feeds
+        )
 
         self.set_title('GNOME Feeds')
         self.set_icon_name('org.gabmus.gnome-feeds')
@@ -92,6 +96,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.headerbar.refresh_btn.set_spinning(True)
         self.headerbar.add_popover.confirm_btn.set_sensitive(False)
         
+        self.sidebar.empty()
         t = threading.Thread(
             group = None,
             target = self.refresh_feeds_async_worker,

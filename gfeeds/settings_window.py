@@ -101,7 +101,7 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
                 'button_label': _('Clear caches'),
                 'onclick': self.clear_caches,
                 'button_style_class': 'destructive-action',
-                'signal': None # TODO: add signal
+                'signal': 'gfeeds_repopulation_required' # TODO: add signal
             }
         ]
         for s in button_settings:

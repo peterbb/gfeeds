@@ -49,13 +49,16 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             self.add(GFeedsSidebarRow(i))
             self.show_all()
 
-    def populate(self, feeditems_l):
+    def empty(self):
         while True:
             row = self.get_row_at_index(0)
             if row:
                 self.remove(row)
             else:
                 break
+
+    def populate(self, feeditems_l):
+        self.empty()
         self.add_new_items(feeditems_l)
 
     def gfeeds_sort_new_first_func(self, row1, row2, data, notify_destroy):
@@ -69,6 +72,7 @@ class GFeedsSidebar(Gtk.ScrolledWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.listbox = GFeedsSidebarListBox()
+        self.empty = self.listbox.empty
         self.populate = self.listbox.populate
         self.set_size_request(300, 500)
         
