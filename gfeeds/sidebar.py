@@ -36,6 +36,7 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             'gfeeds_new_first_changed',
             self.set_sort_from_confman
         )
+        self.get_style_context().add_class('sidebar')
 
     def set_sort_from_confman(self, *args):
         if self.confman.conf['new_first']:
