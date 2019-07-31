@@ -144,11 +144,13 @@ class GFeedsManageFeedsWindow(Gtk.Window):
         dialog.close()
         if res == Gtk.ResponseType.YES:
             selected_feeds_links = [f.rss_link for f in selected_feeds]
-            for i, f in enumerate(self.appwindow.confman.conf['feeds']):
-                if f in selected_feeds_links:
-                    self.appwindow.confman.conf['feeds'].pop(i)
+            for f in selected_feeds_links:
+                self.appwindow.confman.conf['feeds'].pop(
+                    self.appwindow.confman.conf['feeds'].index(f)
+                )
             self.appwindow.confman.save_conf()
             self.appwindow.refresh_feeds()
+            self.close()
         else:
             pass
 
