@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>HydraPaper</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./style.css">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <script src="./marked.min.js"></script>
+    </head>
+    <body>
+
+        <div id="markdown">
+            
+        </div>
+
+        <script>
+            var getFile = (uri, cb) => {
+                var client = new XMLHttpRequest();
+                client.open('GET', uri);
+                client.onreadystatechange = function() {
+                    cb(client.responseText);
+                }
+                client.send();
+            };
+
+            // load md here
+
+            var populatemd = (md) => {
+                document.getElementById('markdown').innerHTML = marked(
+                    md.replace(/<!--@MARGIN@-->/g, '<div style="padding-top: 75px;"></div>'),
+                    {"sanitize": false}
+                );
+            };
+
+            getFile('./page.md', populatemd);
+        </script>
+    </body>
+</html>

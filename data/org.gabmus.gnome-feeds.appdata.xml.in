@@ -9,7 +9,7 @@
     <description>
         <p>GNOME Feeds is a minimal RSS/Atom feed reader built with speed and simplicity in mind.</p>
         <p>It offers a simple user interface that only shows the latest news from your subscriptions.</p>
-        <p>Articles are shown in a webview by default, with javascript disabled for a faster and less intrusive user experience. There's also a reader mode included, built from the one GNOME Web/Epiphany uses.</p>
+        <p>Articles are shown in a web view by default, with javascript disabled for a faster and less intrusive user experience. There's also a reader mode included, built from the one GNOME Web/Epiphany uses.</p>
         <p>Feeds can be imported and exported via OPML.</p>
     </description>
     <screenshots>
