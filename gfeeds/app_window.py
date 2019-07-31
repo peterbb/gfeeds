@@ -22,9 +22,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.set_title('GNOME Feeds')
         self.set_icon_name('org.gabmus.gnome-feeds')
 
-        try: import operator; self.keyfun = operator.attrgetter('pub_date')
-        except ImportError: self.keyfun = lambda x: x.pub_date
-
         self.feeds = []
         self.feeds_items = []
 
@@ -53,6 +50,18 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.set_titlebar(self.headerbar)
         
         self.add(self.leaflet)
+
+        # Why this -52?
+        # because every time a new value is saved, for some reason
+        # it's the actual value +52 out of nowhere
+        # this makes the window ACTUALLY preserve its old size
+        self.resize(
+            self.confman.conf['windowsize']['width']-52,
+            self.confman.conf['windowsize']['height']-52
+        )
+        self.size_allocation = self.get_allocation()
+        self.connect('size-allocate', self.update_size_allocation)
+        self.on_main_leaflet_folded()
 
         # accel_group is for keyboard shortcuts
         self.accel_group = Gtk.AccelGroup()
@@ -159,6 +168,11 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.emit('destroy')
 
     def on_destroy(self, *args):
+        self.confman.conf['windowsize'] = {
+            'width': self.size_allocation.width,
+            'height': self.size_allocation.height
+        }
+
         self.confman.save_conf()
 
     def on_sidebar_row_activated(self, listbox, row):
@@ -189,3 +203,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
     def on_back_button_clicked(self, *args):
         self.leaflet.set_visible_child(self.sidebar)
         self.on_main_leaflet_folded()
+
+    def update_size_allocation(self, *args):
+        self.size_allocation = self.get_allocation()

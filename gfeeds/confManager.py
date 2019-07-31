@@ -24,15 +24,12 @@ class ConfManager(metaclass=Singleton):
 
     BASE_SCHEMA = {
         'feeds': [
-            'https://www.phoronix.com/rss.php',
-            'https://feeds.feedburner.com/d0od?format=xml', #OMG! Ubuntu!
-            'http://rss.slashdot.org/Slashdot/slashdotMain?format=xml' #Slashdot
         ],
         'dark_reader': False,
         'new_first': True,
         'windowsize': {
-            'width': 600,
-            'height': 400
+            'width': 350,
+            'height': 650
         }
     }
 
