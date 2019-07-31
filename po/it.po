@@ -1,14 +1,14 @@
 # Italian translations for PACKAGE package.
 # Copyright (C) 2019 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the HydraPaper package.
+# This file is distributed under the same license as the GNOME Feeds package.
 # Gabriele Musco <emaildigabry@gmail.com>, 2019.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-18 11:09+0200\n"
-"PO-Revision-Date: 2019-07-13 13:17+0200\n"
+"POT-Creation-Date: 2019-07-31 12:10+0200\n"
+"PO-Revision-Date: 2019-07-31 12:20+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -16,433 +16,553 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.1\n"
 
-#: ../hydrapaper/wallpaper_flowbox_item.py:78
-msgid "ERROR: cannot create thumbnail for file"
-msgstr "ERRORE: impossibile creare miniatura per il file"
+#: ../gfeeds/opml_file_chooser.py:7
+msgid "Choose an OPML file to import"
+msgstr "Scegli un file OPML da importare"
 
-#: ../hydrapaper/monitor_parser.py:44
-msgid "Error parsing monitors (Gdk)"
-msgstr "Errore nell'analisi dei monitor (Gdk)"
+#: ../gfeeds/opml_file_chooser.py:25
+msgid "Choose where to save the exported OPML file"
+msgstr "Scegli dove salvare il file OPML esportato"
 
-#: ../hydrapaper/__main__.py:121
+#: ../gfeeds/rss_parser.py:33
+msgid "Error: unable to parse datetime"
+msgstr "Errore: impossibile analizzare data e ora"
+
+#: ../gfeeds/rss_parser.py:78
 #, python-brace-format
-msgid "Error: you passed {0} wallpapers for {1} monitors"
-msgstr "Errore: hai passato {0} sfondi per {1} monitor"
+msgid "Error resizing favicon for feed {0}"
+msgstr "Errore nel ridimensionare la favicon per il feed {0}"
 
-#: ../hydrapaper/__main__.py:128
+#: ../gfeeds/headerbar.py:63
+msgid "Back to articles"
+msgstr "Indietro agli articoli"
+
+#: ../gfeeds/headerbar.py:73
+msgid "Open externally"
+msgstr "Apri esternamente"
+
+#: ../gfeeds/headerbar.py:79
+msgid "Reader mode"
+msgstr "Modalità lettura"
+
+#: ../gfeeds/headerbar.py:100
+msgid "Menu"
+msgstr "Menu"
+
+#: ../gfeeds/headerbar.py:117
+msgid "Add new feed"
+msgstr "Aggiungi nuovo feed"
+
+#: ../gfeeds/get_favicon.py:51
 #, python-brace-format
-msgid "Error: {0} is not a valid image path"
-msgstr "Errore: {0} non è il percorso di un'immagine valida"
+msgid "Error downloading favicon for `{0}`"
+msgstr "Errore nel download della favicon per `{0}`"
 
-#: ../hydrapaper/__main__.py:162
-msgid "set wallpapers from command line"
-msgstr "imposta sfondi dalla linea di comando"
-
-#: ../hydrapaper/__main__.py:163
-msgid "set wallpapers randomly"
-msgstr "imposta sfondi casualmente"
-
-#: ../hydrapaper/main_stack.py:12
-msgid "Wallpapers"
-msgstr "Sfondi"
-
-#: ../hydrapaper/main_stack.py:14
-msgid "Favorites"
-msgstr "Preferiti"
-
-#: ../hydrapaper/apply_wallpapers.py:32
+#: ../gfeeds/app_window.py:129
 #, python-brace-format
-msgid "Hit cache for {0}. Skipping merge"
-msgstr "Collisione cache per {0}. Sto saltando l'unione"
+msgid "Feed {0} exists already, skipping"
+msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../hydrapaper/wallpapers_flowbox.py:108
-msgid "Remove favorite"
-msgstr "Rimuovi preferito"
+#: ../gfeeds/app_window.py:144
+#, python-brace-format
+msgid "Error adding feed {0}"
+msgstr "Errore nell'aggiungere il feed {0}"
 
-#: ../hydrapaper/wallpapers_flowbox.py:110
-msgid "Add favorite"
-msgstr "Aggiungi preferito"
+#: ../gfeeds/webview.py:64
+msgid "Web View"
+msgstr "Vista Web"
 
-#: ../hydrapaper/settings_box.py:82
+#: ../gfeeds/webview.py:65
+msgid "Filler View"
+msgstr "Vista Riempitiva"
+
+#: ../gfeeds/build_reader_html.py:381
+msgid "Reader mode unavailable for this site"
+msgstr "Modalità lettura non disponibile per questo sito"
+
+#: ../gfeeds/download_manager.py:20
+#, python-brace-format
+msgid "Downloading `{0}`..."
+msgstr "Scarico `{0}`..."
+
+#: ../gfeeds/download_manager.py:23
+#, python-brace-format
+msgid "Download of `{0}` successful"
+msgstr "Download di `{0}` riuscito"
+
+#: ../gfeeds/download_manager.py:28
+#, python-brace-format
+msgid "Hit cache for `{0}`, skipping file update"
+msgstr "Collisione della cache per `{0}`, salto l'aggiornamento del file"
+
+#: ../gfeeds/download_manager.py:40
+#, python-brace-format
+msgid "Error downloading `{0}`, code `{1}`"
+msgstr "Errore nel download di `{0}`, codice `{1}`"
+
+#: ../gfeeds/settings_window.py:78
 msgid "General"
 msgstr "Generale"
 
-#: ../hydrapaper/settings_box.py:87
+#: ../gfeeds/settings_window.py:83
 msgid "General Settings"
 msgstr "Impostazioni Generali"
 
-#: ../hydrapaper/settings_box.py:90
-msgid "Select wallpapers with a double click"
-msgstr "Seleziona gli sfondi con un doppio click"
+#: ../gfeeds/settings_window.py:86
+msgid "Show newer articles first"
+msgstr "Mostra nuovi articoli per primi"
 
-#: ../hydrapaper/settings_box.py:95
-msgid "Keep favorites in main wallpapers view"
-msgstr "Mantieni i preferiti nella vista principale degli sfondi"
+#: ../gfeeds/settings_window.py:97
+msgid "Cache"
+msgstr "Cache"
 
-#: ../hydrapaper/settings_box.py:100
-msgid "Show full path in folder view"
-msgstr "Mostra il percorso completo nella vista delle cartelle"
-
-#: ../hydrapaper/settings_box.py:111
-msgid "Caches and favorites"
-msgstr "Cache e preferiti"
-
-#: ../hydrapaper/settings_box.py:114
-msgid "Clear all favorites"
-msgstr "Pulisci tutti i preferiti"
-
-#: ../hydrapaper/settings_box.py:115
-msgid "Clear favorites"
-msgstr "Pulisci i preferiti"
-
-#: ../hydrapaper/settings_box.py:121
+#: ../gfeeds/settings_window.py:100
 msgid "Clear all caches"
 msgstr "Pulisci tutte le cache"
 
-#: ../hydrapaper/settings_box.py:122
+#: ../gfeeds/settings_window.py:101
 msgid "Clear caches"
 msgstr "Pulisci le cache"
 
-#: ../hydrapaper/settings_box.py:157
+#: ../gfeeds/settings_window.py:133
 msgid "View"
 msgstr "Vista"
 
-#: ../hydrapaper/settings_box.py:162
+#: ../gfeeds/settings_window.py:138
 msgid "View Settings"
 msgstr "Impostazioni della Vista"
 
-#: ../hydrapaper/settings_box.py:165
-msgid "Use big thumbnails for the monitors previews"
-msgstr "Usa miniature grandi per le anteprime dei monitor"
+#: ../gfeeds/settings_window.py:141
+msgid "Use dark theme for reader mode"
+msgstr "Usa tema scuro per la modalità lettura"
 
-#: ../data/ui/menu.xml:6
-msgid "Set random wallpapers"
-msgstr "Imposta sfondi casualmente"
+#: ../gfeeds/manage_feeds_window.py:10
+msgid "Manage Feeds"
+msgstr "Gestisci Feed"
 
-#: ../data/ui/menu.xml:12
+#: ../gfeeds/manage_feeds_window.py:17
+msgid "Select/Unselect all"
+msgstr "Seleziona/Deseleziona tutto"
+
+#: ../gfeeds/manage_feeds_window.py:23
+msgid "Delete selected feeds"
+msgstr "Elimina i feed selezionati"
+
+#: ../gfeeds/manage_feeds_window.py:98
+msgid "Do you want to delete these feeds?"
+msgstr "Vuoi eliminare questi feed?"
+
+#: ../gfeeds/spinner_button.py:15
+msgid "Refresh feeds"
+msgstr "Aggiorna feed"
+
+#: ../gfeeds/opml_manager.py:8
+msgid "Error: OPML path provided does not exist"
+msgstr "Errore: il percorso all'OPML fornito non esiste"
+
+#: ../gfeeds/opml_manager.py:15
+#, python-brace-format
+msgid "Error parsing OPML file `{0}`"
+msgstr "Errore nell'analisi del file OPML `{0}`"
+
+#: ../data/ui/menu.xml:10
+msgid "Import OPML"
+msgstr "Importa OPML"
+
+#: ../data/ui/menu.xml:14
+msgid "Export OPML"
+msgstr "Esporta OPML"
+
+#: ../data/ui/menu.xml:21
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: ../data/ui/menu.xml:16
+#: ../data/ui/menu.xml:25
 msgid "Shortcuts"
 msgstr "Scorciatoie"
 
-#: ../data/ui/menu.xml:20
+#: ../data/ui/menu.xml:29
 msgid "About"
 msgstr "Informazioni"
 
-#: ../data/ui/menu.xml:24 ../data/ui/shortcutsWindow.xml:13
+#: ../data/ui/menu.xml:33 ../data/ui/shortcutsWindow.xml:13
 msgid "Quit"
 msgstr "Esci"
 
-#: ../data/ui/choose_folder_dialog.glade:22
-msgid "Add a wallpapers folder"
-msgstr "Aggiungi una cartella di sfondi"
+#: ../data/ui/shortcutsWindow.xml:19
+msgid "Next article"
+msgstr "Prossimo articolo"
 
-#: ../data/ui/choose_folder_dialog.glade:89
-msgid "Selected path has already been added"
-msgstr "Il percorso selezionato è già stato aggiunto"
+#: ../data/ui/shortcutsWindow.xml:25
+msgid "Previous article"
+msgstr "Articolo precedente"
 
-#: ../data/ui/choose_folder_dialog.glade:106
-msgid "Close\n"
-msgstr "Chiudi\n"
+#: ../data/ui/shortcutsWindow.xml:31
+msgid "Refresh articles"
+msgstr "Aggiorna articoli"
 
-#: ../data/ui/wallpapers_folders_view.glade:51
-msgid "Add"
-msgstr "Aggiungi"
+#: ../data/ui/spinner_button.glade:22
+msgid "page0"
+msgstr "page0"
 
-#: ../data/ui/wallpapers_folders_view.glade:73
-msgid "Remove"
-msgstr "Rimuovi"
+#: ../data/ui/spinner_button.glade:33
+msgid "page1"
+msgstr "page1"
 
-#: ../data/ui/headerbar.glade:14
-msgid "Apply"
-msgstr "Applica"
+#: ../data/ui/add_feed_box.glade:20
+msgid "<big>New feed URL</big>"
+msgstr "<big>Nuovo URL del feed</big>"
 
-#: ../data/ui/headerbar.glade:31
-msgid "Lower all other windows"
-msgstr "Abbassa tutte le altre finestre"
+#: ../data/ui/add_feed_box.glade:33
+msgid "https://..."
+msgstr "https://..."
 
-#: ../data/ui/wallpapers_flowbox.glade:19
-msgid "title"
-msgstr "titolo"
+#: ../data/ui/webview_with_notification.glade:51
+msgid "Link copied to clipboard!"
+msgstr "Link copiato negli appunti!"
 
-#: ../data/ui/wallpapers_flowbox.glade:61
-msgid "Path:"
-msgstr "Percorso:"
+#: ../data/ui/webview_filler.glade:36
+msgid "<big>Select an article</big>"
+msgstr "<big>Seleziona un articolo</big>"
 
-#: ../data/org.gabmus.hydrapaper.desktop.in:3
+#: ../data/org.gabmus.gnome-feeds.desktop.in:3
 msgid "@prettyname@"
-msgstr ""
+msgstr "@prettyname@"
 
-#: ../data/org.gabmus.hydrapaper.desktop.in:4
-msgid "Wallpaper manager with multimonitor support"
-msgstr "Gestore di sfondi con supporto per multi monitor"
+#: ../data/org.gabmus.gnome-feeds.desktop.in:4
+msgid "News reader for GNOME"
+msgstr "Lettore di notizie per GNOME"
 
-#: ../data/org.gabmus.hydrapaper.desktop.in:6
+#: ../data/org.gabmus.gnome-feeds.desktop.in:6
 msgid "@appid@"
-msgstr ""
+msgstr "@appid@"
 
-#: ../data/org.gabmus.hydrapaper.desktop.in:12
-msgid "wallpaper;background;monitor;"
-msgstr "sfondi;monitor;"
+#: ../data/org.gabmus.gnome-feeds.desktop.in:12
+msgid "rss;reader;feed;news;"
+msgstr "rss;reader;feed;news;lettore;notizie;"
 
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:4
-msgid "HydraPaper"
-msgstr ""
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:4
+msgid "GNOME Feeds"
+msgstr "GNOME Feeds"
 
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:5
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:5
 msgid "Gabriele Musco"
-msgstr ""
+msgstr "Gabriele Musco"
 
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:10
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:10
 msgid ""
-"HydraPaper lets you set different wallpapers for each of your monitors in "
-"the GNOME desktop."
+"GNOME Feeds is a minimal RSS/Atom feed reader built with speed and "
+"simplicity in mind."
 msgstr ""
-"HydraPaper ti permette di impostare uno sfondo diverso per ognuno dei tuoi "
-"monitor nell'ambiente desktop GNOME."
+"GNOME Feeds è un lettore di feed RSS/Atom costruito con la velocità e la "
+"semplicità in mente."
 
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:11
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:11
 msgid ""
-"It works around this lack of functionality by automatically merging multiple "
-"wallpapers into one, and setting it as your wallpaper with the \"Spanned\" "
-"option."
+"It offers a simple user interface that only shows the latest news from your "
+"subscriptions."
 msgstr ""
-"Risolve questa mancanza di funzionalità unendo automaticamente multipli "
-"sfondi in uno, e impostandolo come sfondo con l'opzione \"Spanned\"."
+"Offre un'interfaccia utente che mostra solo le ultime notizie dalle tue "
+"iscrizioni."
 
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:12
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:12
 msgid ""
-"HydraPaper also supports the MATE desktop, and should work on any desktop "
-"that is based on GNOME, like Budgie and Pantheon."
+"Articles are shown in a web view by default, with javascript disabled for a "
+"faster and less intrusive user experience. There's also a reader mode "
+"included, built from the one GNOME Web/Epiphany uses."
 msgstr ""
-"HydraPaper supporta anche il desktop MATE, e dovrebbe funzionare su "
-"qualunque desktop basato su GNOME, come Budgie e Pantheon."
+"Gli articoli sono mostrati in una vista web come opzione predefinita, con "
+"javascript disattivato per un'esperienza utente più veloce e meno intrusiva. "
+"È anche inclusa una modalità lettura, costruita dalla stessa che usa GNOME "
+"Web/Epiphany."
 
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:38
-msgid "Internationalization support and Italian translation"
-msgstr ""
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:13
+msgid "Feeds can be imported and exported via OPML."
+msgstr "I feed possono essere importati ed esportati tramite OPML."
 
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:39
-msgid "New widgets from Purism's libhandy"
-msgstr "Nuovi widget dalla libreria libhandy di Purism"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:40
-msgid "Removed animated spinner"
-msgstr "Rimosso lo spinner animato"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:41
-msgid "Paths in folders view show only the folder name by default"
-msgstr ""
-"I percorsi nella vista delle cartelle mostrano solo il nome della cartella "
-"come predefinito"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:42
-msgid "New website"
-msgstr "Nuovo sito web"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:49
-msgid "Properly implemented MATE support"
-msgstr "Implementato correttamente il supporto a MATE"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:50
-msgid "Added post-installation commands"
-msgstr "Aggiunti comandi post installazione"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:57
-msgid "Fixing wrong import"
-msgstr "Corretta un'importazione errata"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:64
-msgid "Fixed support for MATE under Flatpak"
-msgstr "Corretto il supporto per MATE sotto Flatpak"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:71
-msgid "New icon! Should be closer to GNOME HIG."
-msgstr "Nuova icona! Dovrebbe essere più vicina alle HIG di GNOME"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:72
-msgid ""
-"Exposed random wallpaper functionality from the in-app menu and desktop file"
-msgstr ""
-"Esposta la funzionalità di sfondi casuali dal menu interno all'app e nel "
-"file desktop"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:79
-msgid "Added random wallpaper functionality from command line with -r option"
-msgstr ""
-"Aggiunta la funzionalità di sfondi casuali dalla linea di comando con "
-"l'opzione -r"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:86
-msgid "Fixing startup error when added folders get deleted"
-msgstr ""
-"Corretto l'errore d'avvio quando le cartelle aggiunte vengono cancellate"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:93
-msgid "Get correct localized Pictures folder on first startup"
-msgstr "Ottenuta la corretta cartella Immagini localizzata al primo avvio"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:94
-msgid "App doesn't crash anymore if a folder doesn't exist"
-msgstr "L'app non crasha più se una cartella non esiste"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:101
-msgid "Fixed wallpapers not hiding on startup"
-msgstr "Corretto che gli sfondi non si nascondano all'avvio"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:108
-msgid "Complete code refactoring"
-msgstr "Completo refactoring del codice"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:109
-msgid "Made the whole build system more modular"
-msgstr "Reso l'intero build system modulare"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:110
-msgid "Moved app menu to the headerbar"
-msgstr "Spostato il menu dell'app nella headerbar"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:111
-msgid "Initial support for keyboard shortcuts"
-msgstr "Supporto iniziale per scorciatoie da tastiera"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:118
-msgid "Fixed thumbnail creation for PNGs with alpha channel"
-msgstr "Corretta la creazione di thumbnail per PNG con canale alpha"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:119
-msgid "Added option to clear cache"
-msgstr "Aggiunta un'opzione per pulire la cache"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:120
-msgid "Various bug fixes and improvements"
-msgstr "Varie correzioni di bug e miglioramenti"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:127
-msgid "Improved thumbnail generation and caching for better performance"
-msgstr ""
-"Migliorata la generazione di miniature e caching per migliore performance"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:134
-msgid "Updated dependencies"
-msgstr "Aggiornate le dipendenze"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:135
-msgid "Added support for command line usage"
-msgstr "Aggiunto supporto per l'uso da linea di comando"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:136
-msgid "Implemented boilerplate for gtk via gmgtk (gitlab.com/gabmus/gmgtk)"
-msgstr ""
-"Implementato boilerplate per gtk tramite gmgtk (gitlab.com/gabmus/gmgtk)"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:137
-msgid ""
-"Migrated configuration management to gmconfig (gitlab.com/gabmus/gmconfig)"
-msgstr ""
-"Migrata la gestione della configurazione a gmconfig (gitlab.com/gabmus/"
-"gmconfig)"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:138
-msgid "Migrated to GitLab"
-msgstr "Migrazione a GitLab"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:145
-msgid "Better filename generation"
-msgstr "Migliore generazione di nomi di file"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:146
-msgid "Added support for vertical setups"
-msgstr "Aggiunto il supporto per disposizioni verticali"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:147
-msgid "Added symbolic icon"
-msgstr "Aggiunta icona simbolica"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:148
-msgid "Added support for MATE"
-msgstr "Aggiunto supporto per MATE"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:149
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:164
-msgid "Various bug fixes"
-msgstr "Varie correzioni di bug"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:156
-msgid "Design makeover"
-msgstr "Design ristudiato"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:157
-msgid "Added longpress/rightclick menu"
-msgstr "Aggiunto un menu attivato con pressione prolungata o tasto destro"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:158
-msgid "Implemented favorites"
-msgstr "Implementati i preferiti"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:159
-msgid "Added option to temporarely disable paths"
-msgstr "Aggiunta un'opzione per disabilitare temporaneamente percorsi"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:160
-msgid "Added option to minimize/restore all other windows"
-msgstr ""
-"Aggiunta un'opzione per minimizzare/ripristinare tutte le altre finestre"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:161
-msgid "Improved performance"
-msgstr "Miglioramenti di performance"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:162
-msgid "Various optimizations for flatpak distribution"
-msgstr "Varie ottimizzazioni per la distribuzione via flatpak"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:163
-msgid "Removed the dependency on xmltodict"
-msgstr "Rimossa la dipendenza su xmltodict"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:171
-msgid "Changed icon"
-msgstr "Cambiata l'icona"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:172
-msgid "Added support for monitors.xml version 1"
-msgstr "Aggiunto il supporto per monitors.xml versione 1"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:179
-msgid "Improved 3+ monitors configuration"
-msgstr "Migliorata la configurazione con 3+ monitor"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:180
-msgid "Remember previously set wallpapers throughout sessions"
-msgstr "Ricorda lo sfondo impostato precedentemente attraverso le sessioni"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:181
-msgid "Implemented cache hitting"
-msgstr "Implementata la collisione con la cache"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:182
-msgid "Added checks and user friendly error messages for monitors.xml"
-msgstr "Aggiunti controlli e messaggi di errore amichevoli per monitors.xml"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:189
-msgid "Bug fixes"
-msgstr "Correzione bug"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:190
-msgid "Added settings window"
-msgstr "Aggiunta finestra impostazioni"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:197
-msgid "Port to pillow"
-msgstr "Port a pillow"
-
-#: ../data/org.gabmus.hydrapaper.appdata.xml.in:204
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:27
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "ERROR: cannot create thumbnail for file"
+#~ msgstr "ERRORE: impossibile creare miniatura per il file"
+
+#~ msgid "Error parsing monitors (Gdk)"
+#~ msgstr "Errore nell'analisi dei monitor (Gdk)"
+
+#~ msgid "Error: you passed {0} wallpapers for {1} monitors"
+#~ msgstr "Errore: hai passato {0} sfondi per {1} monitor"
+
+#~ msgid "Error: {0} is not a valid image path"
+#~ msgstr "Errore: {0} non è il percorso di un'immagine valida"
+
+#~ msgid "set wallpapers from command line"
+#~ msgstr "imposta sfondi dalla linea di comando"
+
+#~ msgid "set wallpapers randomly"
+#~ msgstr "imposta sfondi casualmente"
+
+#~ msgid "Wallpapers"
+#~ msgstr "Sfondi"
+
+#~ msgid "Favorites"
+#~ msgstr "Preferiti"
+
+#~ msgid "Hit cache for {0}. Skipping merge"
+#~ msgstr "Collisione cache per {0}. Sto saltando l'unione"
+
+#~ msgid "Remove favorite"
+#~ msgstr "Rimuovi preferito"
+
+#~ msgid "Add favorite"
+#~ msgstr "Aggiungi preferito"
+
+#~ msgid "Select wallpapers with a double click"
+#~ msgstr "Seleziona gli sfondi con un doppio click"
+
+#~ msgid "Keep favorites in main wallpapers view"
+#~ msgstr "Mantieni i preferiti nella vista principale degli sfondi"
+
+#~ msgid "Show full path in folder view"
+#~ msgstr "Mostra il percorso completo nella vista delle cartelle"
+
+#~ msgid "Caches and favorites"
+#~ msgstr "Cache e preferiti"
+
+#~ msgid "Clear all favorites"
+#~ msgstr "Pulisci tutti i preferiti"
+
+#~ msgid "Clear favorites"
+#~ msgstr "Pulisci i preferiti"
+
+#~ msgid "Use big thumbnails for the monitors previews"
+#~ msgstr "Usa miniature grandi per le anteprime dei monitor"
+
+#~ msgid "Set random wallpapers"
+#~ msgstr "Imposta sfondi casualmente"
+
+#~ msgid "Add a wallpapers folder"
+#~ msgstr "Aggiungi una cartella di sfondi"
+
+#~ msgid "Selected path has already been added"
+#~ msgstr "Il percorso selezionato è già stato aggiunto"
+
+#~ msgid "Close\n"
+#~ msgstr "Chiudi\n"
+
+#~ msgid "Add"
+#~ msgstr "Aggiungi"
+
+#~ msgid "Remove"
+#~ msgstr "Rimuovi"
+
+#~ msgid "Apply"
+#~ msgstr "Applica"
+
+#~ msgid "Lower all other windows"
+#~ msgstr "Abbassa tutte le altre finestre"
+
+#~ msgid "title"
+#~ msgstr "titolo"
+
+#~ msgid "Path:"
+#~ msgstr "Percorso:"
+
+#~ msgid "Wallpaper manager with multimonitor support"
+#~ msgstr "Gestore di sfondi con supporto per multi monitor"
+
+#~ msgid "wallpaper;background;monitor;"
+#~ msgstr "sfondi;monitor;"
+
+#~ msgid ""
+#~ "HydraPaper lets you set different wallpapers for each of your monitors in "
+#~ "the GNOME desktop."
+#~ msgstr ""
+#~ "HydraPaper ti permette di impostare uno sfondo diverso per ognuno dei "
+#~ "tuoi monitor nell'ambiente desktop GNOME."
+
+#~ msgid ""
+#~ "It works around this lack of functionality by automatically merging "
+#~ "multiple wallpapers into one, and setting it as your wallpaper with the "
+#~ "\"Spanned\" option."
+#~ msgstr ""
+#~ "Risolve questa mancanza di funzionalità unendo automaticamente multipli "
+#~ "sfondi in uno, e impostandolo come sfondo con l'opzione \"Spanned\"."
+
+#~ msgid ""
+#~ "HydraPaper also supports the MATE desktop, and should work on any desktop "
+#~ "that is based on GNOME, like Budgie and Pantheon."
+#~ msgstr ""
+#~ "HydraPaper supporta anche il desktop MATE, e dovrebbe funzionare su "
+#~ "qualunque desktop basato su GNOME, come Budgie e Pantheon."
+
+#~ msgid "New widgets from Purism's libhandy"
+#~ msgstr "Nuovi widget dalla libreria libhandy di Purism"
+
+#~ msgid "Removed animated spinner"
+#~ msgstr "Rimosso lo spinner animato"
+
+#~ msgid "Paths in folders view show only the folder name by default"
+#~ msgstr ""
+#~ "I percorsi nella vista delle cartelle mostrano solo il nome della "
+#~ "cartella come predefinito"
+
+#~ msgid "New website"
+#~ msgstr "Nuovo sito web"
+
+#~ msgid "Properly implemented MATE support"
+#~ msgstr "Implementato correttamente il supporto a MATE"
+
+#~ msgid "Added post-installation commands"
+#~ msgstr "Aggiunti comandi post installazione"
+
+#~ msgid "Fixing wrong import"
+#~ msgstr "Corretta un'importazione errata"
+
+#~ msgid "Fixed support for MATE under Flatpak"
+#~ msgstr "Corretto il supporto per MATE sotto Flatpak"
+
+#~ msgid "New icon! Should be closer to GNOME HIG."
+#~ msgstr "Nuova icona! Dovrebbe essere più vicina alle HIG di GNOME"
+
+#~ msgid ""
+#~ "Exposed random wallpaper functionality from the in-app menu and desktop "
+#~ "file"
+#~ msgstr ""
+#~ "Esposta la funzionalità di sfondi casuali dal menu interno all'app e nel "
+#~ "file desktop"
+
+#~ msgid ""
+#~ "Added random wallpaper functionality from command line with -r option"
+#~ msgstr ""
+#~ "Aggiunta la funzionalità di sfondi casuali dalla linea di comando con "
+#~ "l'opzione -r"
+
+#~ msgid "Fixing startup error when added folders get deleted"
+#~ msgstr ""
+#~ "Corretto l'errore d'avvio quando le cartelle aggiunte vengono cancellate"
+
+#~ msgid "Get correct localized Pictures folder on first startup"
+#~ msgstr "Ottenuta la corretta cartella Immagini localizzata al primo avvio"
+
+#~ msgid "App doesn't crash anymore if a folder doesn't exist"
+#~ msgstr "L'app non crasha più se una cartella non esiste"
+
+#~ msgid "Fixed wallpapers not hiding on startup"
+#~ msgstr "Corretto che gli sfondi non si nascondano all'avvio"
+
+#~ msgid "Complete code refactoring"
+#~ msgstr "Completo refactoring del codice"
+
+#~ msgid "Made the whole build system more modular"
+#~ msgstr "Reso l'intero build system modulare"
+
+#~ msgid "Moved app menu to the headerbar"
+#~ msgstr "Spostato il menu dell'app nella headerbar"
+
+#~ msgid "Initial support for keyboard shortcuts"
+#~ msgstr "Supporto iniziale per scorciatoie da tastiera"
+
+#~ msgid "Fixed thumbnail creation for PNGs with alpha channel"
+#~ msgstr "Corretta la creazione di thumbnail per PNG con canale alpha"
+
+#~ msgid "Added option to clear cache"
+#~ msgstr "Aggiunta un'opzione per pulire la cache"
+
+#~ msgid "Various bug fixes and improvements"
+#~ msgstr "Varie correzioni di bug e miglioramenti"
+
+#~ msgid "Improved thumbnail generation and caching for better performance"
+#~ msgstr ""
+#~ "Migliorata la generazione di miniature e caching per migliore performance"
+
+#~ msgid "Updated dependencies"
+#~ msgstr "Aggiornate le dipendenze"
+
+#~ msgid "Added support for command line usage"
+#~ msgstr "Aggiunto supporto per l'uso da linea di comando"
+
+#~ msgid "Implemented boilerplate for gtk via gmgtk (gitlab.com/gabmus/gmgtk)"
+#~ msgstr ""
+#~ "Implementato boilerplate per gtk tramite gmgtk (gitlab.com/gabmus/gmgtk)"
+
+#~ msgid ""
+#~ "Migrated configuration management to gmconfig (gitlab.com/gabmus/gmconfig)"
+#~ msgstr ""
+#~ "Migrata la gestione della configurazione a gmconfig (gitlab.com/gabmus/"
+#~ "gmconfig)"
+
+#~ msgid "Migrated to GitLab"
+#~ msgstr "Migrazione a GitLab"
+
+#~ msgid "Better filename generation"
+#~ msgstr "Migliore generazione di nomi di file"
+
+#~ msgid "Added support for vertical setups"
+#~ msgstr "Aggiunto il supporto per disposizioni verticali"
+
+#~ msgid "Added symbolic icon"
+#~ msgstr "Aggiunta icona simbolica"
+
+#~ msgid "Added support for MATE"
+#~ msgstr "Aggiunto supporto per MATE"
+
+#~ msgid "Various bug fixes"
+#~ msgstr "Varie correzioni di bug"
+
+#~ msgid "Design makeover"
+#~ msgstr "Design ristudiato"
+
+#~ msgid "Added longpress/rightclick menu"
+#~ msgstr "Aggiunto un menu attivato con pressione prolungata o tasto destro"
+
+#~ msgid "Implemented favorites"
+#~ msgstr "Implementati i preferiti"
+
+#~ msgid "Added option to temporarely disable paths"
+#~ msgstr "Aggiunta un'opzione per disabilitare temporaneamente percorsi"
+
+#~ msgid "Added option to minimize/restore all other windows"
+#~ msgstr ""
+#~ "Aggiunta un'opzione per minimizzare/ripristinare tutte le altre finestre"
+
+#~ msgid "Improved performance"
+#~ msgstr "Miglioramenti di performance"
+
+#~ msgid "Various optimizations for flatpak distribution"
+#~ msgstr "Varie ottimizzazioni per la distribuzione via flatpak"
+
+#~ msgid "Removed the dependency on xmltodict"
+#~ msgstr "Rimossa la dipendenza su xmltodict"
+
+#~ msgid "Changed icon"
+#~ msgstr "Cambiata l'icona"
+
+#~ msgid "Added support for monitors.xml version 1"
+#~ msgstr "Aggiunto il supporto per monitors.xml versione 1"
+
+#~ msgid "Improved 3+ monitors configuration"
+#~ msgstr "Migliorata la configurazione con 3+ monitor"
+
+#~ msgid "Remember previously set wallpapers throughout sessions"
+#~ msgstr "Ricorda lo sfondo impostato precedentemente attraverso le sessioni"
+
+#~ msgid "Implemented cache hitting"
+#~ msgstr "Implementata la collisione con la cache"
+
+#~ msgid "Added checks and user friendly error messages for monitors.xml"
+#~ msgstr "Aggiunti controlli e messaggi di errore amichevoli per monitors.xml"
+
+#~ msgid "Bug fixes"
+#~ msgstr "Correzione bug"
+
+#~ msgid "Added settings window"
+#~ msgstr "Aggiunta finestra impostazioni"
+
+#~ msgid "Port to pillow"
+#~ msgstr "Port a pillow"
 
 #~ msgid "Settings"
 #~ msgstr "Preferenze"
