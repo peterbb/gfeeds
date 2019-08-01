@@ -67,9 +67,10 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         ctx.close_path()
 
 class GFeedsSidebarListBox(Gtk.ListBox):
-    def __init__(self, **kwargs):
+    def __init__(self, parent_stack, **kwargs):
         super().__init__(**kwargs)
         self.confman = ConfManager()
+        self.parent_stack = parent_stack
         self.get_style_context().add_class('sidebar')
 
         self.set_sort_from_confman()
@@ -86,6 +87,7 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             self.set_sort_func(self.gfeeds_sort_old_first_func, None, False)
 
     def add_new_items(self, feeditems_l):
+        self.parent_stack.set_main_visible(True)
         for i in feeditems_l:
             self.add(GFeedsSidebarRow(i))
             self.show_all()
@@ -109,10 +111,11 @@ class GFeedsSidebarListBox(Gtk.ListBox):
         return row1.feeditem.pub_date > row2.feeditem.pub_date
 
 
-class GFeedsSidebar(Gtk.ScrolledWindow):
-    def __init__(self, **kwargs):
+class GFeedsSidebarScrolledWin(Gtk.ScrolledWindow):
+    def __init__(self, parent_stack, **kwargs):
         super().__init__(**kwargs)
-        self.listbox = GFeedsSidebarListBox()
+        self.parent_stack = parent_stack
+        self.listbox = GFeedsSidebarListBox(self.parent_stack)
         self.empty = self.listbox.empty
         self.populate = self.listbox.populate
         self.set_size_request(300, 500)
@@ -145,3 +148,31 @@ class GFeedsSidebar(Gtk.ScrolledWindow):
         if target:
             self.listbox.select_row(target)
             self.listbox.emit('row-activated', target)
+
+class GFeedsSidebar(Gtk.Stack):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+
+        self.scrolled_win = GFeedsSidebarScrolledWin(self)
+        self.listbox = self.scrolled_win.listbox
+        self.empty = self.scrolled_win.listbox.empty
+        self.populate = self.scrolled_win.listbox.populate
+        self.select_next_article = self.scrolled_win.select_next_article
+        self.select_prev_article = self.scrolled_win.select_prev_article
+
+        self.filler_builder = Gtk.Builder.new_from_resource(
+            '/org/gabmus/gnome-feeds/ui/sidebar_filler.glade'
+        )
+        self.filler_view = self.filler_builder.get_object('sidebar_filler_box')
+
+        self.add(self.filler_view)
+        self.add(self.scrolled_win)
+        self.set_size_request(300, 500)
+        self.set_visible_child(self.filler_view)
+
+    def set_main_visible(self, state):
+        self.set_visible_child(
+            self.scrolled_win if state else self.filler_view
+        )

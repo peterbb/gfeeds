@@ -150,6 +150,8 @@ class GFeedsManageFeedsWindow(Gtk.Window):
                 )
             self.appwindow.confman.save_conf()
             self.appwindow.refresh_feeds()
+            if len(self.appwindow.confman.conf['feeds']) == 0:
+                self.appwindow.sidebar.set_main_visible(False)
             self.close()
         else:
             pass

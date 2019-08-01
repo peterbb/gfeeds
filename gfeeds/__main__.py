@@ -104,8 +104,8 @@ class GFeedsApplication(Gtk.Application):
     def import_opml(self, *args):
         dialog = GFeedsOpmlFileChooserDialog(self.window)
         res = dialog.run()
-        dialog.close()
-        if res == Gtk.ResponseType.OK:
+        # dialog.close()
+        if res == Gtk.ResponseType.ACCEPT:
             n_feeds_urls_l = opml_to_rss_list(dialog.get_filename())
             self.window.headerbar.refresh_btn.set_spinning(True)
             self.window.headerbar.add_popover.confirm_btn.set_sensitive(False)
@@ -128,8 +128,8 @@ class GFeedsApplication(Gtk.Application):
     def export_opml(self, *args):
         dialog = GFeedsOpmlSavePathChooserDialog(self.window)
         res = dialog.run()
-        dialog.close()
-        if res == Gtk.ResponseType.OK:
+        # dialog.close()
+        if res == Gtk.ResponseType.ACCEPT:
             save_path = dialog.get_filename()
             if save_path[-5:].lower() != '.opml':
                 save_path += '.opml'

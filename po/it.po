@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-31 12:10+0200\n"
-"PO-Revision-Date: 2019-07-31 12:20+0200\n"
+"POT-Creation-Date: 2019-08-01 08:55+0200\n"
+"PO-Revision-Date: 2019-08-01 08:56+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -18,11 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../gfeeds/opml_file_chooser.py:7
+#: ../gfeeds/opml_file_chooser.py:6
 msgid "Choose an OPML file to import"
 msgstr "Scegli un file OPML da importare"
 
-#: ../gfeeds/opml_file_chooser.py:25
+#: ../gfeeds/opml_file_chooser.py:13 ../gfeeds/opml_file_chooser.py:30
+msgid "XML files"
+msgstr "File XML"
+
+#: ../gfeeds/opml_file_chooser.py:21
 msgid "Choose where to save the exported OPML file"
 msgstr "Scegli dove salvare il file OPML esportato"
 
@@ -203,6 +207,10 @@ msgstr "Articolo precedente"
 msgid "Refresh articles"
 msgstr "Aggiorna articoli"
 
+#: ../data/ui/sidebar_filler.glade:36
+msgid "<big>Add a feed or import an OPML file</big>"
+msgstr "<big>Aggiungi un feed o importa un file OPML</big>"
+
 #: ../data/ui/spinner_button.glade:22
 msgid "page0"
 msgstr "page0"
@@ -283,6 +291,18 @@ msgid "Feeds can be imported and exported via OPML."
 msgstr "I feed possono essere importati ed esportati tramite OPML."
 
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:27
+msgid "Switched to native file chooser"
+msgstr "Passato al selezionatore di file nativo"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:28
+msgid "Added empty state initial screen for sidebar"
+msgstr "Aggiunta una schermata di stato vuoto iniziale per la barra laterale"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:29
+msgid "Added italian translation"
+msgstr "Aggiunta traduzione italiana"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:36
 msgid "First release"
 msgstr "Prima release"
 

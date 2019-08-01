@@ -21,6 +21,15 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.2" timestamp="1564642611">
+            <description>
+                <ul>
+                    <li>Switched to native file chooser</li>
+                    <li>Added empty state initial screen for sidebar</li>
+                    <li>Added italian translation</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.1" timestamp="1564557774">
             <description>
                 <ul>
