@@ -37,6 +37,8 @@ def get_favicon(link, favicon_path):
                 candidate['is_absolute'] = 'http://' in e.attrib['href'] or 'https://' in e.attrib['href']
                 candidate['size'] = size
     p = candidate['path']
+    if not p:
+        return None
     if not candidate['is_absolute']:
         if p[0:2] == '//':
             p = p[2:]

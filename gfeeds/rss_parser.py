@@ -64,7 +64,10 @@ class Feed:
             if self.image_url:
                 download_raw(self.image_url, self.favicon_path)
             else:
-                get_favicon(self.link, self.favicon_path)
+                try:
+                    get_favicon(self.link, self.favicon_path)
+                except:
+                    print('No favicon')
         if isfile(self.favicon_path):
             try:
                 favicon = Image.open(self.favicon_path)

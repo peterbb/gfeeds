@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-02 13:40+0200\n"
-"PO-Revision-Date: 2019-08-02 13:40+0200\n"
+"POT-Creation-Date: 2019-08-02 14:05+0200\n"
+"PO-Revision-Date: 2019-08-02 14:06+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -34,7 +34,7 @@ msgstr "Scegli dove salvare il file OPML esportato"
 msgid "Error: unable to parse datetime"
 msgstr "Errore: impossibile analizzare data e ora"
 
-#: ../gfeeds/rss_parser.py:78
+#: ../gfeeds/rss_parser.py:81
 #, python-brace-format
 msgid "Error resizing favicon for feed {0}"
 msgstr "Errore nel ridimensionare la favicon per il feed {0}"
@@ -59,7 +59,7 @@ msgstr "Menu"
 msgid "Add new feed"
 msgstr "Aggiungi nuovo feed"
 
-#: ../gfeeds/get_favicon.py:51
+#: ../gfeeds/get_favicon.py:53
 #, python-brace-format
 msgid "Error downloading favicon for `{0}`"
 msgstr "Errore nel download della favicon per `{0}`"
@@ -291,22 +291,26 @@ msgid "Feeds can be imported and exported via OPML."
 msgstr "I feed possono essere importati ed esportati tramite OPML."
 
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:27
+msgid "Feeds for websites without favicons will now work"
+msgstr "I feed per i siti senza favicon adesso funzioneranno"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:34
 msgid "Fixed bug with adding new feeds"
 msgstr "Corretto un bug nell'aggiunta di nuovi feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:34
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:41
 msgid "Switched to native file chooser"
 msgstr "Passato al selezionatore di file nativo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:35
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:42
 msgid "Added empty state initial screen for sidebar"
 msgstr "Aggiunta una schermata di stato vuoto iniziale per la barra laterale"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:36
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:43
 msgid "Added italian translation"
 msgstr "Aggiunta traduzione italiana"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:43
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:50
 msgid "First release"
 msgstr "Prima release"
 
