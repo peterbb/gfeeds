@@ -1,6 +1,7 @@
 # GNOME Feeds
-A Soon to be RSS Reader for GNOME under the GPLv3 License.
-## Building on Ubuntu/Debian ##
+An RSS/Atom feed Reader for GNOME under the GPLv3 License.
+
+## Building on Ubuntu/Debian
 
 ```sh
 
@@ -15,7 +16,8 @@ $ meson ..
 $ ninja
 $ ninja install
 ```
-## Building on Arch/Manjaro ##
+## Building on Arch/Manjaro
+
 ```sh
 
 $ sudo pacman -S python-html5lib webkit2gtk python-lxml python-requests python2-pip python-pip
