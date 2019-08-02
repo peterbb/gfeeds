@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-01 08:55+0200\n"
-"PO-Revision-Date: 2019-08-01 08:56+0200\n"
+"POT-Creation-Date: 2019-08-02 13:40+0200\n"
+"PO-Revision-Date: 2019-08-02 13:40+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -69,7 +69,7 @@ msgstr "Errore nel download della favicon per `{0}`"
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../gfeeds/app_window.py:144
+#: ../gfeeds/app_window.py:146
 #, python-brace-format
 msgid "Error adding feed {0}"
 msgstr "Errore nell'aggiungere il feed {0}"
@@ -291,18 +291,22 @@ msgid "Feeds can be imported and exported via OPML."
 msgstr "I feed possono essere importati ed esportati tramite OPML."
 
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:27
+msgid "Fixed bug with adding new feeds"
+msgstr "Corretto un bug nell'aggiunta di nuovi feed"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:34
 msgid "Switched to native file chooser"
 msgstr "Passato al selezionatore di file nativo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:28
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:35
 msgid "Added empty state initial screen for sidebar"
 msgstr "Aggiunta una schermata di stato vuoto iniziale per la barra laterale"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:29
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:36
 msgid "Added italian translation"
 msgstr "Aggiunta traduzione italiana"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:36
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:43
 msgid "First release"
 msgstr "Prima release"
 

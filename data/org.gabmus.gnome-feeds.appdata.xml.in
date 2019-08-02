@@ -21,6 +21,13 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.2.1" timestamp="1564745958">
+            <description>
+                <ul>
+                    <li>Fixed bug with adding new feeds</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.2" timestamp="1564642611">
             <description>
                 <ul>

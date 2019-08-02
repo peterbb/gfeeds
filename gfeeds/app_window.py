@@ -123,7 +123,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
     def add_new_feed_async_worker(self, url = None):
         if not url:
             url = self.headerbar.add_popover.url_entry.get_text()
-            if not 'http://' in url or not 'https://' in url:
+            if not 'http://' in url and not 'https://' in url:
                 url = 'http://' + url
         if url in self.confman.conf['feeds']:
             print(_('Feed {0} exists already, skipping').format(url))
@@ -139,9 +139,12 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             #self.sidebar.listbox.add_new_items(n_feed.items)
             self.confman.conf['feeds'].append(url)
             self.confman.save_conf()
-        except:
+        except Exception as e:
+            import traceback
+            err_str = traceback.format_exc()
             # TODO: SHOW ERROR IN GUI
             print(_('Error adding feed {0}').format(url))
+            print('\n\nTraceback:\n======{0}======\n\n'.format(err_str))
 
     def add_new_feed(self, *args):
         self.headerbar.refresh_btn.set_spinning(True)
