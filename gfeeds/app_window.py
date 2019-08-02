@@ -30,8 +30,12 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
         self.webview = GFeedsWebView()
 
+        separator = Gtk.Separator()
+        separator.get_style_context().add_class('sidebar')
+
         self.leaflet = GFeedsLeaflet()
         self.leaflet.add(self.sidebar)
+        self.leaflet.add(separator)
         self.leaflet.add(self.webview)
         self.leaflet.connect('notify::folded', self.on_main_leaflet_folded)
 

@@ -48,8 +48,11 @@ class GFeedHeaderbar(Handy.TitleBar):
         size_group_right.add_widget(self.right_headerbar)
         self.headergroup.add_header_bar(self.left_headerbar)
         self.headergroup.add_header_bar(self.right_headerbar)
+        separator = Gtk.Separator()
+        separator.get_style_context().add_class('sidebar')
 
         self.leaflet.add(self.left_headerbar)
+        self.leaflet.add(separator)
         self.leaflet.add(self.right_headerbar)
         self.add(self.leaflet)
         self.right_headerbar.set_show_close_button(True)

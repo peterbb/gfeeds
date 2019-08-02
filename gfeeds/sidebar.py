@@ -71,14 +71,12 @@ class GFeedsSidebarListBox(Gtk.ListBox):
         super().__init__(**kwargs)
         self.confman = ConfManager()
         self.parent_stack = parent_stack
-        self.get_style_context().add_class('sidebar')
 
         self.set_sort_from_confman()
         self.confman.connect(
             'gfeeds_new_first_changed',
             self.set_sort_from_confman
         )
-        self.get_style_context().add_class('sidebar')
 
     def set_sort_from_confman(self, *args):
         if self.confman.conf['new_first']:
