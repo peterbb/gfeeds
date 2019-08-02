@@ -81,13 +81,20 @@ video {
     vertical-align: middle;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 560px) {
     #markdown nav ul li span strong {
         display: none;
+    }
+
+    #markdown nav ul li {
+        font-size: large;
+        padding: 0 6px 0 6px;
     }
 }
 
 h1, h2, h3, p {
+    max-width: 1000px !important;
+    margin: auto;
     text-align: center;
 }
 
