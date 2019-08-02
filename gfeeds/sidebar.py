@@ -37,8 +37,10 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
             l.set_hexpand(False)
             if l == self.date_label:
                 l.set_halign(Gtk.Align.END)
+                l.set_xalign(1)
             else:
                 l.set_halign(Gtk.Align.START)
+                l.set_xalign(0)
             self.box.pack_start(l, False, False, 3)
 
         self.super_box.pack_start(self.box, True, True, 6)
