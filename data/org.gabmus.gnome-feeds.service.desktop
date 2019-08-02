@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=GNOME Feeds
+Name=Feeds
 # TODO: We could include the full path here but Meson requires
 #       newer GLib to generate files for GResource
 TryExec=gnome-feeds
