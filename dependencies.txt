@@ -1,5 +1,6 @@
-#python-html5lib
+python-html5lib
 webkit2gtk
 python-lxml
 python-requests
+python listparser (Install VIA Pip)
 python email utils (email.utils, maybe built in?)
