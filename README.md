@@ -1,5 +1,5 @@
 # GNOME Feeds
-A Soon to be RSS Reader for GNOME.
+A Soon to be RSS Reader for GNOME under the GPLv3 License.
 ## Building on Ubuntu/Debian ##
 
 ```sh
