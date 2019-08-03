@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-03 12:54+0200\n"
-"PO-Revision-Date: 2019-08-03 12:54+0200\n"
+"POT-Creation-Date: 2019-08-03 13:02+0200\n"
+"PO-Revision-Date: 2019-08-03 13:02+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -149,6 +149,10 @@ msgstr "Impostazioni della Vista"
 #: ../gfeeds/settings_window.py:196
 msgid "Use dark theme for reader mode"
 msgstr "Usa tema scuro per la modalità lettura"
+
+#: ../gfeeds/settings_window.py:201
+msgid "Enable JavaScript"
+msgstr "Attiva JavaScript"
 
 #: ../gfeeds/manage_feeds_window.py:10
 msgid "Manage Feeds"

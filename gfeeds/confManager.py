@@ -18,6 +18,11 @@ class ConfManagerSignaler(GObject.Object):
             GObject.SIGNAL_RUN_FIRST,
             None,
             (str,)
+        ),
+        'gfeeds_webview_settings_changed': (
+            GObject.SIGNAL_RUN_FIRST,
+            None,
+            (str,)
         )
     }
 
@@ -32,7 +37,8 @@ class ConfManager(metaclass=Singleton):
             'width': 350,
             'height': 650
         },
-        'max_article_age_days': 30
+        'max_article_age_days': 30,
+        'enable_js': False
     }
 
     def __init__(self):

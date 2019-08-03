@@ -196,7 +196,12 @@ class ViewPreferencesPage(Handy.PreferencesPage):
                 'title': _('Use dark theme for reader mode'),
                 'conf_key': 'dark_reader',
                 'signal': None
-            }
+            },
+            {
+                'title': _('Enable JavaScript'),
+                'conf_key': 'enable_js',
+                'signal': 'gfeeds_webview_settings_changed'
+            },
         ]
         for s in toggle_settings:
             row = PreferencesToggleRow(s['title'], s['conf_key'], s['signal'])
