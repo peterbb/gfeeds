@@ -60,9 +60,9 @@ Then, click the button below to install GNOME Feeds:
 
 <a href="https://flathub.org/apps/details/org.gabmus.gnome-feeds"><img src="https://raw.githubusercontent.com/flatpak-design-team/flathub-mockups/master/assets/download-button/download.svg?sanitize=true" height="100" alt="Get it on Flathub" /></a>
 
-<!-- ### AUR
+### AUR
 
-If you're using Arch Linux or an Arch based system, you can install the [`gnome-feeds-git`](https://aur.archlinux.org/packages/gnome-feeds-git/) package from the AUR. -->
+If you're using Arch Linux or an Arch based system, you can install the [`gnome-feeds-git`](https://aur.archlinux.org/packages/gnome-feeds-git/) package from the AUR.
 
 ---
 
