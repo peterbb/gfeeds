@@ -19,7 +19,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.refresh_feeds
         )
 
-        self.set_title('GNOME Feeds')
+        self.set_title('Feeds')
         self.set_icon_name('org.gabmus.gnome-feeds')
 
         self.feeds = []
