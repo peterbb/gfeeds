@@ -1,5 +1,5 @@
 from .singleton import Singleton
-from gi.repository import GObject, GLib
+from gi.repository import GObject, GLib, Gio
 from pathlib import Path
 from os.path import isfile, isdir
 from os import makedirs, listdir
@@ -83,6 +83,15 @@ class ConfManager(metaclass=Singleton):
         for p in [self.cache_path, self.thumbs_cache_path]:
             if not isdir(p):
                 makedirs(p)
+
+        bl_gsettings = Gio.Settings.new('org.gnome.desktop.wm.preferences')
+        bl = bl_gsettings.get_value('button-layout').get_string()
+        self.wm_decoration_on_left = (
+            'close:' in bl or
+            'maximize:' in bl or
+            'minimize:' in bl
+        )
+
 
     @property
     def max_article_age(self):

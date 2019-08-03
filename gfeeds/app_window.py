@@ -209,15 +209,12 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             target = self.headerbar.leaflet.get_visible_child()
             self.headerbar.back_button.show()
         else:
-            target = self.headerbar.right_headerbar
+            if self.confman.wm_decoration_on_left:
+                target = self.headerbar.left_headerbar
+            else:
+                target = self.headerbar.right_headerbar
             self.headerbar.back_button.hide()
-        # for c in self.headerbar.leaflet.get_children():
-        #     if c != target:
-        #         other = c
-        #         break
         self.headerbar.headergroup.set_focus(target)
-        # target.set_show_close_button(True)
-        # other.set_show_close_button(False)
 
     def on_back_button_clicked(self, *args):
         self.leaflet.set_visible_child(self.sidebar)
