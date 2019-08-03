@@ -1,4 +1,4 @@
-# <a href="https://gabmus.gitlab.io/gnome-feeds"><img height="32" src="data/icons/org.gabmus.gnome-feeds.svg" /> Feeds</a>
+# <a href="https://gabmus.gitlab.io/gnome-feeds"><img height="32" src="https://gitlab.com/gabmus/gnome-feeds/raw/master/data/icons/org.gabmus.gnome-feeds.svg" /> Feeds</a>
 
 An RSS/Atom feed Reader for GNOME under the GPLv3 License.
 
