@@ -51,8 +51,5 @@
         <property name="position">1</property>
       </packing>
     </child>
-    <style>
-      <class name="sidebar"/>
-    </style>
   </object>
 </interface>
