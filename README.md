@@ -1,6 +1,9 @@
 # GNOME Feeds
 An RSS/Atom feed Reader for GNOME under the GPLv3 License.
 
+## Installing from Flathub
+You can install Feeds via [Flatpak](https://flathub.org/apps/details/org.gabmus.gnome-feeds).
+
 ## Building on Ubuntu/Debian
 
 ```sh

@@ -1,4 +1,7 @@
-## Building on Ubuntu/Debian ##
+## Installing from Flathub
+You can install Feeds via [Flatpak](https://flathub.org/apps/details/org.gabmus.gnome-feeds).
+
+## Building on Ubuntu/Debian
 
 ```sh
 
@@ -13,7 +16,8 @@ $ meson ..
 $ ninja
 $ ninja install
 ```
-## Building on Arch/Manjaro ##
+## Building on Arch/Manjaro
+
 ```sh
 
 $ sudo pacman -S python-html5lib webkit2gtk python-lxml python-requests python2-pip python-pip

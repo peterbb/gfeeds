@@ -5,7 +5,7 @@ project('gnome-feeds',
 )
 
 description = 'News reader for GNOME'
-prettyname = 'GNOME Feeds'
+prettyname = 'Feeds'
 prettylicense = 'GPL-3.0+'
 
 author = 'gabmus'
@@ -18,7 +18,8 @@ website = 'http://'+meson.project_name()+'.'+author+'.org'
 
 # NOTE: if you contributed, feel free to add your name and email address here
 contributors = '\n'.join([
-    'Gabriele Musco (GabMus) &lt;emaildigabry@gmail.com&gt;'
+    'Gabriele Musco (GabMus) &lt;emaildigabry@gmail.com&gt;',
+    'Larry McLellan (Lasklo) &lt;thisislarry2k5@gmail.com&gt;'
 ])
 
 i18n = import('i18n')
