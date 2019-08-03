@@ -40,6 +40,49 @@ class PreferencesButtonRow(Handy.ActionRow):
         self.confman.save_conf()
 
 
+class PreferencesSpinButtonRow(Handy.ActionRow):
+    """
+    A preferences row with a title and a spin button
+    title: the title shown
+    min_v: minimum num value
+    max_v: maximum num value
+    conf_key: the key of the configuration dictionary/json in ConfManager
+    signal: an optional signal to let ConfManager emit when the value changes
+    """
+    def __init__(self, title, min_v, max_v, conf_key, signal=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = title
+        self.confman = ConfManager()
+        self.set_title(self.title)
+        self.signal = signal
+        self.conf_key = conf_key
+
+        self.adjustment = Gtk.Adjustment(
+            self.confman.conf[self.conf_key], # initial value
+            min_v, # minimum value
+            max_v, # maximum value
+            1, # step increment
+            7, # page increment (page up, page down? large steps anyway)
+            0
+        )
+
+        self.spin_button = Gtk.SpinButton()
+        self.spin_button.set_adjustment(self.adjustment)
+        self.spin_button.set_valign(Gtk.Align.CENTER)
+        self.spin_button.connect('value-changed', self.on_value_changed)
+        self.add_action(self.spin_button)
+        # You need to interact with the actual spin button
+        # Avoids accidental presses
+        # self.set_activatable_widget(self.button)
+
+    def on_value_changed(self, *args):
+        print('value changed')
+        self.confman.conf[self.conf_key] = self.spin_button.get_value_as_int()
+        if self.signal:
+            self.confman.emit(self.signal, '')
+        self.confman.save_conf()
+
+
 class PreferencesToggleRow(Handy.ActionRow):
     """
     A preferences row with a title and a toggle
@@ -91,6 +134,14 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
         for s in toggle_settings:
             row = PreferencesToggleRow(s['title'], s['conf_key'], s['signal'])
             self.general_preferences_group.add(row)
+        self.general_preferences_group.add(
+            PreferencesSpinButtonRow(
+                _('Maximum article age (in days)'),
+                1,
+                9999,
+                'max_article_age_days'
+            )
+        )
         self.add(self.general_preferences_group)
 
         self.cache_preferences_group = Handy.PreferencesGroup()

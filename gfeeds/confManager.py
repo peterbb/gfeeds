@@ -5,6 +5,7 @@ from os.path import isfile, isdir
 from os import makedirs, listdir
 from os import environ as Env
 import json
+from datetime import timedelta
 
 class ConfManagerSignaler(GObject.Object):
     __gsignals__ = {
@@ -30,7 +31,8 @@ class ConfManager(metaclass=Singleton):
         'windowsize': {
             'width': 350,
             'height': 650
-        }
+        },
+        'max_article_age_days': 30
     }
 
     def __init__(self):
@@ -75,6 +77,10 @@ class ConfManager(metaclass=Singleton):
         for p in [self.cache_path, self.thumbs_cache_path]:
             if not isdir(p):
                 makedirs(p)
+
+    @property
+    def max_article_age(self):
+        return timedelta(days=self.conf['max_article_age_days'])
 
     def save_conf(self):
         with open(self.path, 'w') as fd:

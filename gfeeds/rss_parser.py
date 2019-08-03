@@ -1,6 +1,6 @@
 import feedparser
 from email.utils import parsedate_to_datetime
-from datetime import datetime
+from datetime import datetime, timezone
 from gettext import gettext as _
 from .download_manager import download, download_raw
 from .get_favicon import get_favicon
@@ -49,6 +49,7 @@ class Feed:
             fd.close()
 
         self.confman = ConfManager()
+        self.init_time = datetime.now(timezone.utc)
         
         self.rss_link = download_res[1]
         self.title = self.fp_feed.feed.get('title', '')
@@ -56,7 +57,13 @@ class Feed:
         self.description = self.fp_feed.feed.get('subtitle', '')
         # self.language = self.fp_feed.get('', '')
         self.image_url = self.fp_feed.get('image', {'href': ''})['href']
-        self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
+        self.items = []
+        for entry in self.fp_feed.get('entries', []):
+            n_item = FeedItem(entry, self)
+            item_age = self.init_time - n_item.pub_date
+            if item_age < self.confman.max_article_age:
+                self.items.append(n_item)
+        # self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
         self.color = [0, 0, 0]
 
         if not self.title:
