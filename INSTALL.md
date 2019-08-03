@@ -2,6 +2,10 @@
 
 You can install Feeds via [Flatpak](https://flathub.org/apps/details/org.gabmus.gnome-feeds).
 
+## Installing from AUR
+
+Feeds is available as an AUR package: [`gnome-feeds-git`](https://aur.archlinux.org/packages/gnome-feeds-git/).
+
 ## Building on Ubuntu/Debian
 
 ```bash
