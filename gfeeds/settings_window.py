@@ -49,9 +49,12 @@ class PreferencesSpinButtonRow(Handy.ActionRow):
     conf_key: the key of the configuration dictionary/json in ConfManager
     signal: an optional signal to let ConfManager emit when the value changes
     """
-    def __init__(self, title, min_v, max_v, conf_key, signal=None, *args, **kwargs):
+    def __init__(self, title, min_v, max_v, conf_key, signal=None, subtitle=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title = title
+        if subtitle:
+            self.subtitle = subtitle
+            self.set_subtitle(self.subtitle)
         self.confman = ConfManager()
         self.set_title(self.title)
         self.signal = signal
@@ -136,10 +139,11 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
             self.general_preferences_group.add(row)
         self.general_preferences_group.add(
             PreferencesSpinButtonRow(
-                _('Maximum article age (in days)'),
+                _('Maximum article age'),
                 1,
                 9999,
-                'max_article_age_days'
+                'max_article_age_days',
+                subtitle = _('In days')
             )
         )
         self.add(self.general_preferences_group)

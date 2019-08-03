@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-03 10:53+0200\n"
-"PO-Revision-Date: 2019-08-03 10:53+0200\n"
+"POT-Creation-Date: 2019-08-03 12:14+0200\n"
+"PO-Revision-Date: 2019-08-03 12:14+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -106,43 +106,47 @@ msgstr "Collisione della cache per `{0}`, salto l'aggiornamento del file"
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Errore nel download di `{0}`, codice `{1}`"
 
-#: ../gfeeds/settings_window.py:121
+#: ../gfeeds/settings_window.py:124
 msgid "General"
 msgstr "Generale"
 
-#: ../gfeeds/settings_window.py:126
+#: ../gfeeds/settings_window.py:129
 msgid "General Settings"
 msgstr "Impostazioni Generali"
 
-#: ../gfeeds/settings_window.py:129
+#: ../gfeeds/settings_window.py:132
 msgid "Show newer articles first"
 msgstr "Mostra nuovi articoli per primi"
 
-#: ../gfeeds/settings_window.py:139
-msgid "Maximum article age (in days)"
-msgstr "Massima età degli articoli (in giorni)"
+#: ../gfeeds/settings_window.py:142
+msgid "Maximum article age"
+msgstr "Età massima degli articoli"
 
-#: ../gfeeds/settings_window.py:148
+#: ../gfeeds/settings_window.py:146
+msgid "In days"
+msgstr "In giorni"
+
+#: ../gfeeds/settings_window.py:152
 msgid "Cache"
 msgstr "Cache"
 
-#: ../gfeeds/settings_window.py:151
+#: ../gfeeds/settings_window.py:155
 msgid "Clear all caches"
 msgstr "Pulisci tutte le cache"
 
-#: ../gfeeds/settings_window.py:152
+#: ../gfeeds/settings_window.py:156
 msgid "Clear caches"
 msgstr "Pulisci le cache"
 
-#: ../gfeeds/settings_window.py:184
+#: ../gfeeds/settings_window.py:188
 msgid "View"
 msgstr "Vista"
 
-#: ../gfeeds/settings_window.py:189
+#: ../gfeeds/settings_window.py:193
 msgid "View Settings"
 msgstr "Impostazioni della Vista"
 
-#: ../gfeeds/settings_window.py:192
+#: ../gfeeds/settings_window.py:196
 msgid "Use dark theme for reader mode"
 msgstr "Usa tema scuro per la modalità lettura"
 
@@ -317,6 +321,9 @@ msgstr "Aggiunta traduzione italiana"
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:50
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "Maximum article age (in days)"
+#~ msgstr "Massima età degli articoli (in giorni)"
 
 #~ msgid "ERROR: cannot create thumbnail for file"
 #~ msgstr "ERRORE: impossibile creare miniatura per il file"
