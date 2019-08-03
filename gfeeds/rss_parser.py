@@ -59,6 +59,11 @@ class Feed:
         self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
         self.color = [0, 0, 0]
 
+        if not self.title:
+            self.title = self.link
+            if not self.title:
+                self.title = self.rss_link
+
         self.favicon_path = self.confman.thumbs_cache_path+'/'+shasum(self.link)+'.png'
         if not isfile(self.favicon_path):
             if self.image_url:
@@ -66,6 +71,8 @@ class Feed:
             else:
                 try:
                     get_favicon(self.link, self.favicon_path)
+                    if not isfile(self.favicon_path):
+                        get_favicon(self.items[0].link, self.favicon_path)
                 except:
                     print('No favicon')
         if isfile(self.favicon_path):

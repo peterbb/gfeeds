@@ -47,6 +47,7 @@ class ManageFeedsListboxRow(Gtk.ListBoxRow):
             l.set_line_wrap(True)
             l.set_hexpand(False)
             l.set_halign(Gtk.Align.START)
+            l.set_xalign(0)
             self.vbox.pack_start(l, False, False, 3)
         self.hbox.pack_start(self.icon, False, False, 6)
         self.hbox.pack_start(self.vbox, True, True, 6)
