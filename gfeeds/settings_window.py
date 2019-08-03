@@ -161,6 +161,4 @@ class GFeedsSettingsWindow(Handy.PreferencesWindow):
         ]
         for p in self.pages:
             self.add(p)
-        # values copied from libhandy demo
-        # https://source.puri.sm/Librem5/libhandy/blob/master/examples/hdy-demo-preferences-window.ui
-        self.set_default_size(640, 700)
+        self.set_default_size(300, 600)
