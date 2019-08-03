@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-03 13:02+0200\n"
-"PO-Revision-Date: 2019-08-03 13:02+0200\n"
+"POT-Creation-Date: 2019-08-03 13:53+0200\n"
+"PO-Revision-Date: 2019-08-03 13:55+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -315,26 +315,59 @@ msgid "Feeds can be imported and exported via OPML."
 msgstr "I feed possono essere importati ed esportati tramite OPML."
 
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:27
+msgid "Fixed labels alignment"
+msgstr "Corretto l'allineamento del testo"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:28
+msgid "Changed app name to Feeds"
+msgstr "Cambiato il nome dell'app a Feeds"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:29
+msgid "Added separators for the two sections of the app"
+msgstr "Aggiunti separatori per le due sezioni dell'app"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:30
+msgid "Using links as feed titles when there is no title"
+msgstr "Uso dei link come titoli dei feed quando non c'è titolo"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:31
+msgid "Added preference for maximum article age"
+msgstr "Aggiunta preferenza per la massima età degli articoli"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:32
+msgid "Added zoom keyboard shortcuts"
+msgstr "Aggiunte scorciatoie da tastiera per lo zoom"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:33
+msgid "Added preference to enable JavaScript"
+msgstr "Aggiunta preferenza per attivare JavaScript"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:34
+msgid "Fix window control positions when they are on the left"
+msgstr ""
+"Corretta la posizione dei controlli della finestra quando sono a sinistra"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:41
 msgid "Feeds for websites without favicons will now work"
 msgstr "I feed per i siti senza favicon adesso funzioneranno"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:34
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:48
 msgid "Fixed bug with adding new feeds"
 msgstr "Corretto un bug nell'aggiunta di nuovi feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:41
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:55
 msgid "Switched to native file chooser"
 msgstr "Passato al selezionatore di file nativo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:42
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:56
 msgid "Added empty state initial screen for sidebar"
 msgstr "Aggiunta una schermata di stato vuoto iniziale per la barra laterale"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:43
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:57
 msgid "Added italian translation"
 msgstr "Aggiunta traduzione italiana"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:50
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:64
 msgid "First release"
 msgstr "Prima release"
 

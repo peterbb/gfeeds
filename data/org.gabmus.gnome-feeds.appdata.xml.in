@@ -21,6 +21,20 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.3" timestamp="1564832105">
+            <description>
+                <ul>
+                    <li>Fixed labels alignment</li>
+                    <li>Changed app name to Feeds</li>
+                    <li>Added separators for the two sections of the app</li>
+                    <li>Using links as feed titles when there is no title</li>
+                    <li>Added preference for maximum article age</li>
+                    <li>Added zoom keyboard shortcuts</li>
+                    <li>Added preference to enable JavaScript</li>
+                    <li>Fix window control positions when they are on the left</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.2.2" timestamp="1564747422">
             <description>
                 <ul>
