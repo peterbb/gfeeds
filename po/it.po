@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-03 12:14+0200\n"
-"PO-Revision-Date: 2019-08-03 12:14+0200\n"
+"POT-Creation-Date: 2019-08-03 12:54+0200\n"
+"PO-Revision-Date: 2019-08-03 12:54+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -64,21 +64,21 @@ msgstr "Aggiungi nuovo feed"
 msgid "Error downloading favicon for `{0}`"
 msgstr "Errore nel download della favicon per `{0}`"
 
-#: ../gfeeds/app_window.py:133
+#: ../gfeeds/app_window.py:145
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../gfeeds/app_window.py:150
+#: ../gfeeds/app_window.py:162
 #, python-brace-format
 msgid "Error adding feed {0}"
 msgstr "Errore nell'aggiungere il feed {0}"
 
-#: ../gfeeds/webview.py:64
+#: ../gfeeds/webview.py:65
 msgid "Web View"
 msgstr "Vista Web"
 
-#: ../gfeeds/webview.py:65
+#: ../gfeeds/webview.py:66
 msgid "Filler View"
 msgstr "Vista Riempitiva"
 
@@ -214,6 +214,18 @@ msgstr "Articolo precedente"
 #: ../data/ui/shortcutsWindow.xml:31
 msgid "Refresh articles"
 msgstr "Aggiorna articoli"
+
+#: ../data/ui/shortcutsWindow.xml:37
+msgid "Zoom in"
+msgstr "Ingrandisci"
+
+#: ../data/ui/shortcutsWindow.xml:43
+msgid "Zoom out"
+msgstr "Riduci"
+
+#: ../data/ui/shortcutsWindow.xml:49
+msgid "Reset zoom"
+msgstr "Resetta zoom"
 
 #: ../data/ui/sidebar_filler.glade:36
 msgid "<big>Add a feed or import an OPML file</big>"

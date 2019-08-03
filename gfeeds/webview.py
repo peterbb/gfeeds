@@ -50,6 +50,7 @@ class GFeedsWebView(Gtk.Stack):
         self.webkitview_settings.set_enable_javascript(False)
         self.webkitview_settings.set_enable_smooth_scrolling(True)
         self.webkitview_settings.set_enable_page_cache(True)
+        self.webkitview_settings.set_enable_frame_flattening(True)
 
         self.webkitview.set_settings(self.webkitview_settings)
         self.webkitview.connect('load-changed', self.on_load_changed)
@@ -68,6 +69,19 @@ class GFeedsWebView(Gtk.Stack):
         self.new_page_loaded = False
         self.uri = ''
         self.html = None
+
+    def key_zoom_in(self, *args):
+        self.webkitview.set_zoom_level(
+            self.webkitview.get_zoom_level()+0.15
+        )
+
+    def key_zoom_out(self, *args):
+        self.webkitview.set_zoom_level(
+            self.webkitview.get_zoom_level()-0.15
+        )
+
+    def key_zoom_reset(self, *args):
+        self.webkitview.set_zoom_level(1.0)
 
     def show_notif(self, *args):
         self.notif_revealer.set_reveal_child(True)

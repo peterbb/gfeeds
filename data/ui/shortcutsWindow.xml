@@ -31,6 +31,24 @@
                 <property name="title" translatable="yes">Refresh articles</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;plus</property>
+                <property name="title" translatable="yes">Zoom in</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;minus</property>
+                <property name="title" translatable="yes">Zoom out</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;equal</property>
+                <property name="title" translatable="yes">Reset zoom</property>
+              </object>
+            </child>
             <!--<child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;shift&gt;H</property>

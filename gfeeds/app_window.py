@@ -86,6 +86,18 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             {
                 'combo': '<Control>k',
                 'cb': self.sidebar.select_prev_article
+            },
+            {
+                'combo': '<Control>plus',
+                'cb': self.webview.key_zoom_in
+            },
+            {
+                'combo': '<Control>minus',
+                'cb': self.webview.key_zoom_out
+            },
+            {
+                'combo': '<Control>equal',
+                'cb': self.webview.key_zoom_reset
             }
         ]
         for s in shortcuts_l:
