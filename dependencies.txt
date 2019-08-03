@@ -3,4 +3,4 @@ webkit2gtk
 python-lxml
 python-requests
 python listparser (Install VIA Pip)
-python email utils (email.utils, maybe built in?)
+python email utils (email.utils, maybe built in? flatpak doesn't require any other dependencies, likely built in)
