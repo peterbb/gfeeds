@@ -34,6 +34,7 @@ class GFeedHeaderbar(Handy.TitleBar):
             webview,
             **kwargs):
         super().__init__(**kwargs)
+        self.confman = ConfManager()
         self.back_btn_func = back_btn_func
         self.webview = webview
         self.webview.connect('gfeeds_webview_load_start', self.on_load_start)
@@ -55,8 +56,11 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.leaflet.add(separator)
         self.leaflet.add(self.right_headerbar)
         self.add(self.leaflet)
-        self.right_headerbar.set_show_close_button(True)
-        self.left_headerbar.set_show_close_button(True)
+        self.set_headerbar_controls()
+        self.confman.connect(
+            'gfeeds_enable_csd_changed',
+            self.set_headerbar_controls
+        )
         self.headergroup.set_focus(self.left_headerbar)
 
         self.back_button = Gtk.Button.new_from_icon_name(
@@ -122,6 +126,14 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.left_headerbar.pack_start(self.add_btn)
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+
+    def set_headerbar_controls(self, *args):
+        if self.confman.conf['enable_csd']:
+            self.right_headerbar.set_show_close_button(True)
+            self.left_headerbar.set_show_close_button(True)
+        else:
+            self.right_headerbar.set_show_close_button(False)
+            self.left_headerbar.set_show_close_button(False)
 
     def on_back_button_clicked(self, *args):
         self.leaflet.set_visible_child(self.left_headerbar)

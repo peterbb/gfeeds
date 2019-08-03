@@ -51,9 +51,17 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         )
         self.headerbar.refresh_btn.btn.connect('clicked', self.refresh_feeds)
         self.headerbar.add_popover.confirm_btn.connect('clicked', self.add_new_feed)
-        self.set_titlebar(self.headerbar)
         
-        self.add(self.leaflet)
+        self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+
+        self.set_headerbar_or_titlebar()
+        self.confman.connect(
+            'gfeeds_enable_csd_changed',
+            self.set_headerbar_or_titlebar
+        )
+
+        self.add(self.main_box)
+        self.main_box.pack_end(self.leaflet, True, True, 0)
 
         # Why this -52?
         # because every time a new value is saved, for some reason
@@ -102,7 +110,16 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         ]
         for s in shortcuts_l:
             self.add_accelerator(s['combo'], s['cb'])
-        
+
+
+    def set_headerbar_or_titlebar(self, *args):
+        if self.confman.conf['enable_csd']:
+            if self.headerbar in self.main_box.get_children():
+                self.main_box.remove(self.headerbar)
+            self.set_titlebar(self.headerbar)
+        else:
+            self.set_titlebar(None)
+            self.main_box.pack_start(self.headerbar, False, False, 0)
 
     def refresh_feeds_async_worker(self, *args):
         self.feeds = []

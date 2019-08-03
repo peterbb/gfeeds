@@ -193,6 +193,11 @@ class ViewPreferencesPage(Handy.PreferencesPage):
         self.view_preferences_group.set_title(_('View Settings'))
         toggle_settings = [
             {
+                'title': _('Enable client side decoration'),
+                'conf_key': 'enable_csd',
+                'signal': 'gfeeds_enable_csd_changed'
+            },
+            {
                 'title': _('Use dark theme for reader mode'),
                 'conf_key': 'dark_reader',
                 'signal': None
@@ -214,6 +219,11 @@ class ViewPreferencesPage(Handy.PreferencesPage):
 class GFeedsSettingsWindow(Handy.PreferencesWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.confman = ConfManager()
+        self.confman.connect(
+            'gfeeds_enable_csd_changed',
+            lambda *args: self.close()
+        )
 
         self.pages = [
             GeneralPreferencesPage(),

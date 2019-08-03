@@ -23,6 +23,11 @@ class ConfManagerSignaler(GObject.Object):
             GObject.SIGNAL_RUN_FIRST,
             None,
             (str,)
+        ),
+        'gfeeds_enable_csd_changed': (
+            GObject.SIGNAL_RUN_FIRST,
+            None,
+            (str,)
         )
     }
 
@@ -38,7 +43,8 @@ class ConfManager(metaclass=Singleton):
             'height': 650
         },
         'max_article_age_days': 30,
-        'enable_js': False
+        'enable_js': False,
+        'enable_csd': True
     }
 
     def __init__(self):
