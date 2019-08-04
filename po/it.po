@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-04 10:02+0200\n"
-"PO-Revision-Date: 2019-08-04 10:02+0200\n"
+"POT-Creation-Date: 2019-08-04 11:46+0200\n"
+"PO-Revision-Date: 2019-08-04 11:47+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -64,21 +64,21 @@ msgstr "Aggiungi nuovo feed"
 msgid "Error downloading favicon for `{0}`"
 msgstr "Errore nel download della favicon per `{0}`"
 
-#: ../gfeeds/app_window.py:164
+#: ../gfeeds/app_window.py:172
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../gfeeds/app_window.py:181
+#: ../gfeeds/app_window.py:189
 #, python-brace-format
 msgid "Error adding feed {0}"
 msgstr "Errore nell'aggiungere il feed {0}"
 
-#: ../gfeeds/webview.py:65
+#: ../gfeeds/webview.py:67
 msgid "Web View"
 msgstr "Vista Web"
 
-#: ../gfeeds/webview.py:66
+#: ../gfeeds/webview.py:68
 msgid "Filler View"
 msgstr "Vista Riempitiva"
 
@@ -86,22 +86,22 @@ msgstr "Vista Riempitiva"
 msgid "Reader mode unavailable for this site"
 msgstr "Modalità lettura non disponibile per questo sito"
 
-#: ../gfeeds/download_manager.py:20
+#: ../gfeeds/download_manager.py:27
 #, python-brace-format
-msgid "Downloading `{0}`..."
-msgstr "Scarico `{0}`..."
+msgid "Downloading `{0}`…"
+msgstr "Scarico `{0}`…"
 
-#: ../gfeeds/download_manager.py:23
+#: ../gfeeds/download_manager.py:30
 #, python-brace-format
 msgid "Download of `{0}` successful"
 msgstr "Download di `{0}` riuscito"
 
-#: ../gfeeds/download_manager.py:28
+#: ../gfeeds/download_manager.py:35
 #, python-brace-format
 msgid "Hit cache for `{0}`, skipping file update"
 msgstr "Collisione della cache per `{0}`, salto l'aggiornamento del file"
 
-#: ../gfeeds/download_manager.py:40
+#: ../gfeeds/download_manager.py:47
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Errore nel download di `{0}`, codice `{1}`"
@@ -147,16 +147,20 @@ msgid "View Settings"
 msgstr "Impostazioni della Vista"
 
 #: ../gfeeds/settings_window.py:196
-msgid "Enable client side decoration"
-msgstr "Attiva decorazione client side"
-
-#: ../gfeeds/settings_window.py:201
 msgid "Use dark theme for reader mode"
 msgstr "Usa tema scuro per la modalità lettura"
+
+#: ../gfeeds/settings_window.py:201
+msgid "Use reader mode by default"
+msgstr "Usa modalità lettura come predefinita"
 
 #: ../gfeeds/settings_window.py:206
 msgid "Enable JavaScript"
 msgstr "Attiva JavaScript"
+
+#: ../gfeeds/settings_window.py:211
+msgid "Enable client side decoration"
+msgstr "Attiva decorazione client side"
 
 #: ../gfeeds/manage_feeds_window.py:10
 msgid "Manage Feeds"
@@ -374,6 +378,9 @@ msgstr "Aggiunta traduzione italiana"
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:64
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "Downloading `{0}`..."
+#~ msgstr "Scarico `{0}`..."
 
 #~ msgid "Shortcuts"
 #~ msgstr "Scorciatoie"

@@ -193,19 +193,24 @@ class ViewPreferencesPage(Handy.PreferencesPage):
         self.view_preferences_group.set_title(_('View Settings'))
         toggle_settings = [
             {
-                'title': _('Enable client side decoration'),
-                'conf_key': 'enable_csd',
-                'signal': 'gfeeds_enable_csd_changed'
-            },
-            {
                 'title': _('Use dark theme for reader mode'),
                 'conf_key': 'dark_reader',
+                'signal': None
+            },
+            {
+                'title': _('Use reader mode by default'),
+                'conf_key': 'default_reader',
                 'signal': None
             },
             {
                 'title': _('Enable JavaScript'),
                 'conf_key': 'enable_js',
                 'signal': 'gfeeds_webview_settings_changed'
+            },
+            {
+                'title': _('Enable client side decoration'),
+                'conf_key': 'enable_csd',
+                'signal': 'gfeeds_enable_csd_changed'
             },
         ]
         for s in toggle_settings:

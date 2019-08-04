@@ -1,9 +1,11 @@
 from gettext import gettext as _
-from gi.repository import Gtk, WebKit2, GObject
+from gi.repository import Gtk, GLib, WebKit2, GObject
 from subprocess import Popen
 from time import time
 from .build_reader_html import build_reader_html
 from .confManager import ConfManager
+from .download_manager import download_text
+import threading
 
 class GFeedsWebView(Gtk.Stack):
     __gsignals__ = {
@@ -104,11 +106,31 @@ class GFeedsWebView(Gtk.Stack):
     def hide_notif(self, *args):
         self.notif_revealer.set_reveal_child(False)
 
+    def _load_reader_async(self, *args):
+        self.html = download_text(self.uri)
+        GLib.idle_add(
+            lambda: self.set_enable_reader_mode(None, True)
+        )
+
     def load_uri(self, uri, *args, **kwargs):
         self.set_visible_child(self.overlay_container)
-        self.uri = uri
-        self.webkitview.load_uri(uri) # , *args, **kwargs)
-        self.on_load_start()
+        if self.confman.conf['default_reader']:
+            self.uri = uri
+            t = threading.Thread(
+                group = None,
+                target = self._load_reader_async,
+                name = None,
+                # args = (uri,)
+            )
+            self.on_load_start()
+            t.start()
+            while t.is_alive():
+                while Gtk.events_pending():
+                    Gtk.main_iteration()
+        else:
+            self.uri = uri
+            self.webkitview.load_uri(uri) # , *args, **kwargs)
+            self.on_load_start()
 
     def open_externally(self, *args):
         if self.uri:
@@ -125,8 +147,9 @@ class GFeedsWebView(Gtk.Stack):
             resource = webview.get_main_resource()
             resource.get_data(None, self._get_data_cb, None)
 
-    def set_enable_reader_mode(self, togglebtn):
-        state = togglebtn.get_active()
+    def set_enable_reader_mode(self, togglebtn, state=None):
+        if state == None:
+            state = togglebtn.get_active()
         if state:
             self.webkitview.load_html(
                 build_reader_html(

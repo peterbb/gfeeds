@@ -144,7 +144,9 @@ class GFeedHeaderbar(Handy.TitleBar):
 
     def on_load_start(self, *args):
         self.reader_mode_btn.set_sensitive(False)
-        self.reader_mode_btn.set_active(False)
+        self.reader_mode_btn.set_active(
+            self.confman.conf['default_reader']
+        )
 
     def on_load_end(self, *args):
         self.reader_mode_btn.set_sensitive(True)

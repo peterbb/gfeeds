@@ -5,6 +5,13 @@ from .sha import shasum
 
 confman = ConfManager()
 
+def download_text(link):
+    req = requests.get(link)
+    if req.status_code == 200:
+        return req.text
+    else:
+        raise requests.HTTPError(f'request code {req.status_code}')
+
 def download_raw(link, dest):
     req = requests.get(link)
     if req.status_code == 200:
@@ -13,11 +20,11 @@ def download_raw(link, dest):
                 fd.write(chunk)
             fd.close()
     else:
-        raise requests.HTTPError
+        raise requests.HTTPError(f'request code {req.status_code}')
 
 def download(link):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
-    print(_('Downloading `{0}`...').format(link))
+    print(_('Downloading `{0}`…').format(link))
     req = requests.get(link)
     if req.status_code == 200:
         print(_('Download of `{0}` successful').format(link))

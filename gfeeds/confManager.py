@@ -37,6 +37,7 @@ class ConfManager(metaclass=Singleton):
         'feeds': [
         ],
         'dark_reader': False,
+        'default_reader': False,
         'new_first': True,
         'windowsize': {
             'width': 350,
@@ -44,7 +45,7 @@ class ConfManager(metaclass=Singleton):
         },
         'max_article_age_days': 30,
         'enable_js': False,
-        'enable_csd': True
+        'enable_csd': True,
     }
 
     def __init__(self):
