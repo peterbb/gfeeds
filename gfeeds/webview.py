@@ -111,9 +111,8 @@ class GFeedsWebView(Gtk.Stack):
         self.on_load_start()
 
     def open_externally(self, *args):
-        target = self.webkitview.get_uri()
-        if target:
-            Popen(f'xdg-open {target}'.split(' '))
+        if self.uri:
+            Popen(f'xdg-open {self.uri}'.split(' '))
 
     def on_load_start(self, *args):
         self.new_page_loaded = True
