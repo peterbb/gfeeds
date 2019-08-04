@@ -1,4 +1,4 @@
-from gi.repository import Gtk, Pango, Gdk
+from gi.repository import Gtk, Gdk
 from xml.sax.saxutils import escape
 from .confManager import ConfManager
 from os.path import isfile
@@ -9,49 +9,27 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         super().__init__(**kwargs)
         self.get_style_context().add_class('activatable')
         self.feeditem = feeditem
-        self.super_box = Gtk.Box(orientation = Gtk.Orientation.HORIZONTAL)
-        self.colored_box = Gtk.DrawingArea()
-        self.colored_box.connect('draw', self.draw_color)
-        self.colored_box.set_size_request(8, 20)
-        self.colored_box.set_margin_right(6)
 
-        self.title_label = Gtk.Label(
-            f'<big><b>{escape(self.feeditem.title)}</b></big>'
+        self.builder = Gtk.Builder.new_from_resource(
+            '/org/gabmus/gnome-feeds/ui/sidebar_listbox_row.glade'
         )
-        self.origin_label = Gtk.Label(
-            f'<i>{escape(self.feeditem.parent_feed.title)}</i>'
-        )
-        self.origin_label.set_ellipsize(Pango.EllipsizeMode.END)
-        self.date_label = Gtk.Label(
+        self.container_box = self.builder.get_object('container_box')
+        self.colored_box = self.builder.get_object('drawing_area')
+        self.colored_box.connect('draw', self.draw_color)
+        self.title_label = self.builder.get_object('title_label')
+        self.title_label.set_text(escape(self.feeditem.title))
+        self.origin_label = self.builder.get_object('origin_label')
+        self.origin_label.set_text(escape(self.feeditem.parent_feed.title))
+        self.date_label = self.builder.get_object('date_label')
+        self.date_label.set_text(
             (self.feeditem.pub_date).strftime('%Y %B %d, %H:%M')
         )
+        self.icon = self.builder.get_object('icon')
         if isfile(self.feeditem.parent_feed.favicon_path):
-            self.icon = Gtk.Image.new_from_file(
+            self.icon.set_from_file(
                 self.feeditem.parent_feed.favicon_path
             )
-        else:
-            self.icon = Gtk.Image.new_from_icon_name(
-                'application-rss+xml-symbolic',
-                Gtk.IconSize.DND
-            )
-        self.super_box.pack_start(self.colored_box, False, False, 0)
-        self.super_box.pack_start(self.icon, False, False, 6)
-        self.box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
-
-        for l in [self.title_label, self.origin_label, self.date_label]:
-            l.set_use_markup(True)
-            l.set_line_wrap(True)
-            l.set_hexpand(False)
-            if l == self.date_label:
-                l.set_halign(Gtk.Align.END)
-                l.set_xalign(1)
-            else:
-                l.set_halign(Gtk.Align.START)
-                l.set_xalign(0)
-            self.box.pack_start(l, False, False, 3)
-
-        self.super_box.pack_start(self.box, True, True, 6)
-        self.add(self.super_box)
+        self.add(self.container_box)
 
     def draw_color(self, da, ctx):
         ctx.set_source_rgb(
