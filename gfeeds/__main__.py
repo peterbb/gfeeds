@@ -19,7 +19,7 @@ from gettext import gettext as _
 
 import sys
 import argparse
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk, Gdk, Gio
 from .confManager import ConfManager
 from .app_window import GFeedsAppWindow
 from .settings_window import GFeedsSettingsWindow
@@ -171,6 +171,18 @@ class GFeedsApplication(Gtk.Application):
 
     def do_activate(self):
         self.add_window(self.window)
+        stylecontext = Gtk.StyleContext()
+        provider = Gtk.CssProvider()
+        provider.load_from_data('''
+            .notheaderbar {
+                border-radius: 0px;
+            }
+        '''.encode())
+        stylecontext.add_provider_for_screen(
+            Gdk.Screen.get_default(),
+            provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
         if self.args:
             pass
         self.window.present()

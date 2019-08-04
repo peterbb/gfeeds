@@ -116,10 +116,20 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         if self.confman.conf['enable_csd']:
             if self.headerbar in self.main_box.get_children():
                 self.main_box.remove(self.headerbar)
+                for h in [
+                    self.headerbar.left_headerbar,
+                    self.headerbar.right_headerbar,
+                    self.headerbar]:
+                    h.get_style_context().remove_class('notheaderbar')
             self.set_titlebar(self.headerbar)
         else:
             self.set_titlebar(None)
             self.main_box.pack_start(self.headerbar, False, False, 0)
+            for h in [
+                    self.headerbar.left_headerbar,
+                    self.headerbar.right_headerbar,
+                    self.headerbar]:
+                h.get_style_context().add_class('notheaderbar')
 
     def refresh_feeds_async_worker(self, *args):
         self.feeds = []
