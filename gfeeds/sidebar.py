@@ -1,6 +1,7 @@
 from gi.repository import Gtk, Pango, Gdk
 from xml.sax.saxutils import escape
 from .confManager import ConfManager
+from os.path import isfile
 import cairo
 
 class GFeedsSidebarRow(Gtk.ListBoxRow):
@@ -24,9 +25,15 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.date_label = Gtk.Label(
             (self.feeditem.pub_date).strftime('%Y %B %d, %H:%M')
         )
-        self.icon = Gtk.Image.new_from_file(
-            self.feeditem.parent_feed.favicon_path
-        )
+        if isfile(self.feeditem.parent_feed.favicon_path):
+            self.icon = Gtk.Image.new_from_file(
+                self.feeditem.parent_feed.favicon_path
+            )
+        else:
+            self.icon = Gtk.Image.new_from_icon_name(
+                'application-rss+xml-symbolic',
+                Gtk.IconSize.DND
+            )
         self.super_box.pack_start(self.colored_box, False, False, 0)
         self.super_box.pack_start(self.icon, False, False, 6)
         self.box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
