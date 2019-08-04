@@ -22,16 +22,12 @@
                 <attribute name="action">app.settings</attribute>
             </item>
             <item>
-                <attribute name="label" translatable="yes">Shortcuts</attribute>
+                <attribute name="label" translatable="yes">Keyboard Shortcuts</attribute>
                 <attribute name="action">app.shortcuts</attribute>
             </item>
             <item>
-                <attribute name="label" translatable="yes">About</attribute>
+                <attribute name="label" translatable="yes">About Feeds</attribute>
                 <attribute name="action">app.about</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">Quit</attribute>
-                <attribute name="action">app.quit</attribute>
             </item>
         </section>
     </menu>
