@@ -2,7 +2,6 @@ data/org.gabmus.gnome-feeds.appdata.xml.in
 data/org.gabmus.gnome-feeds.desktop.in
 data/ui/add_feed_box.glade
 data/ui/menu.xml
-data/ui/menu.xml data/ui/shortcutsWindow.xml
 data/ui/shortcutsWindow.xml
 data/ui/sidebar_filler.glade
 data/ui/spinner_button.glade
