@@ -28,6 +28,8 @@ class FeedItem:
             self.pub_date = parsedate_to_datetime(self.pub_date_str)
         except:
             try:
+                if self.pub_date_str[-1].lower() == 'z':
+                    self.pub_date_str = self.pub_date_str[:-1]+'+00:00'
                 self.pub_date = datetime.fromisoformat(self.pub_date_str)
             except:
                 print(_('Error: unable to parse datetime'))
