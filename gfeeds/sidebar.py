@@ -1,5 +1,4 @@
 from gi.repository import Gtk, Gdk
-from xml.sax.saxutils import escape
 from .confManager import ConfManager
 from os.path import isfile
 import cairo
@@ -17,9 +16,9 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.colored_box = self.builder.get_object('drawing_area')
         self.colored_box.connect('draw', self.draw_color)
         self.title_label = self.builder.get_object('title_label')
-        self.title_label.set_text(escape(self.feeditem.title))
+        self.title_label.set_text(self.feeditem.title)
         self.origin_label = self.builder.get_object('origin_label')
-        self.origin_label.set_text(escape(self.feeditem.parent_feed.title))
+        self.origin_label.set_text(self.feeditem.parent_feed.title)
         self.date_label = self.builder.get_object('date_label')
         self.date_label.set_text(
             (self.feeditem.pub_date).strftime('%Y %B %d, %H:%M')

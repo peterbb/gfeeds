@@ -10,6 +10,7 @@
     <file preprocess="xml-stripblanks">ui/add_feed_box.glade</file>
     <file preprocess="xml-stripblanks">ui/spinner_button.glade</file>
     <file preprocess="xml-stripblanks">ui/sidebar_listbox_row.glade</file>
+    <file preprocess="xml-stripblanks">ui/manage_feeds_listbox_row.glade</file>
     <file preprocess="xml-stripblanks">ui/menu.xml</file>
     <file preprocess="xml-stripblanks">ui/shortcutsWindow.xml</file>
     

@@ -1,7 +1,7 @@
 from gi.repository import Gtk
 from gettext import gettext as _
 
-class SpinnerButton(Gtk.Bin):
+class RefreshSpinnerButton(Gtk.Bin):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.builder = Gtk.Builder.new_from_resource(

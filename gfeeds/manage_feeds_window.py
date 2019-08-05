@@ -1,7 +1,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk
 from xml.sax.saxutils import escape
-
+from os.path import isfile
 
 class ManageFeedsHeaderbar(Gtk.HeaderBar):
     def __init__(self, **kwargs):
@@ -30,28 +30,23 @@ class ManageFeedsHeaderbar(Gtk.HeaderBar):
 class ManageFeedsListboxRow(Gtk.ListBoxRow):
     def __init__(self, feed, **kwargs):
         super().__init__(**kwargs)
-
         self.feed = feed
-        self.hbox = Gtk.Box(orientation = Gtk.Orientation.HORIZONTAL)
-        self.vbox = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
-        self.checkbox = Gtk.CheckButton()
+        self.builder = Gtk.Builder.new_from_resource(
+            '/org/gabmus/gnome-feeds/ui/manage_feeds_listbox_row.glade'
+        )
+        self.hbox = self.builder.get_object('hbox')
+        self.checkbox = self.builder.get_object('check')
         self.checkbox_handler_id = self.checkbox.connect(
             'toggled',
             self.on_checkbox_toggled
         )
-        self.icon = Gtk.Image.new_from_file(self.feed.favicon_path)
-        self.name_label = Gtk.Label(f'<big><b>{escape(self.feed.title)}</b></big>')
-        self.desc_label = Gtk.Label(f'<i>{escape(self.feed.description)}</i>')
-        for l in [self.name_label, self.desc_label]:
-            l.set_use_markup(True)
-            l.set_line_wrap(True)
-            l.set_hexpand(False)
-            l.set_halign(Gtk.Align.START)
-            l.set_xalign(0)
-            self.vbox.pack_start(l, False, False, 3)
-        self.hbox.pack_start(self.icon, False, False, 6)
-        self.hbox.pack_start(self.vbox, True, True, 6)
-        self.hbox.pack_start(self.checkbox, False, False, 6)
+        self.icon = self.builder.get_object('icon')
+        if isfile(self.feed.favicon_path):
+            self.icon.set_from_file(self.feed.favicon_path)
+        self.name_label = self.builder.get_object('title_label')
+        self.name_label.set_text(self.feed.title)
+        self.desc_label = self.builder.get_object('description_label')
+        self.desc_label.set_text(self.feed.description)
         self.add(self.hbox)
 
     def on_checkbox_toggled(self, checkbox):
