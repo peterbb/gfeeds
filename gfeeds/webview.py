@@ -109,7 +109,7 @@ class GFeedsWebView(Gtk.Stack):
     def _load_reader_async(self, *args):
         self.html = download_text(self.uri)
         GLib.idle_add(
-            lambda: self.set_enable_reader_mode(None, True)
+            self.set_enable_reader_mode, None, True
         )
 
     def load_uri(self, uri, *args, **kwargs):
@@ -151,6 +151,8 @@ class GFeedsWebView(Gtk.Stack):
         if state == None:
             state = togglebtn.get_active()
         if state:
+            if not self.html:
+                return
             self.webkitview.load_html(
                 build_reader_html(
                     self.html, self.confman.conf['dark_reader']

@@ -2,28 +2,21 @@ from gettext import gettext as _
 from gi.repository import Gtk, GLib
 import threading
 from .confManager import ConfManager
+from .feeds_manager import FeedsManager
 from .leaflet import GFeedsLeaflet
 from .sidebar import GFeedsSidebar
 from .headerbar import GFeedHeaderbar
 from .webview import GFeedsWebView
-
-from .download_manager import download
 from .rss_parser import Feed
 
 class GFeedsAppWindow(Gtk.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.confman = ConfManager()
-        self.confman.connect(
-            'gfeeds_repopulation_required',
-            self.refresh_feeds
-        )
+        self.feedman = FeedsManager()
 
         self.set_title('Feeds')
         self.set_icon_name('org.gabmus.gnome-feeds')
-
-        self.feeds = []
-        self.feeds_items = []
 
         self.sidebar = GFeedsSidebar()
         self.sidebar.listbox.connect('row-activated', self.on_sidebar_row_activated)
@@ -49,8 +42,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.on_back_button_clicked,
             self.webview
         )
-        self.headerbar.refresh_btn.btn.connect('clicked', self.refresh_feeds)
-        self.headerbar.add_popover.confirm_btn.connect('clicked', self.add_new_feed)
         
         self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
@@ -85,7 +76,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             },
             {
                 'combo': '<Control>r',
-                'cb': self.refresh_feeds
+                'cb': self.feedman.refresh
             },
             {
                 'combo': '<Control>j',
@@ -130,80 +121,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
                     self.headerbar.right_headerbar,
                     self.headerbar]:
                 h.get_style_context().add_class('notheaderbar')
-
-    def refresh_feeds_async_worker(self, *args):
-        self.feeds = []
-        self.feeds_items = []
-        for f in self.confman.conf['feeds']:
-            n_feed = Feed(download(f))
-            self.feeds.append(n_feed)
-            for i in n_feed.items:
-                self.feeds_items.append(i)
-            GLib.idle_add(
-                lambda: self.sidebar.listbox.add_new_items(n_feed.items)
-            )
-
-
-    def refresh_feeds(self, *args):
-        self.headerbar.refresh_btn.set_spinning(True)
-        self.headerbar.add_popover.confirm_btn.set_sensitive(False)
-        
-        self.sidebar.empty()
-        t = threading.Thread(
-            group = None,
-            target = self.refresh_feeds_async_worker,
-            name = None
-        )
-        t.start()
-        while t.is_alive():
-            while Gtk.events_pending():
-                Gtk.main_iteration()
-
-        # self.sidebar.populate(self.feeds_items)
-        self.headerbar.refresh_btn.set_spinning(False)
-        self.headerbar.add_popover.confirm_btn.set_sensitive(True)
-
-    def add_new_feed_async_worker(self, url = None):
-        if not url:
-            url = self.headerbar.add_popover.url_entry.get_text()
-            if not 'http://' in url and not 'https://' in url:
-                url = 'http://' + url
-        if url in self.confman.conf['feeds']:
-            print(_('Feed {0} exists already, skipping').format(url))
-            return
-        try:
-            n_feed = Feed(download(url))
-            self.feeds.append(n_feed)
-            for i in n_feed.items:
-                self.feeds_items.append(i)
-            GLib.idle_add(
-                lambda: self.sidebar.listbox.add_new_items(n_feed.items)
-            )
-            #self.sidebar.listbox.add_new_items(n_feed.items)
-            self.confman.conf['feeds'].append(url)
-            self.confman.save_conf()
-        except Exception as e:
-            import traceback
-            err_str = traceback.format_exc()
-            # TODO: SHOW ERROR IN GUI
-            print(_('Error adding feed {0}').format(url))
-            print('\n\nTraceback:\n======{0}======\n\n'.format(err_str))
-
-    def add_new_feed(self, *args):
-        self.headerbar.refresh_btn.set_spinning(True)
-        self.headerbar.add_popover.confirm_btn.set_sensitive(False)
-        t = threading.Thread(
-            group = None,
-            target = self.add_new_feed_async_worker,
-            name = None
-        )
-        t.start()
-        while t.is_alive():
-            while Gtk.events_pending():
-                Gtk.main_iteration()
-        self.headerbar.refresh_btn.set_spinning(False)
-        self.headerbar.add_popover.confirm_btn.set_sensitive(True)
-        self.headerbar.add_popover.url_entry.set_text('')
 
     def add_accelerator(self, shortcut, callback):
         if shortcut:

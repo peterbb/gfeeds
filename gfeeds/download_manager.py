@@ -22,17 +22,18 @@ def download_raw(link, dest):
     else:
         raise requests.HTTPError(f'request code {req.status_code}')
 
-def download(link):
+def download_feed(link):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
-    print(_('Downloading `{0}`…').format(link))
+    #print(_('Downloading `{0}`…').format(link))
     req = requests.get(link)
     if req.status_code == 200:
-        print(_('Download of `{0}` successful').format(link))
+        #print(_('Download of `{0}` successful').format(link))
         needs_save = False
         if dest_path.is_file():
             with open(dest_path, 'r') as fd:
                 if shasum(req.text) == shasum(fd.read()):
-                    print(_('Hit cache for `{0}`, skipping file update').format(link))
+                    pass
+                    #print(_('Hit cache for `{0}`, skipping file update').format(link))
                 else:
                     needs_save = True
                 fd.close()

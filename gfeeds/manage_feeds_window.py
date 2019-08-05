@@ -2,6 +2,8 @@ from gettext import gettext as _
 from gi.repository import Gtk, Gdk
 from xml.sax.saxutils import escape
 from os.path import isfile
+from .confManager import ConfManager
+from .feeds_manager import FeedsManager
 
 class ManageFeedsHeaderbar(Gtk.HeaderBar):
     def __init__(self, **kwargs):
@@ -56,29 +58,48 @@ class ManageFeedsListboxRow(Gtk.ListBoxRow):
 
 
 class ManageFeedsListbox(Gtk.ListBox):
-    def __init__(self, feeds, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.feedman = FeedsManager()
 
         self.set_selection_mode(Gtk.SelectionMode.NONE)
         self.connect('row-activated', self.on_row_activated)
 
-        for feed in feeds:
+        for feed in self.feedman.feeds:
             self.add(ManageFeedsListboxRow(feed))
+        self.feedman.feeds.connect(
+            'feeds_append',
+            lambda caller, feed: self.add(ManageFeedsListboxRow(feed))
+        )
+        self.feedman.feeds.connect(
+            'feeds_pop',
+            lambda caller, feed: self.remove_feed(feed)
+        )
 
         self.set_sort_func(self.gfeeds_sort_func, None, False)
+
+    def add(self, *args, **kwargs):
+        super().add(*args, **kwargs)
+        self.show_all()
 
     def on_row_activated(self, listbox, row):
         with row.checkbox.handler_block(row.checkbox_handler_id):
             row.checkbox.set_active(not row.checkbox.get_active())
+
+    def remove_feed(self, feed):
+        for row in self.get_children():
+            if row.feed == feed:
+                self.remove(row)
+                break
 
     def gfeeds_sort_func(self, row1, row2, data, notify_destroy):
         return row1.feed.title.lower() > row2.feed.title.lower()
 
 
 class ManageFeedsScrolledWindow(Gtk.ScrolledWindow):
-    def __init__(self, feeds, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.listbox = ManageFeedsListbox(feeds)
+        self.listbox = ManageFeedsListbox()
         self.set_size_request(300, 500)
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
@@ -100,11 +121,13 @@ class DeleteFeedsConfirmMessageDialog(Gtk.MessageDialog):
         )
 
 class GFeedsManageFeedsWindow(Gtk.Window):
-    def __init__(self, appwindow, feeds, **kwargs):
+    def __init__(self, appwindow, **kwargs):
         super().__init__(**kwargs)
         self.appwindow = appwindow
+        self.confman = ConfManager()
+        self.feedman = FeedsManager()
 
-        self.scrolled_window = ManageFeedsScrolledWindow(feeds)
+        self.scrolled_window = ManageFeedsScrolledWindow()
         self.listbox = self.scrolled_window.listbox
         self.headerbar = ManageFeedsHeaderbar()
 
@@ -139,18 +162,7 @@ class GFeedsManageFeedsWindow(Gtk.Window):
         res = dialog.run()
         dialog.close()
         if res == Gtk.ResponseType.YES:
-            selected_feeds_links = [f.rss_link for f in selected_feeds]
-            for f in selected_feeds_links:
-                self.appwindow.confman.conf['feeds'].pop(
-                    self.appwindow.confman.conf['feeds'].index(f)
-                )
-            self.appwindow.confman.save_conf()
-            self.appwindow.refresh_feeds()
-            if len(self.appwindow.confman.conf['feeds']) == 0:
-                self.appwindow.sidebar.set_main_visible(False)
-            self.close()
-        else:
-            pass
+            self.feedman.delete_feeds(selected_feeds)
 
     def on_select_all_clicked(self, *args):
         unselect = True

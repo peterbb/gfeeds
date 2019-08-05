@@ -368,6 +368,8 @@ from lxml.html import html5parser, tostring
 from gettext import gettext as _
 
 def build_reader_html(og_html, dark_mode=False):
+    if not og_html:
+        return
     root = html5parser.fromstring(og_html if type(og_html) == str else og_html.decode())
     try:
         article_els = root.xpath(

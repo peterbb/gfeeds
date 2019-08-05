@@ -21,6 +21,7 @@ import sys
 import argparse
 from gi.repository import Gtk, Gdk, Gio
 from .confManager import ConfManager
+from .feeds_manager import FeedsManager
 from .app_window import GFeedsAppWindow
 from .settings_window import GFeedsSettingsWindow
 from .opml_manager import opml_to_rss_list, feeds_list_to_opml
@@ -37,7 +38,7 @@ def test():
     confman = ConfManager()
     feeds = []
     for f in confman.conf['feeds']:
-        feeds.append(Feed(download(f)))
+        feeds.append(Feed(download_feed(f)))
 
     for f in feeds:
         print(f)
@@ -52,6 +53,7 @@ class GFeedsApplication(Gtk.Application):
             **kwargs
         )
         self.confman = ConfManager()
+        self.feedman = FeedsManager()
         self.window = GFeedsAppWindow()
         self.window.connect('destroy', self.on_destroy_window)
 
@@ -96,8 +98,7 @@ class GFeedsApplication(Gtk.Application):
 
     def manage_feeds(self, *args):
         mf_win = GFeedsManageFeedsWindow(
-            self.window,
-            self.window.feeds
+            self.window
         )
         mf_win.present()
 
@@ -107,23 +108,8 @@ class GFeedsApplication(Gtk.Application):
         # dialog.close()
         if res == Gtk.ResponseType.ACCEPT:
             n_feeds_urls_l = opml_to_rss_list(dialog.get_filename())
-            self.window.headerbar.refresh_btn.set_spinning(True)
-            self.window.headerbar.add_popover.confirm_btn.set_sensitive(False)
-
             for url in n_feeds_urls_l:
-                t = threading.Thread(
-                    group = None,
-                    target = self.window.add_new_feed_async_worker,
-                    name = None,
-                    args = (url,)
-                )
-                t.start()
-                while t.is_alive():
-                    while Gtk.events_pending():
-                        Gtk.main_iteration()
-
-            self.window.headerbar.refresh_btn.set_spinning(False)
-            self.window.headerbar.add_popover.confirm_btn.set_sensitive(True)
+                self.feedman.add_feed(url)
 
     def export_opml(self, *args):
         dialog = GFeedsOpmlSavePathChooserDialog(self.window)
@@ -133,7 +119,7 @@ class GFeedsApplication(Gtk.Application):
             save_path = dialog.get_filename()
             if save_path[-5:].lower() != '.opml':
                 save_path += '.opml'
-            opml_out = feeds_list_to_opml(self.window.feeds)
+            opml_out = feeds_list_to_opml(self.feedman.feeds)
             with open(save_path, 'w') as fd:
                 fd.write(opml_out)
                 fd.close()
@@ -187,7 +173,7 @@ class GFeedsApplication(Gtk.Application):
             pass
         self.window.present()
         self.window.show_all()
-        self.window.refresh_feeds()
+        self.feedman.refresh()
 
     def do_command_line(self, args):
         """

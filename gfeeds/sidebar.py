@@ -1,7 +1,8 @@
 from gi.repository import Gtk, Gdk
-from .confManager import ConfManager
 from os.path import isfile
 import cairo
+from .confManager import ConfManager
+from .feeds_manager import FeedsManager
 
 class GFeedsSidebarRow(Gtk.ListBoxRow):
     def __init__(self, feeditem, **kwargs):
@@ -134,9 +135,9 @@ class GFeedsSidebarScrolledWin(Gtk.ScrolledWindow):
             self.listbox.emit('row-activated', target)
 
 class GFeedsSidebar(Gtk.Stack):
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.feedman = FeedsManager()
         self.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
 
         self.scrolled_win = GFeedsSidebarScrolledWin(self)
@@ -156,7 +157,36 @@ class GFeedsSidebar(Gtk.Stack):
         self.set_size_request(300, 500)
         self.set_visible_child(self.filler_view)
 
-    def set_main_visible(self, state):
-        self.set_visible_child(
-            self.scrolled_win if state else self.filler_view
+        self.feedman.feeds_items.connect(
+            'feeds_items_pop',
+            lambda caller, obj: self.on_feeds_items_pop(obj)
         )
+        self.feedman.feeds_items.connect(
+            'feeds_items_append',
+            lambda caller, obj: self.on_feeds_items_append(obj)
+        )
+        self.feedman.feeds.connect(
+            'feeds_pop',
+            lambda caller, obj: self.on_feeds_pop(obj)
+        )
+        self.feedman.feeds.connect(
+            'feeds_append',
+            lambda caller, obj: self.on_feeds_append(obj)
+        )
+
+    def on_feeds_append(self, feed):
+        self.set_visible_child(self.scrolled_win)
+
+    def on_feeds_pop(self, feed):
+        if len(self.feedman.feeds) == 0:
+            self.set_visible_child(self.filler_view)
+
+    def on_feeds_items_pop(self, feeditem):
+        for row in self.listbox.get_children():
+            if row.feeditem == feeditem:
+                self.listbox.remove(row)
+                break
+
+    def on_feeds_items_append(self, feeditem):
+        self.listbox.add(GFeedsSidebarRow(feeditem))
+        self.show_all()

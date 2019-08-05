@@ -2,12 +2,14 @@ from gettext import gettext as _
 from gi.repository import Gtk, Gdk, Handy
 from .leaflet import GFeedsLeaflet
 from .confManager import ConfManager
+from .feeds_manager import FeedsManager
 from .spinner_button import RefreshSpinnerButton
 
 class AddFeedPopover(Gtk.Popover):
     def __init__(self, relative_to, **kwargs):
         super().__init__(**kwargs)
         self.confman = ConfManager()
+        self.feedman = FeedsManager()
         
         self.builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gnome-feeds/ui/add_feed_box.glade'
@@ -17,6 +19,10 @@ class AddFeedPopover(Gtk.Popover):
         relative_to.connect('clicked', self.on_relative_to_clicked)
         self.container_box = self.builder.get_object('container_box')
         self.confirm_btn = self.builder.get_object('confirm_btn')
+        self.confirm_btn.connect(
+            'clicked',
+            lambda *args: self.feedman.add_feed(self.url_entry.get_text())
+        )
         self.url_entry = self.builder.get_object('url_entry')
 
         self.add(self.container_box)
@@ -35,6 +41,7 @@ class GFeedHeaderbar(Handy.TitleBar):
             **kwargs):
         super().__init__(**kwargs)
         self.confman = ConfManager()
+        self.feedman = FeedsManager()
         self.back_btn_func = back_btn_func
         self.webview = webview
         self.webview.connect('gfeeds_webview_load_start', self.on_load_start)
@@ -115,6 +122,7 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.left_headerbar.pack_end(self.menu_btn)
 
         self.refresh_btn = RefreshSpinnerButton()
+        self.refresh_btn.btn.connect('clicked', self.feedman.refresh)
         self.left_headerbar.pack_end(self.refresh_btn)
 
         self.add_btn = Gtk.Button.new_from_icon_name(
@@ -126,6 +134,24 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.left_headerbar.pack_start(self.add_btn)
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+
+        self.feedman.connect(
+            'feedmanager_refresh_start',
+            self.on_new_feed_add_start
+        )
+        self.feedman.connect(
+            'feedmanager_refresh_end',
+            self.on_new_feed_add_end
+        )
+
+    def on_new_feed_add_start(self, *args):
+        self.refresh_btn.set_spinning(True)
+        self.add_popover.confirm_btn.set_sensitive(False)
+
+    def on_new_feed_add_end(self, *args):
+        self.refresh_btn.set_spinning(False)
+        self.add_popover.confirm_btn.set_sensitive(True)
+        self.add_popover.url_entry.set_text('')
 
     def set_headerbar_controls(self, *args):
         if self.confman.conf['enable_csd']:

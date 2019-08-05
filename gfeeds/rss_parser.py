@@ -2,7 +2,7 @@ import feedparser
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 from gettext import gettext as _
-from .download_manager import download, download_raw
+from .download_manager import download_raw
 from .get_favicon import get_favicon
 from os.path import isfile
 from .confManager import ConfManager
@@ -34,9 +34,6 @@ class FeedItem:
 
     def __repr__(self):
         return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
-
-    def download_item(self):
-        download(self.link)
 
 
 class Feed:
