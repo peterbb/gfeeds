@@ -237,3 +237,7 @@ class GFeedsSettingsWindow(Handy.PreferencesWindow):
         for p in self.pages:
             self.add(p)
         self.set_default_size(300, 600)
+
+        if not self.confman.conf['enable_csd']:
+            self.set_title(_('Preferences'))
+            self.set_titlebar(None)

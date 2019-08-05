@@ -141,10 +141,12 @@ class GFeedsManageFeedsWindow(Gtk.Window):
             self.on_select_all_clicked
         )
         self.listbox.connect('row-activated', self.on_row_activated)
+        self.set_title(_('Manage Feeds'))
 
         if self.confman.conf['enable_csd']:
             self.set_titlebar(self.headerbar)
         else:
+            self.headerbar.set_title('')
             self.headerbar.get_style_context().add_class('notheaderbar')
             self.main_box.pack_start(self.headerbar, False, False, 0)
 
