@@ -173,6 +173,10 @@ class GFeedsSidebar(Gtk.Stack):
             'feeds_append',
             lambda caller, obj: self.on_feeds_append(obj)
         )
+        self.feedman.feeds_items.connect(
+            'feeds_items_empty',
+            lambda *args: self.listbox.empty()
+        )
 
     def on_feeds_append(self, feed):
         self.set_visible_child(self.scrolled_win)
