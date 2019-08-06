@@ -21,6 +21,20 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.4" timestamp="1565083891">
+            <description>
+                <ul>
+                    <li>Added option to disable client side decoration</li>
+                    <li>Brought primary menu in line with GNOME HIG</li>
+                    <li>Added placeholder icon for feeds without an icon</li>
+                    <li>Migrated some widgets to Glade templates</li>
+                    <li>Option to use reader mode by default</li>
+                    <li>Option to show article content from the feed</li>
+                    <li>Various bug fixes</li>
+                </ul>
+            </description>
+        </release>
+    <releases>
         <release version="0.3" timestamp="1564832105">
             <description>
                 <ul>

@@ -1,5 +1,5 @@
 project('gnome-feeds',
-    version: '0.3',
+    version: '0.4',
     meson_version: '>= 0.50.0',
     license: 'GPL3'
 )
@@ -20,7 +20,8 @@ website = 'http://'+meson.project_name()+'.'+author+'.org'
 contributors = '\n'.join([
     'Gabriele Musco (GabMus) &lt;emaildigabry@gmail.com&gt;',
     'Larry McLellan (Lasklo) &lt;thisislarry2k5@gmail.com&gt;',
-    'Adrien Plazas (aplazas) &lt;kekun.plazas@laposte.net&gt;'
+    'Adrien Plazas (aplazas) &lt;kekun.plazas@laposte.net&gt;',
+    'Christopher Davis (BrainBlasted) &lt;brainblasted@disroot.org&gt;'
 ])
 
 i18n = import('i18n')
