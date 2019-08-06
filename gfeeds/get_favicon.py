@@ -2,6 +2,7 @@ from lxml.html import html5parser
 import requests
 from .download_manager import download_raw
 from gettext import gettext as _
+from urllib.parse import urlparse
 
 def get_favicon(link, favicon_path):
     req = requests.get(link)
@@ -44,11 +45,14 @@ def get_favicon(link, favicon_path):
             p = p[2:]
         elif p[0] == '/':
             p = p[1:]
+        up = urlparse(link)
+        url = f'{up.scheme or "http"}://{up.hostname}/{p}'
         try:
-            download_raw(link +'/'+ p, favicon_path)
+            download_raw(url, favicon_path)
         except:
             try:
-                download_raw('http://'+p, favicon_path)
+                url = f'{up.scheme or "http"}://{p}'
+                download_raw(url, favicon_path)
             except:
                 print(_('Error downloading favicon for `{0}`').format(link))
     else:

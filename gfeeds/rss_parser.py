@@ -5,6 +5,7 @@ from gettext import gettext as _
 from .download_manager import download_raw
 from .get_favicon import get_favicon
 from os.path import isfile
+from os import remove
 from .confManager import ConfManager
 from .sha import shasum
 from PIL import Image
@@ -83,16 +84,32 @@ class Feed:
                     print('No favicon')
         if isfile(self.favicon_path):
             try:
-                favicon = Image.open(self.favicon_path)
-                if favicon.width != 32:
-                    favicon = favicon.resize((32, 32), Image.BILINEAR)
-                    favicon.save(self.favicon_path, 'PNG')
-                self.color = ColorThief(favicon).get_color(quality=1)
-                self.color = [c/255.0 for c in self.color]
-                favicon.close()
+                self._resize_and_get_color(self.favicon_path)
             except:
-                print(_('Error resizing favicon for feed {0}').format(self.title))
+                print(_(
+                    'Error resizing favicon for feed {0}. ' \
+                    'Probably not an image.\n' \
+                    'Trying downloading favicon from an article.'
+                ).format(self.title))
+                try:
+                    get_favicon(self.items[0].link, self.favicon_path)
+                    self._resize_and_get_color(self.favicon_path)
+                except:
+                    print(_(
+                        'Error resizing favicon from article for feed {0}.\n' \
+                        'Deleting invalid favicon.'
+                    ).format(self.title))
+                    remove(self.favicon_path)
 
+
+    def _resize_and_get_color(self, img_path):
+        favicon = Image.open(img_path)
+        if favicon.width != 32:
+            favicon = favicon.resize((32, 32), Image.BILINEAR)
+            favicon.save(self.favicon_path, 'PNG')
+        self.color = ColorThief(favicon).get_color(quality=1)
+        self.color = [c/255.0 for c in self.color]
+        favicon.close()
 
     def __repr__(self):
         return f'Feed Object `{self.title}`; {len(self.items)} items'
