@@ -21,7 +21,7 @@ class AddFeedPopover(Gtk.Popover):
         self.confirm_btn = self.builder.get_object('confirm_btn')
         self.confirm_btn.connect(
             'clicked',
-            lambda *args: self.feedman.add_feed(self.url_entry.get_text())
+            self.on_confirm_btn_clicked
         )
         self.url_entry = self.builder.get_object('url_entry')
 
@@ -29,6 +29,10 @@ class AddFeedPopover(Gtk.Popover):
 
     def on_relative_to_clicked(self, *args):
         self.popup()
+
+    def on_confirm_btn_clicked(self, btn):
+        self.popdown()
+        self.feedman.add_feed(self.url_entry.get_text())
 
 
 class GFeedHeaderbar(Handy.TitleBar):
