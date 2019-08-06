@@ -518,8 +518,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://gitlab.com/gabmus/gnome-feeds/-/archive/0.4/gnome-feeds-0.4.tar.gz",
-                    "sha256" : "cf9f87cf2a90857d4794833c902473cd0f891af9dc65021ed22fcccbd7f9575a"
+                    "url" : "https://gitlab.com/gabmus/gnome-feeds/-/archive/0.4.1/gnome-feeds-0.4.1.tar.gz",
+                    "sha256" : ""
                 }
             ]
         }

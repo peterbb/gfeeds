@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-06 10:30+0200\n"
-"PO-Revision-Date: 2019-08-06 10:31+0200\n"
+"POT-Creation-Date: 2019-08-06 13:19+0200\n"
+"PO-Revision-Date: 2019-08-06 13:23+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -30,45 +30,59 @@ msgstr "File XML"
 msgid "Choose where to save the exported OPML file"
 msgstr "Scegli dove salvare il file OPML esportato"
 
-#: ../gfeeds/rss_parser.py:35
+#: ../gfeeds/rss_parser.py:36
 msgid "Error: unable to parse datetime"
 msgstr "Errore: impossibile analizzare data e ora"
 
-#: ../gfeeds/rss_parser.py:94
+#: ../gfeeds/rss_parser.py:90
 #, python-brace-format
-msgid "Error resizing favicon for feed {0}"
-msgstr "Errore nel ridimensionare la favicon per il feed {0}"
+msgid ""
+"Error resizing favicon for feed {0}. Probably not an image.\n"
+"Trying downloading favicon from an article."
+msgstr ""
+"Errore nel ridimensionare la favicon per il feed {0}. Probabilmente non è "
+"un'immagine.\n"
+"Provo a scaricare la favicon da un articolo."
+
+#: ../gfeeds/rss_parser.py:99
+#, python-brace-format
+msgid ""
+"Error resizing favicon from article for feed {0}.\n"
+"Deleting invalid favicon."
+msgstr ""
+"Errore nel ridimensionare la favicon da articolo per il feed {0}.\n"
+"Elimino la favicon invalida."
 
 #: ../gfeeds/feeds_manager.py:124
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../gfeeds/headerbar.py:77
+#: ../gfeeds/headerbar.py:81
 msgid "Back to articles"
 msgstr "Indietro agli articoli"
 
-#: ../gfeeds/headerbar.py:87
+#: ../gfeeds/headerbar.py:91
 msgid "Open externally"
 msgstr "Apri esternamente"
 
-#: ../gfeeds/headerbar.py:93
+#: ../gfeeds/headerbar.py:97
 msgid "Reader mode"
 msgstr "Modalità lettura"
 
-#: ../gfeeds/headerbar.py:106
+#: ../gfeeds/headerbar.py:110
 msgid "Load RSS content"
 msgstr "Carica contenuto dall'RSS"
 
-#: ../gfeeds/headerbar.py:130
+#: ../gfeeds/headerbar.py:134
 msgid "Menu"
 msgstr "Menu"
 
-#: ../gfeeds/headerbar.py:150
+#: ../gfeeds/headerbar.py:154
 msgid "Add new feed"
 msgstr "Aggiungi nuovo feed"
 
-#: ../gfeeds/get_favicon.py:53
+#: ../gfeeds/get_favicon.py:57
 #, python-brace-format
 msgid "Error downloading favicon for `{0}`"
 msgstr "Errore nel download della favicon per `{0}`"
@@ -315,61 +329,100 @@ msgid "Feeds can be imported and exported via OPML."
 msgstr "I feed possono essere importati ed esportati tramite OPML."
 
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:27
+msgid "Improved favicon download"
+msgstr "Migliorato il download delle favicon"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:28
+msgid "Fixed refresh duplicating articles"
+msgstr "Corretta la duplicazione degli articoli dovuta all'aggiornamento"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:35
+msgid "Added option to disable client side decoration"
+msgstr "Aggiunta opzione per disattivare la decorazione client side"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:36
+msgid "Brought primary menu in line with GNOME HIG"
+msgstr "Portato il menu primario in linea con il GNOME HIG"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:37
+msgid "Added placeholder icon for feeds without an icon"
+msgstr "Aggiunta icona riempitiva per feed senza icona"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:38
+msgid "Migrated some widgets to Glade templates"
+msgstr "Migrato alcuni widget a template Glade"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:39
+msgid "Option to use reader mode by default"
+msgstr "Opzione per usare la modalità lettura come predefinita"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:40
+msgid "Option to show article content from the feed"
+msgstr "Opzione per mostrare il contenuto dell'articolo dal feed"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:41
+msgid "Various bug fixes"
+msgstr "Varie correzioni di bug"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:48
 msgid "Fixed labels alignment"
 msgstr "Corretto l'allineamento del testo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:28
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:49
 msgid "Changed app name to Feeds"
 msgstr "Cambiato il nome dell'app a Feeds"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:29
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:50
 msgid "Added separators for the two sections of the app"
 msgstr "Aggiunti separatori per le due sezioni dell'app"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:30
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:51
 msgid "Using links as feed titles when there is no title"
 msgstr "Uso dei link come titoli dei feed quando non c'è titolo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:31
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:52
 msgid "Added preference for maximum article age"
 msgstr "Aggiunta preferenza per la massima età degli articoli"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:32
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:53
 msgid "Added zoom keyboard shortcuts"
 msgstr "Aggiunte scorciatoie da tastiera per lo zoom"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:33
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:54
 msgid "Added preference to enable JavaScript"
 msgstr "Aggiunta preferenza per attivare JavaScript"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:34
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:55
 msgid "Fix window control positions when they are on the left"
 msgstr ""
 "Corretta la posizione dei controlli della finestra quando sono a sinistra"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:41
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:62
 msgid "Feeds for websites without favicons will now work"
 msgstr "I feed per i siti senza favicon adesso funzioneranno"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:48
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:69
 msgid "Fixed bug with adding new feeds"
 msgstr "Corretto un bug nell'aggiunta di nuovi feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:55
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:76
 msgid "Switched to native file chooser"
 msgstr "Passato al selezionatore di file nativo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:56
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:77
 msgid "Added empty state initial screen for sidebar"
 msgstr "Aggiunta una schermata di stato vuoto iniziale per la barra laterale"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:57
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:78
 msgid "Added italian translation"
 msgstr "Aggiunta traduzione italiana"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:64
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:85
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "Error resizing favicon for feed {0}"
+#~ msgstr "Errore nel ridimensionare la favicon per il feed {0}"
 
 #~ msgid "Error adding feed {0}"
 #~ msgstr "Errore nell'aggiungere il feed {0}"
@@ -617,9 +670,6 @@ msgstr "Prima release"
 
 #~ msgid "Added support for MATE"
 #~ msgstr "Aggiunto supporto per MATE"
-
-#~ msgid "Various bug fixes"
-#~ msgstr "Varie correzioni di bug"
 
 #~ msgid "Design makeover"
 #~ msgstr "Design ristudiato"
