@@ -519,7 +519,7 @@
                 {
                     "type" : "archive",
                     "url" : "https://gitlab.com/gabmus/gnome-feeds/-/archive/0.4/gnome-feeds-0.4.tar.gz",
-                    "sha256" : ""
+                    "sha256" : "c591f61aca2c99a881ba6fc3b8e3af94a43fd10a75a2c1facfbf976d244f0fc3"
                 }
             ]
         }
