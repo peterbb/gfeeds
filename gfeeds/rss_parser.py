@@ -21,7 +21,7 @@ class FeedItem:
             'published',
             self.fp_item.get('updated', '')
         )
-        self.pub_date = None
+        self.pub_date = datetime.now() # fallback to avoid errors
         self.parent_feed = parent_feed
 
         try:

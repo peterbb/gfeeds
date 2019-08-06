@@ -139,8 +139,11 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.confman.save_conf()
 
     def on_sidebar_row_activated(self, listbox, row):
-        self.webview.load_uri(row.feeditem.link)
-        # self.webview.load_uri('https://xda-developers.com') # this causes problems
+        if self.confman.conf['use_rss_content']:
+            self.webview.on_load_start()
+            self.webview.set_enable_rss_content(None, True, row.feeditem)
+        else:
+            self.webview.load_feeditem(row.feeditem)
         self.headerbar.open_externally_btn.set_sensitive(True)
         self.leaflet.set_visible_child(self.webview)
         self.headerbar.leaflet.set_visible_child(self.headerbar.right_headerbar)

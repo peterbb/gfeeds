@@ -95,9 +95,25 @@ class GFeedHeaderbar(Handy.TitleBar):
             'ephy-reader-mode-symbolic',
             Gtk.IconSize.BUTTON
         ))
-        self.reader_mode_btn.connect('toggled', self.webview.set_enable_reader_mode)
+        self.reader_mode_btn_handler_id = self.reader_mode_btn.connect(
+            'toggled',
+            self.on_reader_mode_toggled
+        )
         self.reader_mode_btn.set_sensitive(False)
         self.right_headerbar.pack_start(self.reader_mode_btn)
+
+        self.rss_content_btn = Gtk.ToggleButton()
+        self.rss_content_btn.set_tooltip_text(_('Load RSS content'))
+        self.rss_content_btn.add(Gtk.Image.new_from_icon_name(
+            'application-rss+xml-symbolic',
+            Gtk.IconSize.BUTTON
+        ))
+        self.rss_content_btn_handler_id = self.rss_content_btn.connect(
+            'toggled',
+            self.on_rss_content_toggled
+        )
+        self.rss_content_btn.set_sensitive(False)
+        self.right_headerbar.pack_start(self.rss_content_btn)
 
         self.share_btn = Gtk.Button.new_from_icon_name(
             'emblem-shared-symbolic',
@@ -113,7 +129,9 @@ class GFeedHeaderbar(Handy.TitleBar):
         )
         self.menu_btn.set_tooltip_text(_('Menu'))
         self.menu_popover = Gtk.PopoverMenu()
-        self.menu_builder = Gtk.Builder.new_from_resource('/org/gabmus/gnome-feeds/ui/menu.xml')
+        self.menu_builder = Gtk.Builder.new_from_resource(
+            '/org/gabmus/gnome-feeds/ui/menu.xml'
+        )
         self.menu = self.menu_builder.get_object('generalMenu')
         self.menu_popover.bind_model(self.menu)
         self.menu_popover.set_relative_to(self.menu_btn)
@@ -144,6 +162,16 @@ class GFeedHeaderbar(Handy.TitleBar):
             self.on_new_feed_add_end
         )
 
+    def on_reader_mode_toggled(self, togglebtn):
+        with self.rss_content_btn.handler_block(self.rss_content_btn_handler_id):
+            self.rss_content_btn.set_active(False)
+            self.webview.set_enable_reader_mode(togglebtn)
+
+    def on_rss_content_toggled(self, togglebtn):
+        with self.reader_mode_btn.handler_block(self.reader_mode_btn_handler_id):
+            self.reader_mode_btn.set_active(False)
+            self.webview.set_enable_rss_content(togglebtn)
+
     def on_new_feed_add_start(self, *args):
         self.refresh_btn.set_spinning(True)
         self.add_popover.confirm_btn.set_sensitive(False)
@@ -170,12 +198,20 @@ class GFeedHeaderbar(Handy.TitleBar):
 
     def on_load_start(self, *args):
         self.reader_mode_btn.set_sensitive(False)
-        self.reader_mode_btn.set_active(
-            self.confman.conf['default_reader']
-        )
+        self.rss_content_btn.set_sensitive(False)
+        with self.reader_mode_btn.handler_block(self.reader_mode_btn_handler_id):
+            self.reader_mode_btn.set_active(
+                self.confman.conf['default_reader'] and
+                not self.confman.conf['use_rss_content']
+            )
+        with self.rss_content_btn.handler_block(self.rss_content_btn_handler_id):
+            self.rss_content_btn.set_active(
+                self.confman.conf['use_rss_content']
+            )
 
     def on_load_end(self, *args):
         self.reader_mode_btn.set_sensitive(True)
+        self.rss_content_btn.set_sensitive(True)
 
     def copy_article_uri(self, *args):
         self.clipboard.set_text(self.webview.uri, -1)

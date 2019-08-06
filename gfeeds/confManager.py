@@ -46,6 +46,7 @@ class ConfManager(metaclass=Singleton):
         'max_article_age_days': 30,
         'enable_js': False,
         'enable_csd': True,
+        'use_rss_content': False,
     }
 
     def __init__(self):
