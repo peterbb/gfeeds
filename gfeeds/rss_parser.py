@@ -1,6 +1,7 @@
 import feedparser
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
+import pytz
 from dateutil.parser import parse as dateparse
 from dateutil.tz import gettz
 from gettext import gettext as _
@@ -28,7 +29,6 @@ class FeedItem:
         self.parent_feed = parent_feed
 
         try:
-            print(self.pub_date_str)
             self.pub_date = dateparse(self.pub_date_str, tzinfos = {
                 'UT': gettz('GMT'),
                 'EST': -18000,
@@ -40,6 +40,8 @@ class FeedItem:
                 'PST': -28800,
                 'PDT': -25200
             })
+            if not self.pub_date.tzinfo:
+                self.pub_date = pytz.UTC.localize(self.pub_date)
         except:
             print(_(
                 'Error: unable to parse datetime {0} for feeditem {1}'
@@ -59,7 +61,7 @@ class Feed:
             fd.close()
 
         self.confman = ConfManager()
-        self.init_time = datetime.now(timezone.utc)
+        self.init_time = pytz.UTC.localize(datetime.utcnow())
         
         self.rss_link = download_res[1]
         self.title = self.fp_feed.feed.get('title', '')
@@ -70,10 +72,7 @@ class Feed:
         self.items = []
         for entry in self.fp_feed.get('entries', []):
             n_item = FeedItem(entry, self)
-            try:
-                item_age = self.init_time - n_item.pub_date.replace(tzinfo = n_item.pub_date.tzinfo or timezone.utc)
-            except:
-                print('========\n', self.init_time, '\n', n_item.pub_date, '\n==========')
+            item_age = self.init_time - n_item.pub_date
             if item_age < self.confman.max_article_age:
                 self.items.append(n_item)
         # self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]

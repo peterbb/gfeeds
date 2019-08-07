@@ -1,4 +1,5 @@
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, GLib
+from datetime import timezone
 from os.path import isfile
 import cairo
 from .confManager import ConfManager
@@ -21,8 +22,29 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.origin_label = self.builder.get_object('origin_label')
         self.origin_label.set_text(self.feeditem.parent_feed.title)
         self.date_label = self.builder.get_object('date_label')
+        tz_sec_offset = self.feeditem.pub_date.utcoffset().total_seconds()
+        glibtz = GLib.TimeZone(
+            (
+                '{0}{1}:{2}'.format(
+                    '+' if tz_sec_offset >= 0 else '',
+                    format(int(tz_sec_offset/3600), '02'),
+                    format(int(
+                        (tz_sec_offset - (int(tz_sec_offset/3600)*3600))/60
+                    ), '02'),
+                )
+            ) or '+00:00'
+        )
+        self.datestr = GLib.DateTime(
+            glibtz,
+            self.feeditem.pub_date.year,
+            self.feeditem.pub_date.month,
+            self.feeditem.pub_date.day,
+            self.feeditem.pub_date.hour,
+            self.feeditem.pub_date.minute,
+            self.feeditem.pub_date.second
+        ).to_local().format('%c')
         self.date_label.set_text(
-            (self.feeditem.pub_date).strftime('%Y %B %d, %H:%M')
+            self.datestr
         )
         self.icon = self.builder.get_object('icon')
         if isfile(self.feeditem.parent_feed.favicon_path):
