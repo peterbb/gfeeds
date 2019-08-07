@@ -1,6 +1,8 @@
 import feedparser
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
+from dateutil.parser import parse as dateparse
+from dateutil.tz import gettz
 from gettext import gettext as _
 from .download_manager import download_raw
 from .get_favicon import get_favicon
@@ -22,18 +24,26 @@ class FeedItem:
             'published',
             self.fp_item.get('updated', '')
         )
-        self.pub_date = datetime.now() # fallback to avoid errors
+        self.pub_date = None # datetime.now(timezone.utc) # fallback to avoid errors
         self.parent_feed = parent_feed
 
         try:
-            self.pub_date = parsedate_to_datetime(self.pub_date_str)
+            print(self.pub_date_str)
+            self.pub_date = dateparse(self.pub_date_str, tzinfos = {
+                'UT': gettz('GMT'),
+                'EST': -18000,
+                'EDT': -14400,
+                'CST': -21600,
+                'CDT': -18000,
+                'MST': -25200,
+                'MDT': -21600,
+                'PST': -28800,
+                'PDT': -25200
+            })
         except:
-            try:
-                if self.pub_date_str[-1].lower() == 'z':
-                    self.pub_date_str = self.pub_date_str[:-1]+'+00:00'
-                self.pub_date = datetime.fromisoformat(self.pub_date_str)
-            except:
-                print(_('Error: unable to parse datetime'))
+            print(_(
+                'Error: unable to parse datetime {0} for feeditem {1}'
+            ).format(self.pub_date_str, self))
 
     def __repr__(self):
         return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
@@ -54,13 +64,16 @@ class Feed:
         self.rss_link = download_res[1]
         self.title = self.fp_feed.feed.get('title', '')
         self.link = self.fp_feed.feed.get('link', '')
-        self.description = self.fp_feed.feed.get('subtitle', '')
+        self.description = self.fp_feed.feed.get('subtitle', self.link)
         # self.language = self.fp_feed.get('', '')
         self.image_url = self.fp_feed.get('image', {'href': ''})['href']
         self.items = []
         for entry in self.fp_feed.get('entries', []):
             n_item = FeedItem(entry, self)
-            item_age = self.init_time - n_item.pub_date
+            try:
+                item_age = self.init_time - n_item.pub_date.replace(tzinfo = n_item.pub_date.tzinfo or timezone.utc)
+            except:
+                print('========\n', self.init_time, '\n', n_item.pub_date, '\n==========')
             if item_age < self.confman.max_article_age:
                 self.items.append(n_item)
         # self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
