@@ -333,7 +333,7 @@ ol {
   display: none;
 }
 
-article {
+article, body {
   overflow-y: hidden;
   margin: 20px auto;
   width: 640px;
@@ -359,13 +359,14 @@ body {
   background-color: #181818;
 }
 
-article, h1, h2, h3, h4, h5, h6, h7 {
+body, article, p, h1, h2, h3, h4, h5, h6, h7, table {
   color: white !important;
 }
 """
 
 from lxml.html import html5parser, tostring
 from gettext import gettext as _
+import re
 
 def build_reader_html(og_html, dark_mode=False):
     if not og_html:
@@ -376,9 +377,16 @@ def build_reader_html(og_html, dark_mode=False):
             '//x:article',
             namespaces={'x': 'http://www.w3.org/1999/xhtml'}
         )
+        if len(article_els) == 0:
+            article_els = root.xpath(
+                '//x:body',
+                namespaces={'x': 'http://www.w3.org/1999/xhtml'}
+            )
         article_s = tostring(
             article_els[0]
         ).decode().replace('<html:', '<').replace('</html:', '</')
+        # article_s = re.sub(r'<article .*?>', article_s, 1, flags=re.IGNORECASE)
+        # article_s = re.sub(r'</article>', article_s, 1, flags=re.IGNORECASE)
     except:
         article_s = '<h1><i>'+_('Reader mode unavailable for this site')+'</i></h1>'
     
