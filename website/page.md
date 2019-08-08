@@ -28,17 +28,39 @@ Add your favorite feeds, and start reading the latest news.
 
 ![Add](screenshots/add_feed.png)
 
+### Read what matters
+
+Filter the articles by feed and only read what you want to read.
+
+![Filter](screenshots/filter.png)
+
 ### Easy on the eyes
 
-Cut the clutter of modern websites by using the reader mode. Prefer a standard web view? Sure thing, we disabled JavaScript for you. No more distractions!
+Cut the clutter of modern websites with a large range of reading options!
+
+Use reader mode to get to the juicy bits of an article.
 
 ![Reader](screenshots/reader.png)
+
+Use the RSS content to glance through the essentials.
+
+![RSS Content](screenshots/rss_content.png)
+
+Load a full web view (with JavaScript disabled by default) to get the full experience.
+
+![Web View](screenshots/webview.png)
 
 ### Large feed collection? Import it
 
 GNOME Feeds supports importing and exporting your feed collection from and to OPML so that you can get set up in seconds.
 
 ![Import and Export](screenshots/import_export.png)
+
+### Have it your way
+
+Customize your experience with a large range of preferences.
+
+![Preferences](screenshots/preferences.png)
 
 ### Responsive
 
