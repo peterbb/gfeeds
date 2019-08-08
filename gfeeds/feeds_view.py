@@ -8,6 +8,7 @@ class FeedsViewAllListboxRow(Gtk.ListBoxRow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.IS_ALL = True
+        self.feed = None
         self.label = Gtk.Label()
         self.label.set_markup(
             '<big><b>' +
@@ -78,9 +79,10 @@ class FeedsViewListbox(Gtk.ListBox):
 
     def remove_feed(self, feed):
         for row in self.get_children():
-            if row.feed == feed:
-                self.remove(row)
-                break
+            if not row.IS_ALL:
+                if row.feed == feed:
+                    self.remove(row)
+                    break
 
     def gfeeds_sort_func(self, row1, row2, data, notify_destroy):
         if row1.IS_ALL:
