@@ -16,6 +16,27 @@
         <screenshot type="default">
             <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/mainwindow.png</image>
         </screenshot>
+        <screenshot>
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/add_feed.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/import_export.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/filter.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/reader.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/rss_content.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/webview.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/preferences.png</image>
+        </screenshot>
     </screenshots>
     <url type="homepage">https://gabmus.gitlab.io/gnome-feeds/</url>
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
