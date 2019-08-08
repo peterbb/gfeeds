@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 11:44+0200\n"
-"PO-Revision-Date: 2019-08-08 11:45+0200\n"
+"POT-Creation-Date: 2019-08-08 12:43+0200\n"
+"PO-Revision-Date: 2019-08-08 12:44+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -338,95 +338,111 @@ msgid "Feeds can be imported and exported via OPML."
 msgstr "I feed possono essere importati ed esportati tramite OPML."
 
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:27
+msgid "Improved date and time parsing and display"
+msgstr "Migliorati analisi e rappresentazione di data e ora"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:28
+msgid "Reader mode can now work on websites without an article tag"
+msgstr "La modalità lettura ora funziona su siti senza tag article"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:29
+msgid "Slight improvements to the icon"
+msgstr "Leggeri miglioramenti all'icona"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:30
+msgid "New feature to filter articles by feed"
+msgstr "Nuova funzione per filtrare gli articoli per feed"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:37
 msgid "Improved favicon download"
 msgstr "Migliorato il download delle favicon"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:28
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:38
 msgid "Fixed refresh duplicating articles"
 msgstr "Corretta la duplicazione degli articoli dovuta all'aggiornamento"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:35
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:45
 msgid "Added option to disable client side decoration"
 msgstr "Aggiunta opzione per disattivare la decorazione client side"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:36
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:46
 msgid "Brought primary menu in line with GNOME HIG"
 msgstr "Portato il menu primario in linea con il GNOME HIG"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:37
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:47
 msgid "Added placeholder icon for feeds without an icon"
 msgstr "Aggiunta icona riempitiva per feed senza icona"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:38
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:48
 msgid "Migrated some widgets to Glade templates"
 msgstr "Migrato alcuni widget a template Glade"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:39
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:49
 msgid "Option to use reader mode by default"
 msgstr "Opzione per usare la modalità lettura come predefinita"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:40
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:50
 msgid "Option to show article content from the feed"
 msgstr "Opzione per mostrare il contenuto dell'articolo dal feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:41
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:51
 msgid "Various bug fixes"
 msgstr "Varie correzioni di bug"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:48
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:58
 msgid "Fixed labels alignment"
 msgstr "Corretto l'allineamento del testo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:49
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:59
 msgid "Changed app name to Feeds"
 msgstr "Cambiato il nome dell'app a Feeds"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:50
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:60
 msgid "Added separators for the two sections of the app"
 msgstr "Aggiunti separatori per le due sezioni dell'app"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:51
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:61
 msgid "Using links as feed titles when there is no title"
 msgstr "Uso dei link come titoli dei feed quando non c'è titolo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:52
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:62
 msgid "Added preference for maximum article age"
 msgstr "Aggiunta preferenza per la massima età degli articoli"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:53
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:63
 msgid "Added zoom keyboard shortcuts"
 msgstr "Aggiunte scorciatoie da tastiera per lo zoom"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:54
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:64
 msgid "Added preference to enable JavaScript"
 msgstr "Aggiunta preferenza per attivare JavaScript"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:55
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:65
 msgid "Fix window control positions when they are on the left"
 msgstr ""
 "Corretta la posizione dei controlli della finestra quando sono a sinistra"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:62
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:72
 msgid "Feeds for websites without favicons will now work"
 msgstr "I feed per i siti senza favicon adesso funzioneranno"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:69
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:79
 msgid "Fixed bug with adding new feeds"
 msgstr "Corretto un bug nell'aggiunta di nuovi feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:76
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:86
 msgid "Switched to native file chooser"
 msgstr "Passato al selezionatore di file nativo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:77
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:87
 msgid "Added empty state initial screen for sidebar"
 msgstr "Aggiunta una schermata di stato vuoto iniziale per la barra laterale"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:78
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:88
 msgid "Added italian translation"
 msgstr "Aggiunta traduzione italiana"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:85
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:95
 msgid "First release"
 msgstr "Prima release"
 

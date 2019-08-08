@@ -21,6 +21,16 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.5" timestamp="1565260850">
+            <description>
+                <ul>
+                    <li>Improved date and time parsing and display</li>
+                    <li>Reader mode can now work on websites without an article tag</li>
+                    <li>Slight improvements to the icon</li>
+                    <li>New feature to filter articles by feed</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.4.1" timestamp="1565090294">
             <description>
                 <ul>
