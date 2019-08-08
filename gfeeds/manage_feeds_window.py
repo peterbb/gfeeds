@@ -67,10 +67,10 @@ class ManageFeedsListbox(Gtk.ListBox):
         self.connect('row-activated', self.on_row_activated)
 
         for feed in self.feedman.feeds:
-            self.add(ManageFeedsListboxRow(feed))
+            self.add_feed(feed)
         self.feedman.feeds.connect(
             'feeds_append',
-            lambda caller, feed: self.add(ManageFeedsListboxRow(feed))
+            lambda caller, feed: self.add_feed(feed)
         )
         self.feedman.feeds.connect(
             'feeds_pop',
@@ -78,6 +78,9 @@ class ManageFeedsListbox(Gtk.ListBox):
         )
 
         self.set_sort_func(self.gfeeds_sort_func, None, False)
+
+    def add_feed(self, feed):
+        self.add(ManageFeedsListboxRow(feed))
 
     def add(self, *args, **kwargs):
         super().add(*args, **kwargs)
