@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-06 13:19+0200\n"
-"PO-Revision-Date: 2019-08-06 13:23+0200\n"
+"POT-Creation-Date: 2019-08-08 11:44+0200\n"
+"PO-Revision-Date: 2019-08-08 11:45+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -30,11 +30,12 @@ msgstr "File XML"
 msgid "Choose where to save the exported OPML file"
 msgstr "Scegli dove salvare il file OPML esportato"
 
-#: ../gfeeds/rss_parser.py:36
-msgid "Error: unable to parse datetime"
-msgstr "Errore: impossibile analizzare data e ora"
+#: ../gfeeds/rss_parser.py:47
+#, python-brace-format
+msgid "Error: unable to parse datetime {0} for feeditem {1}"
+msgstr "Errore: impossibile analizzare data e ora {0} per l'articolo {1}"
 
-#: ../gfeeds/rss_parser.py:90
+#: ../gfeeds/rss_parser.py:102
 #, python-brace-format
 msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
@@ -44,7 +45,7 @@ msgstr ""
 "un'immagine.\n"
 "Provo a scaricare la favicon da un articolo."
 
-#: ../gfeeds/rss_parser.py:99
+#: ../gfeeds/rss_parser.py:111
 #, python-brace-format
 msgid ""
 "Error resizing favicon from article for feed {0}.\n"
@@ -58,27 +59,31 @@ msgstr ""
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../gfeeds/headerbar.py:81
+#: ../gfeeds/headerbar.py:82
 msgid "Back to articles"
 msgstr "Indietro agli articoli"
 
-#: ../gfeeds/headerbar.py:91
+#: ../gfeeds/headerbar.py:92
 msgid "Open externally"
 msgstr "Apri esternamente"
 
-#: ../gfeeds/headerbar.py:97
+#: ../gfeeds/headerbar.py:98
 msgid "Reader mode"
 msgstr "Modalità lettura"
 
-#: ../gfeeds/headerbar.py:110
+#: ../gfeeds/headerbar.py:111
 msgid "Load RSS content"
 msgstr "Carica contenuto dall'RSS"
 
-#: ../gfeeds/headerbar.py:134
+#: ../gfeeds/headerbar.py:135
 msgid "Menu"
 msgstr "Menu"
 
-#: ../gfeeds/headerbar.py:154
+#: ../gfeeds/headerbar.py:155
+msgid "Filter by feed"
+msgstr "Filtra per feed"
+
+#: ../gfeeds/headerbar.py:163
 msgid "Add new feed"
 msgstr "Aggiungi nuovo feed"
 
@@ -86,6 +91,10 @@ msgstr "Aggiungi nuovo feed"
 #, python-brace-format
 msgid "Error downloading favicon for `{0}`"
 msgstr "Errore nel download della favicon per `{0}`"
+
+#: ../gfeeds/feeds_view.py:14
+msgid "All feeds"
+msgstr "Tutti i feed"
 
 #: ../gfeeds/webview.py:67
 msgid "Web View"
@@ -99,7 +108,7 @@ msgstr "Vista Riempitiva"
 msgid "RSS content or summary not available for this article"
 msgstr "Contenuto o riassunto dell'RSS non disponibile per questo articolo"
 
-#: ../gfeeds/build_reader_html.py:383
+#: ../gfeeds/build_reader_html.py:391
 msgid "Reader mode unavailable for this site"
 msgstr "Modalità lettura non disponibile per questo sito"
 
@@ -168,23 +177,23 @@ msgstr "Attiva JavaScript"
 msgid "Enable client side decoration"
 msgstr "Attiva decorazione client side"
 
-#: ../gfeeds/settings_window.py:247
+#: ../gfeeds/settings_window.py:248
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: ../gfeeds/manage_feeds_window.py:13 ../gfeeds/manage_feeds_window.py:144
+#: ../gfeeds/manage_feeds_window.py:17 ../gfeeds/manage_feeds_window.py:107
 msgid "Manage Feeds"
 msgstr "Gestisci Feed"
 
-#: ../gfeeds/manage_feeds_window.py:20
+#: ../gfeeds/manage_feeds_window.py:24
 msgid "Select/Unselect all"
 msgstr "Seleziona/Deseleziona tutto"
 
-#: ../gfeeds/manage_feeds_window.py:26
+#: ../gfeeds/manage_feeds_window.py:30
 msgid "Delete selected feeds"
 msgstr "Elimina i feed selezionati"
 
-#: ../gfeeds/manage_feeds_window.py:116
+#: ../gfeeds/manage_feeds_window.py:79
 msgid "Do you want to delete these feeds?"
 msgstr "Vuoi eliminare questi feed?"
 
@@ -420,6 +429,9 @@ msgstr "Aggiunta traduzione italiana"
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:85
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "Error: unable to parse datetime"
+#~ msgstr "Errore: impossibile analizzare data e ora"
 
 #~ msgid "Error resizing favicon for feed {0}"
 #~ msgstr "Errore nel ridimensionare la favicon per il feed {0}"

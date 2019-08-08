@@ -10,6 +10,7 @@ data/ui/webview_with_notification.glade
 gfeeds/build_reader_html.py
 gfeeds/download_manager.py
 gfeeds/feeds_manager.py
+gfeeds/feeds_view.py
 gfeeds/get_favicon.py
 gfeeds/headerbar.py
 gfeeds/manage_feeds_window.py

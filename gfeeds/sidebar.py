@@ -86,6 +86,22 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             'gfeeds_new_first_changed',
             self.set_sort_from_confman
         )
+        self.selected_feed = None
+        self.set_filter_func(self.gfeeds_sidebar_filter_func, None, False)
+        self.confman.connect(
+            'gfeeds_filter_changed',
+            self.change_filter
+        )
+
+    def change_filter(self, caller, n_filter):
+        self.selected_feed = n_filter
+        self.set_filter_func(self.gfeeds_sidebar_filter_func, None, False)
+
+    def gfeeds_sidebar_filter_func(self, row, data, notify_destroy):
+        if not self.selected_feed:
+            return True
+        else:
+            return row.feeditem.parent_feed == self.selected_feed
 
     def set_sort_from_confman(self, *args):
         if self.confman.conf['new_first']:

@@ -28,6 +28,12 @@ class ConfManagerSignaler(GObject.Object):
             GObject.SIGNAL_RUN_FIRST,
             None,
             (str,)
+        ),
+        # Signals down here don't have to do with the config
+        'gfeeds_filter_changed': (
+            GObject.SIGNAL_RUN_FIRST,
+            None,
+            (GObject.TYPE_PYOBJECT,)
         )
     }
 

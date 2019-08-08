@@ -4,6 +4,7 @@ from .leaflet import GFeedsLeaflet
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .spinner_button import RefreshSpinnerButton
+from .feeds_view import FeedsViewPopover
 
 class AddFeedPopover(Gtk.Popover):
     def __init__(self, relative_to, **kwargs):
@@ -146,6 +147,14 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.refresh_btn = RefreshSpinnerButton()
         self.refresh_btn.btn.connect('clicked', self.feedman.refresh)
         self.left_headerbar.pack_end(self.refresh_btn)
+
+        self.filter_btn = Gtk.Button.new_from_icon_name(
+            'view-list-symbolic',
+            Gtk.IconSize.BUTTON
+        )
+        self.filter_btn.set_tooltip_text(_('Filter by feed'))
+        self.filter_popover = FeedsViewPopover(self.filter_btn)
+        self.left_headerbar.pack_start(self.filter_btn)
 
         self.add_btn = Gtk.Button.new_from_icon_name(
             'list-add-symbolic',
