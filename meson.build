@@ -1,5 +1,5 @@
 project('gnome-feeds',
-    version: '0.5',
+    version: '0.5.1',
     meson_version: '>= 0.50.0',
     license: 'GPL3'
 )
