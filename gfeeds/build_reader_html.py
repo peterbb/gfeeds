@@ -334,7 +334,7 @@ ol {
 }
 
 article, body {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   margin: 20px auto;
   width: 640px;
   font-size: 18px;
