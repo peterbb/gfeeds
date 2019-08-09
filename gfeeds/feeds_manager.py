@@ -141,6 +141,9 @@ class FeedsManager(metaclass=Singleton):
 
         self.feeds.empty()
         self.feeds_items.empty()
+        threads_pool = []
+        threads_alive = []
+        MAX_THREADS = self.confman.conf['max_refresh_threads']
         for f_link in self.confman.conf['feeds']:
             t = threading.Thread(
                 group = None,
@@ -148,7 +151,15 @@ class FeedsManager(metaclass=Singleton):
                 name = None,
                 args = (f_link, True)
             )
-            t.start()
+            threads_pool.append(t)
+        while len(threads_pool) > 0:
+            if len(threads_alive) < MAX_THREADS:
+                t = threads_pool.pop(0)
+                t.start()
+                threads_alive.append(t)
+            for i, t in enumerate(threads_alive):
+                if not t.is_alive():
+                    threads_alive.pop(i)
             while t.is_alive():
                 while Gtk.events_pending():
                     Gtk.main_iteration()

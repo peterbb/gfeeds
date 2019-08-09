@@ -53,6 +53,7 @@ class ConfManager(metaclass=Singleton):
         'enable_js': False,
         'enable_csd': True,
         'use_rss_content': False,
+        'max_refresh_threads': 2
     }
 
     def __init__(self):

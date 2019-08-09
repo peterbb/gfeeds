@@ -79,7 +79,6 @@ class PreferencesSpinButtonRow(Handy.ActionRow):
         # self.set_activatable_widget(self.button)
 
     def on_value_changed(self, *args):
-        print('value changed')
         self.confman.conf[self.conf_key] = self.spin_button.get_value_as_int()
         if self.signal:
             self.confman.emit(self.signal, '')
@@ -226,6 +225,40 @@ class ViewPreferencesPage(Handy.PreferencesPage):
         self.show_all()
 
 
+class AdvancedPreferencesPage(Handy.PreferencesPage):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.set_title(_('Advanced'))
+        self.set_icon_name('system-run-symbolic')
+
+
+        self.advanced_preferences_group = Handy.PreferencesGroup()
+        self.advanced_preferences_group.set_title(_('Advanced Settings'))
+        spinbtn_settings = [
+            {
+                'title': _('Maximum refresh threads'),
+                'min': 1,
+                'max': 32,
+                'conf_key': 'max_refresh_threads',
+                'signal': None,
+                'subtitle': _('How many threads to refresh feeds')
+            },
+        ]
+        for s in spinbtn_settings:
+            row = PreferencesSpinButtonRow(
+                s['title'],
+                s['min'],
+                s['max'],
+                s['conf_key'],
+                s['signal'],
+                s['subtitle']
+            )
+            self.advanced_preferences_group.add(row)
+        self.add(self.advanced_preferences_group)
+
+        self.show_all()
+
+
 class GFeedsSettingsWindow(Handy.PreferencesWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -237,7 +270,8 @@ class GFeedsSettingsWindow(Handy.PreferencesWindow):
 
         self.pages = [
             GeneralPreferencesPage(),
-            ViewPreferencesPage()
+            ViewPreferencesPage(),
+            AdvancedPreferencesPage()
         ]
         for p in self.pages:
             self.add(p)
