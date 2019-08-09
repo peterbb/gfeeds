@@ -42,6 +42,13 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.5.2" timestamp="1565334511">
+            <description>
+                <ul>
+                    <li>Fix bugs in reader mode</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.5.1" timestamp="1565274311">
             <description>
                 <ul>
