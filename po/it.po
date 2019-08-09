@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 12:43+0200\n"
+"POT-Creation-Date: 2019-08-09 08:24+0200\n"
 "PO-Revision-Date: 2019-08-08 12:44+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
@@ -92,7 +92,7 @@ msgstr "Aggiungi nuovo feed"
 msgid "Error downloading favicon for `{0}`"
 msgstr "Errore nel download della favicon per `{0}`"
 
-#: ../gfeeds/feeds_view.py:14
+#: ../gfeeds/feeds_view.py:15
 msgid "All feeds"
 msgstr "Tutti i feed"
 
@@ -337,419 +337,115 @@ msgstr ""
 msgid "Feeds can be imported and exported via OPML."
 msgstr "I feed possono essere importati ed esportati tramite OPML."
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:27
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:48
+msgid "Minor bug fix"
+msgstr ""
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:55
 msgid "Improved date and time parsing and display"
 msgstr "Migliorati analisi e rappresentazione di data e ora"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:28
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:56
 msgid "Reader mode can now work on websites without an article tag"
 msgstr "La modalità lettura ora funziona su siti senza tag article"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:29
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:57
 msgid "Slight improvements to the icon"
 msgstr "Leggeri miglioramenti all'icona"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:30
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:58
 msgid "New feature to filter articles by feed"
 msgstr "Nuova funzione per filtrare gli articoli per feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:37
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:65
 msgid "Improved favicon download"
 msgstr "Migliorato il download delle favicon"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:38
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:66
 msgid "Fixed refresh duplicating articles"
 msgstr "Corretta la duplicazione degli articoli dovuta all'aggiornamento"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:45
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:73
 msgid "Added option to disable client side decoration"
 msgstr "Aggiunta opzione per disattivare la decorazione client side"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:46
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:74
 msgid "Brought primary menu in line with GNOME HIG"
 msgstr "Portato il menu primario in linea con il GNOME HIG"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:47
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:75
 msgid "Added placeholder icon for feeds without an icon"
 msgstr "Aggiunta icona riempitiva per feed senza icona"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:48
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:76
 msgid "Migrated some widgets to Glade templates"
 msgstr "Migrato alcuni widget a template Glade"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:49
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:77
 msgid "Option to use reader mode by default"
 msgstr "Opzione per usare la modalità lettura come predefinita"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:50
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:78
 msgid "Option to show article content from the feed"
 msgstr "Opzione per mostrare il contenuto dell'articolo dal feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:51
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:79
 msgid "Various bug fixes"
 msgstr "Varie correzioni di bug"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:58
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:86
 msgid "Fixed labels alignment"
 msgstr "Corretto l'allineamento del testo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:59
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:87
 msgid "Changed app name to Feeds"
 msgstr "Cambiato il nome dell'app a Feeds"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:60
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:88
 msgid "Added separators for the two sections of the app"
 msgstr "Aggiunti separatori per le due sezioni dell'app"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:61
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:89
 msgid "Using links as feed titles when there is no title"
 msgstr "Uso dei link come titoli dei feed quando non c'è titolo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:62
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:90
 msgid "Added preference for maximum article age"
 msgstr "Aggiunta preferenza per la massima età degli articoli"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:63
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:91
 msgid "Added zoom keyboard shortcuts"
 msgstr "Aggiunte scorciatoie da tastiera per lo zoom"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:64
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:92
 msgid "Added preference to enable JavaScript"
 msgstr "Aggiunta preferenza per attivare JavaScript"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:65
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:93
 msgid "Fix window control positions when they are on the left"
 msgstr ""
 "Corretta la posizione dei controlli della finestra quando sono a sinistra"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:72
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:100
 msgid "Feeds for websites without favicons will now work"
 msgstr "I feed per i siti senza favicon adesso funzioneranno"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:79
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:107
 msgid "Fixed bug with adding new feeds"
 msgstr "Corretto un bug nell'aggiunta di nuovi feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:86
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:114
 msgid "Switched to native file chooser"
 msgstr "Passato al selezionatore di file nativo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:87
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:115
 msgid "Added empty state initial screen for sidebar"
 msgstr "Aggiunta una schermata di stato vuoto iniziale per la barra laterale"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:88
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:116
 msgid "Added italian translation"
 msgstr "Aggiunta traduzione italiana"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:95
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:123
 msgid "First release"
 msgstr "Prima release"
-
-#~ msgid "Error: unable to parse datetime"
-#~ msgstr "Errore: impossibile analizzare data e ora"
-
-#~ msgid "Error resizing favicon for feed {0}"
-#~ msgstr "Errore nel ridimensionare la favicon per il feed {0}"
-
-#~ msgid "Error adding feed {0}"
-#~ msgstr "Errore nell'aggiungere il feed {0}"
-
-#~ msgid "Downloading `{0}`…"
-#~ msgstr "Scarico `{0}`…"
-
-#~ msgid "Download of `{0}` successful"
-#~ msgstr "Download di `{0}` riuscito"
-
-#~ msgid "Hit cache for `{0}`, skipping file update"
-#~ msgstr "Collisione della cache per `{0}`, salto l'aggiornamento del file"
-
-#~ msgid "Downloading `{0}`..."
-#~ msgstr "Scarico `{0}`..."
-
-#~ msgid "Shortcuts"
-#~ msgstr "Scorciatoie"
-
-#~ msgid "About"
-#~ msgstr "Informazioni"
-
-#~ msgid "Maximum article age (in days)"
-#~ msgstr "Massima età degli articoli (in giorni)"
-
-#~ msgid "ERROR: cannot create thumbnail for file"
-#~ msgstr "ERRORE: impossibile creare miniatura per il file"
-
-#~ msgid "Error parsing monitors (Gdk)"
-#~ msgstr "Errore nell'analisi dei monitor (Gdk)"
-
-#~ msgid "Error: you passed {0} wallpapers for {1} monitors"
-#~ msgstr "Errore: hai passato {0} sfondi per {1} monitor"
-
-#~ msgid "Error: {0} is not a valid image path"
-#~ msgstr "Errore: {0} non è il percorso di un'immagine valida"
-
-#~ msgid "set wallpapers from command line"
-#~ msgstr "imposta sfondi dalla linea di comando"
-
-#~ msgid "set wallpapers randomly"
-#~ msgstr "imposta sfondi casualmente"
-
-#~ msgid "Wallpapers"
-#~ msgstr "Sfondi"
-
-#~ msgid "Favorites"
-#~ msgstr "Preferiti"
-
-#~ msgid "Hit cache for {0}. Skipping merge"
-#~ msgstr "Collisione cache per {0}. Sto saltando l'unione"
-
-#~ msgid "Remove favorite"
-#~ msgstr "Rimuovi preferito"
-
-#~ msgid "Add favorite"
-#~ msgstr "Aggiungi preferito"
-
-#~ msgid "Select wallpapers with a double click"
-#~ msgstr "Seleziona gli sfondi con un doppio click"
-
-#~ msgid "Keep favorites in main wallpapers view"
-#~ msgstr "Mantieni i preferiti nella vista principale degli sfondi"
-
-#~ msgid "Show full path in folder view"
-#~ msgstr "Mostra il percorso completo nella vista delle cartelle"
-
-#~ msgid "Caches and favorites"
-#~ msgstr "Cache e preferiti"
-
-#~ msgid "Clear all favorites"
-#~ msgstr "Pulisci tutti i preferiti"
-
-#~ msgid "Clear favorites"
-#~ msgstr "Pulisci i preferiti"
-
-#~ msgid "Use big thumbnails for the monitors previews"
-#~ msgstr "Usa miniature grandi per le anteprime dei monitor"
-
-#~ msgid "Set random wallpapers"
-#~ msgstr "Imposta sfondi casualmente"
-
-#~ msgid "Add a wallpapers folder"
-#~ msgstr "Aggiungi una cartella di sfondi"
-
-#~ msgid "Selected path has already been added"
-#~ msgstr "Il percorso selezionato è già stato aggiunto"
-
-#~ msgid "Close\n"
-#~ msgstr "Chiudi\n"
-
-#~ msgid "Add"
-#~ msgstr "Aggiungi"
-
-#~ msgid "Remove"
-#~ msgstr "Rimuovi"
-
-#~ msgid "Apply"
-#~ msgstr "Applica"
-
-#~ msgid "Lower all other windows"
-#~ msgstr "Abbassa tutte le altre finestre"
-
-#~ msgid "title"
-#~ msgstr "titolo"
-
-#~ msgid "Path:"
-#~ msgstr "Percorso:"
-
-#~ msgid "Wallpaper manager with multimonitor support"
-#~ msgstr "Gestore di sfondi con supporto per multi monitor"
-
-#~ msgid "wallpaper;background;monitor;"
-#~ msgstr "sfondi;monitor;"
-
-#~ msgid ""
-#~ "HydraPaper lets you set different wallpapers for each of your monitors in "
-#~ "the GNOME desktop."
-#~ msgstr ""
-#~ "HydraPaper ti permette di impostare uno sfondo diverso per ognuno dei "
-#~ "tuoi monitor nell'ambiente desktop GNOME."
-
-#~ msgid ""
-#~ "It works around this lack of functionality by automatically merging "
-#~ "multiple wallpapers into one, and setting it as your wallpaper with the "
-#~ "\"Spanned\" option."
-#~ msgstr ""
-#~ "Risolve questa mancanza di funzionalità unendo automaticamente multipli "
-#~ "sfondi in uno, e impostandolo come sfondo con l'opzione \"Spanned\"."
-
-#~ msgid ""
-#~ "HydraPaper also supports the MATE desktop, and should work on any desktop "
-#~ "that is based on GNOME, like Budgie and Pantheon."
-#~ msgstr ""
-#~ "HydraPaper supporta anche il desktop MATE, e dovrebbe funzionare su "
-#~ "qualunque desktop basato su GNOME, come Budgie e Pantheon."
-
-#~ msgid "New widgets from Purism's libhandy"
-#~ msgstr "Nuovi widget dalla libreria libhandy di Purism"
-
-#~ msgid "Removed animated spinner"
-#~ msgstr "Rimosso lo spinner animato"
-
-#~ msgid "Paths in folders view show only the folder name by default"
-#~ msgstr ""
-#~ "I percorsi nella vista delle cartelle mostrano solo il nome della "
-#~ "cartella come predefinito"
-
-#~ msgid "New website"
-#~ msgstr "Nuovo sito web"
-
-#~ msgid "Properly implemented MATE support"
-#~ msgstr "Implementato correttamente il supporto a MATE"
-
-#~ msgid "Added post-installation commands"
-#~ msgstr "Aggiunti comandi post installazione"
-
-#~ msgid "Fixing wrong import"
-#~ msgstr "Corretta un'importazione errata"
-
-#~ msgid "Fixed support for MATE under Flatpak"
-#~ msgstr "Corretto il supporto per MATE sotto Flatpak"
-
-#~ msgid "New icon! Should be closer to GNOME HIG."
-#~ msgstr "Nuova icona! Dovrebbe essere più vicina alle HIG di GNOME"
-
-#~ msgid ""
-#~ "Exposed random wallpaper functionality from the in-app menu and desktop "
-#~ "file"
-#~ msgstr ""
-#~ "Esposta la funzionalità di sfondi casuali dal menu interno all'app e nel "
-#~ "file desktop"
-
-#~ msgid ""
-#~ "Added random wallpaper functionality from command line with -r option"
-#~ msgstr ""
-#~ "Aggiunta la funzionalità di sfondi casuali dalla linea di comando con "
-#~ "l'opzione -r"
-
-#~ msgid "Fixing startup error when added folders get deleted"
-#~ msgstr ""
-#~ "Corretto l'errore d'avvio quando le cartelle aggiunte vengono cancellate"
-
-#~ msgid "Get correct localized Pictures folder on first startup"
-#~ msgstr "Ottenuta la corretta cartella Immagini localizzata al primo avvio"
-
-#~ msgid "App doesn't crash anymore if a folder doesn't exist"
-#~ msgstr "L'app non crasha più se una cartella non esiste"
-
-#~ msgid "Fixed wallpapers not hiding on startup"
-#~ msgstr "Corretto che gli sfondi non si nascondano all'avvio"
-
-#~ msgid "Complete code refactoring"
-#~ msgstr "Completo refactoring del codice"
-
-#~ msgid "Made the whole build system more modular"
-#~ msgstr "Reso l'intero build system modulare"
-
-#~ msgid "Moved app menu to the headerbar"
-#~ msgstr "Spostato il menu dell'app nella headerbar"
-
-#~ msgid "Initial support for keyboard shortcuts"
-#~ msgstr "Supporto iniziale per scorciatoie da tastiera"
-
-#~ msgid "Fixed thumbnail creation for PNGs with alpha channel"
-#~ msgstr "Corretta la creazione di thumbnail per PNG con canale alpha"
-
-#~ msgid "Added option to clear cache"
-#~ msgstr "Aggiunta un'opzione per pulire la cache"
-
-#~ msgid "Various bug fixes and improvements"
-#~ msgstr "Varie correzioni di bug e miglioramenti"
-
-#~ msgid "Improved thumbnail generation and caching for better performance"
-#~ msgstr ""
-#~ "Migliorata la generazione di miniature e caching per migliore performance"
-
-#~ msgid "Updated dependencies"
-#~ msgstr "Aggiornate le dipendenze"
-
-#~ msgid "Added support for command line usage"
-#~ msgstr "Aggiunto supporto per l'uso da linea di comando"
-
-#~ msgid "Implemented boilerplate for gtk via gmgtk (gitlab.com/gabmus/gmgtk)"
-#~ msgstr ""
-#~ "Implementato boilerplate per gtk tramite gmgtk (gitlab.com/gabmus/gmgtk)"
-
-#~ msgid ""
-#~ "Migrated configuration management to gmconfig (gitlab.com/gabmus/gmconfig)"
-#~ msgstr ""
-#~ "Migrata la gestione della configurazione a gmconfig (gitlab.com/gabmus/"
-#~ "gmconfig)"
-
-#~ msgid "Migrated to GitLab"
-#~ msgstr "Migrazione a GitLab"
-
-#~ msgid "Better filename generation"
-#~ msgstr "Migliore generazione di nomi di file"
-
-#~ msgid "Added support for vertical setups"
-#~ msgstr "Aggiunto il supporto per disposizioni verticali"
-
-#~ msgid "Added symbolic icon"
-#~ msgstr "Aggiunta icona simbolica"
-
-#~ msgid "Added support for MATE"
-#~ msgstr "Aggiunto supporto per MATE"
-
-#~ msgid "Design makeover"
-#~ msgstr "Design ristudiato"
-
-#~ msgid "Added longpress/rightclick menu"
-#~ msgstr "Aggiunto un menu attivato con pressione prolungata o tasto destro"
-
-#~ msgid "Implemented favorites"
-#~ msgstr "Implementati i preferiti"
-
-#~ msgid "Added option to temporarely disable paths"
-#~ msgstr "Aggiunta un'opzione per disabilitare temporaneamente percorsi"
-
-#~ msgid "Added option to minimize/restore all other windows"
-#~ msgstr ""
-#~ "Aggiunta un'opzione per minimizzare/ripristinare tutte le altre finestre"
-
-#~ msgid "Improved performance"
-#~ msgstr "Miglioramenti di performance"
-
-#~ msgid "Various optimizations for flatpak distribution"
-#~ msgstr "Varie ottimizzazioni per la distribuzione via flatpak"
-
-#~ msgid "Removed the dependency on xmltodict"
-#~ msgstr "Rimossa la dipendenza su xmltodict"
-
-#~ msgid "Changed icon"
-#~ msgstr "Cambiata l'icona"
-
-#~ msgid "Added support for monitors.xml version 1"
-#~ msgstr "Aggiunto il supporto per monitors.xml versione 1"
-
-#~ msgid "Improved 3+ monitors configuration"
-#~ msgstr "Migliorata la configurazione con 3+ monitor"
-
-#~ msgid "Remember previously set wallpapers throughout sessions"
-#~ msgstr "Ricorda lo sfondo impostato precedentemente attraverso le sessioni"
-
-#~ msgid "Implemented cache hitting"
-#~ msgstr "Implementata la collisione con la cache"
-
-#~ msgid "Added checks and user friendly error messages for monitors.xml"
-#~ msgstr "Aggiunti controlli e messaggi di errore amichevoli per monitors.xml"
-
-#~ msgid "Bug fixes"
-#~ msgstr "Correzione bug"
-
-#~ msgid "Added settings window"
-#~ msgstr "Aggiunta finestra impostazioni"
-
-#~ msgid "Port to pillow"
-#~ msgstr "Port a pillow"
-
-#~ msgid "Settings"
-#~ msgstr "Preferenze"

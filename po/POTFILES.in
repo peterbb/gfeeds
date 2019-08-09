@@ -14,9 +14,7 @@ gfeeds/feeds_view.py
 gfeeds/get_favicon.py
 gfeeds/headerbar.py
 gfeeds/manage_feeds_window.py
-gfeeds/manage_feeds_window.py gfeeds/manage_feeds_window.py
 gfeeds/opml_file_chooser.py
-gfeeds/opml_file_chooser.py gfeeds/opml_file_chooser.py
 gfeeds/opml_manager.py
 gfeeds/rss_parser.py
 gfeeds/settings_window.py
