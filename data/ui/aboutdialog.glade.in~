@@ -31,7 +31,6 @@ along with GNOME Feeds.  If not, see <http://www.gnu.org/licenses/>.
     <property name="copyright" translatable="yes">@authorfullname@, et al.</property>
     <property name="website">@PACKAGE_URL@</property>
     <property name="authors">@CONTRIBUTORS@</property>
-    <property name="translator_credits" translatable="yes">@TRANSLATORS@</property>
     <property name="logo_icon_name">@APPID@</property>
     <property name="license_type">gpl-3-0</property>
     <child type="titlebar">

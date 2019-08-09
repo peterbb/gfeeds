@@ -24,6 +24,11 @@ contributors = '\n'.join([
     'Christopher Davis (BrainBlasted) &lt;brainblasted@disroot.org&gt;'
 ])
 
+translators = '\n'.join([
+    'German: Onno Giesmann (Etamuk) &lt;nutzer3105@gmail.com&gt;',
+    'Italian: Gabriele Musco (GabMus) &lt;emaildigabry@gmail.com&gt;'
+])
+
 i18n = import('i18n')
 python = import('python3')
 gnome = import('gnome')
