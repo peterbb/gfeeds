@@ -54,6 +54,10 @@ class FeedsViewListbox(Gtk.ListBox):
         for feed in self.feedman.feeds:
             self.add_feed(feed)
         self.feedman.feeds.connect(
+            'feeds_empty',
+            lambda *args: self.empty()
+        )
+        self.feedman.feeds.connect(
             'feeds_append',
             lambda caller, feed: self.add_feed(feed)
         )
@@ -83,6 +87,16 @@ class FeedsViewListbox(Gtk.ListBox):
                 if row.feed == feed:
                     self.remove(row)
                     break
+
+    def empty(self):
+        while True:
+            print('asd')
+            row = self.get_row_at_index(1)
+            if row:
+                if not row.IS_ALL:
+                    self.remove(row)
+            else:
+                break
 
     def gfeeds_sort_func(self, row1, row2, data, notify_destroy):
         if row1.IS_ALL:
