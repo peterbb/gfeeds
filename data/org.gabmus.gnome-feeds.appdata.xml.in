@@ -13,9 +13,6 @@
         <p>Feeds can be imported and exported via OPML.</p>
     </description>
     <screenshots>
-        <screenshot type="default">
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/mainwindow.png</image>
-        </screenshot>
         <screenshot>
             <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/add_feed.png</image>
         </screenshot>
@@ -37,11 +34,22 @@
         <screenshot>
             <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/preferences.png</image>
         </screenshot>
+        <screenshot type="default">
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/mainwindow.png</image>
+        </screenshot>
     </screenshots>
     <url type="homepage">https://gabmus.gitlab.io/gnome-feeds/</url>
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.6" timestamp="1565595606">
+            <description>
+                <ul>
+                    <li>Concurrent feeds refresh, with customizable thread count</li>
+                    <li>Added German translation (thanks @Etamuk)</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.5.2" timestamp="1565334511">
             <description>
                 <ul>

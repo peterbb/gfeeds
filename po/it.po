@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-09 08:24+0200\n"
-"PO-Revision-Date: 2019-08-08 12:44+0200\n"
+"POT-Creation-Date: 2019-08-12 09:37+0200\n"
+"PO-Revision-Date: 2019-08-12 09:39+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -112,72 +112,88 @@ msgstr "Contenuto o riassunto dell'RSS non disponibile per questo articolo"
 msgid "Reader mode unavailable for this site"
 msgstr "Modalità lettura non disponibile per questo sito"
 
-#: ../gfeeds/download_manager.py:48
+#: ../gfeeds/download_manager.py:36
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Errore nel download di `{0}`, codice `{1}`"
 
-#: ../gfeeds/settings_window.py:124
+#: ../gfeeds/settings_window.py:123
 msgid "General"
 msgstr "Generale"
 
-#: ../gfeeds/settings_window.py:129
+#: ../gfeeds/settings_window.py:128
 msgid "General Settings"
 msgstr "Impostazioni Generali"
 
-#: ../gfeeds/settings_window.py:132
+#: ../gfeeds/settings_window.py:131
 msgid "Show newer articles first"
 msgstr "Mostra nuovi articoli per primi"
 
-#: ../gfeeds/settings_window.py:137
+#: ../gfeeds/settings_window.py:136
 msgid "Use reader mode by default"
 msgstr "Usa modalità lettura come predefinita"
 
-#: ../gfeeds/settings_window.py:142
+#: ../gfeeds/settings_window.py:141
 msgid "Use content from the RSS feed"
 msgstr "Usa contenuto dal feed RSS"
 
-#: ../gfeeds/settings_window.py:152
+#: ../gfeeds/settings_window.py:151
 msgid "Maximum article age"
 msgstr "Età massima degli articoli"
 
-#: ../gfeeds/settings_window.py:156
+#: ../gfeeds/settings_window.py:155
 msgid "In days"
 msgstr "In giorni"
 
-#: ../gfeeds/settings_window.py:162
+#: ../gfeeds/settings_window.py:161
 msgid "Cache"
 msgstr "Cache"
 
-#: ../gfeeds/settings_window.py:165
+#: ../gfeeds/settings_window.py:164
 msgid "Clear all caches"
 msgstr "Pulisci tutte le cache"
 
-#: ../gfeeds/settings_window.py:166
+#: ../gfeeds/settings_window.py:165
 msgid "Clear caches"
 msgstr "Pulisci le cache"
 
-#: ../gfeeds/settings_window.py:198
+#: ../gfeeds/settings_window.py:197
 msgid "View"
 msgstr "Vista"
 
-#: ../gfeeds/settings_window.py:203
+#: ../gfeeds/settings_window.py:202
 msgid "View Settings"
 msgstr "Impostazioni della Vista"
 
-#: ../gfeeds/settings_window.py:206
+#: ../gfeeds/settings_window.py:205
 msgid "Use dark theme for reader mode"
 msgstr "Usa tema scuro per la modalità lettura"
 
-#: ../gfeeds/settings_window.py:211
+#: ../gfeeds/settings_window.py:210
 msgid "Enable JavaScript"
 msgstr "Attiva JavaScript"
 
-#: ../gfeeds/settings_window.py:216
+#: ../gfeeds/settings_window.py:215
 msgid "Enable client side decoration"
 msgstr "Attiva decorazione client side"
 
-#: ../gfeeds/settings_window.py:248
+#: ../gfeeds/settings_window.py:231
+msgid "Advanced"
+msgstr "Avanzate"
+
+#: ../gfeeds/settings_window.py:236
+msgid "Advanced Settings"
+msgstr "Impostazioni Avanzate"
+
+#: ../gfeeds/settings_window.py:239
+msgid "Maximum refresh threads"
+msgstr "Massimi thread per aggiornamento"
+
+#: ../gfeeds/settings_window.py:244
+msgid "How many threads to refresh feeds"
+msgstr "Quanti thread per aggiornare i feed"
+
+#: ../gfeeds/settings_window.py:282
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -338,114 +354,127 @@ msgid "Feeds can be imported and exported via OPML."
 msgstr "I feed possono essere importati ed esportati tramite OPML."
 
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:48
-msgid "Minor bug fix"
+msgid "Concurrent feeds refresh, with customizable thread count"
 msgstr ""
+"Aggiornamento dei feed con concorrenza, con numero di thread personalizzabile"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:55
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:49
+msgid "Added German translation (thanks @Etamuk)"
+msgstr "Aggiunta traduzione in tedesco (grazie @Etamuk)"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:56
+msgid "Fix bugs in reader mode"
+msgstr "Corretti i bug nella modalità lettura"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:63
+msgid "Minor bug fix"
+msgstr "Correzione di bug minori"
+
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:70
 msgid "Improved date and time parsing and display"
 msgstr "Migliorati analisi e rappresentazione di data e ora"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:56
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:71
 msgid "Reader mode can now work on websites without an article tag"
 msgstr "La modalità lettura ora funziona su siti senza tag article"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:57
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:72
 msgid "Slight improvements to the icon"
 msgstr "Leggeri miglioramenti all'icona"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:58
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:73
 msgid "New feature to filter articles by feed"
 msgstr "Nuova funzione per filtrare gli articoli per feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:65
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:80
 msgid "Improved favicon download"
 msgstr "Migliorato il download delle favicon"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:66
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:81
 msgid "Fixed refresh duplicating articles"
 msgstr "Corretta la duplicazione degli articoli dovuta all'aggiornamento"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:73
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:88
 msgid "Added option to disable client side decoration"
 msgstr "Aggiunta opzione per disattivare la decorazione client side"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:74
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:89
 msgid "Brought primary menu in line with GNOME HIG"
 msgstr "Portato il menu primario in linea con il GNOME HIG"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:75
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:90
 msgid "Added placeholder icon for feeds without an icon"
 msgstr "Aggiunta icona riempitiva per feed senza icona"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:76
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:91
 msgid "Migrated some widgets to Glade templates"
 msgstr "Migrato alcuni widget a template Glade"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:77
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:92
 msgid "Option to use reader mode by default"
 msgstr "Opzione per usare la modalità lettura come predefinita"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:78
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:93
 msgid "Option to show article content from the feed"
 msgstr "Opzione per mostrare il contenuto dell'articolo dal feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:79
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:94
 msgid "Various bug fixes"
 msgstr "Varie correzioni di bug"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:86
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:101
 msgid "Fixed labels alignment"
 msgstr "Corretto l'allineamento del testo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:87
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:102
 msgid "Changed app name to Feeds"
 msgstr "Cambiato il nome dell'app a Feeds"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:88
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:103
 msgid "Added separators for the two sections of the app"
 msgstr "Aggiunti separatori per le due sezioni dell'app"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:89
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:104
 msgid "Using links as feed titles when there is no title"
 msgstr "Uso dei link come titoli dei feed quando non c'è titolo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:90
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:105
 msgid "Added preference for maximum article age"
 msgstr "Aggiunta preferenza per la massima età degli articoli"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:91
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:106
 msgid "Added zoom keyboard shortcuts"
 msgstr "Aggiunte scorciatoie da tastiera per lo zoom"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:92
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:107
 msgid "Added preference to enable JavaScript"
 msgstr "Aggiunta preferenza per attivare JavaScript"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:93
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:108
 msgid "Fix window control positions when they are on the left"
 msgstr ""
 "Corretta la posizione dei controlli della finestra quando sono a sinistra"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:100
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:115
 msgid "Feeds for websites without favicons will now work"
 msgstr "I feed per i siti senza favicon adesso funzioneranno"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:107
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:122
 msgid "Fixed bug with adding new feeds"
 msgstr "Corretto un bug nell'aggiunta di nuovi feed"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:114
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:129
 msgid "Switched to native file chooser"
 msgstr "Passato al selezionatore di file nativo"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:115
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:130
 msgid "Added empty state initial screen for sidebar"
 msgstr "Aggiunta una schermata di stato vuoto iniziale per la barra laterale"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:116
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:131
 msgid "Added italian translation"
 msgstr "Aggiunta traduzione italiana"
 
-#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:123
+#: ../data/org.gabmus.gnome-feeds.appdata.xml.in:138
 msgid "First release"
 msgstr "Prima release"
