@@ -1,6 +1,7 @@
 data/org.gabmus.gnome-feeds.appdata.xml.in
 data/org.gabmus.gnome-feeds.desktop.in
 data/ui/add_feed_box.glade
+data/ui/article_right_click_popover_content.glade
 data/ui/menu.xml
 data/ui/shortcutsWindow.xml
 data/ui/sidebar_filler.glade
@@ -18,5 +19,6 @@ gfeeds/opml_file_chooser.py
 gfeeds/opml_manager.py
 gfeeds/rss_parser.py
 gfeeds/settings_window.py
+gfeeds/sidebar.py
 gfeeds/spinner_button.py
 gfeeds/webview.py

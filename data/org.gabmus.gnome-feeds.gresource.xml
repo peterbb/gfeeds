@@ -11,12 +11,15 @@
     <file preprocess="xml-stripblanks">ui/spinner_button.glade</file>
     <file preprocess="xml-stripblanks">ui/sidebar_listbox_row.glade</file>
     <file preprocess="xml-stripblanks">ui/manage_feeds_listbox_row.glade</file>
+    <file preprocess="xml-stripblanks">ui/article_right_click_popover_content.glade</file>
     <file preprocess="xml-stripblanks">ui/menu.xml</file>
     <file preprocess="xml-stripblanks">ui/shortcutsWindow.xml</file>
     
     <file preprocess="xml-stripblanks">icons/org.gabmus.gnome-feeds.svg</file>
     <file preprocess="xml-stripblanks">icons/org.gabmus.gnome-feeds-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/ephy-reader-mode-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/eye-not-looking-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/eye-open-negative-filled-symbolic.svg</file>
 
   </gresource>
 </gresources>

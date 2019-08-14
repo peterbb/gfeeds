@@ -4,6 +4,58 @@ from os.path import isfile
 import cairo
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
+from gettext import gettext as _
+
+class RowPopover(Gtk.Popover):
+    def __init__(self, parent, **kwargs):
+        super().__init__(**kwargs)
+        self.builder = Gtk.Builder.new_from_resource(
+            '/org/gabmus/gnome-feeds/ui/article_right_click_popover_content.glade'
+        )
+        self.container_box = self.builder.get_object('container_box')
+        # self.set_size_request(270, 150)
+        self.parent = parent
+
+        # self.title_label = self.builder.get_object('title_label')
+        # self.title_label.set_text(self.parent.feeditem.title)
+
+        self.read_unread_btn = self.builder.get_object('read_unread_btn')
+        self.read_unread_btn.connect('clicked', self.on_read_unread_clicked)
+
+        self.save_btn = self.builder.get_object('save_btn')
+        self.save_btn.connect('toggled', self.on_save_toggled)
+
+        self.set_modal(True)
+        self.set_relative_to(self.parent)
+        self.add(self.container_box)
+        self.read = not False # TODO: get from feeditem?
+        self.on_read_unread_clicked(self.read_unread_btn)
+
+    def on_read_unread_clicked(self, btn):
+        if self.read:
+            self.read = False
+            btn.get_children()[0].set_from_icon_name(
+                'eye-open-negative-filled-symbolic',
+                Gtk.IconSize.BUTTON
+            )
+            btn.set_tooltip_text(_(
+                'Mark as read'
+            ))
+        else:
+            self.read = True
+            btn.get_children()[0].set_from_icon_name(
+                'eye-not-looking-symbolic',
+                Gtk.IconSize.BUTTON
+            )
+            btn.set_tooltip_text(_(
+                'Mark as unread'
+            ))
+
+    def on_save_toggled(self, togglebtn):
+        if togglebtn.get_active():
+            print('save')
+        else:
+            print('unsave')
 
 class GFeedsSidebarRow(Gtk.ListBoxRow):
     def __init__(self, feeditem, **kwargs):
@@ -21,6 +73,14 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.title_label.set_text(self.feeditem.title)
         self.origin_label = self.builder.get_object('origin_label')
         self.origin_label.set_text(self.feeditem.parent_feed.title)
+
+        self.icon = self.builder.get_object('icon')
+        if isfile(self.feeditem.parent_feed.favicon_path):
+            self.icon.set_from_file(
+                self.feeditem.parent_feed.favicon_path
+            )
+
+        # Date & time stuff is long
         self.date_label = self.builder.get_object('date_label')
         tz_sec_offset = self.feeditem.pub_date.utcoffset().total_seconds()
         glibtz = GLib.TimeZone(
@@ -46,11 +106,9 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.date_label.set_text(
             self.datestr
         )
-        self.icon = self.builder.get_object('icon')
-        if isfile(self.feeditem.parent_feed.favicon_path):
-            self.icon.set_from_file(
-                self.feeditem.parent_feed.favicon_path
-            )
+
+        self.popover = RowPopover(self)
+
         self.add(self.container_box)
 
     def draw_color(self, da, ctx):
@@ -92,6 +150,29 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             'gfeeds_filter_changed',
             self.change_filter
         )
+
+        # longpress & right click
+        self.longpress = Gtk.GestureLongPress.new(self)
+        self.longpress.set_propagation_phase(Gtk.PropagationPhase.TARGET)
+        self.longpress.set_touch_only(False)
+        self.longpress.connect(
+            'pressed',
+            self.on_right_click,
+            self
+        )
+        self.connect(
+            'button-press-event',
+            self.on_key_press_event
+        )
+
+    def on_right_click(self, e_or_g, x, y, *args):
+        row = self.get_row_at_y(y)
+        if row:
+            row.popover.popup()
+
+    def on_key_press_event(self, what, event):
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3: # right click
+            self.on_right_click(event, event.x, event.y)
 
     def change_filter(self, caller, n_filter):
         self.selected_feed = n_filter
