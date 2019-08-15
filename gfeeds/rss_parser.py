@@ -5,7 +5,7 @@ import pytz
 from dateutil.parser import parse as dateparse
 from dateutil.tz import gettz
 from gettext import gettext as _
-from .download_manager import download_raw
+from .download_manager import download_raw, download_text
 from .get_favicon import get_favicon
 from os.path import isfile
 from os import remove
@@ -13,6 +13,7 @@ from .confManager import ConfManager
 from .sha import shasum
 from PIL import Image
 from .colorthief import ColorThief
+import json
 
 class FeedItem:
     def __init__(self, fp_item, parent_feed):
@@ -49,6 +50,14 @@ class FeedItem:
 
     def __repr__(self):
         return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
+
+    def to_json(self):
+        return json.dumps({
+            'title': self.title,
+            'link': self.link,
+            'pub_date': str(self.pub_date),
+            'content': download_text(self.link)
+        })
 
 
 class Feed:

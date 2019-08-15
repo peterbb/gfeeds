@@ -52,6 +52,7 @@ class RowPopover(Gtk.Popover):
             ))
 
     def on_save_toggled(self, togglebtn):
+        print(self.parent.feeditem.to_json())
         if togglebtn.get_active():
             print('save')
         else:
