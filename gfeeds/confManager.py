@@ -40,8 +40,7 @@ class ConfManagerSignaler(GObject.Object):
 class ConfManager(metaclass=Singleton):
 
     BASE_SCHEMA = {
-        'feeds': [
-        ],
+        'feeds': [],
         'dark_reader': False,
         'default_reader': False,
         'new_first': True,
@@ -53,7 +52,8 @@ class ConfManager(metaclass=Singleton):
         'enable_js': False,
         'enable_csd': True,
         'use_rss_content': False,
-        'max_refresh_threads': 2
+        'max_refresh_threads': 2,
+        'saved_items': {}
     }
 
     def __init__(self):
@@ -74,6 +74,7 @@ class ConfManager(metaclass=Singleton):
             self.path = Path(f'{Env.get("HOME")}/.config/gnome-feeds.json')
             self.cache_path = Path(f'{Env.get("HOME")}/.cache/gnome-feeds')
         self.thumbs_cache_path = f'{self.cache_path}/thumbnails/'
+        self.saved_cache_path = f'{self.cache_path}/saved_articles'
 
         self.conf = None
         if isfile(self.path):
@@ -95,7 +96,11 @@ class ConfManager(metaclass=Singleton):
             self.conf = self.BASE_SCHEMA.copy()
             self.save_conf()
 
-        for p in [self.cache_path, self.thumbs_cache_path]:
+        for p in [
+            self.cache_path,
+            self.thumbs_cache_path,
+            self.saved_cache_path
+        ]:
             if not isdir(p):
                 makedirs(p)
 

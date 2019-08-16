@@ -51,26 +51,32 @@ class FeedItem:
     def __repr__(self):
         return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
 
-    def to_json(self):
-        return json.dumps({
+    def to_dict(self):
+        return {
             'title': self.title,
             'link': self.link,
+            'linkhash': shasum(self.link),
             'published': str(self.pub_date),
-            'content': download_text(self.link),
             'parent_feed': {
                 'title': self.parent_feed.title,
                 'link': self.parent_feed.link,
                 'favicon_path': self.parent_feed.favicon_path
             }
-        })
+        }
+
+    def to_json(self):
+        return json.dumps(self.to_dict())
 
     @classmethod
-    def new_from_json(cls, fi_json):
-        n_fi_dict = json.loads(fi_json)
+    def new_from_dict(cls, n_fi_dict):
         return cls(
             n_fi_dict,
             FakeFeed(n_fi_dict['parent_feed'])
         )
+
+    @classmethod
+    def new_from_json(cls, fi_json):
+        return cls.new_from_dict(json.loads(fi_json))
 
 class FakeFeed:
     def __init__(self, f_dict):

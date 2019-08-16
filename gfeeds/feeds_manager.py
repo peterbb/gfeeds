@@ -38,6 +38,21 @@ class FeedsListSignaler(GObject.Object):
             None,
             (str,)
         ),
+        'saved_feeds_items_append': (
+            GObject.SIGNAL_RUN_LAST,
+            None,
+            (GObject.TYPE_PYOBJECT,)
+        ),
+        'saved_feeds_items_pop': (
+            GObject.SIGNAL_RUN_LAST,
+            None,
+            (GObject.TYPE_PYOBJECT,)
+        ),
+        'saved_feeds_items_empty': (
+            GObject.SIGNAL_RUN_LAST,
+            None,
+            (str,)
+        ),
     }
 
 
@@ -88,6 +103,10 @@ class FeedsItemsList(SignalerList):
     def __init__(self):
         super().__init__('feeds_items')
 
+class SavedFeedsItemsList(SignalerList):
+    def __init__(self):
+        super().__init__('saved_feeds_items')
+
 class FeedsManagerSignaler(GObject.Object):
     __gsignals__ = {
         'feedmanager_refresh_start': (
@@ -115,6 +134,14 @@ class FeedsManager(metaclass=Singleton):
 
         self.feeds = FeedsList()
         self.feeds_items = FeedsItemsList()
+        self.saved_feeds_items = SavedFeedsItemsList()
+
+    def populate_saved_feeds_items(self):
+        self.saved_feeds_items.empty()
+        for si in self.confman.conf['saved_items'].values():
+            self.saved_feeds_items.append(
+                FeedItem.new_from_dict(si)
+            )
 
     def _add_feed_async_worker(self, uri, refresh = False):
         if not refresh:
@@ -138,7 +165,7 @@ class FeedsManager(metaclass=Singleton):
 
     def refresh(self, *args):
         self.emit('feedmanager_refresh_start', '')
-
+        self.populate_saved_feeds_items()
         self.feeds.empty()
         self.feeds_items.empty()
         threads_pool = []

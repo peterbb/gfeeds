@@ -1,15 +1,21 @@
 from gi.repository import Gtk, Gdk, GLib
 from datetime import timezone
 from os.path import isfile
+from os import remove
 import cairo
+import threading
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .rss_parser import FeedItem
+from .download_manager import download_raw
 from gettext import gettext as _
+
 
 class RowPopover(Gtk.Popover):
     def __init__(self, parent, **kwargs):
         super().__init__(**kwargs)
+        self.confman = ConfManager()
+        self.feedman = FeedsManager()
         self.builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gnome-feeds/ui/article_right_click_popover_content.glade'
         )
@@ -24,6 +30,9 @@ class RowPopover(Gtk.Popover):
         self.read_unread_btn.connect('clicked', self.on_read_unread_clicked)
 
         self.save_btn = self.builder.get_object('save_btn')
+        self.save_btn.set_active(
+            self.parent.feeditem.link in self.confman.conf['saved_items'].keys()
+        )
         self.save_btn.connect('toggled', self.on_save_toggled)
 
         self.set_modal(True)
@@ -53,17 +62,39 @@ class RowPopover(Gtk.Popover):
             ))
 
     def on_save_toggled(self, togglebtn):
-        fi_json = self.parent.feeditem.to_json()
-        print(fi_json, '\n\n\n')
-        print(FeedItem.new_from_json(fi_json))
+        togglebtn.set_sensitive(False)
         if togglebtn.get_active():
-            print('save')
+            fi_dict = self.parent.feeditem.to_dict()
+            t = threading.Thread(
+                group = None,
+                target = download_raw,
+                name = None,
+                args = (
+                    fi_dict['link'],
+                    self.confman.saved_cache_path + '/' + fi_dict['linkhash']
+                )
+            )
+            t.start()
+            while t.is_alive():
+                while Gtk.events_pending():
+                    Gtk.main_iteration()
+            self.confman.conf['saved_items'][self.parent.feeditem.link] = fi_dict
+            self.confman.save_conf()
         else:
-            print('unsave')
+            todel_fi_dict = self.confman.conf['saved_items'].pop(
+                self.parent.feeditem.link
+            )
+            remove(
+                self.confman.saved_cache_path + '/' + todel_fi_dict['linkhash']
+            )
+            self.confman.save_conf()
+        self.feedman.populate_saved_feeds_items()
+        togglebtn.set_sensitive(True)
 
 class GFeedsSidebarRow(Gtk.ListBoxRow):
-    def __init__(self, feeditem, **kwargs):
+    def __init__(self, feeditem, is_saved = False, **kwargs):
         super().__init__(**kwargs)
+        self.is_saved = is_saved
         self.get_style_context().add_class('activatable')
         self.feeditem = feeditem
 
@@ -267,16 +298,28 @@ class GFeedsSidebar(Gtk.Stack):
         self.listbox = self.scrolled_win.listbox
         self.empty = self.scrolled_win.listbox.empty
         self.populate = self.scrolled_win.listbox.populate
-        self.select_next_article = self.scrolled_win.select_next_article
-        self.select_prev_article = self.scrolled_win.select_prev_article
 
         self.filler_builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gnome-feeds/ui/sidebar_filler.glade'
         )
         self.filler_view = self.filler_builder.get_object('sidebar_filler_box')
 
+        self.saved_items_scrolled_win = GFeedsSidebarScrolledWin(self)
+        self.saved_items_listbox = self.saved_items_scrolled_win.listbox
+
         self.add(self.filler_view)
-        self.add(self.scrolled_win)
+        self.add_titled(self.scrolled_win, 'Feed', _('Feed'))
+        self.child_set_property(
+            self.scrolled_win,
+            'icon-name',
+            'application-rss+xml-symbolic'
+        )
+        self.add_titled(self.saved_items_scrolled_win, 'Saved', _('Saved'))
+        self.child_set_property(
+            self.saved_items_scrolled_win,
+            'icon-name',
+            'emblem-favorite-symbolic'
+        )
         self.set_size_request(300, 500)
         self.set_visible_child(self.filler_view)
 
@@ -301,6 +344,26 @@ class GFeedsSidebar(Gtk.Stack):
             lambda *args: self.listbox.empty()
         )
 
+        self.feedman.saved_feeds_items.connect(
+            'saved_feeds_items_empty',
+            lambda *args: self.saved_items_listbox.empty()
+        )
+        self.feedman.saved_feeds_items.connect(
+            'saved_feeds_items_append',
+            lambda caller, obj: self.on_saved_feeds_items_append(obj)
+        )
+
+
+    def select_next_article(self, *args):
+        visible_child = self.get_visible_child()
+        if visible_child != self.filler_view:
+            visible_child.select_next_article
+
+    def select_prev_article(self, *args):
+        visible_child = self.get_visible_child()
+        if visible_child != self.filler_view:
+            visible_child.select_prev_article
+
     def on_feeds_append(self, feed):
         self.set_visible_child(self.scrolled_win)
 
@@ -317,3 +380,15 @@ class GFeedsSidebar(Gtk.Stack):
     def on_feeds_items_append(self, feeditem):
         self.listbox.add(GFeedsSidebarRow(feeditem))
         self.show_all()
+
+    def on_saved_feeds_items_append(self, feeditem):
+        self.saved_items_listbox.add(
+            GFeedsSidebarRow(feeditem, is_saved = True)
+        )
+        self.show_all()
+
+    def on_saved_feeds_items_pop(self, feeditem):
+        for row in self.saved_items_listbox.get_children():
+            if row.feeditem == feeditem:
+                self.listbox.remove(row)
+                break

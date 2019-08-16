@@ -43,6 +43,10 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.webview
         )
         
+        self.headerbar.stack_switcher.set_stack(self.sidebar)
+        self.headerbar.stack_switcher.get_children()[0].hide()
+        self.headerbar.stack_switcher.get_children()[0].set_no_show_all(True)
+
         self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         self.set_headerbar_or_titlebar()

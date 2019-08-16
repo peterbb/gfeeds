@@ -164,6 +164,10 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.add_popover = AddFeedPopover(self.add_btn)
         self.left_headerbar.pack_start(self.add_btn)
 
+        self.stack_switcher = Handy.ViewSwitcher()
+        # self.stack_switcher = Gtk.StackSwitcher()
+        self.left_headerbar.set_custom_title(self.stack_switcher)
+
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         self.feedman.connect(
