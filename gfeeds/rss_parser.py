@@ -55,10 +55,40 @@ class FeedItem:
         return json.dumps({
             'title': self.title,
             'link': self.link,
-            'pub_date': str(self.pub_date),
-            'content': download_text(self.link)
+            'published': str(self.pub_date),
+            'content': download_text(self.link),
+            'parent_feed': {
+                'title': self.parent_feed.title,
+                'link': self.parent_feed.link,
+                'favicon_path': self.parent_feed.favicon_path
+            }
         })
 
+    @classmethod
+    def new_from_json(cls, fi_json):
+        n_fi_dict = json.loads(fi_json)
+        return cls(
+            n_fi_dict,
+            FakeFeed(n_fi_dict['parent_feed'])
+        )
+
+class FakeFeed:
+    def __init__(self, f_dict):
+        self.title = f_dict.get('title', '')
+        self.link = f_dict.get('link', '')
+        self.favicon_path = f_dict.get('favicon_path', '')
+        self.color = [0, 0, 0]
+        if isfile(self.favicon_path):
+            favicon = Image.open(self.favicon_path)
+            if favicon.width != 32:
+                favicon = favicon.resize((32, 32), Image.BILINEAR)
+                favicon.save(self.favicon_path, 'PNG')
+            self.color = ColorThief(favicon).get_color(quality=1)
+            self.color = [c/255.0 for c in self.color]
+            favicon.close()
+
+    def __repr__(self):
+        return f'FakeFeed Object `{self.title}`'
 
 class Feed:
     def __init__(self, download_res):

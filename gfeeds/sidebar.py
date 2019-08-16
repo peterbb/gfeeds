@@ -4,6 +4,7 @@ from os.path import isfile
 import cairo
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
+from .rss_parser import FeedItem
 from gettext import gettext as _
 
 class RowPopover(Gtk.Popover):
@@ -52,7 +53,9 @@ class RowPopover(Gtk.Popover):
             ))
 
     def on_save_toggled(self, togglebtn):
-        print(self.parent.feeditem.to_json())
+        fi_json = self.parent.feeditem.to_json()
+        print(fi_json, '\n\n\n')
+        print(FeedItem.new_from_json(fi_json))
         if togglebtn.get_active():
             print('save')
         else:
