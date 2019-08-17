@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 18:07+0200\n"
-"PO-Revision-Date: 2019-08-13 16:28+0200\n"
+"POT-Creation-Date: 2019-08-14 13:44+0200\n"
+"PO-Revision-Date: 2019-08-17 14:35+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -18,10 +18,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
 
-#: ../gfeeds/get_favicon.py:57
-#, python-brace-format
-msgid "Error downloading favicon for `{0}`"
-msgstr "Fehler beim Herunterladen des Favicon für `{0}`"
+#: ../gfeeds/opml_file_chooser.py:6
+msgid "Choose an OPML file to import"
+msgstr "Wählen Sie eine OPML-Datei für den Import aus"
+
+#: ../gfeeds/opml_file_chooser.py:13 ../gfeeds/opml_file_chooser.py:30
+msgid "XML files"
+msgstr "XML-Dateien"
+
+#: ../gfeeds/opml_file_chooser.py:21
+msgid "Choose where to save the exported OPML file"
+msgstr "Wählen Sie einen Speicherort für die exportierte OPML-Datei"
 
 #: ../gfeeds/rss_parser.py:47
 #, python-brace-format
@@ -48,6 +55,11 @@ msgid ""
 msgstr ""
 "Fehler bei Größenänderung des Favicons aus dem Artikel für Feed {0}.\n"
 "Lösche ungültiges Favicon."
+
+#: ../gfeeds/feeds_manager.py:124
+#, python-brace-format
+msgid "Feed {0} exists already, skipping"
+msgstr "Feed {0} existiert bereits, wird übersprungen"
 
 #: ../gfeeds/headerbar.py:82
 msgid "Back to articles"
@@ -76,6 +88,44 @@ msgstr "Filtern nach Feed"
 #: ../gfeeds/headerbar.py:163
 msgid "Add new feed"
 msgstr "Neuen Feed hinzufügen"
+
+#: ../gfeeds/get_favicon.py:57
+#, python-brace-format
+msgid "Error downloading favicon for `{0}`"
+msgstr "Fehler beim Herunterladen des Favicon für `{0}`"
+
+#: ../gfeeds/feeds_view.py:15
+msgid "All feeds"
+msgstr "Alle Feeds"
+
+#: ../gfeeds/webview.py:67
+msgid "Web View"
+msgstr "Webansicht"
+
+#: ../gfeeds/webview.py:68
+msgid "Filler View"
+msgstr "Füllansicht"
+
+#: ../gfeeds/webview.py:134
+msgid "RSS content or summary not available for this article"
+msgstr "RSS-Inhalt oder Zusammenfassung für diesen Artikel nicht verfügbar"
+
+#: ../gfeeds/build_reader_html.py:391
+msgid "Reader mode unavailable for this site"
+msgstr "Leseansicht für diese Seite nicht verfügbar"
+
+#: ../gfeeds/sidebar.py:42
+msgid "Mark as read"
+msgstr "Als gelesen markieren"
+
+#: ../gfeeds/sidebar.py:51
+msgid "Mark as unread"
+msgstr "Als ungelesen markieren"
+
+#: ../gfeeds/download_manager.py:36
+#, python-brace-format
+msgid "Error downloading `{0}`, code `{1}`"
+msgstr "Fehler beim Herunterladen von `{0}`, Code `{1}`"
 
 #: ../gfeeds/settings_window.py:123
 msgid "General"
@@ -157,36 +207,6 @@ msgstr "Anzahl an Threads zum Aktualisieren von Feeds"
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: ../gfeeds/webview.py:67
-msgid "Web View"
-msgstr "Webansicht"
-
-#: ../gfeeds/webview.py:68
-msgid "Filler View"
-msgstr "Füllansicht"
-
-#: ../gfeeds/webview.py:134
-msgid "RSS content or summary not available for this article"
-msgstr "RSS-Inhalt oder Zusammenfassung für diesen Artikel nicht verfügbar"
-
-#: ../gfeeds/opml_manager.py:8
-msgid "Error: OPML path provided does not exist"
-msgstr "Fehler: Der angegebene OPML-Pfad existiert nicht"
-
-#: ../gfeeds/opml_manager.py:15
-#, python-brace-format
-msgid "Error parsing OPML file `{0}`"
-msgstr "Fehler beim Analysieren der OPML-Datei `{0}`"
-
-#: ../gfeeds/feeds_view.py:15
-msgid "All feeds"
-msgstr "Alle Feeds"
-
-#: ../gfeeds/feeds_manager.py:124
-#, python-brace-format
-msgid "Feed {0} exists already, skipping"
-msgstr "Feed {0} existiert bereits, wird übersprungen"
-
 #: ../gfeeds/manage_feeds_window.py:17 ../gfeeds/manage_feeds_window.py:107
 msgid "Manage Feeds"
 msgstr "Feeds verwalten"
@@ -203,42 +223,18 @@ msgstr "Markierte Feeds löschen"
 msgid "Do you want to delete these feeds?"
 msgstr "Wollen Sie diese Feeds wirklich löschen?"
 
-#: ../gfeeds/download_manager.py:36
-#, python-brace-format
-msgid "Error downloading `{0}`, code `{1}`"
-msgstr "Fehler beim Herunterladen von `{0}`, Code `{1}`"
-
-#: ../gfeeds/build_reader_html.py:391
-msgid "Reader mode unavailable for this site"
-msgstr "Leseansicht für diese Seite nicht verfügbar"
-
-#: ../gfeeds/opml_file_chooser.py:6
-msgid "Choose an OPML file to import"
-msgstr "Wählen Sie eine OPML-Datei für den Import aus"
-
-#: ../gfeeds/opml_file_chooser.py:13 ../gfeeds/opml_file_chooser.py:30
-msgid "XML files"
-msgstr "XML-Dateien"
-
-#: ../gfeeds/opml_file_chooser.py:21
-msgid "Choose where to save the exported OPML file"
-msgstr "Wählen Sie einen Speicherort für die exportierte OPML-Datei"
-
 #: ../gfeeds/spinner_button.py:15
 msgid "Refresh feeds"
 msgstr "Feeds aktualisieren"
 
-#: ../data/ui/webview_with_notification.glade:51
-msgid "Link copied to clipboard!"
-msgstr "Link in Zwischenablage kopiert!"
+#: ../gfeeds/opml_manager.py:8
+msgid "Error: OPML path provided does not exist"
+msgstr "Fehler: Der angegebene OPML-Pfad existiert nicht"
 
-#: ../data/ui/webview_filler.glade:36
-msgid "<big>Select an article</big>"
-msgstr "<big>Wählen Sie einen Artikel aus</big>"
-
-#: ../data/ui/sidebar_filler.glade:36
-msgid "<big>Add a feed or import an OPML file</big>"
-msgstr "<big>Einen Feed hinzufügen oder eine OPML-Datei importieren</big>"
+#: ../gfeeds/opml_manager.py:15
+#, python-brace-format
+msgid "Error parsing OPML file `{0}`"
+msgstr "Fehler beim Analysieren der OPML-Datei `{0}`"
 
 #: ../data/ui/menu.xml:10
 msgid "Import OPML"
@@ -255,14 +251,6 @@ msgstr "Tastaturkürzel"
 #: ../data/ui/menu.xml:29
 msgid "About Feeds"
 msgstr "Über Feeds"
-
-#: ../data/ui/add_feed_box.glade:20
-msgid "<big>New feed URL</big>"
-msgstr "<big>URL des neuen Feed</big>"
-
-#: ../data/ui/add_feed_box.glade:33
-msgid "https://..."
-msgstr "https://..."
 
 #: ../data/ui/shortcutsWindow.xml:13
 msgid "Quit"
@@ -292,6 +280,10 @@ msgstr "Verkleinern"
 msgid "Reset zoom"
 msgstr "Ansicht zurücksetzen"
 
+#: ../data/ui/sidebar_filler.glade:36
+msgid "<big>Add a feed or import an OPML file</big>"
+msgstr "<big>Einen Feed hinzufügen oder eine OPML-Datei importieren</big>"
+
 #: ../data/ui/spinner_button.glade:22
 msgid "page0"
 msgstr "page0"
@@ -299,6 +291,30 @@ msgstr "page0"
 #: ../data/ui/spinner_button.glade:33
 msgid "page1"
 msgstr "page1"
+
+#: ../data/ui/add_feed_box.glade:20
+msgid "<big>New feed URL</big>"
+msgstr "<big>URL des neuen Feed</big>"
+
+#: ../data/ui/add_feed_box.glade:33
+msgid "https://..."
+msgstr "https://..."
+
+#: ../data/ui/article_right_click_popover_content.glade:25
+msgid "Save article"
+msgstr "Artikel speichern"
+
+#: ../data/ui/article_right_click_popover_content.glade:65
+msgid "This does nothing"
+msgstr "Das bringt nichts"
+
+#: ../data/ui/webview_with_notification.glade:51
+msgid "Link copied to clipboard!"
+msgstr "Link in Zwischenablage kopiert!"
+
+#: ../data/ui/webview_filler.glade:36
+msgid "<big>Select an article</big>"
+msgstr "<big>Wählen Sie einen Artikel aus</big>"
 
 #: ../data/org.gabmus.gnome-feeds.desktop.in:3
 msgid "@prettyname@"
