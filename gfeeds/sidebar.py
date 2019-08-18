@@ -328,23 +328,23 @@ class GFeedsSidebar(Gtk.Stack):
         self.set_size_request(300, 500)
 
         self.feedman.feeds_items.connect(
-            'feeds_items_pop',
+            'pop',
             lambda caller, obj: self.on_feeds_items_pop(obj)
         )
         self.feedman.feeds_items.connect(
-            'feeds_items_append',
+            'append',
             lambda caller, obj: self.on_feeds_items_append(obj)
         )
         self.feedman.feeds_items.connect(
-            'feeds_items_empty',
+            'empty',
             lambda *args: self.listbox.empty()
         )
         self.feedman.saved_feeds_items.connect(
-            'saved_feeds_items_empty',
+            'empty',
             lambda *args: self.saved_items_listbox.empty()
         )
         self.feedman.saved_feeds_items.connect(
-            'saved_feeds_items_append',
+            'append',
             lambda caller, obj: self.on_saved_feeds_items_append(obj)
         )
 

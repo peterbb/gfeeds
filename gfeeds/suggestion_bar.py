@@ -26,11 +26,11 @@ class GFeedsSuggestionBar(Gtk.Revealer):
         self.add(self.super_box)
 
         self.feedman.feeds.connect(
-            'feeds_pop',
+            'pop',
             lambda caller, obj: self.on_feeds_pop(obj)
         )
         self.feedman.feeds.connect(
-            'feeds_append',
+            'append',
             lambda caller, obj: self.on_feeds_append(obj)
         )
 

@@ -54,15 +54,15 @@ class FeedsViewListbox(Gtk.ListBox):
         for feed in self.feedman.feeds:
             self.add_feed(feed)
         self.feedman.feeds.connect(
-            'feeds_empty',
+            'empty',
             lambda *args: self.empty()
         )
         self.feedman.feeds.connect(
-            'feeds_append',
+            'append',
             lambda caller, feed: self.add_feed(feed)
         )
         self.feedman.feeds.connect(
-            'feeds_pop',
+            'pop',
             lambda caller, feed: self.remove_feed(feed)
         )
 

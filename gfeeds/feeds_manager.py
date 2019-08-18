@@ -8,57 +8,26 @@ from .download_manager import download_feed
 
 class FeedsListSignaler(GObject.Object):
     __gsignals__ = {
-        'feeds_append': (
+        'append': (
             GObject.SIGNAL_RUN_LAST,
             None,
             (GObject.TYPE_PYOBJECT,)
         ),
-        'feeds_pop': (
+        'pop': (
             GObject.SIGNAL_RUN_LAST,
             None,
             (GObject.TYPE_PYOBJECT,)
         ),
-        'feeds_empty': (
+        'empty': (
             GObject.SIGNAL_RUN_LAST,
             None,
             (str,)
-        ),
-        'feeds_items_append': (
-            GObject.SIGNAL_RUN_LAST,
-            None,
-            (GObject.TYPE_PYOBJECT,)
-        ),
-        'feeds_items_pop': (
-            GObject.SIGNAL_RUN_LAST,
-            None,
-            (GObject.TYPE_PYOBJECT,)
-        ),
-        'feeds_items_empty': (
-            GObject.SIGNAL_RUN_LAST,
-            None,
-            (str,)
-        ),
-        'saved_feeds_items_append': (
-            GObject.SIGNAL_RUN_LAST,
-            None,
-            (GObject.TYPE_PYOBJECT,)
-        ),
-        'saved_feeds_items_pop': (
-            GObject.SIGNAL_RUN_LAST,
-            None,
-            (GObject.TYPE_PYOBJECT,)
-        ),
-        'saved_feeds_items_empty': (
-            GObject.SIGNAL_RUN_LAST,
-            None,
-            (str,)
-        ),
+        )
     }
 
 
 class SignalerList:
-    def __init__(self, signal_prefix):
-        self.signal_prefix = signal_prefix
+    def __init__(self):
         self.__list = []
         self.signaler = FeedsListSignaler()
         self.emit = self.signaler.emit
@@ -73,16 +42,16 @@ class SignalerList:
 
     def empty(self):
         self.__list = []
-        self.emit(self.signal_prefix+'_empty', '')
+        self.emit('empty', '')
 
     def append(self, n_item):
         self.__list.append(n_item)
-        self.emit(self.signal_prefix+'_append', n_item)
+        self.emit('append', n_item)
 
     def pop(self, item):
         popped = self.__list[item]
         self.__list.pop(item)
-        self.emit(self.signal_prefix+'_pop', popped)
+        self.emit('pop', popped)
         return popped
 
     def __len__(self):
@@ -94,18 +63,6 @@ class SignalerList:
 
     def __repr__(self):
         return str(type(self)) + self.__list.__repr__()
-
-class FeedsList(SignalerList):
-    def __init__(self):
-        super().__init__('feeds')
-
-class FeedsItemsList(SignalerList):
-    def __init__(self):
-        super().__init__('feeds_items')
-
-class SavedFeedsItemsList(SignalerList):
-    def __init__(self):
-        super().__init__('saved_feeds_items')
 
 class FeedsManagerSignaler(GObject.Object):
     __gsignals__ = {
@@ -132,9 +89,10 @@ class FeedsManager(metaclass=Singleton):
         self.emit = self.signaler.emit
         self.connect = self.signaler.connect
 
-        self.feeds = FeedsList()
-        self.feeds_items = FeedsItemsList()
-        self.saved_feeds_items = SavedFeedsItemsList()
+        self.feeds = SignalerList()
+        self.feeds_items = SignalerList()
+        self.saved_feeds_items = SignalerList()
+        # self.read_feeds_items = SignalerList()
 
     def populate_saved_feeds_items(self):
         self.saved_feeds_items.empty()
