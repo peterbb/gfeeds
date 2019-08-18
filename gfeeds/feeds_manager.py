@@ -26,9 +26,9 @@ class SignalerList(GObject.Object):
         )
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, n_list = [], **kwargs):
         super().__init__(**kwargs)
-        self.__list = []
+        self.__list = n_list.copy()
 
     # Note: you see all those "item" names?
     # Don't be confused, they don't refer to FeedItem objects
@@ -61,6 +61,9 @@ class SignalerList(GObject.Object):
     def __repr__(self):
         return str(type(self)) + self.__list.__repr__()
 
+    def get_list(self):
+        return self.__list.copy()
+
 class FeedsManagerSignaler(GObject.Object):
     __gsignals__ = {
         'feedmanager_refresh_start': (
@@ -89,7 +92,16 @@ class FeedsManager(metaclass=Singleton):
         self.feeds = SignalerList()
         self.feeds_items = SignalerList()
         self.saved_feeds_items = SignalerList()
-        # self.read_feeds_items = SignalerList()
+        self.read_feeds_items = SignalerList()
+
+    def populate_read_feeds_items(self):
+        self.read_feeds_items = SignalerList(
+            self.confman.conf['read_items']
+        )
+
+    def dump_read_to_conf(self):
+        self.confman.conf['read_items'] = self.read_feeds_items.get_list()
+        self.confman.save_conf()
 
     def populate_saved_feeds_items(self):
         self.saved_feeds_items.empty()
@@ -120,6 +132,7 @@ class FeedsManager(metaclass=Singleton):
 
     def refresh(self, *args):
         self.emit('feedmanager_refresh_start', '')
+        self.populate_read_feeds_items()
         self.populate_saved_feeds_items()
         self.feeds.empty()
         self.feeds_items.empty()

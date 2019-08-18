@@ -53,7 +53,8 @@ class ConfManager(metaclass=Singleton):
         'enable_csd': True,
         'use_rss_content': False,
         'max_refresh_threads': 2,
-        'saved_items': {}
+        'saved_items': {},
+        'read_items': []
     }
 
     def __init__(self):
