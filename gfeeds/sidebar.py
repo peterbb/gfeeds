@@ -64,6 +64,7 @@ class RowPopover(Gtk.Popover):
             ))
 
     def on_save_toggled(self, togglebtn):
+        self.popdown()
         togglebtn.set_sensitive(False)
         if togglebtn.get_active():
             fi_dict = self.parent.feeditem.to_dict()
