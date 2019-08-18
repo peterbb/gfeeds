@@ -6,7 +6,8 @@ from .rss_parser import Feed, FeedItem
 import threading
 from .download_manager import download_feed
 
-class FeedsListSignaler(GObject.Object):
+
+class SignalerList(GObject.Object):
     __gsignals__ = {
         'append': (
             GObject.SIGNAL_RUN_LAST,
@@ -25,13 +26,9 @@ class FeedsListSignaler(GObject.Object):
         )
     }
 
-
-class SignalerList:
-    def __init__(self):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.__list = []
-        self.signaler = FeedsListSignaler()
-        self.emit = self.signaler.emit
-        self.connect = self.signaler.connect
 
     # Note: you see all those "item" names?
     # Don't be confused, they don't refer to FeedItem objects
