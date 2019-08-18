@@ -19,7 +19,14 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.set_icon_name('org.gabmus.gnome-feeds')
 
         self.sidebar = GFeedsSidebar()
-        self.sidebar.listbox.connect('row-activated', self.on_sidebar_row_activated)
+        self.sidebar.listbox.connect(
+            'row-activated',
+            self.on_sidebar_row_activated
+        )
+        self.sidebar.saved_items_listbox.connect(
+            'row-activated',
+            self.on_sidebar_row_activated
+        )
 
         self.webview = GFeedsWebView()
 

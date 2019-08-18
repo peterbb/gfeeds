@@ -18,7 +18,7 @@ import json
 class FeedItem:
     def __init__(self, fp_item, parent_feed):
         self.fp_item = fp_item
-
+        self.is_saved = 'linkhash' in self.fp_item.keys()
         self.title = self.fp_item.get('title', '')
         self.link = self.fp_item.get('link', '')
         # self.description = self.fp_item.get('description', '')

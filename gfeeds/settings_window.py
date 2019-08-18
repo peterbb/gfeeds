@@ -182,13 +182,19 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
         self.show_all()
 
     def clear_caches(self, confman, *args):
-        for p in [confman.cache_path, confman.thumbs_cache_path]:
+        for p in [
+            confman.cache_path,
+            confman.thumbs_cache_path,
+            confman.saved_cache_path
+        ]:
             files = [
                 abspath(join(p, f)) for f in listdir(p)
             ]
             for f in files:
                 if isfile(f):
                     remove(f)
+        confman.conf['saved_items'] = {}
+        confman.save_conf()
 
 
 class ViewPreferencesPage(Handy.PreferencesPage):

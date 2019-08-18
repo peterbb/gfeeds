@@ -122,6 +122,9 @@ class GFeedsWebView(Gtk.Stack):
             )
 
     def _load_rss_content(self, feeditem):
+        if feeditem.is_saved:
+            self.set_enable_reader_mode(None, True, False)
+            return
         self.set_visible_child(self.overlay_container)
         self.feeditem = feeditem
         self.uri = feeditem.link
@@ -146,6 +149,12 @@ class GFeedsWebView(Gtk.Stack):
 
     def load_feeditem(self, feeditem, trigger_on_load_start = True, *args, **kwargs):
         uri = feeditem.link
+        if feeditem.is_saved:
+            uri = (
+                'file://' +
+                self.confman.saved_cache_path + '/' +
+                feeditem.fp_item['linkhash']
+            )
         self.feeditem = feeditem
         self.uri = uri
         self.set_visible_child(self.overlay_container)

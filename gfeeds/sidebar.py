@@ -33,7 +33,9 @@ class RowPopover(Gtk.Popover):
         self.save_btn.set_active(
             self.parent.feeditem.link in self.confman.conf['saved_items'].keys()
         )
-        self.save_btn.connect('toggled', self.on_save_toggled)
+        self.save_btn_handler_id = self.save_btn.connect(
+            'toggled', self.on_save_toggled
+        )
 
         self.set_modal(True)
         self.set_relative_to(self.parent)
@@ -79,7 +81,6 @@ class RowPopover(Gtk.Popover):
                 while Gtk.events_pending():
                     Gtk.main_iteration()
             self.confman.conf['saved_items'][self.parent.feeditem.link] = fi_dict
-            self.confman.save_conf()
         else:
             todel_fi_dict = self.confman.conf['saved_items'].pop(
                 self.parent.feeditem.link
@@ -87,7 +88,13 @@ class RowPopover(Gtk.Popover):
             remove(
                 self.confman.saved_cache_path + '/' + todel_fi_dict['linkhash']
             )
-            self.confman.save_conf()
+            # parent.is_saved means "the row that spawned the popover is from
+            # the *Saved* section"
+            if self.parent.is_saved:
+                parent_stack = self.parent.get_parent().get_parent(
+                    ).get_parent().get_parent()
+                parent_stack.on_saved_item_deleted(todel_fi_dict['link'])
+        self.confman.save_conf()
         self.feedman.populate_saved_feeds_items()
         togglebtn.set_sensitive(True)
 
@@ -353,6 +360,14 @@ class GFeedsSidebar(Gtk.Stack):
             lambda caller, obj: self.on_saved_feeds_items_append(obj)
         )
 
+    def on_saved_item_deleted(self, deleted_link):
+        for row in self.listbox.get_children():
+            if row.feeditem.link == deleted_link:
+                with row.popover.save_btn.handler_block(
+                    row.popover.save_btn_handler_id
+                ):
+                    row.popover.save_btn.set_active(False)
+                break
 
     def select_next_article(self, *args):
         visible_child = self.get_visible_child()
@@ -365,7 +380,8 @@ class GFeedsSidebar(Gtk.Stack):
             visible_child.select_prev_article
 
     def on_feeds_append(self, feed):
-        self.set_visible_child(self.scrolled_win)
+        if self.get_visible_child() == self.filler_view:
+            self.set_visible_child(self.scrolled_win)
 
     def on_feeds_pop(self, feed):
         if len(self.feedman.feeds) == 0:
@@ -378,14 +394,14 @@ class GFeedsSidebar(Gtk.Stack):
                 break
 
     def on_feeds_items_append(self, feeditem):
-        self.listbox.add(GFeedsSidebarRow(feeditem))
-        self.show_all()
+        n_row = GFeedsSidebarRow(feeditem)
+        self.listbox.add(n_row)
+        n_row.show_all()
 
     def on_saved_feeds_items_append(self, feeditem):
-        self.saved_items_listbox.add(
-            GFeedsSidebarRow(feeditem, is_saved = True)
-        )
-        self.show_all()
+        n_row = GFeedsSidebarRow(feeditem, is_saved = True)
+        self.saved_items_listbox.add(n_row)
+        n_row.show_all()
 
     def on_saved_feeds_items_pop(self, feeditem):
         for row in self.saved_items_listbox.get_children():
