@@ -309,12 +309,10 @@ class GFeedsSidebar(Gtk.Stack):
         self.filler_builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gnome-feeds/ui/sidebar_filler.glade'
         )
-        self.filler_view = self.filler_builder.get_object('sidebar_filler_box')
 
         self.saved_items_scrolled_win = GFeedsSidebarScrolledWin(self)
         self.saved_items_listbox = self.saved_items_scrolled_win.listbox
 
-        self.add(self.filler_view)
         self.add_titled(self.scrolled_win, 'Feed', _('Feed'))
         self.child_set_property(
             self.scrolled_win,
@@ -328,7 +326,6 @@ class GFeedsSidebar(Gtk.Stack):
             'emblem-favorite-symbolic'
         )
         self.set_size_request(300, 500)
-        self.set_visible_child(self.filler_view)
 
         self.feedman.feeds_items.connect(
             'feeds_items_pop',
@@ -338,19 +335,10 @@ class GFeedsSidebar(Gtk.Stack):
             'feeds_items_append',
             lambda caller, obj: self.on_feeds_items_append(obj)
         )
-        self.feedman.feeds.connect(
-            'feeds_pop',
-            lambda caller, obj: self.on_feeds_pop(obj)
-        )
-        self.feedman.feeds.connect(
-            'feeds_append',
-            lambda caller, obj: self.on_feeds_append(obj)
-        )
         self.feedman.feeds_items.connect(
             'feeds_items_empty',
             lambda *args: self.listbox.empty()
         )
-
         self.feedman.saved_feeds_items.connect(
             'saved_feeds_items_empty',
             lambda *args: self.saved_items_listbox.empty()
@@ -371,21 +359,11 @@ class GFeedsSidebar(Gtk.Stack):
 
     def select_next_article(self, *args):
         visible_child = self.get_visible_child()
-        if visible_child != self.filler_view:
-            visible_child.select_next_article
+        visible_child.select_next_article
 
     def select_prev_article(self, *args):
         visible_child = self.get_visible_child()
-        if visible_child != self.filler_view:
-            visible_child.select_prev_article
-
-    def on_feeds_append(self, feed):
-        if self.get_visible_child() == self.filler_view:
-            self.set_visible_child(self.scrolled_win)
-
-    def on_feeds_pop(self, feed):
-        if len(self.feedman.feeds) == 0:
-            self.set_visible_child(self.filler_view)
+        visible_child.select_prev_article
 
     def on_feeds_items_pop(self, feeditem):
         for row in self.listbox.get_children():

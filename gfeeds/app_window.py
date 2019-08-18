@@ -1,11 +1,12 @@
 from gettext import gettext as _
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk, GLib, Handy
 import threading
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .leaflet import GFeedsLeaflet
 from .sidebar import GFeedsSidebar
 from .headerbar import GFeedHeaderbar
+from .suggestion_bar import GFeedsSuggestionBar
 from .webview import GFeedsWebView
 from .rss_parser import Feed
 
@@ -34,7 +35,14 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         separator.get_style_context().add_class('sidebar')
 
         self.leaflet = GFeedsLeaflet()
-        self.leaflet.add(self.sidebar)
+        self.suggestion_bar = GFeedsSuggestionBar(
+            _('Add a feed or import an OPML file'),
+            'list-add-symbolic'
+        )
+        self.sidebar_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
+        self.sidebar_box.pack_start(self.suggestion_bar, False, False, 0)
+        self.sidebar_box.pack_start(self.sidebar, True, True, 0)
+        self.leaflet.add(self.sidebar_box)
         self.leaflet.add(separator)
         self.leaflet.add(self.webview)
         self.leaflet.connect('notify::folded', self.on_main_leaflet_folded)
@@ -51,10 +59,16 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         )
         
         self.headerbar.stack_switcher.set_stack(self.sidebar)
-        self.headerbar.stack_switcher.get_children()[0].hide()
-        self.headerbar.stack_switcher.get_children()[0].set_no_show_all(True)
+        self.headerbar.connect(
+            'gfeeds_headerbar_squeeze',
+            self.on_headerbar_squeeze
+        )
 
         self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+
+        self.bottom_bar = Handy.ViewSwitcherBar()
+        self.bottom_bar.set_stack(self.sidebar)
+        self.main_box.pack_end(self.bottom_bar, False, False, 0)
 
         self.set_headerbar_or_titlebar()
         self.confman.connect(
@@ -113,6 +127,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         for s in shortcuts_l:
             self.add_accelerator(s['combo'], s['cb'])
 
+
+    def on_headerbar_squeeze(self, caller, squeezed):
+        self.bottom_bar.set_reveal(squeezed)
 
     def set_headerbar_or_titlebar(self, *args):
         if self.confman.conf['enable_csd']:
@@ -175,7 +192,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.headerbar.headergroup.set_focus(target)
 
     def on_back_button_clicked(self, *args):
-        self.leaflet.set_visible_child(self.sidebar)
+        self.leaflet.set_visible_child(self.sidebar_box)
         self.on_main_leaflet_folded()
 
     def update_size_allocation(self, *args):

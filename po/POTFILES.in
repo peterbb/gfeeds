@@ -8,6 +8,7 @@ data/ui/sidebar_filler.glade
 data/ui/spinner_button.glade
 data/ui/webview_filler.glade
 data/ui/webview_with_notification.glade
+gfeeds/app_window.py
 gfeeds/build_reader_html.py
 gfeeds/download_manager.py
 gfeeds/feeds_manager.py

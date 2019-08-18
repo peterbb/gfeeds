@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, Handy
+from gi.repository import Gtk, Gdk, Handy, GObject
 from .leaflet import GFeedsLeaflet
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
@@ -37,6 +37,13 @@ class AddFeedPopover(Gtk.Popover):
 
 
 class GFeedHeaderbar(Handy.TitleBar):
+    __gsignals__ = {
+        'gfeeds_headerbar_squeeze': (
+            GObject.SIGNAL_RUN_FIRST,
+            None,
+            (bool,)
+        )
+    }
     def __init__(
             self,
             size_group_left,
@@ -164,9 +171,14 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.add_popover = AddFeedPopover(self.add_btn)
         self.left_headerbar.pack_start(self.add_btn)
 
+        self.squeezer = Handy.Squeezer()
+        self.nobox = Gtk.Label()
         self.stack_switcher = Handy.ViewSwitcher()
+        self.squeezer.add(self.stack_switcher)
+        self.squeezer.add(self.nobox)
+        self.squeezer.connect('notify::visible-child', self.on_squeeze)
         # self.stack_switcher = Gtk.StackSwitcher()
-        self.left_headerbar.set_custom_title(self.stack_switcher)
+        self.left_headerbar.set_custom_title(self.squeezer)
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
@@ -177,6 +189,12 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.feedman.connect(
             'feedmanager_refresh_end',
             self.on_new_feed_add_end
+        )
+
+    def on_squeeze(self, *args):
+        self.emit(
+            'gfeeds_headerbar_squeeze',
+            self.squeezer.get_visible_child() == self.nobox
         )
 
     def on_reader_mode_toggled(self, togglebtn):
