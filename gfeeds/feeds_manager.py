@@ -84,9 +84,11 @@ class FeedsManager(metaclass=Singleton):
                 t = threads_pool.pop(0)
                 t.start()
                 threads_alive.append(t)
-            for i, t in enumerate(threads_alive):
+            for t in threads_alive:
                 if not t.is_alive():
-                    threads_alive.pop(i)
+                    threads_alive.pop(
+                        threads_alive.index(t)
+                    )
             while t.is_alive():
                 while Gtk.events_pending():
                     Gtk.main_iteration()

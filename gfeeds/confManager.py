@@ -108,10 +108,10 @@ class ConfManager(metaclass=Singleton):
 
         self.read_feeds_items = SignalerList(self.conf['read_items'])
         self.read_feeds_items.connect(
-            'append', self.save_conf
+            'append', self.dump_read_items_to_conf
         )
         self.read_feeds_items.connect(
-            'pop', self.save_conf
+            'pop', self.dump_read_items_to_conf
         )
 
         bl_gsettings = Gio.Settings.new('org.gnome.desktop.wm.preferences')
@@ -127,8 +127,10 @@ class ConfManager(metaclass=Singleton):
     def max_article_age(self):
         return timedelta(days=self.conf['max_article_age_days'])
 
-    def save_conf(self, *args):
+    def dump_read_items_to_conf(self, *args):
         self.conf['read_items'] = self.read_feeds_items.get_list()
+
+    def save_conf(self, *args):
         with open(self.path, 'w') as fd:
             fd.write(json.dumps(self.conf))
             fd.close()

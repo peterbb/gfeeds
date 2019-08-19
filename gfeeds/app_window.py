@@ -163,7 +163,16 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             'width': self.size_allocation.width,
             'height': self.size_allocation.height
         }
-
+        # cleanup old read items
+        feeds_items_links = [fi.link for fi in self.feedman.feeds_items]
+        to_rm = []
+        for ri in self.confman.conf['read_items']:
+            if not ri in feeds_items_links:
+                to_rm.append(ri)
+        for ri in to_rm:
+            self.confman.conf['read_items'].pop(
+                self.confman.conf['read_items'].index(ri)
+            )
         self.confman.save_conf()
 
     def on_sidebar_row_activated(self, listbox, row):
