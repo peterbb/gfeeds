@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-14 13:44+0200\n"
-"PO-Revision-Date: 2019-08-17 14:35+0200\n"
+"POT-Creation-Date: 2019-08-19 15:16+0200\n"
+"PO-Revision-Date: 2019-08-19 18:18+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -30,14 +30,14 @@ msgstr "XML-Dateien"
 msgid "Choose where to save the exported OPML file"
 msgstr "Wählen Sie einen Speicherort für die exportierte OPML-Datei"
 
-#: ../gfeeds/rss_parser.py:47
+#: ../gfeeds/rss_parser.py:50
 #, python-brace-format
 msgid "Error: unable to parse datetime {0} for feeditem {1}"
 msgstr ""
 "Fehler: Datum- und Zeitangabe {0} für Feedeintrag {1} kann nicht ermittelt "
 "werden"
 
-#: ../gfeeds/rss_parser.py:102
+#: ../gfeeds/rss_parser.py:164
 #, python-brace-format
 msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
@@ -47,7 +47,7 @@ msgstr ""
 "keine Grafik.\n"
 "Versuche das Laden des Favicons aus dem Artikel."
 
-#: ../gfeeds/rss_parser.py:111
+#: ../gfeeds/rss_parser.py:173
 #, python-brace-format
 msgid ""
 "Error resizing favicon from article for feed {0}.\n"
@@ -56,36 +56,36 @@ msgstr ""
 "Fehler bei Größenänderung des Favicons aus dem Artikel für Feed {0}.\n"
 "Lösche ungültiges Favicon."
 
-#: ../gfeeds/feeds_manager.py:124
+#: ../gfeeds/feeds_manager.py:51
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
 msgstr "Feed {0} existiert bereits, wird übersprungen"
 
-#: ../gfeeds/headerbar.py:82
+#: ../gfeeds/headerbar.py:89
 msgid "Back to articles"
 msgstr "Zurück zu den Artikeln"
 
-#: ../gfeeds/headerbar.py:92
+#: ../gfeeds/headerbar.py:99
 msgid "Open externally"
 msgstr "Extern öffnen"
 
-#: ../gfeeds/headerbar.py:98
+#: ../gfeeds/headerbar.py:105
 msgid "Reader mode"
 msgstr "Leseansicht"
 
-#: ../gfeeds/headerbar.py:111
+#: ../gfeeds/headerbar.py:118
 msgid "Load RSS content"
 msgstr "Lade RSS-Inhalt"
 
-#: ../gfeeds/headerbar.py:135
+#: ../gfeeds/headerbar.py:142
 msgid "Menu"
 msgstr "Menü"
 
-#: ../gfeeds/headerbar.py:155
+#: ../gfeeds/headerbar.py:162
 msgid "Filter by feed"
 msgstr "Filtern nach Feed"
 
-#: ../gfeeds/headerbar.py:163
+#: ../gfeeds/headerbar.py:170
 msgid "Add new feed"
 msgstr "Neuen Feed hinzufügen"
 
@@ -93,6 +93,10 @@ msgstr "Neuen Feed hinzufügen"
 #, python-brace-format
 msgid "Error downloading favicon for `{0}`"
 msgstr "Fehler beim Herunterladen des Favicon für `{0}`"
+
+#: ../gfeeds/app_window.py:39
+msgid "Add a feed or import an OPML file"
+msgstr "Einen Feed hinzufügen oder eine OPML-Datei importieren"
 
 #: ../gfeeds/feeds_view.py:15
 msgid "All feeds"
@@ -106,7 +110,7 @@ msgstr "Webansicht"
 msgid "Filler View"
 msgstr "Füllansicht"
 
-#: ../gfeeds/webview.py:134
+#: ../gfeeds/webview.py:137
 msgid "RSS content or summary not available for this article"
 msgstr "RSS-Inhalt oder Zusammenfassung für diesen Artikel nicht verfügbar"
 
@@ -114,13 +118,21 @@ msgstr "RSS-Inhalt oder Zusammenfassung für diesen Artikel nicht verfügbar"
 msgid "Reader mode unavailable for this site"
 msgstr "Leseansicht für diese Seite nicht verfügbar"
 
-#: ../gfeeds/sidebar.py:42
+#: ../gfeeds/sidebar.py:49 ../gfeeds/sidebar.py:94
+msgid "Mark as unread"
+msgstr "Als ungelesen markieren"
+
+#: ../gfeeds/sidebar.py:57 ../gfeeds/sidebar.py:84
 msgid "Mark as read"
 msgstr "Als gelesen markieren"
 
-#: ../gfeeds/sidebar.py:51
-msgid "Mark as unread"
-msgstr "Als ungelesen markieren"
+#: ../gfeeds/sidebar.py:358
+msgid "Feed"
+msgstr "Feed"
+
+#: ../gfeeds/sidebar.py:364
+msgid "Saved"
+msgstr "Gespeichert"
 
 #: ../gfeeds/download_manager.py:36
 #, python-brace-format
@@ -167,43 +179,43 @@ msgstr "Zwischenspeicher leeren"
 msgid "Clear caches"
 msgstr "Löschen"
 
-#: ../gfeeds/settings_window.py:197
+#: ../gfeeds/settings_window.py:203
 msgid "View"
 msgstr "Ansicht"
 
-#: ../gfeeds/settings_window.py:202
+#: ../gfeeds/settings_window.py:208
 msgid "View Settings"
 msgstr "Ansichtseinstellungen"
 
-#: ../gfeeds/settings_window.py:205
+#: ../gfeeds/settings_window.py:211
 msgid "Use dark theme for reader mode"
 msgstr "Dunkles Thema für Leseansicht verwenden"
 
-#: ../gfeeds/settings_window.py:210
+#: ../gfeeds/settings_window.py:216
 msgid "Enable JavaScript"
 msgstr "JavaScript aktivieren"
 
-#: ../gfeeds/settings_window.py:215
+#: ../gfeeds/settings_window.py:221
 msgid "Enable client side decoration"
 msgstr "Fensterdekoration aktivieren"
 
-#: ../gfeeds/settings_window.py:231
+#: ../gfeeds/settings_window.py:237
 msgid "Advanced"
 msgstr "Erweitert"
 
-#: ../gfeeds/settings_window.py:236
+#: ../gfeeds/settings_window.py:242
 msgid "Advanced Settings"
 msgstr "Erweiterte Einstellungen"
 
-#: ../gfeeds/settings_window.py:239
+#: ../gfeeds/settings_window.py:245
 msgid "Maximum refresh threads"
 msgstr "Maximale Aktualisierungsthreads"
 
-#: ../gfeeds/settings_window.py:244
+#: ../gfeeds/settings_window.py:250
 msgid "How many threads to refresh feeds"
 msgstr "Anzahl an Threads zum Aktualisieren von Feeds"
 
-#: ../gfeeds/settings_window.py:282
+#: ../gfeeds/settings_window.py:288
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -236,19 +248,27 @@ msgstr "Fehler: Der angegebene OPML-Pfad existiert nicht"
 msgid "Error parsing OPML file `{0}`"
 msgstr "Fehler beim Analysieren der OPML-Datei `{0}`"
 
+#: ../data/ui/menu.xml:6
+msgid "Mark all as read"
+msgstr "Alle als gelesen markieren"
+
 #: ../data/ui/menu.xml:10
+msgid "Mark all as unread"
+msgstr "Alle als ungelesen markieren"
+
+#: ../data/ui/menu.xml:20
 msgid "Import OPML"
 msgstr "OPML importieren"
 
-#: ../data/ui/menu.xml:14
+#: ../data/ui/menu.xml:24
 msgid "Export OPML"
 msgstr "OPML exportieren"
 
-#: ../data/ui/menu.xml:25
+#: ../data/ui/menu.xml:34
 msgid "Keyboard Shortcuts"
 msgstr "Tastaturkürzel"
 
-#: ../data/ui/menu.xml:29
+#: ../data/ui/menu.xml:38
 msgid "About Feeds"
 msgstr "Über Feeds"
 
@@ -280,10 +300,6 @@ msgstr "Verkleinern"
 msgid "Reset zoom"
 msgstr "Ansicht zurücksetzen"
 
-#: ../data/ui/sidebar_filler.glade:36
-msgid "<big>Add a feed or import an OPML file</big>"
-msgstr "<big>Einen Feed hinzufügen oder eine OPML-Datei importieren</big>"
-
 #: ../data/ui/spinner_button.glade:22
 msgid "page0"
 msgstr "page0"
@@ -304,7 +320,7 @@ msgstr "https://..."
 msgid "Save article"
 msgstr "Artikel speichern"
 
-#: ../data/ui/article_right_click_popover_content.glade:65
+#: ../data/ui/article_right_click_popover_content.glade:64
 msgid "This does nothing"
 msgstr "Das bringt nichts"
 
@@ -501,3 +517,6 @@ msgstr "Italienische Übersetzung hinzugefügt"
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:138
 msgid "First release"
 msgstr "Erste Veröffentlichung"
+
+#~ msgid "<big>Add a feed or import an OPML file</big>"
+#~ msgstr "<big>Einen Feed hinzufügen oder eine OPML-Datei importieren</big>"
