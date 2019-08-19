@@ -167,6 +167,16 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.confman.save_conf()
 
     def on_sidebar_row_activated(self, listbox, row):
+        row.popover.set_read(True)
+        other_listbox = (
+            self.sidebar.listbox
+            if listbox == self.sidebar.saved_items_listbox
+            else self.sidebar.saved_items_listbox
+        )
+        for other_row in other_listbox:
+            if other_row.feeditem.link == row.feeditem.link:
+                other_row.popover.set_read(True)
+                break
         if self.confman.conf['use_rss_content']:
             self.webview.on_load_start()
             self.webview.set_enable_rss_content(None, True, row.feeditem)

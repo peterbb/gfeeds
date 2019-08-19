@@ -5,7 +5,6 @@
 
     <file preprocess="xml-stripblanks">aboutdialog.glade</file>
     <file preprocess="xml-stripblanks">ui/webview_filler.glade</file>
-    <file preprocess="xml-stripblanks">ui/sidebar_filler.glade</file>
     <file preprocess="xml-stripblanks">ui/webview_with_notification.glade</file>
     <file preprocess="xml-stripblanks">ui/add_feed_box.glade</file>
     <file preprocess="xml-stripblanks">ui/spinner_button.glade</file>

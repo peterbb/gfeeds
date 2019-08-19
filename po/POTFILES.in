@@ -4,7 +4,6 @@ data/ui/add_feed_box.glade
 data/ui/article_right_click_popover_content.glade
 data/ui/menu.xml
 data/ui/shortcutsWindow.xml
-data/ui/sidebar_filler.glade
 data/ui/spinner_button.glade
 data/ui/webview_filler.glade
 data/ui/webview_with_notification.glade

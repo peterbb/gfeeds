@@ -40,28 +40,63 @@ class RowPopover(Gtk.Popover):
         self.set_modal(True)
         self.set_relative_to(self.parent)
         self.add(self.container_box)
-        self.read = not False # TODO: get from feeditem?
-        self.on_read_unread_clicked(self.read_unread_btn)
-
-    def on_read_unread_clicked(self, btn):
-        if self.read:
-            self.read = False
-            btn.get_children()[0].set_from_icon_name(
-                'eye-open-negative-filled-symbolic',
-                Gtk.IconSize.BUTTON
-            )
-            btn.set_tooltip_text(_(
-                'Mark as read'
-            ))
-        else:
-            self.read = True
-            btn.get_children()[0].set_from_icon_name(
+        if self.parent.feeditem.read:
+            self.read_unread_btn.get_children()[0].set_from_icon_name(
                 'eye-not-looking-symbolic',
                 Gtk.IconSize.BUTTON
             )
-            btn.set_tooltip_text(_(
+            self.read_unread_btn.set_tooltip_text(_(
                 'Mark as unread'
             ))
+        else:
+            self.read_unread_btn.get_children()[0].set_from_icon_name(
+                'eye-open-negative-filled-symbolic',
+                Gtk.IconSize.BUTTON
+            )
+            self.read_unread_btn.set_tooltip_text(_(
+                'Mark as read'
+            ))
+
+    def set_read(self, read):
+        parent_stack = self.parent.get_parent().get_parent(
+            ).get_parent().get_parent()
+        other_list = (
+            parent_stack.listbox
+            if self.parent.get_parent() == parent_stack.saved_items_listbox
+            else parent_stack.saved_items_listbox
+        )
+        other_row = None
+        for row in other_list.get_children():
+            if row.feeditem.link == self.parent.feeditem.link:
+                other_row = row
+                break
+        rows = [self.parent,]
+        if other_row:
+            rows.append(other_row)
+        if not read:
+            for r in rows:
+                r.set_read(False)
+                r.popover.read_unread_btn.get_children()[0].set_from_icon_name(
+                    'eye-open-negative-filled-symbolic',
+                    Gtk.IconSize.BUTTON
+                )
+                r.popover.read_unread_btn.set_tooltip_text(_(
+                    'Mark as read'
+                ))
+        else:
+            for r in rows:
+                r.set_read(True)
+                r.popover.read_unread_btn.get_children()[0].set_from_icon_name(
+                    'eye-not-looking-symbolic',
+                    Gtk.IconSize.BUTTON
+                )
+                r.popover.read_unread_btn.set_tooltip_text(_(
+                    'Mark as unread'
+                ))
+
+    def on_read_unread_clicked(self, btn):
+        self.popdown()
+        self.set_read(not self.parent.feeditem.read)
 
     def on_save_toggled(self, togglebtn):
         self.popdown()
@@ -153,6 +188,16 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.popover = RowPopover(self)
 
         self.add(self.container_box)
+        self.set_read()
+
+    def set_read(self, read = None):
+        if read != None:
+            self.feeditem.set_read(read)
+        if self.feeditem.read:
+            self.set_opacity(0.5)
+        else:
+            self.set_opacity(1.0)
+
 
     def draw_color(self, da, ctx):
         ctx.set_source_rgb(
@@ -306,10 +351,6 @@ class GFeedsSidebar(Gtk.Stack):
         self.listbox = self.scrolled_win.listbox
         self.empty = self.scrolled_win.listbox.empty
         self.populate = self.scrolled_win.listbox.populate
-
-        self.filler_builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/sidebar_filler.glade'
-        )
 
         self.saved_items_scrolled_win = GFeedsSidebarScrolledWin(self)
         self.saved_items_listbox = self.saved_items_scrolled_win.listbox

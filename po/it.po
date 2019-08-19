@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-18 11:04+0200\n"
-"PO-Revision-Date: 2019-08-18 11:04+0200\n"
+"POT-Creation-Date: 2019-08-19 15:16+0200\n"
+"PO-Revision-Date: 2019-08-19 15:17+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -30,12 +30,12 @@ msgstr "File XML"
 msgid "Choose where to save the exported OPML file"
 msgstr "Scegli dove salvare il file OPML esportato"
 
-#: ../gfeeds/rss_parser.py:48
+#: ../gfeeds/rss_parser.py:50
 #, python-brace-format
 msgid "Error: unable to parse datetime {0} for feeditem {1}"
 msgstr "Errore: impossibile analizzare data e ora {0} per l'articolo {1}"
 
-#: ../gfeeds/rss_parser.py:147
+#: ../gfeeds/rss_parser.py:164
 #, python-brace-format
 msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
@@ -45,7 +45,7 @@ msgstr ""
 "un'immagine.\n"
 "Provo a scaricare la favicon da un articolo."
 
-#: ../gfeeds/rss_parser.py:156
+#: ../gfeeds/rss_parser.py:173
 #, python-brace-format
 msgid ""
 "Error resizing favicon from article for feed {0}.\n"
@@ -54,7 +54,7 @@ msgstr ""
 "Errore nel ridimensionare la favicon da articolo per il feed {0}.\n"
 "Elimino la favicon invalida."
 
-#: ../gfeeds/feeds_manager.py:151
+#: ../gfeeds/feeds_manager.py:51
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
@@ -116,19 +116,19 @@ msgstr "Contenuto o riassunto dell'RSS non disponibile per questo articolo"
 msgid "Reader mode unavailable for this site"
 msgstr "Modalità lettura non disponibile per questo sito"
 
-#: ../gfeeds/sidebar.py:54
-msgid "Mark as read"
-msgstr "Segna come letto"
-
-#: ../gfeeds/sidebar.py:63
+#: ../gfeeds/sidebar.py:49 ../gfeeds/sidebar.py:94
 msgid "Mark as unread"
 msgstr "Segna come non letto"
 
-#: ../gfeeds/sidebar.py:316
+#: ../gfeeds/sidebar.py:57 ../gfeeds/sidebar.py:84
+msgid "Mark as read"
+msgstr "Segna come letto"
+
+#: ../gfeeds/sidebar.py:358
 msgid "Feed"
 msgstr "Feed"
 
-#: ../gfeeds/sidebar.py:322
+#: ../gfeeds/sidebar.py:364
 msgid "Saved"
 msgstr "Salvati"
 
@@ -246,19 +246,27 @@ msgstr "Errore: il percorso all'OPML fornito non esiste"
 msgid "Error parsing OPML file `{0}`"
 msgstr "Errore nell'analisi del file OPML `{0}`"
 
+#: ../data/ui/menu.xml:6
+msgid "Mark all as read"
+msgstr "Segna tutti come letti"
+
 #: ../data/ui/menu.xml:10
+msgid "Mark all as unread"
+msgstr "Segna tutti come non letti"
+
+#: ../data/ui/menu.xml:20
 msgid "Import OPML"
 msgstr "Importa OPML"
 
-#: ../data/ui/menu.xml:14
+#: ../data/ui/menu.xml:24
 msgid "Export OPML"
 msgstr "Esporta OPML"
 
-#: ../data/ui/menu.xml:25
+#: ../data/ui/menu.xml:34
 msgid "Keyboard Shortcuts"
 msgstr "Scorciatoie da tastiera"
 
-#: ../data/ui/menu.xml:29
+#: ../data/ui/menu.xml:38
 msgid "About Feeds"
 msgstr "A proposito di Feeds"
 
@@ -290,10 +298,6 @@ msgstr "Riduci"
 msgid "Reset zoom"
 msgstr "Resetta zoom"
 
-#: ../data/ui/sidebar_filler.glade:36
-msgid "<big>Add a feed or import an OPML file</big>"
-msgstr "<big>Aggiungi un feed o importa un file OPML</big>"
-
 #: ../data/ui/spinner_button.glade:22
 msgid "page0"
 msgstr "page0"
@@ -314,7 +318,7 @@ msgstr "https://..."
 msgid "Save article"
 msgstr "Salva articolo"
 
-#: ../data/ui/article_right_click_popover_content.glade:65
+#: ../data/ui/article_right_click_popover_content.glade:64
 msgid "This does nothing"
 msgstr ""
 
@@ -506,3 +510,6 @@ msgstr "Aggiunta traduzione italiana"
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:138
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "<big>Add a feed or import an OPML file</big>"
+#~ msgstr "<big>Aggiungi un feed o importa un file OPML</big>"

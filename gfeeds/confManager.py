@@ -6,6 +6,7 @@ from os import makedirs, listdir
 from os import environ as Env
 import json
 from datetime import timedelta
+from .signaler_list import SignalerList
 
 class ConfManagerSignaler(GObject.Object):
     __gsignals__ = {
@@ -105,6 +106,14 @@ class ConfManager(metaclass=Singleton):
             if not isdir(p):
                 makedirs(p)
 
+        self.read_feeds_items = SignalerList(self.conf['read_items'])
+        self.read_feeds_items.connect(
+            'append', self.save_conf
+        )
+        self.read_feeds_items.connect(
+            'pop', self.save_conf
+        )
+
         bl_gsettings = Gio.Settings.new('org.gnome.desktop.wm.preferences')
         bl = bl_gsettings.get_value('button-layout').get_string()
         self.wm_decoration_on_left = (
@@ -118,7 +127,8 @@ class ConfManager(metaclass=Singleton):
     def max_article_age(self):
         return timedelta(days=self.conf['max_article_age_days'])
 
-    def save_conf(self):
+    def save_conf(self, *args):
+        self.conf['read_items'] = self.read_feeds_items.get_list()
         with open(self.path, 'w') as fd:
             fd.write(json.dumps(self.conf))
             fd.close()

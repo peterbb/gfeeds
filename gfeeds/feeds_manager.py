@@ -5,64 +5,7 @@ from .confManager import ConfManager
 from .rss_parser import Feed, FeedItem
 import threading
 from .download_manager import download_feed
-
-
-class SignalerList(GObject.Object):
-    __gsignals__ = {
-        'append': (
-            GObject.SIGNAL_RUN_LAST,
-            None,
-            (GObject.TYPE_PYOBJECT,)
-        ),
-        'pop': (
-            GObject.SIGNAL_RUN_LAST,
-            None,
-            (GObject.TYPE_PYOBJECT,)
-        ),
-        'empty': (
-            GObject.SIGNAL_RUN_LAST,
-            None,
-            (str,)
-        )
-    }
-
-    def __init__(self, n_list = [], **kwargs):
-        super().__init__(**kwargs)
-        self.__list = n_list.copy()
-
-    # Note: you see all those "item" names?
-    # Don't be confused, they don't refer to FeedItem objects
-    # It's item as in "list item"
-
-    def index(self, item):
-        return self.__list.index(item)
-
-    def empty(self):
-        self.__list = []
-        self.emit('empty', '')
-
-    def append(self, n_item):
-        self.__list.append(n_item)
-        self.emit('append', n_item)
-
-    def pop(self, item):
-        popped = self.__list[item]
-        self.__list.pop(item)
-        self.emit('pop', popped)
-        return popped
-
-    def __len__(self):
-        return len(self.__list)
-
-    # this also provides iteration and slicing
-    def __getitem__(self, item):
-        return self.__list[item]
-
-    def __repr__(self):
-        return str(type(self)) + self.__list.__repr__()
-
-    def get_list(self):
-        return self.__list.copy()
+from .signaler_list import SignalerList
 
 class FeedsManagerSignaler(GObject.Object):
     __gsignals__ = {
@@ -92,16 +35,6 @@ class FeedsManager(metaclass=Singleton):
         self.feeds = SignalerList()
         self.feeds_items = SignalerList()
         self.saved_feeds_items = SignalerList()
-        self.read_feeds_items = SignalerList()
-
-    def populate_read_feeds_items(self):
-        self.read_feeds_items = SignalerList(
-            self.confman.conf['read_items']
-        )
-
-    def dump_read_to_conf(self):
-        self.confman.conf['read_items'] = self.read_feeds_items.get_list()
-        self.confman.save_conf()
 
     def populate_saved_feeds_items(self):
         self.saved_feeds_items.empty()
@@ -132,7 +65,6 @@ class FeedsManager(metaclass=Singleton):
 
     def refresh(self, *args):
         self.emit('feedmanager_refresh_start', '')
-        self.populate_read_feeds_items()
         self.populate_saved_feeds_items()
         self.feeds.empty()
         self.feeds_items.empty()

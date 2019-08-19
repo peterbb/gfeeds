@@ -3,6 +3,16 @@
     <menu id="generalMenu">
         <section>
             <item>
+                <attribute name="label" translatable="yes">Mark all as read</attribute>
+                <attribute name="action">app.set_all_read</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Mark all as unread</attribute>
+                <attribute name="action">app.set_all_unread</attribute>
+            </item>
+        </section>
+        <section>
+            <item>
                 <attribute name="label" translatable="yes">Manage Feeds</attribute>
                 <attribute name="action">app.manage_feeds</attribute>
             </item>
@@ -14,7 +24,6 @@
                 <attribute name="label" translatable="yes">Export OPML</attribute>
                 <attribute name="action">app.export_opml</attribute>
             </item>
-
         </section>
         <section>
             <item>

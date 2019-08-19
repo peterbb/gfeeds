@@ -62,6 +62,14 @@ class GFeedsApplication(Gtk.Application):
 
         actions = [
             {
+                'name': 'set_all_read',
+                'func': self.set_all_read
+            },
+            {
+                'name': 'set_all_unread',
+                'func': self.set_all_unread
+            },
+            {
                 'name': 'manage_feeds',
                 'func': self.manage_feeds
             },
@@ -95,6 +103,14 @@ class GFeedsApplication(Gtk.Application):
             c_action = Gio.SimpleAction.new(a['name'], None)
             c_action.connect('activate', a['func'])
             self.add_action(c_action)
+
+    def set_all_read(self, *args):
+        for row in self.window.sidebar.listbox.get_children():
+            row.popover.set_read(True)
+
+    def set_all_unread(self, *args):
+        for row in self.window.sidebar.listbox.get_children():
+            row.popover.set_read(False)
 
     def manage_feeds(self, *args):
         mf_win = GFeedsManageFeedsWindow(

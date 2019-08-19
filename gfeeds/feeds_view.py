@@ -90,7 +90,6 @@ class FeedsViewListbox(Gtk.ListBox):
 
     def empty(self):
         while True:
-            print('asd')
             row = self.get_row_at_index(1)
             if row:
                 if not row.IS_ALL:

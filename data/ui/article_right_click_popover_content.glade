@@ -46,7 +46,6 @@
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Mark as read</property>
                 <property name="icon_name">eye-open-negative-filled-symbolic</property>
               </object>
             </child>
@@ -59,9 +58,9 @@
         </child>
         <child>
           <object class="GtkButton" id="unknown_btn">
-            <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="no_show_all">True</property>
             <property name="tooltip_text" translatable="yes">This does nothing</property>
             <child>
               <object class="GtkImage">

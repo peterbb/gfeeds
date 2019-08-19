@@ -17,10 +17,12 @@ import json
 
 class FeedItem:
     def __init__(self, fp_item, parent_feed):
+        self.confman = ConfManager()
         self.fp_item = fp_item
         self.is_saved = 'linkhash' in self.fp_item.keys()
         self.title = self.fp_item.get('title', '')
         self.link = self.fp_item.get('link', '')
+        self.read = self.link in self.confman.read_feeds_items
         # self.description = self.fp_item.get('description', '')
         self.pub_date_str = self.fp_item.get(
             'published',
@@ -47,6 +49,17 @@ class FeedItem:
             print(_(
                 'Error: unable to parse datetime {0} for feeditem {1}'
             ).format(self.pub_date_str, self))
+
+    def set_read(self, read):
+        if read == self.read: # how could this happen?
+            return
+        if read and not self.link in self.confman.read_feeds_items:
+            self.confman.read_feeds_items.append(self.link)
+        elif self.link in self.confman.read_feeds_items:
+            self.confman.read_feeds_items.pop(
+                self.confman.read_feeds_items.index(self.link)
+            )
+        self.read = read
 
     def __repr__(self):
         return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
@@ -120,6 +133,10 @@ class Feed:
             item_age = self.init_time - n_item.pub_date
             if item_age < self.confman.max_article_age:
                 self.items.append(n_item)
+            elif n_item.read:
+                self.confman.read_feeds_items.pop(
+                    self.confman.read_feeds_items.index(n_item.link)
+                )
         # self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
         self.color = [0, 0, 0]
 
