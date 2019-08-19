@@ -401,11 +401,11 @@ class GFeedsSidebar(Gtk.Stack):
 
     def select_next_article(self, *args):
         visible_child = self.get_visible_child()
-        visible_child.select_next_article
+        visible_child.select_next_article()
 
     def select_prev_article(self, *args):
         visible_child = self.get_visible_child()
-        visible_child.select_prev_article
+        visible_child.select_prev_article()
 
     def on_feeds_items_pop(self, feeditem):
         for row in self.listbox.get_children():
