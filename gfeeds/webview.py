@@ -6,6 +6,7 @@ from .build_reader_html import build_reader_html
 from .confManager import ConfManager
 from .download_manager import download_text
 import threading
+from feedparser import FeedParserDict
 
 class GFeedsWebView(Gtk.Stack):
     __gsignals__ = {
@@ -128,17 +129,20 @@ class GFeedsWebView(Gtk.Stack):
         self.set_visible_child(self.overlay_container)
         self.feeditem = feeditem
         self.uri = feeditem.link
-        self.html = '<!-- GFEEDS RSS CONTENT --><article>{0}</article>'.format(
-            feeditem.fp_item.get(
-                'content',
-                feeditem.fp_item.get(
-                    'summary',
-                    '<h1><i>'+_(
-                        'RSS content or summary not available for this article'
-                    )+'</i></h1>'
-                )
-            )
+        content = feeditem.fp_item.get(
+            'content', feeditem.fp_item.get('summary', None)
         )
+        if not content:
+            content = '<h1><i>'+_(
+                'RSS content or summary not available for this article'
+                )+'</i></h1>'
+        elif type(content) != str:
+            if type(content) == list:
+                content = content[0]
+            if type(content) in [dict, FeedParserDict]:
+                if 'value' in content.keys():
+                    content = content['value']
+        self.html = f'<!-- GFEEDS RSS CONTENT --><article>{content}</article>'
         self.set_enable_reader_mode(None, True, True)
 
     def _load_reader_async(self, *args):

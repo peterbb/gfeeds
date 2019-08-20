@@ -244,6 +244,12 @@ picture img {
   border-radius: 3px;
 }
 
+img {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: white;
+}
+
 h1 {
   font-size: 1.6em;
 }
@@ -355,7 +361,7 @@ body.dark mark {
 """
 
 dark_mode_css = """
-body {
+body, table, tbody, tr, td {
   background-color: #181818;
 }
 
