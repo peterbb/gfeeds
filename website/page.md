@@ -28,11 +28,23 @@ Add your favorite feeds, and start reading the latest news.
 
 ![Add](screenshots/add_feed.png)
 
+### Read, unread
+
+Read articles are grayed out. Mark them as read or unread with a simple right click or longpress.
+
+![Read articles](screenshots/unread.png)
+
 ### Read what matters
 
 Filter the articles by feed and only read what you want to read.
 
 ![Filter](screenshots/filter.png)
+
+### On the go
+
+Save any article you want and read it offline anytime and anywhere.
+
+![Saved articles](screenshots/saved_articles.png)
 
 ### Easy on the eyes
 

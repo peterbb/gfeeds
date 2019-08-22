@@ -34,6 +34,12 @@
         <screenshot>
             <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/preferences.png</image>
         </screenshot>
+        <screenshot>
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/saved_articles.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/unread.png</image>
+        </screenshot>
         <screenshot type="default">
             <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/mainwindow.png</image>
         </screenshot>
@@ -42,6 +48,17 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.7" timestamp="1566463350">
+            <description>
+                <ul>
+                    <li>New right click or longpress menu for articles</li>
+                    <li>You can now save articles offline</li>
+                    <li>Initial suggestion to add feeds is now less intrusive</li>
+                    <li>Read articles are now greyed out</li>
+                    <li>Various bug fixes</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.6" timestamp="1565595606">
             <description>
                 <ul>
