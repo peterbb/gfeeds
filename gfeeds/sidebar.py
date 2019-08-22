@@ -194,9 +194,9 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         if read != None:
             self.feeditem.set_read(read)
         if self.feeditem.read:
-            self.set_opacity(0.5)
+            self.get_style_context().add_class('dim-label')
         else:
-            self.set_opacity(1.0)
+            self.get_style_context().remove_class('dim-label')
 
 
     def draw_color(self, da, ctx):
