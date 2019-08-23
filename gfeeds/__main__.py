@@ -31,6 +31,8 @@ from .opml_file_chooser import (
 )
 from .manage_feeds_window import GFeedsManageFeedsWindow
 import threading
+from os.path import isfile
+from .confirm_add_dialog import GFeedsConfirmAddDialog
 
 def test():
     from .download_manager import download
@@ -118,14 +120,17 @@ class GFeedsApplication(Gtk.Application):
         )
         mf_win.present()
 
+    def add_opml_feeds(self, f_path):
+        n_feeds_urls_l = opml_to_rss_list(f_path)
+        for url in n_feeds_urls_l:
+            self.feedman.add_feed(url)
+
     def import_opml(self, *args):
         dialog = GFeedsOpmlFileChooserDialog(self.window)
         res = dialog.run()
         # dialog.close()
         if res == Gtk.ResponseType.ACCEPT:
-            n_feeds_urls_l = opml_to_rss_list(dialog.get_filename())
-            for url in n_feeds_urls_l:
-                self.feedman.add_feed(url)
+            self.add_opml_feeds(dialog.get_filename())
 
     def export_opml(self, *args):
         dialog = GFeedsOpmlSavePathChooserDialog(self.window)
@@ -185,11 +190,19 @@ class GFeedsApplication(Gtk.Application):
             provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
-        if self.args:
-            pass
         self.window.present()
         self.window.show_all()
         self.feedman.refresh()
+        if self.args:
+            if self.args.argurl:
+                if self.args.argurl[:8] == 'file:///':
+                    abspath = self.args.argurl[7:]
+                    if isfile(abspath):
+                        dialog = GFeedsConfirmAddDialog(self.window, abspath)
+                        res = dialog.run()
+                        dialog.close()
+                        if res == Gtk.ResponseType.YES:
+                            self.add_opml_feeds(abspath)
 
     def do_command_line(self, args):
         """
@@ -200,6 +213,13 @@ class GFeedsApplication(Gtk.Application):
         Gtk.Application.do_command_line(self, args)  # call the default commandline handler
         # make a command line parser
         parser = argparse.ArgumentParser()
+        parser.add_argument(
+            'argurl',
+            metavar = _('url'),
+            type = str,
+            nargs = '?',
+            help = _('opml file local url or rss remote url to import')
+        )
         #parser.add_argument('-c', '--cli', dest='wallpaper_path', nargs='+', action='append', help=_('set wallpapers from command line'))
         #parser.add_argument('-r', '--random', dest='set_random', action='store_true', help=_('set wallpapers randomly'))
         # parse the command line stored in args, but skip the first element (the filename)
