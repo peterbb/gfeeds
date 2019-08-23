@@ -41,7 +41,7 @@ class ConfManagerSignaler(GObject.Object):
 class ConfManager(metaclass=Singleton):
 
     BASE_SCHEMA = {
-        'feeds': [],
+        'feeds': {},
         'dark_reader': False,
         'default_reader': False,
         'new_first': True,
@@ -91,6 +91,12 @@ class ConfManager(metaclass=Singleton):
                             self.conf[k] = self.BASE_SCHEMA[k].copy()
                         else:
                             self.conf[k] = self.BASE_SCHEMA[k]
+                if type(self.conf['feeds']) == list:
+                    n_feeds = {}
+                    for o_feed in self.conf['feeds']:
+                        n_feeds[o_feed] = {}
+                    self.conf['feeds'] = n_feeds
+                    self.save_conf()
             except:
                 self.conf = self.BASE_SCHEMA.copy()
                 self.save_conf()

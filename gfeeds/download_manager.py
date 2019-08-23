@@ -6,32 +6,41 @@ from .sha import shasum
 confman = ConfManager()
 
 def download_text(link):
-    req = requests.get(link)
-    if req.status_code == 200:
-        return req.text
+    res = requests.get(link)
+    if res.status_code == 200:
+        return res.text
     else:
-        raise requests.HTTPError(f'request code {req.status_code}')
+        raise requests.HTTPError(f'request code {res.status_code}')
 
 def download_raw(link, dest):
-    req = requests.get(link)
-    if req.status_code == 200:
+    res = requests.get(link)
+    if res.status_code == 200:
         with open(dest, 'wb') as fd:
-            for chunk in req.iter_content(1024):
+            for chunk in res.iter_content(1024):
                 fd.write(chunk)
             fd.close()
     else:
-        raise requests.HTTPError(f'request code {req.status_code}')
+        raise requests.HTTPError(f'request code {res.status_code}')
 
 def download_feed(link):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
     #print(_('Downloading `{0}`…').format(link))
-    req = requests.get(link)
-    if req.status_code == 200:
+    headers = {
+        'Accept-Encoding': 'gzip, deflate, br'
+    }
+    if 'last-modified' in confman.conf['feeds'][link].keys():
+        headers['If-Modified-Since'] = confman.conf['feeds'][link]['last-modified']
+    res = requests.get(link, headers = headers)
+    if 'last-modified' in res.headers.keys():
+        confman.conf['feeds'][link]['last-modified'] = res.headers['last-modified']
+    if res.status_code == 200:
         #print(_('Download of `{0}` successful').format(link))
         with open(dest_path, 'w') as fd:
-            fd.write(req.text)
+            fd.write(res.text)
             fd.close()
         return (dest_path, link)
+    elif res.status_code == 304:
+        return (dest_path, link)
     else:
-        print(_('Error downloading `{0}`, code `{1}`').format(link, req.status_code))
+        print(_('Error downloading `{0}`, code `{1}`').format(link, res.status_code))
         return None

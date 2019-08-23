@@ -39,7 +39,7 @@ def test():
     from .rss_parser import Feed
     confman = ConfManager()
     feeds = []
-    for f in confman.conf['feeds']:
+    for f in confman.conf['feeds'].keys():
         feeds.append(Feed(download_feed(f)))
 
     for f in feeds:

@@ -138,7 +138,7 @@ class Feed:
                     self.confman.read_feeds_items.index(n_item.link)
                 )
         # self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
-        self.color = [0, 0, 0]
+        self.color = [0.0, 0.0, 0.0]
 
         if not self.title:
             self.title = self.link

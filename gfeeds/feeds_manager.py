@@ -47,10 +47,10 @@ class FeedsManager(metaclass=Singleton):
         if not refresh:
             if not 'http://' in uri and not 'https://' in uri:
                 uri = 'http://' + uri
-            if uri in self.confman.conf['feeds']:
+            if uri in self.confman.conf['feeds'].keys():
                 print(_('Feed {0} exists already, skipping').format(uri))
                 return
-            self.confman.conf['feeds'].append(uri)
+            self.confman.conf['feeds'][uri] = {}
             self.confman.save_conf()
         n_feed = Feed(download_feed(uri))
         GLib.idle_add(
@@ -71,7 +71,7 @@ class FeedsManager(metaclass=Singleton):
         threads_pool = []
         threads_alive = []
         MAX_THREADS = self.confman.conf['max_refresh_threads']
-        for f_link in self.confman.conf['feeds']:
+        for f_link in self.confman.conf['feeds'].keys():
             t = threading.Thread(
                 group = None,
                 target = self._add_feed_async_worker,
@@ -129,7 +129,7 @@ class FeedsManager(metaclass=Singleton):
                 self.feeds.index(f)
             )
             self.confman.conf['feeds'].pop(
-                self.confman.conf['feeds'].index(f.rss_link)
+                f.rss_link
             )
         self.confman.save_conf()
             
