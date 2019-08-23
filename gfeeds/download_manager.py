@@ -2,6 +2,7 @@ from gettext import gettext as _
 import requests
 from .confManager import ConfManager
 from .sha import shasum
+from os.path import isfile
 
 confman = ConfManager()
 
@@ -28,7 +29,7 @@ def download_feed(link):
     headers = {
         'Accept-Encoding': 'gzip, deflate, br'
     }
-    if 'last-modified' in confman.conf['feeds'][link].keys():
+    if 'last-modified' in confman.conf['feeds'][link].keys() and isfile(dest_path):
         headers['If-Modified-Since'] = confman.conf['feeds'][link]['last-modified']
     res = requests.get(link, headers = headers)
     if 'last-modified' in res.headers.keys():
