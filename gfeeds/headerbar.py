@@ -151,17 +151,13 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.menu_btn.connect('clicked', self.on_menu_btn_clicked)
         self.left_headerbar.pack_end(self.menu_btn)
 
-        self.refresh_btn = RefreshSpinnerButton()
-        self.refresh_btn.btn.connect('clicked', self.feedman.refresh)
-        self.left_headerbar.pack_end(self.refresh_btn)
-
         self.filter_btn = Gtk.Button.new_from_icon_name(
             'view-list-symbolic',
             Gtk.IconSize.BUTTON
         )
         self.filter_btn.set_tooltip_text(_('Filter by feed'))
         self.filter_popover = FeedsViewPopover(self.filter_btn)
-        self.left_headerbar.pack_start(self.filter_btn)
+        self.left_headerbar.pack_end(self.filter_btn)
 
         self.add_btn = Gtk.Button.new_from_icon_name(
             'list-add-symbolic',
@@ -170,6 +166,10 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.add_btn.set_tooltip_text(_('Add new feed'))
         self.add_popover = AddFeedPopover(self.add_btn)
         self.left_headerbar.pack_start(self.add_btn)
+
+        self.refresh_btn = RefreshSpinnerButton()
+        self.refresh_btn.btn.connect('clicked', self.feedman.refresh)
+        self.left_headerbar.pack_start(self.refresh_btn)
 
         self.squeezer = Handy.Squeezer()
         self.nobox = Gtk.Label()
