@@ -35,7 +35,9 @@ def download_feed(link):
     if 'last-modified' in res.headers.keys():
         confman.conf['feeds'][link]['last-modified'] = res.headers['last-modified']
     if res.status_code == 200:
-        #print(_('Download of `{0}` successful').format(link))
+        if not 'last-modified' in res.headers.keys():
+            if 'last-modified' in confman.conf['feeds'][link].keys():
+                confman.conf['feeds'][link].pop('last-modified')
         with open(dest_path, 'w') as fd:
             fd.write(res.text)
             fd.close()
