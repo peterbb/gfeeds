@@ -28,6 +28,8 @@ class RowPopover(Gtk.Popover):
 
         self.read_unread_btn = self.builder.get_object('read_unread_btn')
         self.read_unread_btn.connect('clicked', self.on_read_unread_clicked)
+        self.read_unread_img = self.builder.get_object('read_unread_img')
+        self.read_unread_label = self.builder.get_object('read_unread_label')
 
         self.save_btn = self.builder.get_object('save_btn')
         self.save_btn.set_active(
@@ -41,19 +43,19 @@ class RowPopover(Gtk.Popover):
         self.set_relative_to(self.parent)
         self.add(self.container_box)
         if self.parent.feeditem.read:
-            self.read_unread_btn.get_children()[0].set_from_icon_name(
+            self.read_unread_img.set_from_icon_name(
                 'eye-not-looking-symbolic',
                 Gtk.IconSize.BUTTON
             )
-            self.read_unread_btn.set_tooltip_text(_(
+            self.read_unread_label.set_text(_(
                 'Mark as unread'
             ))
         else:
-            self.read_unread_btn.get_children()[0].set_from_icon_name(
+            self.read_unread_img.set_from_icon_name(
                 'eye-open-negative-filled-symbolic',
                 Gtk.IconSize.BUTTON
             )
-            self.read_unread_btn.set_tooltip_text(_(
+            self.read_unread_label.set_text(_(
                 'Mark as read'
             ))
 
@@ -76,21 +78,21 @@ class RowPopover(Gtk.Popover):
         if not read:
             for r in rows:
                 r.set_read(False)
-                r.popover.read_unread_btn.get_children()[0].set_from_icon_name(
+                r.popover.read_unread_img.set_from_icon_name(
                     'eye-open-negative-filled-symbolic',
                     Gtk.IconSize.BUTTON
                 )
-                r.popover.read_unread_btn.set_tooltip_text(_(
+                r.popover.read_unread_label.set_text(_(
                     'Mark as read'
                 ))
         else:
             for r in rows:
                 r.set_read(True)
-                r.popover.read_unread_btn.get_children()[0].set_from_icon_name(
+                r.popover.read_unread_img.set_from_icon_name(
                     'eye-not-looking-symbolic',
                     Gtk.IconSize.BUTTON
                 )
-                r.popover.read_unread_btn.set_tooltip_text(_(
+                r.popover.read_unread_label.set_text(_(
                     'Mark as unread'
                 ))
 
