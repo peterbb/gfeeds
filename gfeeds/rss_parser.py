@@ -15,6 +15,16 @@ from PIL import Image
 from .colorthief import ColorThief
 import json
 
+def get_encoding(in_str):
+    sample = in_str[:200]
+    if 'encoding' in sample:
+        enc_i = sample.index('encoding')
+        trim = sample[enc_i+10:]
+        encoding = trim[:trim.index('"')]
+        return encoding
+    else:
+        return 'utf-8'
+
 class FeedItem:
     def __init__(self, fp_item, parent_feed):
         self.confman = ConfManager()
@@ -114,10 +124,15 @@ class Feed:
         if not download_res:
             return None
         feedpath = download_res[0]
-        with open(feedpath, 'r') as fd:
-            self.fp_feed = feedparser.parse(fd.read())
+        with open(feedpath, 'rb') as fd:
+            feed_bytes = fd.read()
             fd.close()
-
+        feed_str = feed_bytes.decode()
+        feed_str = feed_str.replace(
+            get_encoding(feed_str),
+            'utf-8'
+        )
+        self.fp_feed = feedparser.parse(feed_str)
         self.confman = ConfManager()
         self.init_time = pytz.UTC.localize(datetime.utcnow())
         
