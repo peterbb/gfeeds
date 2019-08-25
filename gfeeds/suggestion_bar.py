@@ -29,12 +29,16 @@ class GFeedsSuggestionBar(Gtk.Revealer):
             'pop',
             lambda caller, obj: self.on_feeds_pop(obj)
         )
+        self.feedman.connect(
+            'feedmanager_refresh_end',
+            lambda caller, obj: self.on_feeds_pop()
+        )
         self.feedman.feeds.connect(
             'append',
             lambda caller, obj: self.on_feeds_append(obj)
         )
 
-    def on_feeds_pop(self, deleted_feed):
+    def on_feeds_pop(self, deleted_feed=None):
         if len(self.feedman.feeds) == 0:
             self.set_reveal_child(True)
 
