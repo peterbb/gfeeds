@@ -95,6 +95,8 @@ class RowPopover(Gtk.Popover):
                 r.popover.read_unread_label.set_text(_(
                     'Mark as unread'
                 ))
+        parent_stack.listbox.invalidate_filter()
+        other_list.invalidate_filter()
 
     def on_read_unread_clicked(self, btn):
         self.popdown()
@@ -240,6 +242,10 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             'gfeeds_filter_changed',
             self.change_filter
         )
+        self.confman.connect(
+            'gfeeds_show_read_changed',
+            self.on_show_read_changed
+        )
 
         # longpress & right click
         self.longpress = Gtk.GestureLongPress.new(self)
@@ -255,6 +261,9 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             self.on_key_press_event
         )
 
+    def on_show_read_changed(self, *args):
+        self.invalidate_filter()
+
     def on_right_click(self, e_or_g, x, y, *args):
         row = self.get_row_at_y(y)
         if row:
@@ -269,10 +278,16 @@ class GFeedsSidebarListBox(Gtk.ListBox):
         self.set_filter_func(self.gfeeds_sidebar_filter_func, None, False)
 
     def gfeeds_sidebar_filter_func(self, row, data, notify_destroy):
+        toret = False
         if not self.selected_feed:
-            return True
+            toret = True
         else:
-            return row.feeditem.parent_feed == self.selected_feed
+            toret = row.feeditem.parent_feed == self.selected_feed
+        return (
+            toret and (
+                self.confman.conf['show_read_items'] or not row.feeditem.read
+            )
+        )
 
     def set_sort_from_confman(self, *args):
         if self.confman.conf['new_first']:

@@ -19,7 +19,7 @@ from gettext import gettext as _
 
 import sys
 import argparse
-from gi.repository import Gtk, Gdk, Gio
+from gi.repository import Gtk, Gdk, Gio, GLib
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .app_window import GFeedsAppWindow
@@ -62,6 +62,13 @@ class GFeedsApplication(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
 
+        stateful_actions = [
+            {
+                'name': 'show_read_items',
+                'func': self.show_read_items
+            }
+        ]
+
         actions = [
             {
                 'name': 'set_all_read',
@@ -101,10 +108,26 @@ class GFeedsApplication(Gtk.Application):
             }
         ]
 
+        for sa in stateful_actions:
+            c_action = Gio.SimpleAction.new_stateful(
+                sa['name'],
+                None,
+                GLib.Variant.new_boolean(
+                    self.confman.conf['show_read_items']
+                )
+            )
+            c_action.connect('activate', sa['func'])
+            self.add_action(c_action)
+
         for a in actions:
             c_action = Gio.SimpleAction.new(a['name'], None)
             c_action.connect('activate', a['func'])
             self.add_action(c_action)
+
+    def show_read_items(self, action, *args):
+        action.change_state(GLib.Variant.new_boolean(not action.get_state().get_boolean()))
+        self.confman.conf['show_read_items'] = action.get_state().get_boolean()
+        self.confman.emit('gfeeds_show_read_changed', '')
 
     def set_all_read(self, *args):
         for row in self.window.sidebar.listbox.get_children():

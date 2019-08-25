@@ -103,6 +103,10 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
                 'combo': '<Control>r',
                 'cb': self.feedman.refresh
             },
+            # {
+            #     'combo': '<Control>h',
+            #     'cb': self.show_read_items
+            # },
             {
                 'combo': '<Control>j',
                 'cb': self.sidebar.select_next_article
@@ -126,7 +130,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         ]
         for s in shortcuts_l:
             self.add_accelerator(s['combo'], s['cb'])
-
 
     def on_headerbar_squeeze(self, caller, squeezed):
         self.bottom_bar.set_reveal(squeezed)
@@ -195,6 +198,8 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.leaflet.set_visible_child(self.webview)
         self.headerbar.leaflet.set_visible_child(self.headerbar.right_headerbar)
         self.on_main_leaflet_folded()
+        listbox.invalidate_filter()
+        other_listbox.invalidate_filter()
 
     def on_main_leaflet_folded(self, *args):
         target = None

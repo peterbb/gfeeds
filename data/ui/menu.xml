@@ -3,6 +3,10 @@
     <menu id="generalMenu">
         <section>
             <item>
+                <attribute name="label" translatable="yes">Show read articles</attribute>
+                <attribute name="action">app.show_read_items</attribute>
+            </item>
+            <item>
                 <attribute name="label" translatable="yes">Mark all as read</attribute>
                 <attribute name="action">app.set_all_read</attribute>
             </item>
