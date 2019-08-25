@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/gabmus/gnome-feeds">
-    <file compressed="true">org.gabmus.gnome-feeds.service.desktop</file>
+  <gresource prefix="/org/gabmus/gfeeds">
+    <file compressed="true">org.gabmus.gfeeds.service.desktop</file>
 
     <file preprocess="xml-stripblanks">aboutdialog.glade</file>
     <file preprocess="xml-stripblanks">ui/webview_filler.glade</file>
@@ -13,9 +13,9 @@
     <file preprocess="xml-stripblanks">ui/article_right_click_popover_content.glade</file>
     <file preprocess="xml-stripblanks">ui/menu.xml</file>
     <file preprocess="xml-stripblanks">ui/shortcutsWindow.xml</file>
-    
-    <file preprocess="xml-stripblanks">icons/org.gabmus.gnome-feeds.svg</file>
-    <file preprocess="xml-stripblanks">icons/org.gabmus.gnome-feeds-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/org.gabmus.gfeeds.svg</file>
+    <file preprocess="xml-stripblanks">icons/org.gabmus.gfeeds-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/ephy-reader-mode-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/eye-not-looking-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/eye-open-negative-filled-symbolic.svg</file>

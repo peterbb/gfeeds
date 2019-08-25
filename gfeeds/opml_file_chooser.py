@@ -30,5 +30,5 @@ def GFeedsOpmlSavePathChooserDialog(parent_window):
     f_filter.set_name(_('XML files'))
     f_filter.add_mime_type('text/xml')
     dialog.add_filter(f_filter)
-    dialog.set_current_name('GNOME-Feeds.opml')
+    dialog.set_current_name('GFeeds.opml')
     return dialog

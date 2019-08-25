@@ -76,11 +76,11 @@ class ConfManager(metaclass=Singleton):
                 self.is_flatpak = True
 
         if self.is_flatpak:
-            self.path = Path(f'{Env.get("XDG_CONFIG_HOME")}/org.gabmus.gnome-feeds.json')
-            self.cache_path = Path(f'{Env.get("XDG_CACHE_HOME")}/gnome-feeds')
+            self.path = Path(f'{Env.get("XDG_CONFIG_HOME")}/org.gabmus.gfeeds.json')
+            self.cache_path = Path(f'{Env.get("XDG_CACHE_HOME")}/org.gabmus.gfeeds')
         else:
-            self.path = Path(f'{Env.get("HOME")}/.config/gnome-feeds.json')
-            self.cache_path = Path(f'{Env.get("HOME")}/.cache/gnome-feeds')
+            self.path = Path(f'{Env.get("HOME")}/.config/org.gabmus.gfeeds.json')
+            self.cache_path = Path(f'{Env.get("HOME")}/.cache/org.gabmus.gfeeds')
         self.thumbs_cache_path = f'{self.cache_path}/thumbnails/'
         self.saved_cache_path = f'{self.cache_path}/saved_articles'
 

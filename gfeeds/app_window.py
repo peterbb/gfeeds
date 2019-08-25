@@ -17,7 +17,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.feedman = FeedsManager()
 
         self.set_title('Feeds')
-        self.set_icon_name('org.gabmus.gnome-feeds')
+        self.set_icon_name('org.gabmus.gfeeds')
 
         self.sidebar = GFeedsSidebar()
         self.sidebar.listbox.connect(

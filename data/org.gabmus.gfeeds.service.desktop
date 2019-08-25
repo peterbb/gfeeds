@@ -2,8 +2,8 @@
 Name=Feeds
 # TODO: We could include the full path here but Meson requires
 #       newer GLib to generate files for GResource
-TryExec=gnome-feeds
-Exec=gnome-feeds --gapplication-service
+TryExec=gfeeds
+Exec=gfeeds --gapplication-service
 Type=Application
 NoDisplay=true
-Name[en_US]=org.gabmus.gnome-feeds.service.desktop
+Name[en_US]=org.gabmus.gfeeds.service.desktop

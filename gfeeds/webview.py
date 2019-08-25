@@ -29,10 +29,10 @@ class GFeedsWebView(Gtk.Stack):
         self.set_size_request(300, 500)
 
         self.filler_builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/webview_filler.glade'
+            '/org/gabmus/gfeeds/ui/webview_filler.glade'
         )
         self.webview_notif_builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/webview_with_notification.glade'
+            '/org/gabmus/gfeeds/ui/webview_with_notification.glade'
         )
 
         self.webkitview = WebKit2.WebView()

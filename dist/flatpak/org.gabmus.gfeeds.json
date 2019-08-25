@@ -1,6 +1,6 @@
 {
-    "app-id" : "org.gabmus.gnome-feeds",
-    "command" : "gnome-feeds",
+    "app-id" : "org.gabmus.gfeeds",
+    "command" : "gfeeds",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "3.32",
     "sdk" : "org.gnome.Sdk",
@@ -635,7 +635,7 @@
             ]
         },
         {
-            "name" : "gnome-feeds",
+            "name" : "gfeeds",
             "buildsystem" : "meson",
             "builddir" : true,
             "config-opts" : [

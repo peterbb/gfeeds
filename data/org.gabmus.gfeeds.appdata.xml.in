@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-    <id>org.gabmus.gnome-feeds.desktop</id>
-    <name>GNOME Feeds</name>
+    <id>org.gabmus.gfeeds.desktop</id>
+    <name>Feeds</name>
     <developer_name>Gabriele Musco</developer_name>
     <summary>News reader for GNOME</summary>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
     <description>
-        <p>GNOME Feeds is a minimal RSS/Atom feed reader built with speed and simplicity in mind.</p>
+        <p>Feeds is a minimal RSS/Atom feed reader built with speed and simplicity in mind.</p>
         <p>It offers a simple user interface that only shows the latest news from your subscriptions.</p>
         <p>Articles are shown in a web view by default, with javascript disabled for a faster and less intrusive user experience. There's also a reader mode included, built from the one GNOME Web/Epiphany uses.</p>
         <p>Feeds can be imported and exported via OPML.</p>

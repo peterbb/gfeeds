@@ -5,7 +5,7 @@ class RefreshSpinnerButton(Gtk.Bin):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/spinner_button.glade'
+            '/org/gabmus/gfeeds/ui/spinner_button.glade'
         )
         self.btn = self.builder.get_object('spinnerbutton')
         self.stack = self.builder.get_object('stack')

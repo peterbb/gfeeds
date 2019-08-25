@@ -17,7 +17,7 @@ class RowPopover(Gtk.Popover):
         self.confman = ConfManager()
         self.feedman = FeedsManager()
         self.builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/article_right_click_popover_content.glade'
+            '/org/gabmus/gfeeds/ui/article_right_click_popover_content.glade'
         )
         self.container_box = self.builder.get_object('container_box')
         # self.set_size_request(270, 150)
@@ -146,7 +146,7 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.feeditem = feeditem
 
         self.builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/sidebar_listbox_row.glade'
+            '/org/gabmus/gfeeds/ui/sidebar_listbox_row.glade'
         )
         self.container_box = self.builder.get_object('container_box')
         self.colored_box = self.builder.get_object('drawing_area')

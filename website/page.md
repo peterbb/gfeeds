@@ -1,6 +1,6 @@
 <nav>
 
-- [<span>![](./logo-symbolic.svg) **GNOME Feeds**</span>](#)
+- [<span>![](./logo-symbolic.svg) **Feeds**</span>](#)
 - [Features](#features)
 - [Install](#install)
 - [Hack](#hack)
@@ -12,7 +12,7 @@
 
 ![Logo](logo.svg)
 
-# GNOME Feeds
+# Feeds
 
 ## News reader for GNOME
 
@@ -64,7 +64,7 @@ Load a full web view (with JavaScript disabled by default) to get the full exper
 
 ### Large feed collection? Import it
 
-GNOME Feeds supports importing and exporting your feed collection from and to OPML so that you can get set up in seconds.
+Feeds supports importing and exporting your feed collection from and to OPML so that you can get set up in seconds.
 
 ![Import and Export](screenshots/import_export.png)
 
@@ -76,7 +76,7 @@ Customize your experience with a large range of preferences.
 
 ### Responsive
 
-GNOME Feeds is built with Purism's libhandy library to offer a responsive user interface. Got a new shiny GNU+Linux phone? Here's a feed reader for you!
+Feeds is built with Purism's libhandy library to offer a responsive user interface. Got a new shiny GNU+Linux phone? Here's a feed reader for you!
 
 <video autoplay mute controls loop>
     <source src="screenshots/responsive_demo.mp4" type="video/mp4" />
@@ -90,7 +90,7 @@ GNOME Feeds is built with Purism's libhandy library to offer a responsive user i
 
 [Install **Flatpak** by following the quick setup guide](https://flatpak.org/setup/). Does it work on your distribution? Most likely.
 
-Then, click the button below to install GNOME Feeds:
+Then, click the button below to install Feeds:
 
 <a href="https://flathub.org/apps/details/org.gabmus.gnome-feeds"><img src="https://raw.githubusercontent.com/flatpak-design-team/flathub-mockups/master/assets/download-button/download.svg?sanitize=true" height="100" alt="Get it on Flathub" /></a>
 
@@ -104,7 +104,7 @@ If you're using Arch Linux or an Arch based system, you can install the [`gnome-
 
 ![Code](icons/code.svg)
 
-GNOME Feeds is written using Python 3 and GTK+ 3. It's free software, released under the GPL3 license. Feel free to browse the source code on [the GitLab repository](https://gitlab.com/gabmus/gnome-feeds), fork it, make changes or open issues!
+Feeds is written using Python 3 and GTK+ 3. It's free software, released under the GPL3 license. Feel free to browse the source code on [the GitLab repository](https://gitlab.com/gabmus/gnome-feeds), fork it, make changes or open issues!
 
 ---
 
@@ -112,4 +112,4 @@ GNOME Feeds is written using Python 3 and GTK+ 3. It's free software, released u
 
 ![Bug](icons/bug.svg)
 
-Have you found a bug? Do you want a new feature? Whatever the case, opening an issue is never a bad idea. You can do that on [the issue page of GNOME Feeds' GitLab repository](https://gitlab.com/gabmus/gnome-feeds/issues)
+Have you found a bug? Do you want a new feature? Whatever the case, opening an issue is never a bad idea. You can do that on [the issue page of Feeds' GitLab repository](https://gitlab.com/gabmus/gnome-feeds/issues)

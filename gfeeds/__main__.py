@@ -50,7 +50,7 @@ def test():
 class GFeedsApplication(Gtk.Application):
     def __init__(self, **kwargs):
         super().__init__(
-            application_id = 'org.gabmus.gnome-feeds',
+            application_id = 'org.gabmus.gfeeds',
             flags = Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
             **kwargs
         )
@@ -176,7 +176,7 @@ class GFeedsApplication(Gtk.Application):
 
     def show_about_dialog(self, *args):
         about_builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/aboutdialog.glade'
+            '/org/gabmus/gfeeds/aboutdialog.glade'
         )
         dialog = about_builder.get_object('aboutdialog')
         dialog.set_modal(True)
@@ -189,8 +189,8 @@ class GFeedsApplication(Gtk.Application):
 
     def show_shortcuts_window(self, *args):
         shortcuts_win = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/shortcutsWindow.xml'
-        ).get_object('shortcuts-gnome-feeds')
+            '/org/gabmus/gfeeds/ui/shortcutsWindow.xml'
+        ).get_object('shortcuts-gfeeds')
         shortcuts_win.props.section_name = 'shortcuts'
         shortcuts_win.set_transient_for(self.window)
         shortcuts_win.set_attached_to(self.window)

@@ -13,7 +13,7 @@ class AddFeedPopover(Gtk.Popover):
         self.feedman = FeedsManager()
         
         self.builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/add_feed_box.glade'
+            '/org/gabmus/gfeeds/ui/add_feed_box.glade'
         )
         self.set_modal(True)
         self.set_relative_to(relative_to)
@@ -142,7 +142,7 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.menu_btn.set_tooltip_text(_('Menu'))
         self.menu_popover = Gtk.PopoverMenu()
         self.menu_builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/menu.xml'
+            '/org/gabmus/gfeeds/ui/menu.xml'
         )
         self.menu = self.menu_builder.get_object('generalMenu')
         self.menu_popover.bind_model(self.menu)

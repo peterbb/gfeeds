@@ -1,4 +1,4 @@
-project('gnome-feeds',
+project('gfeeds',
     version: '0.7',
     meson_version: '>= 0.50.0',
     license: 'GPL3'

@@ -46,10 +46,10 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 # they need locale
 # don't ask me, it's effin weird
 # I copied this from uberwriter
-locale.textdomain('gnome-feeds')
-locale.bindtextdomain('gnome-feeds', localedir)
-gettext.textdomain('gnome-feeds')
-gettext.bindtextdomain('gnome-feeds', localedir)
+locale.textdomain('gfeeds')
+locale.bindtextdomain('gfeeds', localedir)
+gettext.textdomain('gfeeds')
+gettext.bindtextdomain('gfeeds', localedir)
 
 if __name__ == '__main__':
     import gi

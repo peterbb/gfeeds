@@ -26,7 +26,7 @@ class FeedsViewListboxRow(Gtk.ListBoxRow):
         self.IS_ALL = False
         self.feed = feed
         self.builder = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gnome-feeds/ui/manage_feeds_listbox_row.glade'
+            '/org/gabmus/gfeeds/ui/manage_feeds_listbox_row.glade'
         )
         self.hbox = self.builder.get_object('hbox')
         self.checkbox = self.builder.get_object('check')

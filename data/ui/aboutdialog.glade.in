@@ -3,26 +3,26 @@
 
 Copyright (C) 
 
-This file is part of GNOME Feeds.
+This file is part of GFeeds.
 
-GNOME Feeds is free software: you can redistribute it and/or modify
+GFeeds is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-GNOME Feeds is distributed in the hope that it will be useful,
+GFeeds is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with GNOME Feeds.  If not, see <http://www.gnu.org/licenses/>.
+along with GFeeds.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <!-- interface-license-type gplv3 -->
-  <!-- interface-name GNOME Feeds -->
+  <!-- interface-name GFeeds -->
   <object class="GtkAboutDialog" id="aboutdialog">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
