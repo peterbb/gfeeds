@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-25 11:08+0200\n"
-"PO-Revision-Date: 2019-08-25 11:10+0200\n"
+"POT-Creation-Date: 2019-08-25 12:48+0200\n"
+"PO-Revision-Date: 2019-08-25 12:49+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -132,11 +132,11 @@ msgstr "Feed"
 msgid "Saved"
 msgstr "Salvati"
 
-#: ../gfeeds/__main__.py:248
+#: ../gfeeds/__main__.py:267
 msgid "url"
 msgstr "url"
 
-#: ../gfeeds/__main__.py:251
+#: ../gfeeds/__main__.py:270
 msgid "opml file local url or rss remote url to import"
 msgstr "url locale del file opml o url rss remota da importare"
 
@@ -245,9 +245,13 @@ msgstr "Vuoi eliminare questi feed?"
 msgid "Refresh feeds"
 msgstr "Aggiorna feed"
 
-#: ../gfeeds/confirm_add_dialog.py:12
-msgid "Do you want to import this file?"
-msgstr "Vuoi importare questo file?"
+#: ../gfeeds/confirm_add_dialog.py:14
+msgid "Do you want to import these feeds?"
+msgstr "Vuoi importare questi feed?"
+
+#: ../gfeeds/confirm_add_dialog.py:15
+msgid "Do you want to import this feed?"
+msgstr "Vuoi importare questo feed?"
 
 #: ../gfeeds/opml_manager.py:8
 msgid "Error: OPML path provided does not exist"
@@ -548,6 +552,9 @@ msgstr "Aggiunta traduzione italiana"
 #: ../data/org.gabmus.gnome-feeds.appdata.xml.in:155
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "Do you want to import this file?"
+#~ msgstr "Vuoi importare questo file?"
 
 #~ msgid "<big>Add a feed or import an OPML file</big>"
 #~ msgstr "<big>Aggiungi un feed o importa un file OPML</big>"

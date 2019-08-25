@@ -120,7 +120,6 @@ class GFeedsApplication(Gtk.Application):
             c_action.connect('activate', sa['func'])
             self.add_action(c_action)
             if 'accel' in sa.keys():
-                print(c_action.get_name())
                 self.set_accels_for_action(
                     f'app.{sa["name"]}',
                     [sa['accel'],]
@@ -225,14 +224,34 @@ class GFeedsApplication(Gtk.Application):
         self.feedman.refresh()
         if self.args:
             if self.args.argurl:
-                if self.args.argurl[:8] == 'file:///':
+                if self.args.argurl[:8].lower() == 'file:///':
                     abspath = self.args.argurl[7:]
                     if isfile(abspath):
-                        dialog = GFeedsConfirmAddDialog(self.window, abspath)
-                        res = dialog.run()
-                        dialog.close()
-                        if res == Gtk.ResponseType.YES:
-                            self.add_opml_feeds(abspath)
+                        if abspath[-5:].lower() == '.opml':
+                            dialog = GFeedsConfirmAddDialog(self.window, abspath)
+                            res = dialog.run()
+                            dialog.close()
+                            if res == Gtk.ResponseType.YES:
+                                self.add_opml_feeds(abspath)
+                        elif (
+                            abspath[-4:].lower() in ['.rss', '.xml'] or
+                            abspath[-5:].lower() == '.atom'
+                        ):
+                            print('Adding single feeds from file not supported')
+                elif (
+                    self.args.argurl[:7].lower() == 'http://' or
+                    self.args.argurl[:8].lower() == 'https://'
+                ):
+                    dialog = GFeedsConfirmAddDialog(
+                        self.window,
+                        self.args.argurl,
+                        http = True
+                    )
+                    res = dialog.run()
+                    dialog.close()
+                    if res == Gtk.ResponseType.YES:
+                        self.feedman.add_feed(self.args.argurl)
+
 
     def do_command_line(self, args):
         """
