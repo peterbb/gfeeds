@@ -9,11 +9,13 @@ data/ui/webview_filler.glade
 data/ui/webview_with_notification.glade
 gfeeds/app_window.py
 gfeeds/build_reader_html.py
+gfeeds/confirm_add_dialog.py
 gfeeds/download_manager.py
 gfeeds/feeds_manager.py
 gfeeds/feeds_view.py
 gfeeds/get_favicon.py
 gfeeds/headerbar.py
+gfeeds/__main__.py
 gfeeds/manage_feeds_window.py
 gfeeds/opml_file_chooser.py
 gfeeds/opml_manager.py

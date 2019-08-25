@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-22 12:56+0200\n"
-"PO-Revision-Date: 2019-08-22 13:00+0200\n"
+"POT-Creation-Date: 2019-08-25 11:08+0200\n"
+"PO-Revision-Date: 2019-08-25 11:10+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -30,12 +30,12 @@ msgstr "File XML"
 msgid "Choose where to save the exported OPML file"
 msgstr "Scegli dove salvare il file OPML esportato"
 
-#: ../gfeeds/rss_parser.py:50
+#: ../gfeeds/rss_parser.py:60
 #, python-brace-format
 msgid "Error: unable to parse datetime {0} for feeditem {1}"
 msgstr "Errore: impossibile analizzare data e ora {0} per l'articolo {1}"
 
-#: ../gfeeds/rss_parser.py:164
+#: ../gfeeds/rss_parser.py:179
 #, python-brace-format
 msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
@@ -45,7 +45,7 @@ msgstr ""
 "un'immagine.\n"
 "Provo a scaricare la favicon da un articolo."
 
-#: ../gfeeds/rss_parser.py:173
+#: ../gfeeds/rss_parser.py:188
 #, python-brace-format
 msgid ""
 "Error resizing favicon from article for feed {0}.\n"
@@ -79,11 +79,11 @@ msgstr "Carica contenuto dall'RSS"
 msgid "Menu"
 msgstr "Menu"
 
-#: ../gfeeds/headerbar.py:162
+#: ../gfeeds/headerbar.py:158
 msgid "Filter by feed"
 msgstr "Filtra per feed"
 
-#: ../gfeeds/headerbar.py:170
+#: ../gfeeds/headerbar.py:166
 msgid "Add new feed"
 msgstr "Aggiungi nuovo feed"
 
@@ -116,23 +116,31 @@ msgstr "Contenuto o riassunto dell'RSS non disponibile per questo articolo"
 msgid "Reader mode unavailable for this site"
 msgstr "Modalità lettura non disponibile per questo sito"
 
-#: ../gfeeds/sidebar.py:49 ../gfeeds/sidebar.py:94
+#: ../gfeeds/sidebar.py:51 ../gfeeds/sidebar.py:96
 msgid "Mark as unread"
 msgstr "Segna come non letto"
 
-#: ../gfeeds/sidebar.py:57 ../gfeeds/sidebar.py:84
+#: ../gfeeds/sidebar.py:59 ../gfeeds/sidebar.py:86
 msgid "Mark as read"
 msgstr "Segna come letto"
 
-#: ../gfeeds/sidebar.py:358
+#: ../gfeeds/sidebar.py:375
 msgid "Feed"
 msgstr "Feed"
 
-#: ../gfeeds/sidebar.py:364
+#: ../gfeeds/sidebar.py:381
 msgid "Saved"
 msgstr "Salvati"
 
-#: ../gfeeds/download_manager.py:36
+#: ../gfeeds/__main__.py:248
+msgid "url"
+msgstr "url"
+
+#: ../gfeeds/__main__.py:251
+msgid "opml file local url or rss remote url to import"
+msgstr "url locale del file opml o url rss remota da importare"
+
+#: ../gfeeds/download_manager.py:48
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Errore nel download di `{0}`, codice `{1}`"
@@ -237,6 +245,10 @@ msgstr "Vuoi eliminare questi feed?"
 msgid "Refresh feeds"
 msgstr "Aggiorna feed"
 
+#: ../gfeeds/confirm_add_dialog.py:12
+msgid "Do you want to import this file?"
+msgstr "Vuoi importare questo file?"
+
 #: ../gfeeds/opml_manager.py:8
 msgid "Error: OPML path provided does not exist"
 msgstr "Errore: il percorso all'OPML fornito non esiste"
@@ -247,26 +259,30 @@ msgid "Error parsing OPML file `{0}`"
 msgstr "Errore nell'analisi del file OPML `{0}`"
 
 #: ../data/ui/menu.xml:6
+msgid "Show read articles"
+msgstr "Mostra articoli letti"
+
+#: ../data/ui/menu.xml:10
 msgid "Mark all as read"
 msgstr "Segna tutti come letti"
 
-#: ../data/ui/menu.xml:10
+#: ../data/ui/menu.xml:14
 msgid "Mark all as unread"
 msgstr "Segna tutti come non letti"
 
-#: ../data/ui/menu.xml:20
+#: ../data/ui/menu.xml:24
 msgid "Import OPML"
 msgstr "Importa OPML"
 
-#: ../data/ui/menu.xml:24
+#: ../data/ui/menu.xml:28
 msgid "Export OPML"
 msgstr "Esporta OPML"
 
-#: ../data/ui/menu.xml:34
+#: ../data/ui/menu.xml:38
 msgid "Keyboard Shortcuts"
 msgstr "Scorciatoie da tastiera"
 
-#: ../data/ui/menu.xml:38
+#: ../data/ui/menu.xml:42
 msgid "About Feeds"
 msgstr "A proposito di Feeds"
 
@@ -283,18 +299,22 @@ msgid "Previous article"
 msgstr "Articolo precedente"
 
 #: ../data/ui/shortcutsWindow.xml:31
+msgid "Show/Hide read articles"
+msgstr "Mostra/Nascondi articoli letti"
+
+#: ../data/ui/shortcutsWindow.xml:37
 msgid "Refresh articles"
 msgstr "Aggiorna articoli"
 
-#: ../data/ui/shortcutsWindow.xml:37
+#: ../data/ui/shortcutsWindow.xml:43
 msgid "Zoom in"
 msgstr "Ingrandisci"
 
-#: ../data/ui/shortcutsWindow.xml:43
+#: ../data/ui/shortcutsWindow.xml:49
 msgid "Zoom out"
 msgstr "Riduci"
 
-#: ../data/ui/shortcutsWindow.xml:49
+#: ../data/ui/shortcutsWindow.xml:55
 msgid "Reset zoom"
 msgstr "Resetta zoom"
 
@@ -314,11 +334,11 @@ msgstr "<big>Nuovo URL del feed</big>"
 msgid "https://..."
 msgstr "https://..."
 
-#: ../data/ui/article_right_click_popover_content.glade:25
+#: ../data/ui/article_right_click_popover_content.glade:47
 msgid "Save article"
 msgstr "Salva articolo"
 
-#: ../data/ui/article_right_click_popover_content.glade:64
+#: ../data/ui/article_right_click_popover_content.glade:112
 msgid "This does nothing"
 msgstr ""
 
