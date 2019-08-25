@@ -65,7 +65,8 @@ class GFeedsApplication(Gtk.Application):
         stateful_actions = [
             {
                 'name': 'show_read_items',
-                'func': self.show_read_items
+                'func': self.show_read_items,
+                'accel': '<Control>h'
             }
         ]
 
@@ -118,6 +119,12 @@ class GFeedsApplication(Gtk.Application):
             )
             c_action.connect('activate', sa['func'])
             self.add_action(c_action)
+            if 'accel' in sa.keys():
+                print(c_action.get_name())
+                self.set_accels_for_action(
+                    f'app.{sa["name"]}',
+                    [sa['accel'],]
+                )
 
         for a in actions:
             c_action = Gio.SimpleAction.new(a['name'], None)

@@ -103,10 +103,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
                 'combo': '<Control>r',
                 'cb': self.feedman.refresh
             },
-            # {
-            #     'combo': '<Control>h',
-            #     'cb': self.show_read_items
-            # },
             {
                 'combo': '<Control>j',
                 'cb': self.sidebar.select_next_article
