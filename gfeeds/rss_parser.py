@@ -121,8 +121,10 @@ class FakeFeed:
 
 class Feed:
     def __init__(self, download_res):
+        self.is_null = False
         if not download_res:
-            return None
+            self.is_null = True
+            return
         feedpath = download_res[0]
         with open(feedpath, 'rb') as fd:
             feed_bytes = fd.read()

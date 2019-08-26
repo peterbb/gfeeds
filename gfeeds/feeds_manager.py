@@ -53,6 +53,11 @@ class FeedsManager(metaclass=Singleton):
             self.confman.conf['feeds'][uri] = {}
             self.confman.save_conf()
         n_feed = Feed(download_feed(uri))
+        if n_feed.is_null:
+            if uri in self.confman.conf['feeds'].keys():
+                self.confman.conf['feeds'].pop(uri)
+                self.confman.save_conf()
+            return
         GLib.idle_add(
             self.feeds.append, n_feed,
             priority = GLib.PRIORITY_DEFAULT_IDLE
