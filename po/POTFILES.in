@@ -7,7 +7,6 @@ data/ui/shortcutsWindow.xml
 data/ui/spinner_button.glade
 data/ui/webview_filler.glade
 data/ui/webview_with_notification.glade
-gfeeds/app_window.py
 gfeeds/build_reader_html.py
 gfeeds/confirm_add_dialog.py
 gfeeds/download_manager.py
@@ -23,4 +22,5 @@ gfeeds/rss_parser.py
 gfeeds/settings_window.py
 gfeeds/sidebar.py
 gfeeds/spinner_button.py
+gfeeds/suggestion_bar.py
 gfeeds/webview.py

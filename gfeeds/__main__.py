@@ -213,6 +213,9 @@ class GFeedsApplication(Gtk.Application):
             .notheaderbar {
                 border-radius: 0px;
             }
+            infobar.warning {
+                background-color: #c64600;
+            }
         '''.encode())
         stylecontext.add_provider_for_screen(
             Gdk.Screen.get_default(),

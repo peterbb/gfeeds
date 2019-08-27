@@ -19,7 +19,7 @@ website = 'http://'+meson.project_name()+'.'+author+'.org'
 # NOTE: if you contributed, feel free to add your name and email address here
 contributors = '\n'.join([
     'Gabriele Musco (GabMus) &lt;emaildigabry@gmail.com&gt;',
-    'Larry McLellan (Lasklo) &lt;thisislarry2k5@gmail.com&gt;',
+    'Cameron McLellan (Lasklo) &lt;thisislarry2k5@gmail.com&gt;',
     'Adrien Plazas (aplazas) &lt;kekun.plazas@laposte.net&gt;',
     'Christopher Davis (BrainBlasted) &lt;brainblasted@disroot.org&gt;'
 ])

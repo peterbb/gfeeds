@@ -6,7 +6,7 @@ from .feeds_manager import FeedsManager
 from .leaflet import GFeedsLeaflet
 from .sidebar import GFeedsSidebar
 from .headerbar import GFeedHeaderbar
-from .suggestion_bar import GFeedsSuggestionBar
+from .suggestion_bar import GFeedsConnectionBar, GFeedsSuggestionBar
 from .webview import GFeedsWebView
 from .rss_parser import Feed
 
@@ -35,12 +35,11 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         separator.get_style_context().add_class('sidebar')
 
         self.leaflet = GFeedsLeaflet()
-        self.suggestion_bar = GFeedsSuggestionBar(
-            _('Add a feed or import an OPML file'),
-            'list-add-symbolic'
-        )
+        self.suggestion_bar = GFeedsSuggestionBar()
+        self.connection_bar = GFeedsConnectionBar()
         self.sidebar_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
         self.sidebar_box.pack_start(self.suggestion_bar, False, False, 0)
+        self.sidebar_box.pack_start(self.connection_bar, False, False, 0)
         self.sidebar_box.pack_start(self.sidebar, True, True, 0)
         self.leaflet.add(self.sidebar_box)
         self.leaflet.add(separator)

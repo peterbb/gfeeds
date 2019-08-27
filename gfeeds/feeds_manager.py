@@ -6,6 +6,7 @@ from .rss_parser import Feed, FeedItem
 import threading
 from .download_manager import download_feed
 from .signaler_list import SignalerList
+from .test_connection import is_online
 
 class FeedsManagerSignaler(GObject.Object):
     __gsignals__ = {
@@ -18,6 +19,11 @@ class FeedsManagerSignaler(GObject.Object):
             GObject.SIGNAL_RUN_LAST,
             None,
             (str,)
+        ),
+        'feedmanager_online_changed': (
+            GObject.SIGNAL_RUN_LAST,
+            None,
+            (bool,)
         ),
     }
 
@@ -70,6 +76,12 @@ class FeedsManager(metaclass=Singleton):
 
     def refresh(self, *args):
         self.emit('feedmanager_refresh_start', '')
+        if is_online():
+            self.emit('feedmanager_online_changed', True)
+        else:
+            self.emit('feedmanager_online_changed', False)
+            self.emit('feedmanager_refresh_end', '')
+            return
         self.populate_saved_feeds_items()
         self.feeds.empty()
         self.feeds_items.empty()
