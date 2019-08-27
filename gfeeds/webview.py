@@ -172,9 +172,6 @@ class GFeedsWebView(Gtk.Stack):
             if trigger_on_load_start:
                 self.on_load_start()
             t.start()
-            while t.is_alive():
-                while Gtk.events_pending():
-                    Gtk.main_iteration()
         else:
             self.webkitview.load_uri(uri) # , *args, **kwargs)
             if trigger_on_load_start:

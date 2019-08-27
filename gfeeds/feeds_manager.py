@@ -73,6 +73,10 @@ class FeedsManager(metaclass=Singleton):
                 self.feeds_items.append, n_feed_item,
                 priority = GLib.PRIORITY_DEFAULT_IDLE
             )
+        if not refresh:
+            GLib.idle_add(
+                self.emit, 'feedmanager_refresh_end', ''
+            )
 
     def refresh(self, *args):
         self.emit('feedmanager_refresh_start', '')
@@ -112,12 +116,10 @@ class FeedsManager(metaclass=Singleton):
             while t.is_alive():
                 while Gtk.events_pending():
                     Gtk.main_iteration()
-
         self.emit('feedmanager_refresh_end', '')
 
     def add_feed(self, uri):
         self.emit('feedmanager_refresh_start', '')
-
         t = threading.Thread(
             group = None,
             target = self._add_feed_async_worker,
@@ -125,11 +127,6 @@ class FeedsManager(metaclass=Singleton):
             args = (uri,)
         )
         t.start()
-        while t.is_alive():
-            while Gtk.events_pending():
-                Gtk.main_iteration()
-
-        self.emit('feedmanager_refresh_end', '')
 
     def delete_feeds(self, targets, *args):
         if type(targets) != list:

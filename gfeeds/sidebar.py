@@ -117,9 +117,6 @@ class RowPopover(Gtk.Popover):
                 )
             )
             t.start()
-            while t.is_alive():
-                while Gtk.events_pending():
-                    Gtk.main_iteration()
             self.confman.conf['saved_items'][self.parent.feeditem.link] = fi_dict
         else:
             todel_fi_dict = self.confman.conf['saved_items'].pop(
