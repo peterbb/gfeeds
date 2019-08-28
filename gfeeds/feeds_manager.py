@@ -7,6 +7,7 @@ import threading
 from .download_manager import download_feed
 from .signaler_list import SignalerList
 from .test_connection import is_online
+from .thread_pool import ThreadPool
 
 class FeedsManagerSignaler(GObject.Object):
     __gsignals__ = {
@@ -89,34 +90,14 @@ class FeedsManager(metaclass=Singleton):
         self.populate_saved_feeds_items()
         self.feeds.empty()
         self.feeds_items.empty()
-        threads_pool = []
-        threads_alive = []
-        MAX_THREADS = self.confman.conf['max_refresh_threads']
-        for f_link in self.confman.conf['feeds'].keys():
-            t = threading.Thread(
-                group = None,
-                target = self._add_feed_async_worker,
-                name = None,
-                args = (f_link, True)
-            )
-            threads_pool.append(t)
-        while len(threads_pool) > 0:
-            if len(threads_alive) < MAX_THREADS:
-                t = threads_pool.pop(0)
-                t.start()
-                threads_alive.append(t)
-            threads_to_rem = []
-            for t in threads_alive:
-                if not t.is_alive():
-                    threads_to_rem.append(t)
-            for t in threads_to_rem:
-                threads_alive.pop(
-                    threads_alive.index(t)
-                )
-            while t.is_alive():
-                while Gtk.events_pending():
-                    Gtk.main_iteration()
-        self.emit('feedmanager_refresh_end', '')
+        tp = ThreadPool(
+            self.confman.conf['max_refresh_threads'],
+            self._add_feed_async_worker,
+            [(f_link, True) for f_link in self.confman.conf['feeds'].keys()],
+            self.emit,
+            ('feedmanager_refresh_end', '')
+        )
+        tp.start()
 
     def add_feed(self, uri):
         self.emit('feedmanager_refresh_start', '')
