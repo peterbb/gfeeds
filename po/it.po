@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-27 10:25+0200\n"
-"PO-Revision-Date: 2019-08-27 10:25+0200\n"
+"PO-Revision-Date: 2019-08-30 09:36+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -292,7 +292,7 @@ msgstr "Scorciatoie da tastiera"
 
 #: ../data/ui/menu.xml:42
 msgid "About Feeds"
-msgstr "A proposito di Feeds"
+msgstr "Informazioni su Feeds"
 
 #: ../data/ui/shortcutsWindow.xml:13
 msgid "Quit"
