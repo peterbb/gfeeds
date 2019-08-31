@@ -60,6 +60,7 @@ class GFeedsSuggestionBar(GFeedsInfoBar):
             'append',
             lambda caller, obj: self.on_feeds_append(obj)
         )
+        self.set_revealed(False)
 
     def on_feeds_pop(self, deleted_feed=None):
         if len(self.feedman.feeds) == 0:
