@@ -157,6 +157,10 @@ class GFeedHeaderbar(Handy.TitleBar):
         )
         self.filter_btn.set_tooltip_text(_('Filter by feed'))
         self.filter_popover = FeedsViewPopover(self.filter_btn)
+        self.feedman.connect(
+            'feedmanager_refresh_start',
+            lambda *args: self.filter_popover.scrolled_win.listbox.row_all_activate()
+        )
         self.left_headerbar.pack_end(self.filter_btn)
 
         self.add_btn = Gtk.Button.new_from_icon_name(
