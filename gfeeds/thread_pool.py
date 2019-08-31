@@ -21,7 +21,6 @@ class ThreadPool:
             )
 
     def _pool_worker(self, *args):
-        print(args)
         self.worker_func(*args)
         GLib.idle_add(self._rearrange_pool, threading.current_thread())
 
