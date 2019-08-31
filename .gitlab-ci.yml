@@ -21,7 +21,7 @@ flatpak:
         MANIFEST_PATH: "dist/flatpak/org.gabmus.gfeeds.json"
         MESON_ARGS: "-Dprofile=Devel"
         FLATPAK_MODULE: "gfeeds"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
+        RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
         APP_ID: "org.gabmus.gfeeds"
     extends: .flatpak
 
