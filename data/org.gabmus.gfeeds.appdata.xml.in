@@ -48,6 +48,21 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.8" timestamp="1567447599">
+            <description>
+                <ul>
+                    <li>OPML file association</li>
+                    <li>Changed left headerbar button order</li>
+                    <li>Optimization for updating feeds</li>
+                    <li>Redesigned right click/longpress menu</li>
+                    <li>Option to show/hide read articles</li>
+                    <li>Reworked suggestion bar</li>
+                    <li>Changed name to Feeds</li>
+                    <li>Improved CPU utilization</li>
+                    <li>Various bug fixes</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.7" timestamp="1566463350">
             <description>
                 <ul>
