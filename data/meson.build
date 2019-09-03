@@ -21,8 +21,6 @@ desktop_conf.set('projectname', meson.project_name())
 desktop_file = configure_file(
     input: app_id + '.desktop.in',
     output: app_id + '.desktop.i18n.in',
-    #install: true,
-    #install_dir: join_paths(datadir, 'applications'),
     configuration: desktop_conf
 )
 
@@ -55,7 +53,6 @@ configure_file(
     input: app_id + '.service.in',
     output: app_id + '.service',
     configuration: dbus_conf,
-    install: true,
     install_dir: join_paths(datadir, 'dbus-1/services')
 )
 
@@ -68,7 +65,6 @@ configure_file(
     input: app_id + '.gschema.xml.in',
     output: app_id + '.gschema.xml',
     configuration: gschema_conf,
-    install: true,
     install_dir: join_paths(datadir, 'glib-2.0/schemas')
 )
 
