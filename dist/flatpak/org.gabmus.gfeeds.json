@@ -5,6 +5,7 @@
     "runtime-version" : "3.32",
     "sdk" : "org.gnome.Sdk",
     "finish-args" : [
+    	"--device=dri",
         "--share=ipc",
         "--socket=x11",
         "--share=network",
