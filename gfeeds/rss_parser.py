@@ -122,8 +122,10 @@ class FakeFeed:
 class Feed:
     def __init__(self, download_res):
         self.is_null = False
-        if not download_res:
+        self.error = None
+        if download_res[0] == False: # indicates failed download
             self.is_null = True
+            self.error = download_res[1]
             return
         feedpath = download_res[0]
         with open(feedpath, 'rb') as fd:
@@ -145,7 +147,8 @@ class Feed:
         # self.language = self.fp_feed.get('', '')
         self.image_url = self.fp_feed.get('image', {'href': ''})['href']
         self.items = []
-        for entry in self.fp_feed.get('entries', []):
+        raw_entries = self.fp_feed.get('entries', [])
+        for entry in raw_entries:
             n_item = FeedItem(entry, self)
             item_age = self.init_time - n_item.pub_date
             if item_age < self.confman.max_article_age:
@@ -156,6 +159,19 @@ class Feed:
                 )
         # self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
         self.color = [0.0, 0.0, 0.0]
+
+        if (
+            not self.title and
+            not self.link and
+            len(raw_entries) == 0
+        ):
+            # if these conditions are met, there's reason to believe
+            # this is not an rss/atom feed
+            self.is_null = True
+            self.error = _(
+                '`{0}` may not be an RSS or Atom feed'
+            ).format(self.rss_link)
+            return
 
         if not self.title:
             self.title = self.link

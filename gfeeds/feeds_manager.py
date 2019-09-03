@@ -43,6 +43,8 @@ class FeedsManager(metaclass=Singleton):
         self.feeds_items = SignalerList()
         self.saved_feeds_items = SignalerList()
 
+        self.errors = []
+
     def populate_saved_feeds_items(self):
         self.saved_feeds_items.empty()
         for si in self.confman.conf['saved_items'].values():
@@ -61,6 +63,7 @@ class FeedsManager(metaclass=Singleton):
             self.confman.save_conf()
         n_feed = Feed(download_feed(uri))
         if n_feed.is_null:
+            self.errors.append(n_feed.error)
             if uri in self.confman.conf['feeds'].keys():
                 self.confman.conf['feeds'].pop(uri)
                 self.confman.save_conf()
@@ -81,6 +84,7 @@ class FeedsManager(metaclass=Singleton):
 
     def refresh(self, *args):
         self.emit('feedmanager_refresh_start', '')
+        self.errors = []
         if is_online():
             self.emit('feedmanager_online_changed', True)
         else:
@@ -101,6 +105,7 @@ class FeedsManager(metaclass=Singleton):
 
     def add_feed(self, uri):
         self.emit('feedmanager_refresh_start', '')
+        self.errors = []
         t = threading.Thread(
             group = None,
             target = self._add_feed_async_worker,

@@ -45,5 +45,6 @@ def download_feed(link):
     elif res.status_code == 304:
         return (dest_path, link)
     else:
-        print(_('Error downloading `{0}`, code `{1}`').format(link, res.status_code))
-        return None
+        error_txt = _('Error downloading `{0}`, code `{1}`').format(link, res.status_code)
+        print(error_txt)
+        return (False, error_txt)

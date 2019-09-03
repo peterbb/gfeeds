@@ -6,7 +6,11 @@ from .feeds_manager import FeedsManager
 from .leaflet import GFeedsLeaflet
 from .sidebar import GFeedsSidebar
 from .headerbar import GFeedHeaderbar
-from .suggestion_bar import GFeedsConnectionBar, GFeedsSuggestionBar
+from .suggestion_bar import (
+    GFeedsConnectionBar,
+    GFeedsSuggestionBar,
+    GFeedsErrorsBar
+)
 from .webview import GFeedsWebView
 from .rss_parser import Feed
 
@@ -37,9 +41,15 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.leaflet = GFeedsLeaflet()
         self.suggestion_bar = GFeedsSuggestionBar()
         self.connection_bar = GFeedsConnectionBar()
+        self.errors_bar = GFeedsErrorsBar(self)
+        self.feedman.connect(
+            'feedmanager_refresh_end',
+            lambda *args: self.errors_bar.engage(self.feedman.errors)
+        )
         self.sidebar_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
         self.sidebar_box.pack_start(self.suggestion_bar, False, False, 0)
         self.sidebar_box.pack_start(self.connection_bar, False, False, 0)
+        self.sidebar_box.pack_start(self.errors_bar, False, False, 0)
         self.sidebar_box.pack_start(self.sidebar, True, True, 0)
         self.leaflet.add(self.sidebar_box)
         self.leaflet.add(separator)
@@ -48,7 +58,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
         self.size_group_left = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
         self.size_group_right = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
-        self.size_group_left.add_widget(self.sidebar)
+        self.size_group_left.add_widget(self.sidebar_box)
         self.size_group_right.add_widget(self.webview)
         self.headerbar = GFeedHeaderbar(
             self.size_group_left,
