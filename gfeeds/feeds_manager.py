@@ -64,16 +64,16 @@ class FeedsManager(metaclass=Singleton):
             if uri in self.confman.conf['feeds'].keys():
                 self.confman.conf['feeds'].pop(uri)
                 self.confman.save_conf()
-            return
-        GLib.idle_add(
-            self.feeds.append, n_feed,
-            priority = GLib.PRIORITY_DEFAULT_IDLE
-        )
-        for n_feed_item in n_feed.items:
+        else:
             GLib.idle_add(
-                self.feeds_items.append, n_feed_item,
+                self.feeds.append, n_feed,
                 priority = GLib.PRIORITY_DEFAULT_IDLE
             )
+            for n_feed_item in n_feed.items:
+                GLib.idle_add(
+                    self.feeds_items.append, n_feed_item,
+                    priority = GLib.PRIORITY_DEFAULT_IDLE
+                )
         if not refresh:
             GLib.idle_add(
                 self.emit, 'feedmanager_refresh_end', ''
