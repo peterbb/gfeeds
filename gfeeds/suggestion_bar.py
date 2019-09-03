@@ -56,7 +56,7 @@ class GFeedsErrorsBar(GFeedsInfoBar):
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _('There were problems downloading some feeds')
+            _('There were problems with some feeds')
         )
         dialog.format_secondary_markup(
             escape('\n'.join(self.errors))

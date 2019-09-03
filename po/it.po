@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-02 20:16+0200\n"
-"PO-Revision-Date: 2019-09-02 20:18+0200\n"
+"POT-Creation-Date: 2019-09-03 16:24+0200\n"
+"PO-Revision-Date: 2019-09-03 16:24+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -35,7 +35,12 @@ msgstr "Scegli dove salvare il file OPML esportato"
 msgid "Error: unable to parse datetime {0} for feeditem {1}"
 msgstr "Errore: impossibile analizzare data e ora {0} per l'articolo {1}"
 
-#: ../gfeeds/rss_parser.py:181
+#: ../gfeeds/rss_parser.py:172
+#, python-brace-format
+msgid "`{0}` may not be an RSS or Atom feed"
+msgstr "`{0}` potrebbe non essere un feed RSS o Atom"
+
+#: ../gfeeds/rss_parser.py:197
 #, python-brace-format
 msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
@@ -45,7 +50,7 @@ msgstr ""
 "un'immagine.\n"
 "Provo a scaricare la favicon da un articolo."
 
-#: ../gfeeds/rss_parser.py:190
+#: ../gfeeds/rss_parser.py:206
 #, python-brace-format
 msgid ""
 "Error resizing favicon from article for feed {0}.\n"
@@ -54,7 +59,7 @@ msgstr ""
 "Errore nel ridimensionare la favicon da articolo per il feed {0}.\n"
 "Elimino la favicon invalida."
 
-#: ../gfeeds/feeds_manager.py:58
+#: ../gfeeds/feeds_manager.py:60
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
@@ -258,11 +263,27 @@ msgstr "Errore: il percorso all'OPML fornito non esiste"
 msgid "Error parsing OPML file `{0}`"
 msgstr "Errore nell'analisi del file OPML `{0}`"
 
-#: ../gfeeds/suggestion_bar.py:30
+#: ../gfeeds/suggestion_bar.py:33
+msgid "There are some errors"
+msgstr "C'è qualche errore"
+
+#: ../gfeeds/suggestion_bar.py:40
+msgid "Show"
+msgstr "Mostra"
+
+#: ../gfeeds/suggestion_bar.py:41
+msgid "Ignore"
+msgstr "Ignora"
+
+#: ../gfeeds/suggestion_bar.py:59
+msgid "There were problems with some feeds"
+msgstr "Ci sono stati dei problemi con alcuni feed"
+
+#: ../gfeeds/suggestion_bar.py:71
 msgid "You are offline"
 msgstr "Sei offline"
 
-#: ../gfeeds/suggestion_bar.py:46
+#: ../gfeeds/suggestion_bar.py:87
 msgid "Add a feed or import an OPML file"
 msgstr "Aggiungi feed o importa un file OPML"
 
