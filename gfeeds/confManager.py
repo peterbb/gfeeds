@@ -35,6 +35,11 @@ class ConfManagerSignaler(GObject.Object):
             None,
             (str,)
         ),
+        'gfeeds_colored_border_changed': (
+            GObject.SIGNAL_RUN_FIRST,
+            None,
+            (str,)
+        ),
         # Signals down here don't have to do with the config
         'gfeeds_filter_changed': (
             GObject.SIGNAL_RUN_FIRST,
@@ -61,7 +66,8 @@ class ConfManager(metaclass=Singleton):
         'max_refresh_threads': 2,
         'saved_items': {},
         'read_items': [],
-        'show_read_items': True
+        'show_read_items': True,
+        'colored_border': True
     }
 
     def __init__(self):

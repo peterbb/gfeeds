@@ -141,6 +141,7 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.is_saved = is_saved
         self.get_style_context().add_class('activatable')
         self.feeditem = feeditem
+        self.confman = ConfManager()
 
         self.builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gfeeds/ui/sidebar_listbox_row.glade'
@@ -148,6 +149,11 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.container_box = self.builder.get_object('container_box')
         self.colored_box = self.builder.get_object('drawing_area')
         self.colored_box.connect('draw', self.draw_color)
+        self.on_show_colored_border_changed()
+        self.confman.connect(
+            'gfeeds_colored_border_changed',
+            self.on_show_colored_border_changed
+        )
         self.title_label = self.builder.get_object('title_label')
         self.title_label.set_text(self.feeditem.title)
         self.origin_label = self.builder.get_object('origin_label')
@@ -190,6 +196,14 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
 
         self.add(self.container_box)
         self.set_read()
+
+    def on_show_colored_border_changed(self, *args):
+        if self.confman.conf['colored_border']:
+            self.colored_box.show()
+            self.colored_box.set_no_show_all(False)
+        else:
+            self.colored_box.hide()
+            self.colored_box.set_no_show_all(True)
 
     def set_read(self, read = None):
         if read != None:

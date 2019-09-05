@@ -67,6 +67,19 @@
           </packing>
         </child>
         <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Save article</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="read_unread_btn">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -113,9 +126,6 @@
             <property name="fill">True</property>
             <property name="position">2</property>
           </packing>
-        </child>
-        <child type="center">
-          <placeholder/>
         </child>
       </object>
       <packing>

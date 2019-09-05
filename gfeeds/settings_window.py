@@ -208,6 +208,11 @@ class ViewPreferencesPage(Handy.PreferencesPage):
         self.view_preferences_group.set_title(_('View Settings'))
         toggle_settings = [
             {
+                'title': _('Show colored border'),
+                'conf_key': 'colored_border',
+                'signal': 'gfeeds_colored_border_changed'
+            },
+            {
                 'title': _('Use dark theme for reader mode'),
                 'conf_key': 'dark_reader',
                 'signal': None
