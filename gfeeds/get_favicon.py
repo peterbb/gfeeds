@@ -3,6 +3,7 @@ import requests
 from .download_manager import download_raw
 from gettext import gettext as _
 from urllib.parse import urlparse
+from PIL import Image
 
 def get_favicon(link, favicon_path):
     req = requests.get(link)
@@ -38,8 +39,11 @@ def get_favicon(link, favicon_path):
                 candidate['is_absolute'] = 'http://' in e.attrib['href'] or 'https://' in e.attrib['href']
                 candidate['size'] = size
     p = candidate['path']
+    needs_convert = False
     if not p:
         return None
+    if p[-4:].lower() == '.ico':
+        needs_convert = True
     if not candidate['is_absolute']:
         if p[0:2] == '//':
             p = p[2:]
@@ -57,3 +61,7 @@ def get_favicon(link, favicon_path):
                 print(_('Error downloading favicon for `{0}`').format(link))
     else:
         download_raw(p, favicon_path)
+    if needs_convert:
+        toconv = Image.open(favicon_path)
+        toconv.save(favicon_path)
+        toconv.close()
