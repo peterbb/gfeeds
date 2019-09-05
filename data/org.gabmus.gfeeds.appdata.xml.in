@@ -48,6 +48,16 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>emaildigabry@gmail.com</update_contact>
     <releases>
+        <release version="0.9" timestamp="1567692081">
+            <description>
+                <ul>
+                    <li>Errors with feeds are now shown in the UI</li>
+                    <li>Big UI overhaul</li>
+                    <li>Updated translations</li>
+                    <li>Various bug fixes</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.8" timestamp="1567447599">
             <description>
                 <ul>
