@@ -67,6 +67,15 @@ class FeedsViewListbox(Gtk.ListBox):
         )
 
         self.set_sort_func(self.gfeeds_sort_func, None, False)
+        self.set_header_func(self.separator_header_func)
+
+    def separator_header_func(self, row, prev_row=None):
+        if (
+            prev_row != None and
+            row.get_header() == None
+        ):
+            separator = Gtk.Separator(orientation = Gtk.Orientation.HORIZONTAL)
+            row.set_header(separator)
 
     def add_feed(self, feed):
         self.add(FeedsViewListboxRow(feed))

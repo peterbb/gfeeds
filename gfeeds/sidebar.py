@@ -282,6 +282,15 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             'button-press-event',
             self.on_key_press_event
         )
+        self.set_header_func(self.separator_header_func)
+
+    def separator_header_func(self, row, prev_row=None):
+        if (
+            prev_row != None and
+            row.get_header() == None
+        ):
+            separator = Gtk.Separator(orientation = Gtk.Orientation.HORIZONTAL)
+            row.set_header(separator)
 
     def on_show_read_changed(self, *args):
         self.invalidate_filter()
