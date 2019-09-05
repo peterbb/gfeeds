@@ -187,7 +187,7 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
             self.feeditem.pub_date.hour,
             self.feeditem.pub_date.minute,
             self.feeditem.pub_date.second
-        ).to_local().format('%c')
+        ).to_local().format('%-e %b  %Y %X')
         self.date_label.set_text(
             self.datestr
         )
