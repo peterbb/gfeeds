@@ -178,6 +178,8 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.squeezer = Handy.Squeezer()
         self.nobox = Gtk.Label()
         self.stack_switcher = Handy.ViewSwitcher()
+        self.stack_switcher.set_margin_left(12)
+        self.stack_switcher.set_margin_right(12)
         self.squeezer.add(self.stack_switcher)
         self.squeezer.add(self.nobox)
         self.squeezer.connect('notify::visible-child', self.on_squeeze)
