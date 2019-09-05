@@ -193,7 +193,6 @@ class GFeedsApplication(Gtk.Application):
         ).get_object('shortcuts-gfeeds')
         shortcuts_win.props.section_name = 'shortcuts'
         shortcuts_win.set_transient_for(self.window)
-        shortcuts_win.set_attached_to(self.window)
         shortcuts_win.set_modal(True)
         shortcuts_win.present()
         shortcuts_win.show_all()

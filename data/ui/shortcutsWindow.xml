@@ -1,5 +1,5 @@
 <interface>
-  <object class="GtkShortcutsWindow" id="shortcuts-gnome-feeds">
+  <object class="GtkShortcutsWindow" id="shortcuts-gfeeds">
     <child>
       <object class="GtkShortcutsSection">
         <property name="visible">1</property>
