@@ -3,6 +3,7 @@ import requests
 from .confManager import ConfManager
 from .sha import shasum
 from os.path import isfile
+import brotli
 
 confman = ConfManager()
 
@@ -25,9 +26,9 @@ def download_raw(link, dest):
 
 def download_feed(link):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
-    #print(_('Downloading `{0}`…').format(link))
+    # print(_('Downloading `{0}`…').format(link))
     headers = {
-        'Accept-Encoding': 'gzip, deflate, br'
+        'Accept-Encoding': 'gzip, deflate'
     }
     if 'last-modified' in confman.conf['feeds'][link].keys() and isfile(dest_path):
         headers['If-Modified-Since'] = confman.conf['feeds'][link]['last-modified']
@@ -35,11 +36,15 @@ def download_feed(link):
     if 'last-modified' in res.headers.keys():
         confman.conf['feeds'][link]['last-modified'] = res.headers['last-modified']
     if res.status_code == 200:
+        text = res.text
         if not 'last-modified' in res.headers.keys():
             if 'last-modified' in confman.conf['feeds'][link].keys():
                 confman.conf['feeds'][link].pop('last-modified')
+        # if 'content-encoding' in res.headers.keys():
+        #     if res.headers['content-encoding'] == 'br':
+        #         text = brotli.decompress(res.content).decode()
         with open(dest_path, 'w') as fd:
-            fd.write(res.text)
+            fd.write(text)
             fd.close()
         return (dest_path, link)
     elif res.status_code == 304:

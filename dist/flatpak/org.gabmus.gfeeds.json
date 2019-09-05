@@ -636,6 +636,126 @@
             ]
         },
         {
+            "name" : "python-pycparser",
+            "buildsystem" : "simple",
+            "build-options" : {
+                "arch" : {
+                    "i386" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    },
+                    "arm" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    }
+                }
+            },
+            "ensure-writable" : [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz",
+                    "sha256" : "a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3"
+                },
+                {
+                    "type" : "shell",
+                    "commands" : [
+                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "python-cffi",
+            "buildsystem" : "simple",
+            "build-options" : {
+                "arch" : {
+                    "i386" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    },
+                    "arm" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    }
+                }
+            },
+            "ensure-writable" : [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://files.pythonhosted.org/packages/93/1a/ab8c62b5838722f29f3daffcc8d4bd61844aa9b5f437341cc890ceee483b/cffi-1.12.3.tar.gz",
+                    "sha256" : "041c81822e9f84b1d9c401182e174996f0bae9991f33725d059b771744290774"
+                },
+                {
+                    "type" : "shell",
+                    "commands" : [
+                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "python-brotlipy",
+            "buildsystem" : "simple",
+            "build-options" : {
+                "arch" : {
+                    "i386" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    },
+                    "arm" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    }
+                }
+            },
+            "ensure-writable" : [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://files.pythonhosted.org/packages/d9/91/bc79b88590e4f662bd40a55a2b6beb0f15da4726732efec5aa5a3763d856/brotlipy-0.7.0.tar.gz",
+                    "sha256" : "36def0b859beaf21910157b4c33eb3b06d8ce459c942102f16988cca6ea164df"
+                },
+                {
+                    "type" : "shell",
+                    "commands" : [
+                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                    ]
+                }
+            ]
+        },
+        {
             "name" : "gfeeds",
             "buildsystem" : "meson",
             "builddir" : true,
