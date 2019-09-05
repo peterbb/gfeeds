@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-02 20:16+0200\n"
-"PO-Revision-Date: 2019-09-02 21:15+0200\n"
+"POT-Creation-Date: 2019-09-05 16:06+0200\n"
+"PO-Revision-Date: 2019-09-05 20:41+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -37,7 +37,12 @@ msgstr ""
 "Fehler: Datum- und Zeitangabe {0} für Feedeintrag {1} kann nicht ermittelt "
 "werden"
 
-#: ../gfeeds/rss_parser.py:181
+#: ../gfeeds/rss_parser.py:172
+#, python-brace-format
+msgid "`{0}` may not be an RSS or Atom feed"
+msgstr "`{0}` ist möglicherweise kein RSS- oder Atom-Feed"
+
+#: ../gfeeds/rss_parser.py:197
 #, python-brace-format
 msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
@@ -47,7 +52,7 @@ msgstr ""
 "keine Grafik.\n"
 "Versuche das Laden des Favicons aus dem Artikel."
 
-#: ../gfeeds/rss_parser.py:190
+#: ../gfeeds/rss_parser.py:206
 #, python-brace-format
 msgid ""
 "Error resizing favicon from article for feed {0}.\n"
@@ -56,7 +61,7 @@ msgstr ""
 "Fehler bei Größenänderung des Favicons aus dem Artikel für Feed {0}.\n"
 "Lösche ungültiges Favicon."
 
-#: ../gfeeds/feeds_manager.py:58
+#: ../gfeeds/feeds_manager.py:60
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
 msgstr "Feed {0} existiert bereits, wird übersprungen"
@@ -89,7 +94,7 @@ msgstr "Filtern nach Feed"
 msgid "Add new feed"
 msgstr "Neuen Feed hinzufügen"
 
-#: ../gfeeds/get_favicon.py:57
+#: ../gfeeds/get_favicon.py:61
 #, python-brace-format
 msgid "Error downloading favicon for `{0}`"
 msgstr "Fehler beim Herunterladen des Favicon für `{0}`"
@@ -114,31 +119,31 @@ msgstr "RSS-Inhalt oder Zusammenfassung für diesen Artikel nicht verfügbar"
 msgid "Reader mode unavailable for this site"
 msgstr "Leseansicht für diese Seite nicht verfügbar"
 
-#: ../gfeeds/sidebar.py:51 ../gfeeds/sidebar.py:96
+#: ../gfeeds/sidebar.py:52 ../gfeeds/sidebar.py:97
 msgid "Mark as unread"
 msgstr "Als ungelesen markieren"
 
-#: ../gfeeds/sidebar.py:59 ../gfeeds/sidebar.py:86
+#: ../gfeeds/sidebar.py:60 ../gfeeds/sidebar.py:87
 msgid "Mark as read"
 msgstr "Als gelesen markieren"
 
-#: ../gfeeds/sidebar.py:372
+#: ../gfeeds/sidebar.py:406
 msgid "Feed"
 msgstr "Feed"
 
-#: ../gfeeds/sidebar.py:378
+#: ../gfeeds/sidebar.py:412
 msgid "Saved"
 msgstr "Gespeichert"
 
-#: ../gfeeds/__main__.py:270
+#: ../gfeeds/__main__.py:268
 msgid "url"
 msgstr "URL"
 
-#: ../gfeeds/__main__.py:273
+#: ../gfeeds/__main__.py:271
 msgid "opml file local url or rss remote url to import"
 msgstr ""
 
-#: ../gfeeds/download_manager.py:48
+#: ../gfeeds/download_manager.py:53
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Fehler beim Herunterladen von `{0}`, Code `{1}`"
@@ -192,34 +197,38 @@ msgid "View Settings"
 msgstr "Ansichtseinstellungen"
 
 #: ../gfeeds/settings_window.py:211
+msgid "Show colored border"
+msgstr "Farbigen Rahmen anzeigen"
+
+#: ../gfeeds/settings_window.py:216
 msgid "Use dark theme for reader mode"
 msgstr "Dunkles Thema für Leseansicht verwenden"
 
-#: ../gfeeds/settings_window.py:216
+#: ../gfeeds/settings_window.py:221
 msgid "Enable JavaScript"
 msgstr "JavaScript aktivieren"
 
-#: ../gfeeds/settings_window.py:221
+#: ../gfeeds/settings_window.py:226
 msgid "Enable client side decoration"
 msgstr "Fensterdekoration aktivieren"
 
-#: ../gfeeds/settings_window.py:237
+#: ../gfeeds/settings_window.py:242
 msgid "Advanced"
 msgstr "Erweitert"
 
-#: ../gfeeds/settings_window.py:242
+#: ../gfeeds/settings_window.py:247
 msgid "Advanced Settings"
 msgstr "Erweiterte Einstellungen"
 
-#: ../gfeeds/settings_window.py:245
+#: ../gfeeds/settings_window.py:250
 msgid "Maximum refresh threads"
 msgstr "Maximale Aktualisierungsthreads"
 
-#: ../gfeeds/settings_window.py:250
+#: ../gfeeds/settings_window.py:255
 msgid "How many threads to refresh feeds"
 msgstr "Anzahl an Threads zum Aktualisieren von Feeds"
 
-#: ../gfeeds/settings_window.py:288
+#: ../gfeeds/settings_window.py:293
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -260,11 +269,27 @@ msgstr "Fehler: Der angegebene OPML-Pfad existiert nicht"
 msgid "Error parsing OPML file `{0}`"
 msgstr "Fehler beim Analysieren der OPML-Datei `{0}`"
 
-#: ../gfeeds/suggestion_bar.py:30
+#: ../gfeeds/suggestion_bar.py:33
+msgid "There are some errors"
+msgstr "Es gibt ein paar Fehler"
+
+#: ../gfeeds/suggestion_bar.py:40
+msgid "Show"
+msgstr "Anzeigen"
+
+#: ../gfeeds/suggestion_bar.py:41
+msgid "Ignore"
+msgstr "Ignorieren"
+
+#: ../gfeeds/suggestion_bar.py:59
+msgid "There were problems with some feeds"
+msgstr "Es gab Probleme mit einigen Feeds"
+
+#: ../gfeeds/suggestion_bar.py:71
 msgid "You are offline"
 msgstr "Sie haben keinen Internetzugriff"
 
-#: ../gfeeds/suggestion_bar.py:46
+#: ../gfeeds/suggestion_bar.py:87
 msgid "Add a feed or import an OPML file"
 msgstr "Einen Feed hinzufügen oder eine OPML-Datei importieren"
 
@@ -344,19 +369,15 @@ msgstr "<big>URL des neuen Feed</big>"
 msgid "https://..."
 msgstr "https://..."
 
-#: ../data/ui/article_right_click_popover_content.glade:47
+#: ../data/ui/article_right_click_popover_content.glade:48
 msgid "Save article"
 msgstr "Artikel speichern"
-
-#: ../data/ui/article_right_click_popover_content.glade:112
-msgid "This does nothing"
-msgstr "Das bringt nichts"
 
 #: ../data/ui/webview_with_notification.glade:51
 msgid "Link copied to clipboard!"
 msgstr "Link in Zwischenablage kopiert!"
 
-#: ../data/ui/webview_filler.glade:36
+#: ../data/ui/webview_filler.glade:37
 msgid "Select an article"
 msgstr "Wählen Sie einen Artikel aus"
 
@@ -417,187 +438,203 @@ msgstr ""
 "Feeds können mithilfe von OPML-Dateien importiert und exportiert werden."
 
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:54
-msgid "OPML file association"
-msgstr "OPML-Dateizuordnung"
+msgid "Errors with feeds are now shown in the UI"
+msgstr "Fehler mit Feeds werden jetzt auf der Benutzeroberfläche angezeigt"
 
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:55
-msgid "Changed left headerbar button order"
-msgstr "Reihenfolge der linken Symbolleiste geändert"
+msgid "Big UI overhaul"
+msgstr "Gründliche Überarbeitung der Benutzeroberfläche"
 
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:56
-msgid "Optimization for updating feeds"
-msgstr "Aktualisieren von Feeds optimiert"
+msgid "Updated translations"
+msgstr "Übersetzungen aktualisiert"
 
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:57
-msgid "Redesigned right click/longpress menu"
-msgstr "Überarbeitetes Menü bei Rechtsklick oder langem Drücken"
-
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:58
-msgid "Option to show/hide read articles"
-msgstr "Option für gelesene Artikel anzeigen/ausblenden"
-
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:59
-msgid "Reworked suggestion bar"
-msgstr "Überarbeitete Vorschlagsleiste"
-
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:60
-msgid "Changed name to Feeds"
-msgstr "Name zu Feeds geändert"
-
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:61
-msgid "Improved CPU utilization"
-msgstr "Verbesserte CPU-Auslastung"
-
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:62
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:73
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:126
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:72
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:83
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:136
 msgid "Various bug fixes"
 msgstr "Verschiedene Fehlerbehebungen"
 
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:64
+msgid "OPML file association"
+msgstr "OPML-Dateizuordnung"
+
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:65
+msgid "Changed left headerbar button order"
+msgstr "Reihenfolge der linken Symbolleiste geändert"
+
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:66
+msgid "Optimization for updating feeds"
+msgstr "Aktualisieren von Feeds optimiert"
+
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:67
+msgid "Redesigned right click/longpress menu"
+msgstr "Überarbeitetes Menü bei Rechtsklick oder langem Drücken"
+
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:68
+msgid "Option to show/hide read articles"
+msgstr "Option für gelesene Artikel anzeigen/ausblenden"
+
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:69
+msgid "Reworked suggestion bar"
+msgstr "Überarbeitete Vorschlagsleiste"
+
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:70
+msgid "Changed name to Feeds"
+msgstr "Name zu Feeds geändert"
+
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:71
+msgid "Improved CPU utilization"
+msgstr "Verbesserte CPU-Auslastung"
+
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:79
 msgid "New right click or longpress menu for articles"
 msgstr "Neues Menü bei Rechtsklick oder langem Druck auf Artikel"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:70
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:80
 msgid "You can now save articles offline"
 msgstr ""
 "Sie können jetzt Artikel speichern, um sie später ohne Internetverbindung zu "
 "lesen"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:71
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:81
 msgid "Initial suggestion to add feeds is now less intrusive"
 msgstr ""
 "Der zu Beginn erscheinende Vorschlag, neue Feeds hinzuzufügen, ist jetzt "
 "weniger aufdringlich"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:72
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:82
 msgid "Read articles are now greyed out"
 msgstr "Gelesene Artikel werden nun grau dargestellt"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:80
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:90
 msgid "Concurrent feeds refresh, with customizable thread count"
 msgstr ""
 "Gleichzeitige Aktualisierung mehrerer Feeds; mit einer einstellbaren Anzahl "
 "von Threads"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:81
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:91
 msgid "Added German translation (thanks @Etamuk)"
 msgstr "Deutsche Übersetzung hinzugefügt (Danke @Etamuk)"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:88
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:98
 msgid "Fix bugs in reader mode"
 msgstr "Einige Fehler in Leseansicht behoben"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:95
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:105
 msgid "Minor bug fix"
 msgstr "Kleinere Fehlerbehebung"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:102
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:112
 msgid "Improved date and time parsing and display"
 msgstr "Verbesserte Analyse und Anzeige von Datum und Uhrzeit"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:103
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:113
 msgid "Reader mode can now work on websites without an article tag"
 msgstr ""
 "Der Lesemodus kann jetzt auf Webseiten ohne Artikel-Tag verwendet werden"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:104
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:114
 msgid "Slight improvements to the icon"
 msgstr "Leichte Verbesserungen am Symbol"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:105
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:115
 msgid "New feature to filter articles by feed"
 msgstr "Neue Funktion zum Filtern der Artikel nach Feed"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:112
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:122
 msgid "Improved favicon download"
 msgstr "Verbessertes Herunterladen des Favicon"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:113
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:123
 msgid "Fixed refresh duplicating articles"
 msgstr "Das Aktualisieren von doppelten Artikeln wurde korrigiert"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:120
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:130
 msgid "Added option to disable client side decoration"
 msgstr "Option hinzugefügt, die Fensterdekoration abzuschalten"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:121
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:131
 msgid "Brought primary menu in line with GNOME HIG"
 msgstr "Hauptmenü so gestaltet, dass es den GNOME-Richtlinien entspricht"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:122
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:132
 msgid "Added placeholder icon for feeds without an icon"
 msgstr "Platzhalter für Feeds ohne Symbol hinzugefügt"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:123
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:133
 msgid "Migrated some widgets to Glade templates"
 msgstr "Einige Widgets wurden zu Glade-Vorlagen verlegt"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:124
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:134
 msgid "Option to use reader mode by default"
 msgstr "Option zum standardmäßigen Verwenden der Leseansicht"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:125
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:135
 msgid "Option to show article content from the feed"
 msgstr "Option zum Zeigen des Artikelinhaltes aus dem Feed"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:133
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:143
 msgid "Fixed labels alignment"
 msgstr "Ausrichtung der Beschreibung verbessert"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:134
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:144
 msgid "Changed app name to Feeds"
 msgstr "Name der Anwendung zu Feeds geändert"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:135
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:145
 msgid "Added separators for the two sections of the app"
 msgstr "Trenner zwischen den beiden Bereichen der App hinzugefügt"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:136
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:146
 msgid "Using links as feed titles when there is no title"
 msgstr "Benutze die Links als Feed-Titel, wenn kein Titel verfügbar ist"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:137
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:147
 msgid "Added preference for maximum article age"
 msgstr "Einstellung zum Festlegen des maximalen Artikelalters hinzugefügt"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:138
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:148
 msgid "Added zoom keyboard shortcuts"
 msgstr "Tastaturkürzel für Zoomen hinzugefügt"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:139
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:149
 msgid "Added preference to enable JavaScript"
 msgstr "Einstellung zum Aktivieren von JavaScript hinzugefügt"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:140
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:150
 msgid "Fix window control positions when they are on the left"
 msgstr ""
 "Fehler mit Schaltflächenposition für Fenstersteuerung behoben, wenn diese "
 "auf der linken Seite sind"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:147
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:157
 msgid "Feeds for websites without favicons will now work"
 msgstr "Feeds für Webseiten ohne Favicons werden jetzt funktionieren"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:154
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:164
 msgid "Fixed bug with adding new feeds"
 msgstr "Fehler beim Hinzufügen neuer Feeds behoben"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:161
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:171
 msgid "Switched to native file chooser"
 msgstr "Wechsel zum nativen Dateiwähler"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:162
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:172
 msgid "Added empty state initial screen for sidebar"
 msgstr "Leeren Anfangsbildschirm für Seitenleiste hinzugefügt"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:163
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:173
 msgid "Added italian translation"
 msgstr "Italienische Übersetzung hinzugefügt"
 
-#: ../data/org.gabmus.gfeeds.appdata.xml.in:170
+#: ../data/org.gabmus.gfeeds.appdata.xml.in:180
 msgid "First release"
 msgstr "Erste Veröffentlichung"
+
+#~ msgid "<big>Select an article</big>"
+#~ msgstr "<big>Wählen Sie einen Artikel aus</big>"
 
 #~ msgid "GNOME Feeds"
 #~ msgstr "GNOME Feeds"
@@ -616,3 +653,6 @@ msgstr "Erste Veröffentlichung"
 
 #~ msgid "<big>Add a feed or import an OPML file</big>"
 #~ msgstr "<big>Einen Feed hinzufügen oder eine OPML-Datei importieren</big>"
+
+#~ msgid "This does nothing"
+#~ msgstr "Das bringt nichts"
