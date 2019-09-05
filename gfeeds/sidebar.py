@@ -9,6 +9,7 @@ from .feeds_manager import FeedsManager
 from .rss_parser import FeedItem
 from .download_manager import download_raw
 from gettext import gettext as _
+from .relative_day_formatter import get_date_format
 
 
 class RowPopover(Gtk.Popover):
@@ -187,7 +188,7 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
             self.feeditem.pub_date.hour,
             self.feeditem.pub_date.minute,
             self.feeditem.pub_date.second
-        ).to_local().format('%-e %b  %Y %X')
+        ).to_local().format(get_date_format(self.feeditem.pub_date))
         self.date_label.set_text(
             self.datestr
         )
