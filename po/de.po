@@ -357,8 +357,8 @@ msgid "Link copied to clipboard!"
 msgstr "Link in Zwischenablage kopiert!"
 
 #: ../data/ui/webview_filler.glade:36
-msgid "<big>Select an article</big>"
-msgstr "<big>Wählen Sie einen Artikel aus</big>"
+msgid "Select an article"
+msgstr "Wählen Sie einen Artikel aus"
 
 #: ../data/org.gabmus.gfeeds.desktop.in:3
 msgid "@prettyname@"
