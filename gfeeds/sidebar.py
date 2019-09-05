@@ -209,10 +209,20 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         if read != None:
             self.feeditem.set_read(read)
         if self.feeditem.read:
-            self.get_style_context().add_class('dim-label')
+            self.set_dim(True)
         else:
-            self.get_style_context().remove_class('dim-label')
+            self.set_dim(False)
 
+    def set_dim(self, state):
+        for w in [
+            self.colored_box,
+            self.title_label,
+            self.icon
+        ]:
+            if state:
+                w.get_style_context().add_class('dim-label')
+            else:
+                w.get_style_context().remove_class('dim-label')
 
     def draw_color(self, da, ctx):
         ctx.set_source_rgb(
