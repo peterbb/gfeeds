@@ -200,7 +200,6 @@ class GFeedsApplication(Gtk.Application):
     def show_settings_window(self, *args):
         settings_win = GFeedsSettingsWindow()
         settings_win.set_transient_for(self.window)
-        settings_win.set_attached_to(self.window)
         settings_win.set_modal(True)
         settings_win.present()
 

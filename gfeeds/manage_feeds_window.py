@@ -119,7 +119,6 @@ class GFeedsManageFeedsWindow(Gtk.Window):
         self.set_type_hint(Gdk.WindowTypeHint.DIALOG)
         self.set_modal(True)
         self.set_transient_for(self.appwindow)
-        # self.set_attached_to(self.appwindow)
 
     def present(self, *args, **kwargs):
         super().present(*args, **kwargs)
