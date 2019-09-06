@@ -38,12 +38,8 @@
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Select an article</property>
             <property name="wrap">True</property>
-            <attributes>
-              <attribute name="weight" value="light"/>
-              <attribute name="scale" value="1.7"/>
-            </attributes>
             <style>
-              <class name="dim-label"/>
+              <class name="webview-filler-title"/>
             </style>
           </object>
           <packing>

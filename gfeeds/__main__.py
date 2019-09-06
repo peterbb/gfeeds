@@ -214,6 +214,11 @@ class GFeedsApplication(Gtk.Application):
             infobar.warning {
                 background-color: #c64600;
             }
+            .webview-filler-title {
+                font-weight: 300;
+                font-size: 24pt;
+                letter-spacing: 0.2rem;
+            }
         '''.encode())
         stylecontext.add_provider_for_screen(
             Gdk.Screen.get_default(),
