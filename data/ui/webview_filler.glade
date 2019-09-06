@@ -19,10 +19,12 @@
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="opacity">0.25</property>
             <property name="pixel_size">128</property>
             <property name="icon_name">web-browser-symbolic</property>
             <property name="icon_size">0</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -37,9 +39,12 @@
             <property name="label" translatable="yes">Select an article</property>
             <property name="wrap">True</property>
             <attributes>
-              <attribute name="weight" value="thin"/>
+              <attribute name="weight" value="light"/>
               <attribute name="scale" value="1.7"/>
             </attributes>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
