@@ -14,9 +14,9 @@
         <property name="can_focus">False</property>
         <property name="valign">start</property>
         <property name="margin_left">6</property>
-        <property name="margin_right">8</property>
+        <property name="margin_right">6</property>
         <property name="margin_top">6</property>
-        <property name="margin_bottom">3</property>
+        <property name="margin_bottom">6</property>
         <property name="pixel_size">32</property>
         <property name="icon_name">application-rss+xml-symbolic</property>
         <property name="icon_size">5</property>
@@ -31,15 +31,17 @@
       <object class="GtkBox" id="vbox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">6</property>
+        <property name="margin_right">6</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
+        <property name="spacing">6</property>
         <child>
           <object class="GtkLabel" id="title_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="margin_top">3</property>
-            <property name="margin_bottom">3</property>
             <property name="label">_feed_title</property>
             <property name="wrap">True</property>
             <property name="xalign">0</property>
@@ -58,8 +60,6 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="margin_top">3</property>
-            <property name="margin_bottom">3</property>
             <property name="label">_feed_description</property>
             <property name="wrap">True</property>
             <property name="xalign">0</property>
@@ -85,6 +85,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">False</property>
+        <property name="margin_left">6</property>
         <property name="margin_right">12</property>
         <property name="draw_indicator">True</property>
         <child>
