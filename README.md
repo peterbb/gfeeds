@@ -21,11 +21,11 @@ the run button. It will handle the rest.
 
 ## Installing from Flathub
 
-You can install Feeds via [Flatpak](https://flathub.org/apps/details/org.gabmus.gnome-feeds).
+You can install Feeds via [Flatpak](https://flathub.org/apps/details/org.gabmus.gfeeds).
 
 ## Installing from AUR
 
-Feeds is available as an AUR package: [`gnome-feeds-git`](https://aur.archlinux.org/packages/gnome-feeds-git/).
+Feeds is available as an AUR package: [`gfeeds-git`](https://aur.archlinux.org/packages/gfeeds-git/).
 
 ## Installing from Fedora
 
@@ -42,11 +42,12 @@ can be useful to you. If not, just install the flatpak.
 sudo apt-get install python-html5lib webkit2gtk python-lxml python-requests
 sudo pip install listparser 
 
-git clone https://gitlab.gnome.org/GabMus/gnome-feeds
-cd gnome-feeds
+git clone https://gitlab.gnome.org/World/gfeeds
+cd gfeeds
 mkdir build
 cd build
 meson ..
+meson configure -Dprefix=$PWD/testdir # use this line if you want to avoid installing system wide
 ninja
 ninja install
 ```
@@ -55,13 +56,14 @@ ninja install
 
 ```bash
 sudo pacman -S python-html5lib webkit2gtk python-lxml python-requests python-pip python-gobject python-feedparser
-sudo pip install listparser 
+yay -S python-listparser 
 
-git clone https://gitlab.gnome.org/GabMus/gnome-feeds
-cd gnome-feeds
+git clone https://gitlab.gnome.org/GabMus/gfeeds
+cd gfeeds
 mkdir build
 cd build
 meson ..
+meson configure -Dprefix=$PWD/testdir # use this line if you want to avoid installing system wide
 ninja
 ninja install
 ```
