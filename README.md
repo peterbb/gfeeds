@@ -2,7 +2,7 @@
 
 An RSS/Atom feed reader for GNOME.
 
-![screenshot](website/screenshots/mainwindow.png)
+![screenshot](https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/mainwindow.png)
 
 ## Notes on the distribution of this app
 
