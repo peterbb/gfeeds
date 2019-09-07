@@ -14,39 +14,39 @@
     </description>
     <screenshots>
         <screenshot>
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/add_feed.png</image>
+            <image>https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/add_feed.png</image>
         </screenshot>
         <screenshot>
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/import_export.png</image>
+            <image>https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/import_export.png</image>
         </screenshot>
         <screenshot>
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/filter.png</image>
+            <image>https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/filter.png</image>
         </screenshot>
         <screenshot>
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/reader.png</image>
+            <image>https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/reader.png</image>
         </screenshot>
         <screenshot>
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/rss_content.png</image>
+            <image>https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/rss_content.png</image>
         </screenshot>
         <screenshot>
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/webview.png</image>
+            <image>https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/webview.png</image>
         </screenshot>
         <screenshot>
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/preferences.png</image>
+            <image>https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/preferences.png</image>
         </screenshot>
         <screenshot>
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/saved_articles.png</image>
+            <image>https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/saved_articles.png</image>
         </screenshot>
         <screenshot>
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/unread.png</image>
+            <image>https://gitlab.gnome.org/World/gfeeds/raw/website/website/screenshots/unread.png</image>
         </screenshot>
         <screenshot type="default">
-            <image>https://gitlab.com/gabmus/gnome-feeds/raw/master/website/screenshots/mainwindow.png</image>
+            <image>mainwindow.png</image>
         </screenshot>
     </screenshots>
     <url type="homepage">https://gabmus.gitlab.io/gnome-feeds/</url>
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
-    <update_contact>emaildigabry@gmail.com</update_contact>
+    <update_contact>gabmus@disroot.org</update_contact>
     <releases>
         <release version="0.9" timestamp="1567692081">
             <description>
