@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, Handy, GObject, Pango
+from gi.repository import Gtk, Gdk, Handy, GObject
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .spinner_button import RefreshSpinnerButton
@@ -51,19 +51,26 @@ class GFeedHeaderbar(Handy.TitleBar):
             webview,
             **kwargs):
         super().__init__(**kwargs)
+        self.builder = Gtk.Builder.new_from_resource(
+            '/org/gabmus/gfeeds/ui/headerbar.glade'
+        )
+        self.builder.connect_signals(self)
         self.confman = ConfManager()
         self.feedman = FeedsManager()
         self.back_btn_func = back_btn_func
         self.webview = webview
         self.webview.connect('gfeeds_webview_load_start', self.on_load_start)
         self.webview.connect('gfeeds_webview_load_end', self.on_load_end)
-        
         self.headergroup = Handy.HeaderGroup()
         self.leaflet = Gtk.Builder.new_from_resource(
             '/org/gabmus/gfeeds/ui/gfeeds_leaflet.glade'
         ).get_object('leaflet')
-        self.left_headerbar = Gtk.HeaderBar()
-        self.right_headerbar = Gtk.HeaderBar()
+        self.left_headerbar = self.builder.get_object(
+            'left_headerbar'
+        )
+        self.right_headerbar = self.builder.get_object(
+            'right_headerbar'
+        )
         self.right_headerbar.set_hexpand(True)
         size_group_left.add_widget(self.left_headerbar)
         size_group_right.add_widget(self.right_headerbar)
@@ -83,64 +90,36 @@ class GFeedHeaderbar(Handy.TitleBar):
         )
         self.headergroup.set_focus(self.left_headerbar)
 
-        self.back_button = Gtk.Button.new_from_icon_name(
-            'go-previous-symbolic',
-            Gtk.IconSize.BUTTON
+        self.back_button = self.builder.get_object(
+            'back_btn'
         )
-        self.back_button.set_tooltip_text(_('Back to articles'))
-        self.back_button.set_visible(False)
-        self.back_button.set_no_show_all(True)
-        self.back_button.connect('clicked', self.on_back_button_clicked)
-        self.right_headerbar.pack_start(self.back_button)
-        
-        self.open_externally_btn = Gtk.Button.new_from_icon_name(
-            'web-browser-symbolic',
-            Gtk.IconSize.BUTTON
+        self.open_externally_btn = self.builder.get_object(
+            'open_externally_btn'
         )
-        self.open_externally_btn.set_tooltip_text(_('Open externally'))
-        self.open_externally_btn.set_sensitive(False)
-        self.open_externally_btn.connect('clicked', self.webview.open_externally)
-        self.right_headerbar.pack_end(self.open_externally_btn)
-
-        self.reader_mode_btn = Gtk.ToggleButton()
-        self.reader_mode_btn.set_tooltip_text(_('Reader mode'))
-        self.reader_mode_btn.add(Gtk.Image.new_from_icon_name(
-            'ephy-reader-mode-symbolic',
-            Gtk.IconSize.BUTTON
-        ))
+        self.open_externally_btn.connect(
+            'clicked',
+            self.webview.open_externally
+        )
+        self.reader_mode_btn = self.builder.get_object(
+            'reader_btn'
+        )
         self.reader_mode_btn_handler_id = self.reader_mode_btn.connect(
             'toggled',
             self.on_reader_mode_toggled
         )
-        self.reader_mode_btn.set_sensitive(False)
-        self.right_headerbar.pack_start(self.reader_mode_btn)
-
-        self.rss_content_btn = Gtk.ToggleButton()
-        self.rss_content_btn.set_tooltip_text(_('Load RSS content'))
-        self.rss_content_btn.add(Gtk.Image.new_from_icon_name(
-            'application-rss+xml-symbolic',
-            Gtk.IconSize.BUTTON
-        ))
+        self.rss_content_btn = self.builder.get_object(
+            'rss_content_btn'
+        )
         self.rss_content_btn_handler_id = self.rss_content_btn.connect(
             'toggled',
             self.on_rss_content_toggled
         )
-        self.rss_content_btn.set_sensitive(False)
-        self.right_headerbar.pack_start(self.rss_content_btn)
-
-        self.share_btn = Gtk.Button.new_from_icon_name(
-            'emblem-shared-symbolic',
-            Gtk.IconSize.BUTTON
+        # self.share_btn = self.builder.get_object(
+        #     'share_btn'
+        # )
+        self.menu_btn = self.builder.get_object(
+            'menu_btn'
         )
-        self.share_btn.set_tooltip_text('Share')
-        self.share_btn.connect('clicked', self.copy_article_uri)
-        self.right_headerbar.pack_start(self.share_btn)
-
-        self.menu_btn = Gtk.Button.new_from_icon_name(
-            'open-menu-symbolic',
-            Gtk.IconSize.BUTTON
-        )
-        self.menu_btn.set_tooltip_text(_('Menu'))
         self.menu_popover = Gtk.PopoverMenu()
         self.menu_builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gfeeds/ui/menu.xml'
@@ -149,32 +128,25 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.menu_popover.bind_model(self.menu)
         self.menu_popover.set_relative_to(self.menu_btn)
         self.menu_popover.set_modal(True)
-        self.menu_btn.connect('clicked', self.on_menu_btn_clicked)
-        self.left_headerbar.pack_end(self.menu_btn)
 
-        self.filter_btn = Gtk.Button.new_from_icon_name(
-            'view-list-symbolic',
-            Gtk.IconSize.BUTTON
+        self.filter_btn = self.builder.get_object(
+            'filter_btn'
         )
-        self.filter_btn.set_tooltip_text(_('Filter by feed'))
         self.filter_popover = FeedsViewPopover(self.filter_btn)
         self.feedman.connect(
             'feedmanager_refresh_start',
             lambda *args: self.filter_popover.scrolled_win.listbox.row_all_activate()
         )
-        self.left_headerbar.pack_end(self.filter_btn)
 
-        self.add_btn = Gtk.Button.new_from_icon_name(
-            'list-add-symbolic',
-            Gtk.IconSize.BUTTON
+        self.add_btn = self.builder.get_object(
+            'add_btn'
         )
         self.add_btn.set_tooltip_text(_('Add new feed'))
         self.add_popover = AddFeedPopover(self.add_btn)
-        self.left_headerbar.pack_start(self.add_btn)
 
         self.refresh_btn = RefreshSpinnerButton()
         self.refresh_btn.btn.connect('clicked', self.feedman.refresh)
-        self.left_headerbar.pack_start(self.refresh_btn)
+        self.builder.get_object('refresh_btn_box').add(self.refresh_btn)
 
         self.squeezer = Handy.Squeezer()
         self.nobox = Gtk.Label()
@@ -185,7 +157,6 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.squeezer.add(self.stack_switcher)
         self.squeezer.add(self.nobox)
         self.squeezer.connect('notify::visible-child', self.on_squeeze)
-        # self.stack_switcher = Gtk.StackSwitcher()
         self.left_headerbar.set_custom_title(self.squeezer)
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
@@ -198,20 +169,8 @@ class GFeedHeaderbar(Handy.TitleBar):
             'feedmanager_refresh_end',
             self.on_new_feed_add_end
         )
-        # weir workaround? thank haecker-felix
-        # if using a label alone, whenever the title changes the whole
-        # headerbar resizes, forcing an unnatural fold of the leaflet
-        self.title_workaround_scrolledwin = Gtk.ScrolledWindow()
-        self.title_workaround_scrolledwin.set_hexpand(True)
-        self.title_workaround_viewport = Gtk.Viewport()
-        self.title_workaround_scrolledwin.add(self.title_workaround_viewport)
-        self.title_label = Gtk.Label('')
+        self.title_label = self.builder.get_object('title_label')
         self.title_label.set_hexpand(False)
-        self.title_label.set_justify(Gtk.Justification.CENTER)
-        self.title_label.set_ellipsize(Pango.EllipsizeMode.END)
-        self.title_workaround_viewport.add(self.title_label)
-        self.right_headerbar.set_custom_title(self.title_workaround_scrolledwin)
-        self.title_workaround_scrolledwin.show_all()
 
     def set_article_title(self, title):
         self.title_label.set_text(title)

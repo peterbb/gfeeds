@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkHeaderBar" id="left_headerbar">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkButton" id="add_btn">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Add new feed</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">list-add-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="refresh_btn_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+      <packing>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child type="title">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkButton" id="menu_btn">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Menu</property>
+        <signal name="clicked" handler="on_menu_btn_clicked" swapped="no"/>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">open-menu-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack_type">end</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="filter_btn">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Filter by feed</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">view-list-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack_type">end</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkHeaderBar" id="right_headerbar">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkButton" id="back_btn">
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="no_show_all">True</property>
+        <property name="tooltip_text" translatable="yes">Back to articles</property>
+        <signal name="clicked" handler="on_back_button_clicked" swapped="no"/>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">go-previous-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkToggleButton" id="reader_btn">
+        <property name="visible">True</property>
+        <property name="sensitive">False</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Reader mode</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">ephy-reader-mode-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleButton" id="rss_content_btn">
+        <property name="visible">True</property>
+        <property name="sensitive">False</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Load RSS content</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">application-rss+xml-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="position">6</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="share_btn">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Share</property>
+        <signal name="clicked" handler="copy_article_uri" swapped="no"/>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">emblem-shared-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="position">6</property>
+      </packing>
+    </child>
+    <child type="title">
+      <object class="GtkScrolledWindow">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="hexpand">True</property>
+        <child>
+          <object class="GtkViewport">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="shadow_type">none</property>
+            <child>
+              <object class="GtkLabel" id="title_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="justify">center</property>
+                <property name="ellipsize">end</property>
+                <property name="single_line_mode">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="open_externally_btn">
+        <property name="visible">True</property>
+        <property name="sensitive">False</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Open externally</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">web-browser-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack_type">end</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+</interface>
