@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, Handy, GObject
+from gi.repository import Gtk, Gdk, Handy, GObject, Pango
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .spinner_button import RefreshSpinnerButton
@@ -198,6 +198,23 @@ class GFeedHeaderbar(Handy.TitleBar):
             'feedmanager_refresh_end',
             self.on_new_feed_add_end
         )
+        # weir workaround? thank haecker-felix
+        # if using a label alone, whenever the title changes the whole
+        # headerbar resizes, forcing an unnatural fold of the leaflet
+        self.title_workaround_scrolledwin = Gtk.ScrolledWindow()
+        self.title_workaround_scrolledwin.set_hexpand(True)
+        self.title_workaround_viewport = Gtk.Viewport()
+        self.title_workaround_scrolledwin.add(self.title_workaround_viewport)
+        self.title_label = Gtk.Label('')
+        self.title_label.set_hexpand(False)
+        self.title_label.set_justify(Gtk.Justification.CENTER)
+        self.title_label.set_ellipsize(Pango.EllipsizeMode.END)
+        self.title_workaround_viewport.add(self.title_label)
+        self.right_headerbar.set_custom_title(self.title_workaround_scrolledwin)
+        self.title_workaround_scrolledwin.show_all()
+
+    def set_article_title(self, title):
+        self.title_label.set_text(title)
 
     def on_squeeze(self, *args):
         self.emit(

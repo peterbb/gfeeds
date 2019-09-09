@@ -200,6 +200,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.webview.set_enable_rss_content(None, True, row.feeditem)
         else:
             self.webview.load_feeditem(row.feeditem)
+        self.headerbar.set_article_title(
+            row.feeditem.title
+        )
         self.headerbar.open_externally_btn.set_sensitive(True)
         self.leaflet.set_visible_child(self.webview)
         self.headerbar.leaflet.set_visible_child(self.headerbar.right_headerbar)
@@ -210,7 +213,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
     def on_main_leaflet_folded(self, *args):
         target = None
         # other = None
-        if self.leaflet.get_fold == Handy.Fold.FOLDED:
+        if self.leaflet.get_fold() == Handy.Fold.FOLDED:
             target = self.headerbar.leaflet.get_visible_child()
             self.headerbar.back_button.show()
         else:
