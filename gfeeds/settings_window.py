@@ -213,6 +213,11 @@ class ViewPreferencesPage(Handy.PreferencesPage):
                 'signal': 'gfeeds_colored_border_changed'
             },
             {
+                'title': _('Show full articles titles'),
+                'conf_key': 'full_article_title',
+                'signal': 'gfeeds_full_article_title_changed'
+            },
+            {
                 'title': _('Use dark theme for reader mode'),
                 'conf_key': 'dark_reader',
                 'signal': None

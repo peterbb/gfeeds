@@ -1,4 +1,4 @@
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GLib, Pango
 from datetime import timezone
 from os.path import isfile
 from os import remove
@@ -157,6 +157,11 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         )
         self.title_label = self.builder.get_object('title_label')
         self.title_label.set_text(self.feeditem.title)
+        self.confman.connect(
+            'gfeeds_full_article_title_changed',
+            self.on_full_article_title_changed
+        )
+        self.on_full_article_title_changed()
         self.origin_label = self.builder.get_object('origin_label')
         self.origin_label.set_text(self.feeditem.parent_feed.title)
 
@@ -197,6 +202,12 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
 
         self.add(self.container_box)
         self.set_read()
+
+    def on_full_article_title_changed(self, *args):
+        self.title_label.set_ellipsize(
+            Pango.EllipsizeMode.NONE if self.confman.conf['full_article_title']
+            else Pango.EllipsizeMode.END
+        )
 
     def on_show_colored_border_changed(self, *args):
         if self.confman.conf['colored_border']:

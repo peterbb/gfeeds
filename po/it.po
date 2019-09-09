@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 16:06+0200\n"
-"PO-Revision-Date: 2019-09-05 16:07+0200\n"
+"POT-Creation-Date: 2019-09-09 09:57+0200\n"
+"PO-Revision-Date: 2019-09-09 09:57+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -125,19 +125,19 @@ msgstr "Segna come non letto"
 msgid "Mark as read"
 msgstr "Segna come letto"
 
-#: ../gfeeds/sidebar.py:406
+#: ../gfeeds/sidebar.py:417
 msgid "Feed"
 msgstr "Feed"
 
-#: ../gfeeds/sidebar.py:412
+#: ../gfeeds/sidebar.py:423
 msgid "Saved"
 msgstr "Salvati"
 
-#: ../gfeeds/__main__.py:268
+#: ../gfeeds/__main__.py:273
 msgid "url"
 msgstr "url"
 
-#: ../gfeeds/__main__.py:271
+#: ../gfeeds/__main__.py:276
 msgid "opml file local url or rss remote url to import"
 msgstr "url locale del file opml o url rss remota da importare"
 
@@ -199,34 +199,38 @@ msgid "Show colored border"
 msgstr "Mostra bordo colorato"
 
 #: ../gfeeds/settings_window.py:216
+msgid "Show full articles titles"
+msgstr "Mostra i titoli completi degli articoli"
+
+#: ../gfeeds/settings_window.py:221
 msgid "Use dark theme for reader mode"
 msgstr "Usa tema scuro per la modalità lettura"
 
-#: ../gfeeds/settings_window.py:221
+#: ../gfeeds/settings_window.py:226
 msgid "Enable JavaScript"
 msgstr "Attiva JavaScript"
 
-#: ../gfeeds/settings_window.py:226
+#: ../gfeeds/settings_window.py:231
 msgid "Enable client side decoration"
 msgstr "Attiva decorazione client side"
 
-#: ../gfeeds/settings_window.py:242
+#: ../gfeeds/settings_window.py:247
 msgid "Advanced"
 msgstr "Avanzate"
 
-#: ../gfeeds/settings_window.py:247
+#: ../gfeeds/settings_window.py:252
 msgid "Advanced Settings"
 msgstr "Impostazioni Avanzate"
 
-#: ../gfeeds/settings_window.py:250
+#: ../gfeeds/settings_window.py:255
 msgid "Maximum refresh threads"
 msgstr "Massimi thread per aggiornamento"
 
-#: ../gfeeds/settings_window.py:255
+#: ../gfeeds/settings_window.py:260
 msgid "How many threads to refresh feeds"
 msgstr "Quanti thread per aggiornare i feed"
 
-#: ../gfeeds/settings_window.py:293
+#: ../gfeeds/settings_window.py:298
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -375,7 +379,7 @@ msgstr "Salva articolo"
 msgid "Link copied to clipboard!"
 msgstr "Link copiato negli appunti!"
 
-#: ../data/ui/webview_filler.glade:37
+#: ../data/ui/webview_filler.glade:39
 msgid "Select an article"
 msgstr "Seleziona un articolo"
 
