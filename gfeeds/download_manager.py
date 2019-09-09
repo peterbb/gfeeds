@@ -3,7 +3,7 @@ import requests
 from .confManager import ConfManager
 from .sha import shasum
 from os.path import isfile
-import brotli
+# import brotli
 
 confman = ConfManager()
 
