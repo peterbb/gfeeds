@@ -1,6 +1,5 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk, Handy, GObject
-from .leaflet import GFeedsLeaflet
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .spinner_button import RefreshSpinnerButton
