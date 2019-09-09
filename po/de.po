@@ -198,7 +198,7 @@ msgstr "Ansichtseinstellungen"
 
 #: ../gfeeds/settings_window.py:211
 msgid "Show colored border"
-msgstr "Farbigen Rahmen anzeigen"
+msgstr "Farbigen Rand anzeigen"
 
 #: ../gfeeds/settings_window.py:216
 msgid "Use dark theme for reader mode"
