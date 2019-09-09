@@ -3,7 +3,6 @@ from gi.repository import Gtk, GLib, Handy
 import threading
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
-from .leaflet import GFeedsLeaflet
 from .sidebar import GFeedsSidebar
 from .headerbar import GFeedHeaderbar
 from .suggestion_bar import (
@@ -38,7 +37,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         separator = Gtk.Separator()
         separator.get_style_context().add_class('sidebar')
 
-        self.leaflet = GFeedsLeaflet()
+        self.leaflet = Gtk.Builder.new_from_resource(
+            '/org/gabmus/gfeeds/ui/gfeeds_leaflet.glade'
+        ).get_object('leaflet')
         self.suggestion_bar = GFeedsSuggestionBar()
         self.connection_bar = GFeedsConnectionBar()
         self.errors_bar = GFeedsErrorsBar(self)
@@ -209,7 +210,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
     def on_main_leaflet_folded(self, *args):
         target = None
         # other = None
-        if self.leaflet.folded:
+        if self.leaflet.get_fold == Handy.Fold.FOLDED:
             target = self.headerbar.leaflet.get_visible_child()
             self.headerbar.back_button.show()
         else:

@@ -60,7 +60,9 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.webview.connect('gfeeds_webview_load_end', self.on_load_end)
         
         self.headergroup = Handy.HeaderGroup()
-        self.leaflet = GFeedsLeaflet()
+        self.leaflet = Gtk.Builder.new_from_resource(
+            '/org/gabmus/gfeeds/ui/gfeeds_leaflet.glade'
+        ).get_object('leaflet')
         self.left_headerbar = Gtk.HeaderBar()
         self.right_headerbar = Gtk.HeaderBar()
         self.right_headerbar.set_hexpand(True)
@@ -178,6 +180,7 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.squeezer = Handy.Squeezer()
         self.nobox = Gtk.Label()
         self.stack_switcher = Handy.ViewSwitcher()
+        self.stack_switcher.set_policy(Handy.ViewSwitcherPolicy.WIDE)
         self.stack_switcher.set_margin_left(12)
         self.stack_switcher.set_margin_right(12)
         self.squeezer.add(self.stack_switcher)
