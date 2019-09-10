@@ -24,15 +24,25 @@ class AddFeedPopover(Gtk.Popover):
             self.on_confirm_btn_clicked
         )
         self.url_entry = self.builder.get_object('url_entry')
-
+        self.already_subscribed_revealer = self.builder.get_object(
+            'already_subscribed_revealer'
+        )
+        self.url_entry.connect(
+            'changed',
+            lambda *args: self.already_subscribed_revealer.set_reveal_child(False)
+        )
         self.add(self.container_box)
 
     def on_relative_to_clicked(self, *args):
         self.popup()
 
     def on_confirm_btn_clicked(self, btn):
-        self.popdown()
-        self.feedman.add_feed(self.url_entry.get_text())
+        res = self.feedman.add_feed(self.url_entry.get_text(), True)
+        if res:
+            self.popdown()
+            self.already_subscribed_revealer.set_reveal_child(False)
+        else:
+            self.already_subscribed_revealer.set_reveal_child(True)
 
 
 class GFeedHeaderbar(Handy.TitleBar):

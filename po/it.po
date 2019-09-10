@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 10:31+0200\n"
-"PO-Revision-Date: 2019-09-10 10:32+0200\n"
+"POT-Creation-Date: 2019-09-10 14:18+0200\n"
+"PO-Revision-Date: 2019-09-10 14:19+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -64,7 +64,7 @@ msgstr ""
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../gfeeds/headerbar.py:144
+#: ../gfeeds/headerbar.py:154
 msgid "Add new feed"
 msgstr "Aggiungi nuovo feed"
 
@@ -353,12 +353,20 @@ msgid "page1"
 msgstr "page1"
 
 #: ../data/ui/add_feed_box.glade:20
-msgid "<big>New feed URL</big>"
-msgstr "<big>Nuovo URL del feed</big>"
+msgid "Enter feed address to add"
+msgstr "Inserisci l'indirizzo del feed da aggiungere"
 
-#: ../data/ui/add_feed_box.glade:33
+#: ../data/ui/add_feed_box.glade:41
 msgid "https://..."
 msgstr "https://..."
+
+#: ../data/ui/add_feed_box.glade:61
+msgid "Add"
+msgstr "Aggiungi"
+
+#: ../data/ui/add_feed_box.glade:91
+msgid "You're already subscribed to that feed!"
+msgstr "Sei già iscritto a questo feed!"
 
 #: ../data/ui/article_right_click_popover_content.glade:48
 msgid "Save article"
@@ -396,7 +404,7 @@ msgstr "Apri esternamente"
 msgid "Link copied to clipboard!"
 msgstr "Link copiato negli appunti!"
 
-#: ../data/ui/webview_filler.glade:39
+#: ../data/ui/webview_filler.glade:42
 msgid "Select an article"
 msgstr "Seleziona un articolo"
 
@@ -644,6 +652,9 @@ msgstr "Aggiunta traduzione italiana"
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:180
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "<big>New feed URL</big>"
+#~ msgstr "<big>Nuovo URL del feed</big>"
 
 #~ msgid "Add a feed or import an OPML file"
 #~ msgstr "Aggiungi feed o importa un file OPML"

@@ -103,7 +103,9 @@ class FeedsManager(metaclass=Singleton):
         )
         tp.start()
 
-    def add_feed(self, uri):
+    def add_feed(self, uri, is_new = False):
+        if is_new and uri in self.confman.conf['feeds'].keys():
+            return False
         self.emit('feedmanager_refresh_start', '')
         self.errors = []
         t = threading.Thread(
@@ -113,6 +115,7 @@ class FeedsManager(metaclass=Singleton):
             args = (uri,)
         )
         t.start()
+        return True
 
     def delete_feeds(self, targets, *args):
         if type(targets) != list:
