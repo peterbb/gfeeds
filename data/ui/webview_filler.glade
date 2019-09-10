@@ -13,12 +13,14 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="halign">center</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+        <property name="spacing">24</property>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">center</property>
             <property name="pixel_size">128</property>
             <property name="icon_name">web-browser-symbolic</property>
             <property name="icon_size">0</property>
@@ -36,8 +38,8 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">center</property>
             <property name="label" translatable="yes">Select an article</property>
-            <property name="wrap">True</property>
             <style>
               <class name="webview-filler-title"/>
             </style>
