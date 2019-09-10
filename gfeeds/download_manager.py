@@ -32,7 +32,10 @@ def download_feed(link):
     }
     if 'last-modified' in confman.conf['feeds'][link].keys() and isfile(dest_path):
         headers['If-Modified-Since'] = confman.conf['feeds'][link]['last-modified']
-    res = requests.get(link, headers = headers)
+    try:
+        res = requests.get(link, headers = headers)
+    except:
+        return (False, _('`{0}` is not an URL').format(link))
     if 'last-modified' in res.headers.keys():
         confman.conf['feeds'][link]['last-modified'] = res.headers['last-modified']
     if res.status_code == 200:

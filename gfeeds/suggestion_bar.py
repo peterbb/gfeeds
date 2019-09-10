@@ -79,33 +79,3 @@ class GFeedsConnectionBar(GFeedsInfoBar):
             lambda caller, value: self.set_revealed(not value)
         )
         self.set_revealed(False)
-
-
-class GFeedsSuggestionBar(GFeedsInfoBar):
-    def __init__(self, **kwargs):
-        super().__init__(
-            text = _('Add a feed or import an OPML file'),
-            icon_name = 'list-add-symbolic',
-            **kwargs
-        )
-        self.feedman = FeedsManager()
-        self.feedman.feeds.connect(
-            'pop',
-            lambda caller, obj: self.on_feeds_pop(obj)
-        )
-        self.feedman.connect(
-            'feedmanager_refresh_end',
-            lambda caller, obj: self.on_feeds_pop()
-        )
-        self.feedman.feeds.connect(
-            'append',
-            lambda caller, obj: self.on_feeds_append(obj)
-        )
-        self.set_revealed(False)
-
-    def on_feeds_pop(self, deleted_feed=None):
-        if len(self.feedman.feeds) == 0:
-            self.set_revealed(True)
-
-    def on_feeds_append(self, feed):
-        self.set_revealed(False)

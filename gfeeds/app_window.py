@@ -7,11 +7,11 @@ from .sidebar import GFeedsSidebar
 from .headerbar import GFeedHeaderbar
 from .suggestion_bar import (
     GFeedsConnectionBar,
-    GFeedsSuggestionBar,
     GFeedsErrorsBar
 )
 from .webview import GFeedsWebView
 from .rss_parser import Feed
+from .stack_with_empty_state import StackWithEmptyState
 
 class GFeedsAppWindow(Gtk.ApplicationWindow):
     def __init__(self, **kwargs):
@@ -40,7 +40,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.leaflet = Gtk.Builder.new_from_resource(
             '/org/gabmus/gfeeds/ui/gfeeds_leaflet.glade'
         ).get_object('leaflet')
-        self.suggestion_bar = GFeedsSuggestionBar()
         self.connection_bar = GFeedsConnectionBar()
         self.errors_bar = GFeedsErrorsBar(self)
         self.feedman.connect(
@@ -48,10 +47,10 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             lambda *args: self.errors_bar.engage(self.feedman.errors)
         )
         self.sidebar_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
-        self.sidebar_box.pack_start(self.suggestion_bar, False, False, 0)
         self.sidebar_box.pack_start(self.connection_bar, False, False, 0)
         self.sidebar_box.pack_start(self.errors_bar, False, False, 0)
-        self.sidebar_box.pack_start(self.sidebar, True, True, 0)
+        self.stack_with_empty_state = StackWithEmptyState(self.sidebar)
+        self.sidebar_box.pack_start(self.stack_with_empty_state, True, True, 0)
         self.leaflet.add(self.sidebar_box)
         self.leaflet.add(separator)
         self.leaflet.add(self.webview)

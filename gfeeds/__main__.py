@@ -219,6 +219,9 @@ class GFeedsApplication(Gtk.Application):
                 font-size: 24pt;
                 letter-spacing: 0.2rem;
             }
+            .force-background {
+                background-color: @theme_bg_color;
+            }
         '''.encode())
         stylecontext.add_provider_for_screen(
             Gdk.Screen.get_default(),
