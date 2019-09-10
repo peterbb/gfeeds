@@ -210,6 +210,7 @@ class GFeedsApplication(Gtk.Application):
         provider.load_from_data('''
             .notheaderbar {
                 border-radius: 0px;
+                background-color: @theme_bg_color;
             }
             infobar.warning {
                 background-color: #c64600;
