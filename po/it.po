@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-09 21:25+0200\n"
-"PO-Revision-Date: 2019-09-09 21:25+0200\n"
+"POT-Creation-Date: 2019-09-10 10:31+0200\n"
+"PO-Revision-Date: 2019-09-10 10:32+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -109,15 +109,20 @@ msgstr "Feed"
 msgid "Saved"
 msgstr "Salvati"
 
-#: ../gfeeds/__main__.py:273
+#: ../gfeeds/__main__.py:276
 msgid "url"
 msgstr "url"
 
-#: ../gfeeds/__main__.py:276
+#: ../gfeeds/__main__.py:279
 msgid "opml file local url or rss remote url to import"
 msgstr "url locale del file opml o url rss remota da importare"
 
-#: ../gfeeds/download_manager.py:53
+#: ../gfeeds/download_manager.py:38
+#, python-brace-format
+msgid "`{0}` is not an URL"
+msgstr "`{0}` non è un URL"
+
+#: ../gfeeds/download_manager.py:56
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Errore nel download di `{0}`, codice `{1}`"
@@ -267,10 +272,6 @@ msgstr "Ci sono stati dei problemi con alcuni feed"
 msgid "You are offline"
 msgstr "Sei offline"
 
-#: ../gfeeds/suggestion_bar.py:87
-msgid "Add a feed or import an OPML file"
-msgstr "Aggiungi feed o importa un file OPML"
-
 #: ../data/ui/menu.xml:6
 msgid "Show read articles"
 msgstr "Mostra articoli letti"
@@ -298,6 +299,18 @@ msgstr "Scorciatoie da tastiera"
 #: ../data/ui/menu.xml:42
 msgid "About Feeds"
 msgstr "Informazioni su Feeds"
+
+#: ../data/ui/empty_state.glade:42
+msgid "Let's get started"
+msgstr "Cominciamo"
+
+#: ../data/ui/empty_state.glade:88
+msgid "Add new feeds via URL"
+msgstr "Aggiungi nuovi feed tramite URL"
+
+#: ../data/ui/empty_state.glade:100
+msgid "Import an OPML file"
+msgstr "Importa un file OPML"
 
 #: ../data/ui/shortcutsWindow.xml:13
 msgid "Quit"
@@ -352,12 +365,12 @@ msgid "Save article"
 msgstr "Salva articolo"
 
 #: ../data/ui/headerbar.glade:44
-msgid "Menu"
-msgstr "Menu"
-
-#: ../data/ui/headerbar.glade:64
 msgid "Filter by feed"
 msgstr "Filtra per feed"
+
+#: ../data/ui/headerbar.glade:63
+msgid "Menu"
+msgstr "Menu"
 
 #: ../data/ui/headerbar.glade:87
 msgid "Back to articles"
@@ -371,11 +384,11 @@ msgstr "Modalità lettura"
 msgid "Load RSS content"
 msgstr "Carica contenuto dall'RSS"
 
-#: ../data/ui/headerbar.glade:141
+#: ../data/ui/headerbar.glade:142
 msgid "Share"
 msgstr "Condividi"
 
-#: ../data/ui/headerbar.glade:185
+#: ../data/ui/headerbar.glade:186
 msgid "Open externally"
 msgstr "Apri esternamente"
 
@@ -631,6 +644,9 @@ msgstr "Aggiunta traduzione italiana"
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:180
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "Add a feed or import an OPML file"
+#~ msgstr "Aggiungi feed o importa un file OPML"
 
 #~ msgid "<big>Select an article</big>"
 #~ msgstr "<big>Seleziona un articolo</big>"

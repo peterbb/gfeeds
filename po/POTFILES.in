@@ -2,6 +2,7 @@ data/org.gabmus.gfeeds.appdata.xml.in
 data/org.gabmus.gfeeds.desktop.in
 data/ui/add_feed_box.glade
 data/ui/article_right_click_popover_content.glade
+data/ui/empty_state.glade
 data/ui/headerbar.glade
 data/ui/menu.xml
 data/ui/shortcutsWindow.xml
