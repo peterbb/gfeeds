@@ -124,9 +124,9 @@ class GFeedHeaderbar(Handy.TitleBar):
             'toggled',
             self.on_rss_content_toggled
         )
-        # self.share_btn = self.builder.get_object(
-        #     'share_btn'
-        # )
+        self.share_btn = self.builder.get_object(
+            'share_btn'
+        )
         self.menu_btn = self.builder.get_object(
             'menu_btn'
         )
