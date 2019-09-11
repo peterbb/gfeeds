@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 16:06+0200\n"
+"POT-Creation-Date: 2019-09-11 20:53+0200\n"
 "PO-Revision-Date: 2019-09-05 20:41+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: \n"
@@ -66,31 +66,7 @@ msgstr ""
 msgid "Feed {0} exists already, skipping"
 msgstr "Feed {0} existiert bereits, wird übersprungen"
 
-#: ../gfeeds/headerbar.py:89
-msgid "Back to articles"
-msgstr "Zurück zu den Artikeln"
-
-#: ../gfeeds/headerbar.py:99
-msgid "Open externally"
-msgstr "Extern öffnen"
-
-#: ../gfeeds/headerbar.py:105
-msgid "Reader mode"
-msgstr "Leseansicht"
-
-#: ../gfeeds/headerbar.py:118
-msgid "Load RSS content"
-msgstr "Lade RSS-Inhalt"
-
-#: ../gfeeds/headerbar.py:142
-msgid "Menu"
-msgstr "Menü"
-
-#: ../gfeeds/headerbar.py:158
-msgid "Filter by feed"
-msgstr "Filtern nach Feed"
-
-#: ../gfeeds/headerbar.py:170
+#: ../gfeeds/headerbar.py:154
 msgid "Add new feed"
 msgstr "Neuen Feed hinzufügen"
 
@@ -119,31 +95,28 @@ msgstr "RSS-Inhalt oder Zusammenfassung für diesen Artikel nicht verfügbar"
 msgid "Reader mode unavailable for this site"
 msgstr "Leseansicht für diese Seite nicht verfügbar"
 
-#: ../gfeeds/sidebar.py:52 ../gfeeds/sidebar.py:97
-msgid "Mark as unread"
-msgstr "Als ungelesen markieren"
-
-#: ../gfeeds/sidebar.py:60 ../gfeeds/sidebar.py:87
-msgid "Mark as read"
-msgstr "Als gelesen markieren"
-
-#: ../gfeeds/sidebar.py:406
+#: ../gfeeds/sidebar.py:166
 msgid "Feed"
 msgstr "Feed"
 
-#: ../gfeeds/sidebar.py:412
+#: ../gfeeds/sidebar.py:172
 msgid "Saved"
 msgstr "Gespeichert"
 
-#: ../gfeeds/__main__.py:268
+#: ../gfeeds/__main__.py:277
 msgid "url"
 msgstr "URL"
 
-#: ../gfeeds/__main__.py:271
+#: ../gfeeds/__main__.py:280
 msgid "opml file local url or rss remote url to import"
 msgstr ""
 
-#: ../gfeeds/download_manager.py:53
+#: ../gfeeds/download_manager.py:38
+#, python-brace-format
+msgid "`{0}` is not an URL"
+msgstr ""
+
+#: ../gfeeds/download_manager.py:56
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Fehler beim Herunterladen von `{0}`, Code `{1}`"
@@ -201,34 +174,38 @@ msgid "Show colored border"
 msgstr "Farbigen Rand anzeigen"
 
 #: ../gfeeds/settings_window.py:216
+msgid "Show full articles titles"
+msgstr ""
+
+#: ../gfeeds/settings_window.py:221
 msgid "Use dark theme for reader mode"
 msgstr "Dunkles Thema für Leseansicht verwenden"
 
-#: ../gfeeds/settings_window.py:221
+#: ../gfeeds/settings_window.py:226
 msgid "Enable JavaScript"
 msgstr "JavaScript aktivieren"
 
-#: ../gfeeds/settings_window.py:226
+#: ../gfeeds/settings_window.py:231
 msgid "Enable client side decoration"
 msgstr "Fensterdekoration aktivieren"
 
-#: ../gfeeds/settings_window.py:242
+#: ../gfeeds/settings_window.py:247
 msgid "Advanced"
 msgstr "Erweitert"
 
-#: ../gfeeds/settings_window.py:247
+#: ../gfeeds/settings_window.py:252
 msgid "Advanced Settings"
 msgstr "Erweiterte Einstellungen"
 
-#: ../gfeeds/settings_window.py:250
+#: ../gfeeds/settings_window.py:255
 msgid "Maximum refresh threads"
 msgstr "Maximale Aktualisierungsthreads"
 
-#: ../gfeeds/settings_window.py:255
+#: ../gfeeds/settings_window.py:260
 msgid "How many threads to refresh feeds"
 msgstr "Anzahl an Threads zum Aktualisieren von Feeds"
 
-#: ../gfeeds/settings_window.py:293
+#: ../gfeeds/settings_window.py:298
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -289,9 +266,13 @@ msgstr "Es gab Probleme mit einigen Feeds"
 msgid "You are offline"
 msgstr "Sie haben keinen Internetzugriff"
 
-#: ../gfeeds/suggestion_bar.py:87
-msgid "Add a feed or import an OPML file"
-msgstr "Einen Feed hinzufügen oder eine OPML-Datei importieren"
+#: ../gfeeds/sidebar_row_popover.py:45 ../gfeeds/sidebar_row_popover.py:90
+msgid "Mark as unread"
+msgstr "Als ungelesen markieren"
+
+#: ../gfeeds/sidebar_row_popover.py:53 ../gfeeds/sidebar_row_popover.py:80
+msgid "Mark as read"
+msgstr "Als gelesen markieren"
 
 #: ../data/ui/menu.xml:6
 msgid "Show read articles"
@@ -320,6 +301,18 @@ msgstr "Tastaturkürzel"
 #: ../data/ui/menu.xml:42
 msgid "About Feeds"
 msgstr "Info zu Feeds"
+
+#: ../data/ui/empty_state.glade:42
+msgid "Let's get started"
+msgstr ""
+
+#: ../data/ui/empty_state.glade:88
+msgid "Add new feeds via URL"
+msgstr ""
+
+#: ../data/ui/empty_state.glade:100
+msgid "Import an OPML file"
+msgstr ""
 
 #: ../data/ui/shortcutsWindow.xml:13
 msgid "Quit"
@@ -362,22 +355,58 @@ msgid "page1"
 msgstr "page1"
 
 #: ../data/ui/add_feed_box.glade:20
-msgid "<big>New feed URL</big>"
-msgstr "<big>URL des neuen Feed</big>"
+msgid "Enter feed address to add"
+msgstr ""
 
-#: ../data/ui/add_feed_box.glade:33
+#: ../data/ui/add_feed_box.glade:41
 msgid "https://..."
 msgstr "https://..."
+
+#: ../data/ui/add_feed_box.glade:61
+msgid "Add"
+msgstr ""
+
+#: ../data/ui/add_feed_box.glade:91
+msgid "You're already subscribed to that feed!"
+msgstr ""
 
 #: ../data/ui/article_right_click_popover_content.glade:48
 msgid "Save article"
 msgstr "Artikel speichern"
 
+#: ../data/ui/headerbar.glade:44
+msgid "Menu"
+msgstr "Menü"
+
+#: ../data/ui/headerbar.glade:64
+msgid "Filter by feed"
+msgstr "Filtern nach Feed"
+
+#: ../data/ui/headerbar.glade:87
+msgid "Back to articles"
+msgstr "Zurück zu den Artikeln"
+
+#: ../data/ui/headerbar.glade:104
+msgid "Reader mode"
+msgstr "Leseansicht"
+
+#: ../data/ui/headerbar.glade:123
+msgid "Load RSS content"
+msgstr "Lade RSS-Inhalt"
+
+#: ../data/ui/headerbar.glade:142
+msgid "Share"
+msgstr ""
+
+#: ../data/ui/headerbar.glade:189
+msgid "Open externally"
+msgstr "Extern öffnen"
+
 #: ../data/ui/webview_with_notification.glade:51
 msgid "Link copied to clipboard!"
 msgstr "Link in Zwischenablage kopiert!"
 
-#: ../data/ui/webview_filler.glade:37
+#: ../data/ui/webview_filler.glade:42
 msgid "Select an article"
 msgstr "Wählen Sie einen Artikel aus"
 
@@ -632,6 +661,12 @@ msgstr "Italienische Übersetzung hinzugefügt"
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:180
 msgid "First release"
 msgstr "Erste Veröffentlichung"
+
+#~ msgid "Add a feed or import an OPML file"
+#~ msgstr "Einen Feed hinzufügen oder eine OPML-Datei importieren"
+
+#~ msgid "<big>New feed URL</big>"
+#~ msgstr "<big>URL des neuen Feed</big>"
 
 #~ msgid "<big>Select an article</big>"
 #~ msgstr "<big>Wählen Sie einen Artikel aus</big>"
