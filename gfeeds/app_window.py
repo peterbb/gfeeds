@@ -13,6 +13,7 @@ from .webview import GFeedsWebView
 from .rss_parser import Feed
 from .stack_with_empty_state import StackWithEmptyState
 
+
 class GFeedsAppWindow(Gtk.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
