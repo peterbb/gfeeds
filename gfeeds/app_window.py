@@ -5,6 +5,7 @@ from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .sidebar import GFeedsSidebar
 from .headerbar import GFeedHeaderbar
+from .searchbar import GFeedsSearchbar
 from .suggestion_bar import (
     GFeedsConnectionBar,
     GFeedsErrorsBar
@@ -47,7 +48,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             'feedmanager_refresh_end',
             lambda *args: self.errors_bar.engage(self.feedman.errors)
         )
+        self.searchbar = GFeedsSearchbar()
         self.sidebar_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
+        self.sidebar_box.pack_start(self.searchbar, False, False, 0)
         self.sidebar_box.pack_start(self.connection_bar, False, False, 0)
         self.sidebar_box.pack_start(self.errors_bar, False, False, 0)
         self.stack_with_empty_state = StackWithEmptyState(self.sidebar)
