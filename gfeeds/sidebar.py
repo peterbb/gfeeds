@@ -10,6 +10,7 @@ import threading
 class GFeedsSidebarListBox(Gtk.ListBox):
     def __init__(self, parent_stack, **kwargs):
         super().__init__(**kwargs)
+        self.search_terms = ''
         self.confman = ConfManager()
         self.parent_stack = parent_stack
 
@@ -66,7 +67,7 @@ class GFeedsSidebarListBox(Gtk.ListBox):
 
     def change_filter(self, caller, n_filter):
         self.selected_feed = n_filter
-        self.set_filter_func(self.gfeeds_sidebar_filter_func, None, False)
+        self.invalidate_filter()
 
     def gfeeds_sidebar_filter_func(self, row, data, notify_destroy):
         toret = False
@@ -76,7 +77,11 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             toret = row.feeditem.parent_feed == self.selected_feed
         return (
             toret and (
-                self.confman.conf['show_read_items'] or not row.feeditem.read
+                self.confman.conf['show_read_items'] or
+                not row.feeditem.read
+            ) and (
+                not self.search_terms or
+                self.search_terms in row.feeditem.title.lower()
             )
         )
 
@@ -197,6 +202,11 @@ class GFeedsSidebar(Gtk.Stack):
             'append',
             lambda caller, obj: self.on_saved_feeds_items_append(obj)
         )
+
+    def set_search(self, search_terms):
+        for lb in [self.listbox, self.saved_items_listbox]:
+            lb.search_terms = search_terms
+            lb.invalidate_filter()
 
     def on_saved_item_deleted(self, deleted_link):
         for row in self.listbox.get_children():

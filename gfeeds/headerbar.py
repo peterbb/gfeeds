@@ -139,6 +139,7 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.menu_popover.set_relative_to(self.menu_btn)
         self.menu_popover.set_modal(True)
 
+        self.search_btn = self.builder.get_object('search_btn')
         self.filter_btn = self.builder.get_object(
             'filter_btn'
         )
@@ -190,6 +191,10 @@ class GFeedHeaderbar(Handy.TitleBar):
             'gfeeds_headerbar_squeeze',
             self.squeezer.get_visible_child() == self.nobox
         )
+
+    def on_search_btn_toggled(self, togglebtn):
+        searchbar = self.get_parent().searchbar
+        searchbar.set_search_mode(togglebtn.get_active())
 
     def on_reader_mode_toggled(self, togglebtn):
         with self.rss_content_btn.handler_block(self.rss_content_btn_handler_id):

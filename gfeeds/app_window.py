@@ -49,6 +49,14 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             lambda *args: self.errors_bar.engage(self.feedman.errors)
         )
         self.searchbar = GFeedsSearchbar()
+        self.searchbar.entry.connect(
+            'changed',
+            lambda entry: self.sidebar.set_search(entry.get_text())
+        )
+        self.searchbar.connect(
+            'notify::search-mode-enabled',
+            lambda caller, enabled: self.headerbar.search_btn.set_active(caller.get_search_mode())
+        )
         self.sidebar_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
         self.sidebar_box.pack_start(self.searchbar, False, False, 0)
         self.sidebar_box.pack_start(self.connection_bar, False, False, 0)
@@ -115,6 +123,10 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             {
                 'combo': '<Control>r',
                 'cb': self.feedman.refresh
+            },
+            {
+                'combo': '<Control>f',
+                'cb': lambda *args: self.headerbar.search_btn.set_active(True)
             },
             {
                 'combo': '<Control>j',
