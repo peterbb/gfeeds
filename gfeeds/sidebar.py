@@ -81,7 +81,7 @@ class GFeedsSidebarListBox(Gtk.ListBox):
                 not row.feeditem.read
             ) and (
                 not self.search_terms or
-                self.search_terms in row.feeditem.title.lower()
+                self.search_terms.lower() in row.feeditem.title.lower()
             )
         )
 
