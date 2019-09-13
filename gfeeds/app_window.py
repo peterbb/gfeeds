@@ -89,7 +89,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
         self.bottom_bar = Handy.ViewSwitcherBar()
         self.bottom_bar.set_stack(self.sidebar)
-        self.main_box.pack_end(self.bottom_bar, False, False, 0)
+        self.sidebar_box.pack_end(self.bottom_bar, False, False, 0)
 
         self.set_headerbar_or_titlebar()
         self.confman.connect(
@@ -232,12 +232,14 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         if self.leaflet.get_fold() == Handy.Fold.FOLDED:
             target = self.headerbar.leaflet.get_visible_child()
             self.headerbar.back_button.show()
+            self.headerbar.squeezer.set_child_enabled(self.headerbar.stack_switcher, True)
         else:
             if self.confman.wm_decoration_on_left:
                 target = self.headerbar.left_headerbar
             else:
                 target = self.headerbar.right_headerbar
             self.headerbar.back_button.hide()
+            self.headerbar.squeezer.set_child_enabled(self.headerbar.stack_switcher, False)
         self.headerbar.headergroup.set_focus(target)
 
     def on_back_button_clicked(self, *args):
