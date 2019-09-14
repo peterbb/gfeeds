@@ -8,7 +8,7 @@ class GFeedsInfoBar(Gtk.InfoBar):
         super().__init__(**kwargs)
         self.set_message_type(message_type)
         self.text = text
-        self.container_box = Gtk.Box(orientation = Gtk.Orientation.HORIZONTAL)
+        self.container_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
         self.label = Gtk.Label(self.text)
         self.label.set_line_wrap(True)
         self.label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
@@ -26,6 +26,7 @@ class GFeedsInfoBar(Gtk.InfoBar):
         self.container_box.set_margin_bottom(6)
         self.get_content_area().set_center_widget(self.container_box) #, True, True, 0)
         self.set_hexpand(False)
+        # self.set_size_request(360, -1)
 
 class GFeedsErrorsBar(GFeedsInfoBar):
     def __init__(self, parent_win, **kwargs):
@@ -63,7 +64,7 @@ class GFeedsErrorsBar(GFeedsInfoBar):
         )
         dialog.run()
         dialog.close()
-        self.set_revealed(False)
+        self.set_revealed(True)
 
 class GFeedsConnectionBar(GFeedsInfoBar):
     def __init__(self, **kwargs):

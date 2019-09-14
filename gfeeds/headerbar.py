@@ -159,8 +159,12 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.refresh_btn.btn.connect('clicked', self.feedman.refresh)
         self.builder.get_object('refresh_btn_box').add(self.refresh_btn)
 
-        self.squeezer = Handy.Squeezer()
+        self.squeezer = Handy.Squeezer(orientation=Gtk.Orientation.HORIZONTAL)
+        self.squeezer.set_homogeneous(False)
+        self.squeezer.set_interpolate_size(False)
+        self.squeezer.set_hexpand(False)
         self.nobox = Gtk.Label()
+        self.nobox.set_size_request(1, -1)
         self.stack_switcher = Handy.ViewSwitcher()
         self.stack_switcher.set_policy(Handy.ViewSwitcherPolicy.WIDE)
         self.stack_switcher.set_margin_left(12)

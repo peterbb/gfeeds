@@ -127,7 +127,7 @@ class FeedsViewScrolledWindow(Gtk.ScrolledWindow):
         self.all_row = FeedsViewAllListboxRow()
         self.listbox.add(self.all_row)
         self.listbox.select_row(self.all_row)
-        # self.set_size_request(300, 500)
+        # self.set_size_request(360, 500)
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.add(self.listbox)
         self.set_size_request(250, 400)

@@ -26,7 +26,7 @@ class GFeedsWebView(Gtk.Stack):
         self.confman = ConfManager()
         self.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.set_hexpand(True)
-        self.set_size_request(300, 500)
+        self.set_size_request(360, 500)
 
         self.filler_builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gfeeds/ui/webview_filler.glade'
@@ -62,8 +62,8 @@ class GFeedsWebView(Gtk.Stack):
 
         self.webkitview.set_hexpand(True)
         self.fillerview.set_hexpand(True)
-        self.webkitview.set_size_request(300, 500)
-        self.fillerview.set_size_request(300, 500)
+        self.webkitview.set_size_request(360, 500)
+        self.fillerview.set_size_request(360, 500)
 
         self.add_titled(self.overlay_container, 'Web View', _('Web View'))
         self.add_titled(self.fillerview, 'Filler View', _('Filler View'))

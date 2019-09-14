@@ -15,3 +15,4 @@ class GFeedsSearchbar(Handy.SearchBar):
         self.set_search_mode(False)
         self.connect_entry(self.entry)
         self.show_all()
+        # self.set_size_request(360, -1)

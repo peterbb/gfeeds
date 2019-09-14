@@ -123,7 +123,7 @@ class GFeedsSidebarScrolledWin(Gtk.ScrolledWindow):
         self.listbox = GFeedsSidebarListBox(self.parent_stack)
         self.empty = self.listbox.empty
         self.populate = self.listbox.populate
-        self.set_size_request(300, 500)
+        # self.set_size_request(360, 100)
         
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.add(self.listbox)
@@ -180,7 +180,7 @@ class GFeedsSidebar(Gtk.Stack):
             'icon-name',
             'emblem-favorite-symbolic'
         )
-        self.set_size_request(300, 500)
+        # self.set_size_request(360, 100)
 
         self.feedman.feeds_items.connect(
             'pop',

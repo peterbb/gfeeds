@@ -65,7 +65,7 @@ class ManageFeedsScrolledWindow(Gtk.ScrolledWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.listbox = ManageFeedsListbox()
-        self.set_size_request(300, 500)
+        self.set_size_request(360, 500)
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.add(self.listbox)
 

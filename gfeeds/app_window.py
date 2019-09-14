@@ -58,6 +58,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             lambda caller, enabled: self.headerbar.search_btn.set_active(caller.get_search_mode())
         )
         self.sidebar_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
+        self.sidebar_box.set_size_request(360, 100)
         self.sidebar_box.pack_start(self.searchbar, False, False, 0)
         self.sidebar_box.pack_start(self.connection_bar, False, False, 0)
         self.sidebar_box.pack_start(self.errors_bar, False, False, 0)
@@ -232,6 +233,8 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         if self.leaflet.get_fold() == Handy.Fold.FOLDED:
             target = self.headerbar.leaflet.get_visible_child()
             self.headerbar.back_button.show()
+            self.headerbar.stack_switcher.set_no_show_all(False)
+            self.headerbar.stack_switcher.show()
             self.headerbar.squeezer.set_child_enabled(self.headerbar.stack_switcher, True)
         else:
             if self.confman.wm_decoration_on_left:
@@ -239,6 +242,8 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             else:
                 target = self.headerbar.right_headerbar
             self.headerbar.back_button.hide()
+            self.headerbar.stack_switcher.set_no_show_all(True)
+            self.headerbar.stack_switcher.hide()
             self.headerbar.squeezer.set_child_enabled(self.headerbar.stack_switcher, False)
         self.headerbar.headergroup.set_focus(target)
 
