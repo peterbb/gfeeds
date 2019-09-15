@@ -48,6 +48,17 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>gabmus@disroot.org</update_contact>
     <releases>
+        <release version="0.10" timestamp="1568546701">
+            <description>
+                <ul>
+                    <li>Option to ellipsize article titles for a more compact view</li>
+                    <li>Added a search function</li>
+                    <li>Updated dependencies</li>
+                    <li>Various UI improvements</li>
+                    <li>Various bug fixes</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.9" timestamp="1567692081">
             <description>
                 <ul>
