@@ -340,11 +340,19 @@ ol {
 }
 
 article, body {
-  /* overflow-y: hidden; */
-  margin: 20px auto;
-  width: 640px;
+  /*margin: 20px auto;
+  width: 640px;*/
   font-size: 18px;
   word-wrap: break-word;
+}
+
+body {
+  margin: 24px 24px 24px 24px;
+}
+
+article {
+  margin: auto;
+  max-width: 640px;
 }
 
 mark {
