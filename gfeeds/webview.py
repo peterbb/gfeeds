@@ -1,7 +1,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, WebKit2, GObject
 from subprocess import Popen
-from time import time
+from time import sleep
 from .build_reader_html import build_reader_html
 from .confManager import ConfManager
 from .download_manager import download_text
@@ -96,14 +96,24 @@ class GFeedsWebView(Gtk.Stack):
     def key_zoom_reset(self, *args):
         self.webkitview.set_zoom_level(1.0)
 
+    def _wait_async(self, tts, callback):
+        sleep(tts)
+        callback()
+
+    def _show_notif_end_timer_callback(self):
+        GLib.idle_add(
+            self.hide_notif
+        )
+
     def show_notif(self, *args):
         self.notif_revealer.set_reveal_child(True)
-        start = time()
-        end = start + 5
-        while end > time():
-            while Gtk.events_pending():
-                Gtk.main_iteration()
-        self.hide_notif()
+        t = threading.Thread(
+            group = None,
+            target = self._wait_async,
+            name = None,
+            args = (5, self._show_notif_end_timer_callback)
+        )
+        t.start()
 
     def hide_notif(self, *args):
         self.notif_revealer.set_reveal_child(False)
@@ -145,11 +155,13 @@ class GFeedsWebView(Gtk.Stack):
         self.html = f'<!-- GFEEDS RSS CONTENT --><article>{content}</article>'
         self.set_enable_reader_mode(None, True, True)
 
-    def _load_reader_async(self, *args):
+    def _load_reader_async(self, callback=None, *args):
         self.html = download_text(self.uri)
         GLib.idle_add(
             self.set_enable_reader_mode, None, True
         )
+        if callback:
+            GLib.idle_add(callback)
 
     def load_feeditem(self, feeditem, trigger_on_load_start = True, *args, **kwargs):
         uri = feeditem.link
@@ -192,6 +204,12 @@ class GFeedsWebView(Gtk.Stack):
             resource = webview.get_main_resource()
             resource.get_data(None, self._get_data_cb, None)
 
+    def _set_enable_reader_mode_async_callback(self):
+        self.webkitview.load_html(build_reader_html(
+            self.html,
+            self.confman.conf['dark_reader']
+        ))
+
     def set_enable_reader_mode(self, togglebtn, state=None, is_rss_content=False):
         if state == None:
             state = togglebtn.get_active()
@@ -201,18 +219,12 @@ class GFeedsWebView(Gtk.Stack):
                     group = None,
                     target = self._load_reader_async,
                     name = None,
-                    # args = (uri,)
+                    args = (self._set_enable_reader_mode_async_callback,)
                 )
                 # self.on_load_start()
                 t.start()
-                while t.is_alive():
-                    while Gtk.events_pending():
-                        Gtk.main_iteration()
-            self.webkitview.load_html(
-                build_reader_html(
-                    self.html, self.confman.conf['dark_reader']
-                )
-            )
+            else:
+                self._set_enable_reader_mode_async_callback()
         else:
             self.webkitview.load_uri(self.uri)
 
