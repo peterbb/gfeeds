@@ -250,6 +250,8 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
     def on_back_button_clicked(self, *args):
         self.leaflet.set_visible_child(self.sidebar_box)
         self.on_main_leaflet_folded()
+        self.sidebar.listbox.select_row(None)
+        self.sidebar.saved_items_listbox.select_row(None)
 
     def update_size_allocation(self, *args):
         self.size_allocation = self.get_allocation()
