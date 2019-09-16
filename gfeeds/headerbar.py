@@ -4,6 +4,7 @@ from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .spinner_button import RefreshSpinnerButton
 from .feeds_view import FeedsViewPopover
+from .view_mode_menu import GFeedsViewModeMenu
 
 class AddFeedPopover(Gtk.Popover):
     def __init__(self, relative_to, **kwargs):
@@ -103,26 +104,24 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.back_button = self.builder.get_object(
             'back_btn'
         )
+        self.view_mode_menu_btn = self.builder.get_object(
+            'view_mode_menu_btn'
+        )
+        self.view_mode_menu_btn_icon = self.builder.get_object(
+            'view_mode_menu_btn_icon'
+        )
+        self.set_view_mode_icon(self.confman.conf['default_view'])
+        self.view_mode_menu = GFeedsViewModeMenu(self.view_mode_menu_btn)
+        self.view_mode_menu_btn.connect(
+            'clicked',
+            lambda *args: self.view_mode_menu.popup()
+        )
         self.open_externally_btn = self.builder.get_object(
             'open_externally_btn'
         )
         self.open_externally_btn.connect(
             'clicked',
             self.webview.open_externally
-        )
-        self.reader_mode_btn = self.builder.get_object(
-            'reader_btn'
-        )
-        self.reader_mode_btn_handler_id = self.reader_mode_btn.connect(
-            'toggled',
-            self.on_reader_mode_toggled
-        )
-        self.rss_content_btn = self.builder.get_object(
-            'rss_content_btn'
-        )
-        self.rss_content_btn_handler_id = self.rss_content_btn.connect(
-            'toggled',
-            self.on_rss_content_toggled
         )
         self.share_btn = self.builder.get_object(
             'share_btn'
@@ -187,6 +186,26 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.title_label = self.builder.get_object('title_label')
         self.title_label.set_hexpand(False)
 
+    def set_view_mode_icon(self, mode):
+        iname = 'web-browser-symbolic'
+        if mode == 'reader':
+            iname = 'ephy-reader-mode-symbolic'
+        elif mode == 'rsscont':
+            iname = 'application-rss+xml-symbolic'
+        self.view_mode_menu_btn_icon.set_from_icon_name(
+            iname,
+            Gtk.IconSize.BUTTON
+        )
+
+    def on_view_mode_change(self, target):
+        if target == 'webview':
+            self.webview.set_enable_reader_mode(None, False)
+        elif target == 'reader':
+            self.webview.set_enable_reader_mode(None, True)
+        elif target == 'rsscont':
+            self.webview.set_enable_rss_content(None, True)
+        self.set_view_mode_icon(target)
+
     def set_article_title(self, title):
         self.title_label.set_text(title)
 
@@ -199,16 +218,6 @@ class GFeedHeaderbar(Handy.TitleBar):
     def on_search_btn_toggled(self, togglebtn):
         searchbar = self.get_parent().searchbar
         searchbar.set_search_mode(togglebtn.get_active())
-
-    def on_reader_mode_toggled(self, togglebtn):
-        with self.rss_content_btn.handler_block(self.rss_content_btn_handler_id):
-            self.rss_content_btn.set_active(False)
-            self.webview.set_enable_reader_mode(togglebtn)
-
-    def on_rss_content_toggled(self, togglebtn):
-        with self.reader_mode_btn.handler_block(self.reader_mode_btn_handler_id):
-            self.reader_mode_btn.set_active(False)
-            self.webview.set_enable_rss_content(togglebtn)
 
     def on_new_feed_add_start(self, *args):
         self.refresh_btn.set_spinning(True)

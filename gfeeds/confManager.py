@@ -58,7 +58,6 @@ class ConfManager(metaclass=Singleton):
     BASE_SCHEMA = {
         'feeds': {},
         'dark_reader': False,
-        'default_reader': False,
         'new_first': True,
         'windowsize': {
             'width': 350,
@@ -67,13 +66,13 @@ class ConfManager(metaclass=Singleton):
         'max_article_age_days': 30,
         'enable_js': False,
         'enable_csd': True,
-        'use_rss_content': False,
         'max_refresh_threads': 2,
         'saved_items': {},
         'read_items': [],
         'show_read_items': True,
         'colored_border': True,
-        'full_article_title': True
+        'full_article_title': True,
+        'default_view': 'webview' # valid values: 'webview', 'reader', 'rsscont'
     }
 
     def __init__(self):

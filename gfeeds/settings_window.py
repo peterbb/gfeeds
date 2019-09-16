@@ -131,16 +131,6 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
                 'title': _('Show newer articles first'),
                 'conf_key': 'new_first',
                 'signal': 'gfeeds_new_first_changed'
-            },
-            {
-                'title': _('Use reader mode by default'),
-                'conf_key': 'default_reader',
-                'signal': None
-            },
-            {
-                'title': _('Use content from the RSS feed'),
-                'conf_key': 'use_rss_content',
-                'signal': None
             }
         ]
         for s in toggle_settings:

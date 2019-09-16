@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-15 13:33+0200\n"
-"PO-Revision-Date: 2019-09-15 13:35+0200\n"
+"POT-Creation-Date: 2019-09-16 16:05+0200\n"
+"PO-Revision-Date: 2019-09-16 16:06+0200\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -64,7 +64,7 @@ msgstr ""
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../gfeeds/headerbar.py:155
+#: ../gfeeds/headerbar.py:154
 msgid "Add new feed"
 msgstr "Aggiungi nuovo feed"
 
@@ -85,7 +85,7 @@ msgstr "Vista Web"
 msgid "Filler View"
 msgstr "Vista Riempitiva"
 
-#: ../gfeeds/webview.py:137
+#: ../gfeeds/webview.py:147
 msgid "RSS content or summary not available for this article"
 msgstr "Contenuto o riassunto dell'RSS non disponibile per questo articolo"
 
@@ -101,11 +101,11 @@ msgstr "Feed"
 msgid "Saved"
 msgstr "Salvati"
 
-#: ../gfeeds/__main__.py:277
+#: ../gfeeds/__main__.py:306
 msgid "url"
 msgstr "url"
 
-#: ../gfeeds/__main__.py:280
+#: ../gfeeds/__main__.py:309
 msgid "opml file local url or rss remote url to import"
 msgstr "url locale del file opml o url rss remota da importare"
 
@@ -131,79 +131,71 @@ msgstr "Impostazioni Generali"
 msgid "Show newer articles first"
 msgstr "Mostra nuovi articoli per primi"
 
-#: ../gfeeds/settings_window.py:136
-msgid "Use reader mode by default"
-msgstr "Usa modalità lettura come predefinita"
-
 #: ../gfeeds/settings_window.py:141
-msgid "Use content from the RSS feed"
-msgstr "Usa contenuto dal feed RSS"
-
-#: ../gfeeds/settings_window.py:151
 msgid "Maximum article age"
 msgstr "Età massima degli articoli"
 
-#: ../gfeeds/settings_window.py:155
+#: ../gfeeds/settings_window.py:145
 msgid "In days"
 msgstr "In giorni"
 
-#: ../gfeeds/settings_window.py:161
+#: ../gfeeds/settings_window.py:151
 msgid "Cache"
 msgstr "Cache"
 
-#: ../gfeeds/settings_window.py:164
+#: ../gfeeds/settings_window.py:154
 msgid "Clear all caches"
 msgstr "Pulisci tutte le cache"
 
-#: ../gfeeds/settings_window.py:165
+#: ../gfeeds/settings_window.py:155
 msgid "Clear caches"
 msgstr "Pulisci le cache"
 
-#: ../gfeeds/settings_window.py:203
+#: ../gfeeds/settings_window.py:193
 msgid "View"
 msgstr "Vista"
 
-#: ../gfeeds/settings_window.py:208
+#: ../gfeeds/settings_window.py:198
 msgid "View Settings"
 msgstr "Impostazioni della Vista"
 
-#: ../gfeeds/settings_window.py:211
+#: ../gfeeds/settings_window.py:201
 msgid "Show colored border"
 msgstr "Mostra bordo colorato"
 
-#: ../gfeeds/settings_window.py:216
+#: ../gfeeds/settings_window.py:206
 msgid "Show full articles titles"
 msgstr "Mostra i titoli completi degli articoli"
 
-#: ../gfeeds/settings_window.py:221
+#: ../gfeeds/settings_window.py:211
 msgid "Use dark theme for reader mode"
 msgstr "Usa tema scuro per la modalità lettura"
 
-#: ../gfeeds/settings_window.py:226
+#: ../gfeeds/settings_window.py:216
 msgid "Enable JavaScript"
 msgstr "Attiva JavaScript"
 
-#: ../gfeeds/settings_window.py:231
+#: ../gfeeds/settings_window.py:221
 msgid "Enable client side decoration"
 msgstr "Attiva decorazione client side"
 
-#: ../gfeeds/settings_window.py:247
+#: ../gfeeds/settings_window.py:237
 msgid "Advanced"
 msgstr "Avanzate"
 
-#: ../gfeeds/settings_window.py:252
+#: ../gfeeds/settings_window.py:242
 msgid "Advanced Settings"
 msgstr "Impostazioni Avanzate"
 
-#: ../gfeeds/settings_window.py:255
+#: ../gfeeds/settings_window.py:245
 msgid "Maximum refresh threads"
 msgstr "Massimi thread per aggiornamento"
 
-#: ../gfeeds/settings_window.py:260
+#: ../gfeeds/settings_window.py:250
 msgid "How many threads to refresh feeds"
 msgstr "Quanti thread per aggiornare i feed"
 
-#: ../gfeeds/settings_window.py:298
+#: ../gfeeds/settings_window.py:288
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -356,6 +348,18 @@ msgstr "page0"
 msgid "page1"
 msgstr "page1"
 
+#: ../data/ui/extra_popover_menu.glade:19
+msgid "View mode"
+msgstr "Modalità di visualizzazione"
+
+#: ../data/ui/extra_popover_menu.glade:53
+msgid "Reader Mode"
+msgstr "Modalità lettura"
+
+#: ../data/ui/extra_popover_menu.glade:68
+msgid "RSS Content"
+msgstr "Contenuto RSS"
+
 #: ../data/ui/add_feed_box.glade:20
 msgid "Enter feed address to add"
 msgstr "Inserisci l'indirizzo del feed da aggiungere"
@@ -393,18 +397,14 @@ msgid "Back to articles"
 msgstr "Indietro agli articoli"
 
 #: ../data/ui/headerbar.glade:124
-msgid "Reader mode"
-msgstr "Modalità lettura"
+msgid "Change view mode"
+msgstr "Cambia modalità di visualizzazione"
 
-#: ../data/ui/headerbar.glade:143
-msgid "Load RSS content"
-msgstr "Carica contenuto dall'RSS"
-
-#: ../data/ui/headerbar.glade:162
+#: ../data/ui/headerbar.glade:166
 msgid "Share"
 msgstr "Condividi"
 
-#: ../data/ui/headerbar.glade:209
+#: ../data/ui/headerbar.glade:213
 msgid "Open externally"
 msgstr "Apri esternamente"
 
@@ -678,6 +678,18 @@ msgstr "Aggiunta traduzione italiana"
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:191
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "Use reader mode by default"
+#~ msgstr "Usa modalità lettura come predefinita"
+
+#~ msgid "Use content from the RSS feed"
+#~ msgstr "Usa contenuto dal feed RSS"
+
+#~ msgid "Reader mode"
+#~ msgstr "Modalità lettura"
+
+#~ msgid "Load RSS content"
+#~ msgstr "Carica contenuto dall'RSS"
 
 #~ msgid "<big>New feed URL</big>"
 #~ msgstr "<big>Nuovo URL del feed</big>"

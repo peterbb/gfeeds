@@ -174,7 +174,7 @@ class GFeedsWebView(Gtk.Stack):
         self.feeditem = feeditem
         self.uri = uri
         self.set_visible_child(self.overlay_container)
-        if self.confman.conf['default_reader'] and not self.confman.conf['use_rss_content']:
+        if self.confman.conf['default_view'] == 'reader':
             t = threading.Thread(
                 group = None,
                 target = self._load_reader_async,
@@ -184,6 +184,9 @@ class GFeedsWebView(Gtk.Stack):
             if trigger_on_load_start:
                 self.on_load_start()
             t.start()
+        elif self.confman.conf['default_view'] == 'rsscont':
+            self.on_load_start()
+            self.set_enable_rss_content(None, True, feeditem)
         else:
             self.webkitview.load_uri(uri) # , *args, **kwargs)
             if trigger_on_load_start:

@@ -66,7 +66,15 @@ class GFeedsApplication(Gtk.Application):
             {
                 'name': 'show_read_items',
                 'func': self.show_read_items,
-                'accel': '<Control>h'
+                'type': 'bool',
+                'accel': '<Control>h',
+                'confman_key': 'show_read_items'
+            },
+            {
+                'name': 'view_mode_change',
+                'func': self.view_mode_change,
+                'type': 'radio',
+                'confman_key': 'default_view'
             }
         ]
 
@@ -110,13 +118,25 @@ class GFeedsApplication(Gtk.Application):
         ]
 
         for sa in stateful_actions:
-            c_action = Gio.SimpleAction.new_stateful(
-                sa['name'],
-                None,
-                GLib.Variant.new_boolean(
-                    self.confman.conf['show_read_items']
+            c_action = None
+            if sa['type'] == 'bool':
+                c_action = Gio.SimpleAction.new_stateful(
+                    sa['name'],
+                    None,
+                    GLib.Variant.new_boolean(
+                        self.confman.conf[sa['confman_key']]
+                    )
                 )
-            )
+            elif sa['type'] == 'radio':
+                c_action = Gio.SimpleAction.new_stateful(
+                    sa['name'],
+                    GLib.VariantType.new('s'),
+                    GLib.Variant('s', self.confman.conf[sa['confman_key']])
+                )
+            else:
+                raise ValueError(
+                    f'Stateful Action: unsupported type `{sa["type"]}`'
+                )
             c_action.connect('activate', sa['func'])
             self.add_action(c_action)
             if 'accel' in sa.keys():
@@ -129,6 +149,15 @@ class GFeedsApplication(Gtk.Application):
             c_action = Gio.SimpleAction.new(a['name'], None)
             c_action.connect('activate', a['func'])
             self.add_action(c_action)
+
+    def view_mode_change(self, action, target, *args):
+        action.change_state(target)
+        target_s = str(target).strip("'")
+        if target_s not in ['webview', 'reader', 'rsscont']:
+            target_s = 'webview'
+        self.window.headerbar.on_view_mode_change(target_s)
+        self.confman.conf['default_view'] = target_s
+        self.confman.save_conf()
 
     def show_read_items(self, action, *args):
         action.change_state(GLib.Variant.new_boolean(not action.get_state().get_boolean()))

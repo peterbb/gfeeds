@@ -211,15 +211,12 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             if other_row.feeditem.link == row.feeditem.link:
                 other_row.popover.set_read(True)
                 break
-        if self.confman.conf['use_rss_content']:
-            self.webview.on_load_start()
-            self.webview.set_enable_rss_content(None, True, row.feeditem)
-        else:
-            self.webview.load_feeditem(row.feeditem)
+        self.webview.load_feeditem(row.feeditem)
         self.headerbar.set_article_title(
             row.feeditem.title
         )
         self.headerbar.share_btn.set_sensitive(True)
+        self.headerbar.view_mode_menu_btn.set_sensitive(True)
         self.headerbar.open_externally_btn.set_sensitive(True)
         self.leaflet.set_visible_child(self.webview)
         self.headerbar.leaflet.set_visible_child(self.headerbar.right_headerbar)

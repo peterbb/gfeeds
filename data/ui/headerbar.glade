@@ -116,41 +116,45 @@
       </object>
     </child>
     <child>
-      <object class="GtkToggleButton" id="reader_btn">
+      <object class="GtkButton" id="view_mode_menu_btn">
         <property name="visible">True</property>
         <property name="sensitive">False</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes">Reader mode</property>
+        <property name="tooltip_text" translatable="yes">Change view mode</property>
         <child>
-          <object class="GtkImage">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="icon_name">ephy-reader-mode-symbolic</property>
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkImage" id="view_mode_menu_btn_icon">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">pan-down-symbolic</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
         </child>
       </object>
       <packing>
         <property name="position">2</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkToggleButton" id="rss_content_btn">
-        <property name="visible">True</property>
-        <property name="sensitive">False</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes">Load RSS content</property>
-        <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">application-rss+xml-symbolic</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="position">6</property>
       </packing>
     </child>
     <child>
