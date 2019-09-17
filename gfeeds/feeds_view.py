@@ -11,9 +11,9 @@ class FeedsViewAllListboxRow(Gtk.ListBoxRow):
         self.feed = None
         self.label = Gtk.Label()
         self.label.set_markup(
-            '<big><b>' +
+            '<b>' +
             _('All feeds') +
-            '</b></big>'
+            '</b>'
         )
         self.label.set_use_markup(True)
         self.label.set_margin_top(12)
