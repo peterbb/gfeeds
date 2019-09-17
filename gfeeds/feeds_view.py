@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Pango
 from os.path import isfile
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
@@ -43,6 +43,7 @@ class FeedsViewListboxRow(Gtk.ListBoxRow):
             self.desc_label.set_text(self.feed.description)
         else:
             self.desc_label.hide()
+            self.name_label.set_ellipsize(Pango.EllipsizeMode.END)
         self.add(self.hbox)
 
 
