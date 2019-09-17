@@ -198,7 +198,7 @@
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="icon_name">web-browser-symbolic</property>
+            <property name="icon_name">gfeeds-open-externally-symbolic</property>
           </object>
         </child>
       </object>

@@ -194,7 +194,7 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.title_squeezer.add(Gtk.Label(''))
 
     def set_view_mode_icon(self, mode):
-        iname = 'web-browser-symbolic'
+        iname = 'globe-alt-symbolic'
         if mode == 'reader':
             iname = 'ephy-reader-mode-symbolic'
         elif mode == 'rsscont':
