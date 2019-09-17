@@ -21,7 +21,7 @@ class FeedsViewAllListboxRow(Gtk.ListBoxRow):
         self.add(self.label)
 
 class FeedsViewListboxRow(Gtk.ListBoxRow):
-    def __init__(self, feed, **kwargs):
+    def __init__(self, feed, description=True, **kwargs):
         super().__init__(**kwargs)
         self.IS_ALL = False
         self.feed = feed
@@ -38,13 +38,18 @@ class FeedsViewListboxRow(Gtk.ListBoxRow):
         self.name_label = self.builder.get_object('title_label')
         self.name_label.set_text(self.feed.title)
         self.desc_label = self.builder.get_object('description_label')
-        self.desc_label.set_text(self.feed.description)
+        self.desc_label.set_no_show_all(not description)
+        if description:
+            self.desc_label.set_text(self.feed.description)
+        else:
+            self.desc_label.hide()
         self.add(self.hbox)
 
 
 class FeedsViewListbox(Gtk.ListBox):
-    def __init__(self, **kwargs):
+    def __init__(self, description=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.feedman = FeedsManager()
         self.confman = ConfManager()
 
@@ -78,7 +83,7 @@ class FeedsViewListbox(Gtk.ListBox):
             row.set_header(separator)
 
     def add_feed(self, feed):
-        self.add(FeedsViewListboxRow(feed))
+        self.add(FeedsViewListboxRow(feed, self.description))
 
     def add(self, *args, **kwargs):
         super().add(*args, **kwargs)
@@ -121,9 +126,9 @@ class FeedsViewListbox(Gtk.ListBox):
 
 
 class FeedsViewScrolledWindow(Gtk.ScrolledWindow):
-    def __init__(self, **kwargs):
+    def __init__(self, description=True, **kwargs):
         super().__init__(**kwargs)
-        self.listbox = FeedsViewListbox()
+        self.listbox = FeedsViewListbox(description)
         self.all_row = FeedsViewAllListboxRow()
         self.listbox.add(self.all_row)
         self.listbox.select_row(self.all_row)
@@ -140,7 +145,7 @@ class FeedsViewScrolledWindow(Gtk.ScrolledWindow):
 class FeedsViewPopover(Gtk.Popover):
     def __init__(self, relative_to, **kwargs):
         super().__init__(**kwargs)
-        self.scrolled_win = FeedsViewScrolledWindow()
+        self.scrolled_win = FeedsViewScrolledWindow(description=False)
         self.add(self.scrolled_win)
         self.set_modal(True)
         self.set_relative_to(relative_to)
