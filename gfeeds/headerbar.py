@@ -183,8 +183,15 @@ class GFeedHeaderbar(Handy.TitleBar):
             'feedmanager_refresh_end',
             self.on_new_feed_add_end
         )
+        self.title_squeezer = self.builder.get_object(
+            'right_headerbar_squeezer'
+        )
+        self.right_title_container = self.builder.get_object(
+            'right_headerbar_title_container'
+        )
         self.title_label = self.builder.get_object('title_label')
-        self.title_label.set_hexpand(False)
+        self.title_squeezer.add(self.right_title_container)
+        self.title_squeezer.add(Gtk.Label(''))
 
     def set_view_mode_icon(self, mode):
         iname = 'web-browser-symbolic'
@@ -244,21 +251,10 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.menu_popover.popup()
 
     def on_load_start(self, *args):
-        self.reader_mode_btn.set_sensitive(False)
-        self.rss_content_btn.set_sensitive(False)
-        with self.reader_mode_btn.handler_block(self.reader_mode_btn_handler_id):
-            self.reader_mode_btn.set_active(
-                self.confman.conf['default_reader'] and
-                not self.confman.conf['use_rss_content']
-            )
-        with self.rss_content_btn.handler_block(self.rss_content_btn_handler_id):
-            self.rss_content_btn.set_active(
-                self.confman.conf['use_rss_content']
-            )
+        self.view_mode_menu_btn.set_sensitive(False)
 
     def on_load_end(self, *args):
-        self.reader_mode_btn.set_sensitive(True)
-        self.rss_content_btn.set_sensitive(True)
+        self.view_mode_menu_btn.set_sensitive(True)
 
     def copy_article_uri(self, *args):
         self.clipboard.set_text(self.webview.uri, -1)

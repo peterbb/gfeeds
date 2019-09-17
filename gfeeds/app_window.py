@@ -216,7 +216,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             row.feeditem.title
         )
         self.headerbar.share_btn.set_sensitive(True)
-        self.headerbar.view_mode_menu_btn.set_sensitive(True)
         self.headerbar.open_externally_btn.set_sensitive(True)
         self.leaflet.set_visible_child(self.webview)
         self.headerbar.leaflet.set_visible_child(self.headerbar.right_headerbar)
