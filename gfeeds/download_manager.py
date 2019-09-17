@@ -24,8 +24,13 @@ def download_raw(link, dest):
     else:
         raise requests.HTTPError(f'request code {res.status_code}')
 
-def download_feed(link):
+def download_feed(link, get_cached=False):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
+    if get_cached:
+        if isfile(dest_path):
+            return (dest_path, link)
+        else:
+            return ('not_cached', None)
     # print(_('Downloading `{0}`…').format(link))
     headers = {
         'Accept-Encoding': 'gzip, deflate'

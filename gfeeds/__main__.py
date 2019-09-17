@@ -260,7 +260,7 @@ class GFeedsApplication(Gtk.Application):
         )
         self.window.present()
         self.window.show_all()
-        self.feedman.refresh()
+        self.feedman.refresh(get_cached=True)
         if self.args:
             if self.args.argurl:
                 if self.args.argurl[:8].lower() == 'file:///':

@@ -52,7 +52,7 @@ class FeedsManager(metaclass=Singleton):
                 FeedItem.new_from_dict(si)
             )
 
-    def _add_feed_async_worker(self, uri, refresh = False):
+    def _add_feed_async_worker(self, uri, refresh=False, get_cached=False):
         if not refresh:
             if not 'http://' in uri and not 'https://' in uri:
                 uri = 'http://' + uri
@@ -61,7 +61,10 @@ class FeedsManager(metaclass=Singleton):
                 return
             self.confman.conf['feeds'][uri] = {}
             self.confman.save_conf()
-        n_feed = Feed(download_feed(uri))
+        download_res = download_feed(uri, get_cached=get_cached)
+        if get_cached and download_res[0] == 'not_cached':
+            return
+        n_feed = Feed(download_res)
         if n_feed.is_null:
             self.errors.append(n_feed.error)
             if uri in self.confman.conf['feeds'].keys():
@@ -69,20 +72,18 @@ class FeedsManager(metaclass=Singleton):
                 self.confman.save_conf()
         else:
             GLib.idle_add(
-                self.feeds.append, n_feed,
-                priority = GLib.PRIORITY_DEFAULT_IDLE
+                self.feeds.append, n_feed
             )
             for n_feed_item in n_feed.items:
                 GLib.idle_add(
-                    self.feeds_items.append, n_feed_item,
-                    priority = GLib.PRIORITY_DEFAULT_IDLE
+                    self.feeds_items.append, n_feed_item
                 )
         if not refresh:
             GLib.idle_add(
                 self.emit, 'feedmanager_refresh_end', ''
             )
 
-    def refresh(self, *args):
+    def refresh(self, *args, get_cached=False):
         self.emit('feedmanager_refresh_start', '')
         self.errors = []
         if is_online():
@@ -97,13 +98,13 @@ class FeedsManager(metaclass=Singleton):
         tp = ThreadPool(
             self.confman.conf['max_refresh_threads'],
             self._add_feed_async_worker,
-            [(f_link, True) for f_link in self.confman.conf['feeds'].keys()],
+            [(f_link, True, get_cached) for f_link in self.confman.conf['feeds'].keys()],
             self.emit,
             ('feedmanager_refresh_end', '')
         )
         tp.start()
 
-    def add_feed(self, uri, is_new = False):
+    def add_feed(self, uri, is_new=False):
         if is_new and uri in self.confman.conf['feeds'].keys():
             return False
         self.emit('feedmanager_refresh_start', '')
