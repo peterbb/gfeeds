@@ -40,9 +40,8 @@ css = """
 
 @font-face {
   font-family: ephy-reader-serif;
-  src: local('Merriweather'),
-       local('Merriweather-Regular'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/Merriweather-Regular.otf') format('opentype');
+  src: local('DejaVu Serif'),
+       local('DejaVu Serif Book');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -50,10 +49,7 @@ css = """
 
 @font-face {
   font-family: ephy-reader-serif;
-  src: local('Merriweather Italic'),
-       local('Merriweather-Italic'),
-       local('Merriweather-It'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/Merriweather-Italic.otf') format('opentype');
+  src: local('DejaVu Serif Italic');
   font-weight: normal;
   font-style: italic;
   font-display: block;
@@ -61,10 +57,7 @@ css = """
 
 @font-face {
   font-family: ephy-reader-serif;
-  src: local('Merriweather Bold'),
-       local('Merriweather-Bold'),
-       local('Merriweather-Bd'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/Merriweather-Bold.otf') format('opentype');
+  src: local('DejaVu Serif Bold');
   font-weight: bold;
   font-style: normal;
   font-display: block;
@@ -72,12 +65,7 @@ css = """
 
 @font-face {
   font-family: ephy-reader-serif;
-  src: local('Merriweather Bold Italic'),
-       local('Merriweather-BoldItalic'),
-       local('Merriweather-BoldIt'),
-       local('Merriweather-BdItalic'),
-       local('Merriweather-BdIt'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/Merriweather-BoldItalic.otf') format('opentype');
+  src: local('DejaVu Serif Bold Italic');
   font-weight: bold;
   font-style: italic;
   font-display: block;
@@ -85,9 +73,8 @@ css = """
 
 @font-face {
   font-family: ephy-reader-sans;
-  src: local('Merriweather Sans'),
-       local('MerriweatherSans-Regular'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/MerriweatherSans-Regular.ttf') format('truetype');
+  src: local('Cantarell'),
+       local('DejaVu Sans');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -95,10 +82,8 @@ css = """
 
 @font-face {
   font-family: ephy-reader-sans;
-  src: local('Merriweather Sans Italic'),
-       local('MerriweatherSans-Italic'),
-       local('MerriweatherSans-It'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/MerriweatherSans-Italic.ttf') format('truetype');
+  src: local('Cantarell Italic'),
+       local('DejaVu Sans Italic');
   font-weight: normal;
   font-style: italic;
   font-display: block;
@@ -106,9 +91,8 @@ css = """
 
 @font-face {
   font-family: ephy-reader-sans;
-  src: local('Merriweather Sans Bold'),
-       local('MerriweatherSans-Bold'),
-       local('MerriweatherSans-Bd'),
+  src: local('Cantarell Bold'),
+       local('DejaVu Sans Bold');
        url('ephy-resource:///org/gnome/epiphany/fonts/MerriweatherSans-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
@@ -117,12 +101,8 @@ css = """
 
 @font-face {
   font-family: ephy-reader-sans;
-  src: local('Merriweather Sans Bold Italic'),
-       local('MerriweatherSans-BoldItalic'),
-       local('MerriweatherSans-BoldIt'),
-       local('MerriweatherSans-BdItalic'),
-       local('MerriweatherSans-BdIt'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/MerriweatherSans-BoldItalic.ttf') format('truetype');
+  src: local('Cantarell Bold Italic'),
+       local('DejaVu Sans Bold Italic');
   font-weight: bold;
   font-style: italic;
   font-display: block;
@@ -130,9 +110,8 @@ css = """
 
 @font-face {
   font-family: ephy-reader-mono;
-  src: local('Source Code Pro'),
-       local('SourceCodePro-Regular'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/SourceCodePro-Regular.otf') format('opentype');
+  src: local('DejaVu Sans Mono'),
+       local('DejaVu Sans Mono Book');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -140,10 +119,8 @@ css = """
 
 @font-face {
   font-family: ephy-reader-mono;
-  src: local('Source Code Pro Italic'),
-       local('SourceCodePro-Italic'),
-       local('SourceCodePro-It'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/SourceCodePro-It.otf') format('opentype');
+  src: local('DejaVu Sans Mono Italic'),
+       local('DejaVu Sans Mono Oblique');
   font-weight: normal;
   font-style: italic;
   font-display: block;
@@ -151,10 +128,7 @@ css = """
 
 @font-face {
   font-family: ephy-reader-mono;
-  src: local('Source Code Pro Bold'),
-       local('SourceCodePro-Bold'),
-       local('SourceCodePro-Bd'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/SourceCodePro-Regular.otf') format('opentype');
+  src: local('DejaVu Sans Mono Bold');
   font-weight: bold;
   font-style: normal;
   font-display: block;
@@ -162,12 +136,8 @@ css = """
 
 @font-face {
   font-family: ephy-reader-mono;
-  src: local('Source Code Pro Bold Italic'),
-       local('SourceCodePro-BoldItalic'),
-       local('SourceCodePro-BoldIt'),
-       local('SourceCodePro-BdItalic'),
-       local('SourceCodePro-BdIt'),
-       url('ephy-resource:///org/gnome/epiphany/fonts/SourceCodePro-Regular.otf') format('opentype');
+  src: local('DejaVu Sans Mono Bold Italic'),
+       local('DejaVu Sans Mono Bold Oblique');
   font-weight: bold;
   font-style: italic;
   font-display: block;
