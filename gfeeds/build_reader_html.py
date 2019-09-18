@@ -396,12 +396,18 @@ def build_reader_html(og_html, dark_mode=False):
                 '//x:body',
                 namespaces={'x': 'http://www.w3.org/1999/xhtml'}
             )
-        article_s = tostring(
+        article_s = '<article>' + tostring(
             article_els[0]
-        ).decode().replace('<html:', '<').replace('</html:', '</')
+        ).decode().replace('<html:', '<').replace('</html:', '</') + '</article>'
         # article_s = re.sub(r'<article .*?>', article_s, 1, flags=re.IGNORECASE)
         # article_s = re.sub(r'</article>', article_s, 1, flags=re.IGNORECASE)
     except:
         article_s = '<h1><i>'+_('Reader mode unavailable for this site')+'</i></h1>'
     
-    return f'<html><head><style>{dark_mode_css if dark_mode else ""}{css}</style><body>{article_s}</body></html>'
+    return f'''<html>
+            <head><style>
+            {dark_mode_css if dark_mode else ""}
+            {css}
+            </style></head>
+            <body>{article_s}</body>
+            </html>'''
