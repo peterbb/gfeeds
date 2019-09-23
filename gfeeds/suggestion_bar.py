@@ -74,6 +74,7 @@ class GFeedsConnectionBar(GFeedsInfoBar):
             message_type = Gtk.MessageType.WARNING,
             **kwargs
         )
+        self.container_box.set_orientation(Gtk.Orientation.HORIZONTAL)
         self.feedman = FeedsManager()
         self.feedman.connect(
             'feedmanager_online_changed',
