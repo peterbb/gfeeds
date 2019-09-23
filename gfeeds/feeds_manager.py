@@ -90,8 +90,9 @@ class FeedsManager(metaclass=Singleton):
             self.emit('feedmanager_online_changed', True)
         else:
             self.emit('feedmanager_online_changed', False)
-            self.emit('feedmanager_refresh_end', '')
-            return
+            get_cached = True
+            # self.emit('feedmanager_refresh_end', '')
+            # return
         self.populate_saved_feeds_items()
         self.feeds.empty()
         self.feeds_items.empty()
