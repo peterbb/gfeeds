@@ -45,6 +45,10 @@ class GFeedsSidebarListBox(Gtk.ListBox):
         )
         self.set_header_func(self.separator_header_func)
 
+    def add(self, *args, **kwargs):
+        super().add(*args, **kwargs)
+        self.show_all()
+
     def separator_header_func(self, row, prev_row=None):
         if (
             prev_row != None and
@@ -232,14 +236,14 @@ class GFeedsSidebar(Gtk.Stack):
                 break
 
     def on_feeds_items_append(self, feeditem):
-        n_row = GFeedsSidebarRow(feeditem)
-        self.listbox.add(n_row)
-        n_row.show_all()
+        self.listbox.add(
+            GFeedsSidebarRow(feeditem)
+        )
 
     def on_saved_feeds_items_append(self, feeditem):
-        n_row = GFeedsSidebarRow(feeditem, is_saved = True)
-        self.saved_items_listbox.add(n_row)
-        n_row.show_all()
+        self.saved_items_listbox.add(
+            GFeedsSidebarRow(feeditem, is_saved=True)
+        )
 
     def on_saved_feeds_items_pop(self, feeditem):
         for row in self.saved_items_listbox.get_children():
