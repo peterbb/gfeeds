@@ -57,6 +57,7 @@ class GFeedsWebView(Gtk.Stack):
         )
 
         self.webkitview.connect('load-changed', self.on_load_changed)
+        self.webkitview.connect("decide-policy", self.on_decide_policy)
 
         self.fillerview = self.filler_builder.get_object('webview_filler_box')
 
@@ -233,3 +234,13 @@ class GFeedsWebView(Gtk.Stack):
 
     def _get_data_cb(self, resource, result, user_data=None):
         self.html = resource.get_data_finish(result)
+
+    def on_decide_policy(self, webView, decision, decisionType):
+        if (decisionType == WebKit2.PolicyDecisionType.NAVIGATION_ACTION and
+            decision.get_navigation_action().get_mouse_button() != 0):
+            decision.ignore()
+            uri = decision.get_navigation_action().get_request().get_uri()
+            Popen(f'xdg-open {uri}'.split(' '))
+            return True
+        else:
+            return False
