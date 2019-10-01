@@ -3,8 +3,6 @@ from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .sidebar_row import GFeedsSidebarRow
 from gettext import gettext as _
-from os import remove
-import threading
 
 
 class GFeedsSidebarListBox(Gtk.ListBox):

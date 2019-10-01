@@ -1,7 +1,6 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk
 from xml.sax.saxutils import escape
-from os.path import isfile
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .feeds_view import (

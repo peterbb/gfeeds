@@ -1,6 +1,4 @@
-from gettext import gettext as _
-from gi.repository import Gtk, GLib, Handy
-import threading
+from gi.repository import Gtk, Handy
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
 from .sidebar import GFeedsSidebar
@@ -11,7 +9,6 @@ from .suggestion_bar import (
     GFeedsErrorsBar
 )
 from .webview import GFeedsWebView
-from .rss_parser import Feed
 from .stack_with_empty_state import StackWithEmptyState
 
 

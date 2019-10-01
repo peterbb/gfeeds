@@ -7,7 +7,13 @@ from os.path import isfile
 
 confman = ConfManager()
 
+# will return the content of a file if it's a file url
 def download_text(link):
+    if link[:8] == 'file:///':
+        with open(link[7:]) as fd:
+            toret = fd.read()
+            fd.close()
+        return toret
     res = requests.get(link)
     if res.status_code == 200:
         return res.text

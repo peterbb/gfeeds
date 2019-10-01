@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, GObject
+from gi.repository import GLib, GObject
 from .singleton import Singleton
 from .confManager import ConfManager
 from .rss_parser import Feed, FeedItem

@@ -2,11 +2,8 @@ from gi.repository import Gtk, GLib, Pango
 from .colored_box import GFeedsColoredBox
 from .confManager import ConfManager
 from .relative_day_formatter import get_date_format
-from .rss_parser import FeedItem
 from .sidebar_row_popover import RowPopover
-from datetime import timezone
 from os.path import isfile
-import cairo
 
 
 class GFeedsSidebarRow(Gtk.ListBoxRow):

@@ -1,5 +1,4 @@
 import feedparser
-from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 import pytz
 from dateutil.parser import parse as dateparse

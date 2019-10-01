@@ -34,19 +34,6 @@ import threading
 from os.path import isfile
 from .confirm_add_dialog import GFeedsConfirmAddDialog
 
-def test():
-    from .download_manager import download
-    from .rss_parser import Feed
-    confman = ConfManager()
-    feeds = []
-    for f in confman.conf['feeds'].keys():
-        feeds.append(Feed(download_feed(f)))
-
-    for f in feeds:
-        print(f)
-
-    exit(0)
-
 class GFeedsApplication(Gtk.Application):
     def __init__(self, **kwargs):
         super().__init__(

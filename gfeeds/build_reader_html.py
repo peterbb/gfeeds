@@ -350,7 +350,6 @@ body, article, p, h1, h2, h3, h4, h5, h6, h7, table {
 
 from lxml.html import html5parser, tostring
 from gettext import gettext as _
-import re
 
 def build_reader_html(og_html, dark_mode=False):
     if not og_html:
@@ -369,8 +368,6 @@ def build_reader_html(og_html, dark_mode=False):
         article_s = '<article>' + tostring(
             article_els[0]
         ).decode().replace('<html:', '<').replace('</html:', '</') + '</article>'
-        # article_s = re.sub(r'<article .*?>', article_s, 1, flags=re.IGNORECASE)
-        # article_s = re.sub(r'</article>', article_s, 1, flags=re.IGNORECASE)
     except:
         article_s = '<h1><i>'+_('Reader mode unavailable for this site')+'</i></h1>'
     
