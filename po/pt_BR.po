@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gfeeds 0.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-01 18:46+0200\n"
-"PO-Revision-Date: 2019-10-01 17:55-0300\n"
+"PO-Revision-Date: 2019-10-01 18:15-0300\n"
 "Last-Translator: Gleisson Joaquim <gleisscg2@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldpbr-translation@lists.sourceforge."
 "net>\n"
@@ -21,30 +21,30 @@ msgstr ""
 
 #: ../gfeeds/opml_file_chooser.py:6
 msgid "Choose an OPML file to import"
-msgstr ""
+msgstr "Escolha um arquivo OPML para importar"
 
 #: ../gfeeds/opml_file_chooser.py:13 ../gfeeds/opml_file_chooser.py:30
 msgid "XML files"
-msgstr ""
+msgstr "Arquivos XML"
 
 #: ../gfeeds/opml_file_chooser.py:21
 msgid "Choose where to save the exported OPML file"
-msgstr ""
+msgstr "Escolha onde salvar o arquivo OPML exportado"
 
 #: ../gfeeds/rss_parser.py:59
 #, python-brace-format
 msgid "Error: unable to parse datetime {0} for feeditem {1}"
-msgstr ""
+msgstr "Erro: Não é possível analisar a data e hora {0} para o item {1}"
 
 #: ../gfeeds/rss_parser.py:157
 #, python-brace-format
 msgid "Errors while parsing feed `{0}`"
-msgstr ""
+msgstr "Erros ao analisar o feed `{0}`"
 
 #: ../gfeeds/rss_parser.py:192
 #, python-brace-format
 msgid "`{0}` may not be an RSS or Atom feed"
-msgstr ""
+msgstr "`{0}` pode não ser um feed RSS ou Atom"
 
 #: ../gfeeds/rss_parser.py:217
 #, python-brace-format
@@ -52,6 +52,9 @@ msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
 "Trying downloading favicon from an article."
 msgstr ""
+"Erro ao redimensionar o favicon para o feed {0}. Provavelmente não é uma "
+"imagem.\n"
+"Tentando baixar o favicon de um artigo."
 
 #: ../gfeeds/rss_parser.py:226
 #, python-brace-format
@@ -59,66 +62,68 @@ msgid ""
 "Error resizing favicon from article for feed {0}.\n"
 "Deleting invalid favicon."
 msgstr ""
+"Erro ao redimensionar o favicon do artigo para o feed {0}.\n"
+"Excluindo favicon inválido."
 
 #: ../gfeeds/feeds_manager.py:60
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
-msgstr ""
+msgstr "O feed {0} já existe, pulando"
 
 #: ../gfeeds/headerbar.py:154
 msgid "Add new feed"
-msgstr ""
+msgstr "Adicionar novo feed"
 
 #: ../gfeeds/get_favicon.py:61
 #, python-brace-format
 msgid "Error downloading favicon for `{0}`"
-msgstr ""
+msgstr "Erro ao baixar o favicon para `{0}`"
 
 #: ../gfeeds/feeds_view.py:15
 msgid "All feeds"
-msgstr ""
+msgstr "Todos os feeds"
 
 #: ../gfeeds/webview.py:68
 msgid "Web View"
-msgstr ""
+msgstr "Visualização na Web"
 
 #: ../gfeeds/webview.py:69
 msgid "Filler View"
-msgstr ""
+msgstr "Visualização de preenchimento"
 
 #: ../gfeeds/webview.py:147
 msgid "RSS content or summary not available for this article"
-msgstr ""
+msgstr "Conteúdo ou resumo de RSS não disponível para este artigo"
 
 #: ../gfeeds/build_reader_html.py:372
 msgid "Reader mode unavailable for this site"
-msgstr ""
+msgstr "Modo de leitor indisponível para este site"
 
 #: ../gfeeds/sidebar.py:169
 msgid "Feed"
-msgstr ""
+msgstr "Feed"
 
 #: ../gfeeds/sidebar.py:175
 msgid "Saved"
-msgstr ""
+msgstr "Salvo"
 
 #: ../gfeeds/__main__.py:293
 msgid "url"
-msgstr ""
+msgstr "url"
 
 #: ../gfeeds/__main__.py:296
 msgid "opml file local url or rss remote url to import"
-msgstr ""
+msgstr "url local do arquivo opml ou URL remoto rss para importar"
 
 #: ../gfeeds/download_manager.py:49
 #, python-brace-format
 msgid "`{0}` is not an URL"
-msgstr ""
+msgstr "`{0}` não é um URL"
 
 #: ../gfeeds/download_manager.py:67
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
-msgstr ""
+msgstr "Erro ao baixar `{0}`, código `{1}`"
 
 #: ../gfeeds/settings_window.py:123
 msgid "General"
