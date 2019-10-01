@@ -135,6 +135,18 @@ class Feed:
             get_encoding(feed_str),
             'utf-8'
         )
+        forbidden_namespaces = [
+            'atom',
+            'openSearch',
+            'thr'
+        ]
+        for fns in forbidden_namespaces:
+            feed_str = feed_str.replace(
+                f'<{fns}:', '<'
+            )
+            feed_str = feed_str.replace(
+                f'</{fns}:', '</'
+            )
         self.rss_link = download_res[1]
         try:
             self.fp_feed = feedparser.parse(feed_str)
