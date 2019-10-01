@@ -135,11 +135,20 @@ class Feed:
             get_encoding(feed_str),
             'utf-8'
         )
-        self.fp_feed = feedparser.parse(feed_str)
+        self.rss_link = download_res[1]
+        try:
+            self.fp_feed = feedparser.parse(feed_str)
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            self.is_null = True
+            self.error = _('Errors while parsing feed `{0}`').format(
+                self.rss_link
+            )
+            return
         self.confman = ConfManager()
         self.init_time = pytz.UTC.localize(datetime.utcnow())
         
-        self.rss_link = download_res[1]
         self.title = self.fp_feed.feed.get('title', '')
         self.link = self.fp_feed.feed.get('link', '')
         self.description = self.fp_feed.feed.get('subtitle', self.link)
