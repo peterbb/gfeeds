@@ -131,6 +131,11 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
                 'title': _('Show newer articles first'),
                 'conf_key': 'new_first',
                 'signal': 'gfeeds_new_first_changed'
+            },
+            {
+                'title': _('Open links in your browser'),
+                'conf_key': 'open_links_externally',
+                'signal': None
             }
         ]
         for s in toggle_settings:

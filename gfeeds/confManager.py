@@ -72,7 +72,8 @@ class ConfManager(metaclass=Singleton):
         'show_read_items': True,
         'colored_border': True,
         'full_article_title': True,
-        'default_view': 'webview' # valid values: 'webview', 'reader', 'rsscont'
+        'default_view': 'webview', # valid values: 'webview', 'reader', 'rsscont'
+        'open_links_externally': True
     }
 
     def __init__(self):
