@@ -7,15 +7,27 @@ from os.path import isfile
 
 confman = ConfManager()
 
+GET_HEADERS = {
+    'User-Agent': 'gfeeds/1.0',
+    'Accept': '*/*',
+    'Accept-Encoding': 'gzip, deflate'
+}
+
+# will return the content of a file if it's a file url
 def download_text(link):
-    res = requests.get(link)
+    if link[:8] == 'file:///':
+        with open(link[7:]) as fd:
+            toret = fd.read()
+            fd.close()
+        return toret
+    res = requests.get(link, headers=GET_HEADERS)
     if res.status_code == 200:
         return res.text
     else:
         raise requests.HTTPError(f'request code {res.status_code}')
 
 def download_raw(link, dest):
-    res = requests.get(link)
+    res = requests.get(link, headers=GET_HEADERS)
     if res.status_code == 200:
         with open(dest, 'wb') as fd:
             for chunk in res.iter_content(1024):
@@ -32,13 +44,11 @@ def download_feed(link, get_cached=False):
         else:
             return ('not_cached', None)
     # print(_('Downloading `{0}`…').format(link))
-    headers = {
-        'Accept-Encoding': 'gzip, deflate'
-    }
+    headers = GET_HEADERS.copy()
     if 'last-modified' in confman.conf['feeds'][link].keys() and isfile(dest_path):
         headers['If-Modified-Since'] = confman.conf['feeds'][link]['last-modified']
     try:
-        res = requests.get(link, headers = headers)
+        res = requests.get(link, headers=headers)
     except:
         return (False, _('`{0}` is not an URL').format(link))
     if 'last-modified' in res.headers.keys():

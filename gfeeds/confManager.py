@@ -1,8 +1,8 @@
 from .singleton import Singleton
-from gi.repository import GObject, GLib, Gio
+from gi.repository import GObject, Gio
 from pathlib import Path
 from os.path import isfile, isdir
-from os import makedirs, listdir
+from os import makedirs
 from os import environ as Env
 import json
 from datetime import timedelta

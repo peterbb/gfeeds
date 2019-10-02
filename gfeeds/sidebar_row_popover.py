@@ -1,3 +1,4 @@
+from os import remove
 from gi.repository import Gtk, Gdk, GLib, Pango
 from .confManager import ConfManager
 from .download_manager import download_raw
@@ -56,7 +57,7 @@ class RowPopover(Gtk.Popover):
 
     def set_read(self, read):
         parent_stack = self.parent.get_parent().get_parent(
-            ).get_parent().get_parent()
+        ).get_parent().get_parent()
         other_list = (
             parent_stack.listbox
             if self.parent.get_parent() == parent_stack.saved_items_listbox
@@ -67,7 +68,7 @@ class RowPopover(Gtk.Popover):
             if row.feeditem.link == self.parent.feeditem.link:
                 other_row = row
                 break
-        rows = [self.parent,]
+        rows = [self.parent, ]
         if other_row:
             rows.append(other_row)
         if not read:
@@ -103,10 +104,10 @@ class RowPopover(Gtk.Popover):
         if togglebtn.get_active():
             fi_dict = self.parent.feeditem.to_dict()
             t = threading.Thread(
-                group = None,
-                target = download_raw,
-                name = None,
-                args = (
+                group=None,
+                target=download_raw,
+                name=None,
+                args=(
                     fi_dict['link'],
                     self.confman.saved_cache_path + '/' + fi_dict['linkhash']
                 )
@@ -124,7 +125,7 @@ class RowPopover(Gtk.Popover):
             # the *Saved* section"
             if self.parent.is_saved:
                 parent_stack = self.parent.get_parent().get_parent(
-                    ).get_parent().get_parent()
+                ).get_parent().get_parent()
                 parent_stack.on_saved_item_deleted(todel_fi_dict['link'])
         self.confman.save_conf()
         self.feedman.populate_saved_feeds_items()

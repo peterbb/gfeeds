@@ -1,5 +1,4 @@
-from gi.repository import Gtk, Gio
-from gettext import gettext as _
+from gi.repository import Gtk
 
 class GFeedsViewModeMenu(Gtk.PopoverMenu):
     def __init__(self, relative_to, **kwargs):

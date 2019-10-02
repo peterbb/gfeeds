@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, Handy
+from gi.repository import Gtk, Handy
 from .confManager import ConfManager
 from os.path import isfile, abspath, join
 from os import remove, listdir
