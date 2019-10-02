@@ -22,7 +22,8 @@ contributors = '\n'.join([
     'Cameron McLellan (Lasklo) &lt;thisislarry2k5@gmail.com&gt;',
     'Adrien Plazas (aplazas) &lt;kekun.plazas@laposte.net&gt;',
     'Christopher Davis (BrainBlasted) &lt;brainblasted@disroot.org&gt;',
-    'Ivan Kupalov (charlag) &lt;charlag@tuta.io&gt;'
+    'Ivan Kupalov (charlag) &lt;charlag@tuta.io&gt;',
+    'Ignacio Losiggio (iglosiggio) &lt;iglosiggio@dc.uba.ar&gt;'
 ])
 
 translators = '\n'.join([
