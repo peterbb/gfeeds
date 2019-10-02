@@ -205,6 +205,16 @@ class GFeedsSidebar(Gtk.Stack):
             lambda caller, obj: self.on_saved_feeds_items_append(obj)
         )
 
+        self.feedman.feeds.connect(
+            'pop',
+            lambda caller, obj: self.on_feeds_pop(obj)
+        )
+
+    def on_feeds_pop(self, obj):
+        if obj == self.listbox.selected_feed:
+            self.listbox.selected_feed = None
+            self.listbox.invalidate_filter()
+
     def set_search(self, search_terms):
         for lb in [self.listbox, self.saved_items_listbox]:
             lb.search_terms = search_terms
