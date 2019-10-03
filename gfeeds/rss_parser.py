@@ -19,7 +19,8 @@ def get_encoding(in_str):
     if 'encoding' in sample:
         enc_i = sample.index('encoding')
         trim = sample[enc_i+10:]
-        encoding = trim[:trim.index('"')]
+        str_delimiter = "'" if "'" in trim else '"'
+        encoding = trim[:trim.index(str_delimiter)]
         return encoding
     else:
         return 'utf-8'
