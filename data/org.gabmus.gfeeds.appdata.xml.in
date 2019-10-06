@@ -48,6 +48,19 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>gabmus@disroot.org</update_contact>
     <releases>
+        <release version="0.11" timestamp="1570369507">
+            <description>
+                <ul>
+                    <li>Load cached articles on startup</li>
+                    <li>Added new view mode menu</li>
+                    <li>Various UI improvements</li>
+                    <li>Performance improvements</li>
+                    <li>Various bug fixes</li>
+                    <li>Added Brazilian Portuguese translation</li>
+                    <li>Added Russian translation</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.10" timestamp="1568546701">
             <description>
                 <ul>
