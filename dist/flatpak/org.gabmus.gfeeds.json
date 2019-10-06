@@ -766,7 +766,7 @@
                 {
                     "type" : "archive",
                     "url" : "https://gitlab.gnome.org/World/gfeeds/-/archive/0.11/gfeeds-0.11.tar.gz",
-                    "sha256" : ""
+                    "sha256" : "7f6cc30158f682154e2eed19f4766a7e8b9e21a8db5372e2fd7128d565e147e3"
                 }
             ]
         }
