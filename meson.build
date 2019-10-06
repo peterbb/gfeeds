@@ -1,5 +1,5 @@
 project('gfeeds',
-    version: '0.10',
+    version: '0.11',
     meson_version: '>= 0.50.0',
     license: 'GPL3'
 )
@@ -28,6 +28,7 @@ contributors = '\n'.join([
 
 translators = '\n'.join([
     'German: Onno Giesmann (Etamuk) &lt;nutzer3105@gmail.com&gt;',
+    'Russian: Alessandra Gallia &lt;alessandragalliaaru@gmail.com&gt;',
     'Brazilian Portoguese: Gleisson Joaquim (gleissonjoaquim3) &lt;gleisscg2@gmail.com&gt;',
     'Italian: Gabriele Musco (GabMus) &lt;emaildigabry@gmail.com&gt;'
 ])
