@@ -25,9 +25,7 @@ class ThreadPool:
         GLib.idle_add(self._rearrange_pool, threading.current_thread())
 
     def _rearrange_pool(self, t):
-        self.running_threads.pop(
-            self.running_threads.index(t)
-        )
+        self.running_threads.remove(t)
         self.start()
 
     def start(self):

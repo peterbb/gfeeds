@@ -45,6 +45,11 @@ class SignalerList(GObject.Object):
         self.emit('pop', popped)
         return popped
 
+    def remove(self, item):
+        self.__list.remove(item)
+        self.emit('pop', item)
+        return item
+
     def __len__(self):
         return len(self.__list)
 

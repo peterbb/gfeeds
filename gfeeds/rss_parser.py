@@ -66,9 +66,7 @@ class FeedItem:
         if read and not self.link in self.confman.read_feeds_items:
             self.confman.read_feeds_items.append(self.link)
         elif self.link in self.confman.read_feeds_items:
-            self.confman.read_feeds_items.pop(
-                self.confman.read_feeds_items.index(self.link)
-            )
+            self.confman.read_feeds_items.remove(self.link)
         self.read = read
 
     def __repr__(self):
@@ -175,9 +173,7 @@ class Feed:
             if item_age < self.confman.max_article_age:
                 self.items.append(n_item)
             elif n_item.read:
-                self.confman.read_feeds_items.pop(
-                    self.confman.read_feeds_items.index(n_item.link)
-                )
+                self.confman.read_feeds_items.remove(n_item.link)
         # self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
         self.color = [0.0, 0.0, 0.0]
 

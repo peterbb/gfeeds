@@ -127,12 +127,8 @@ class FeedsManager(metaclass=Singleton):
                 raise TypeError('delete_feed: targets must be list or Feed')
         for f in targets:
             for fi in f.items:
-                self.feeds_items.pop(
-                    self.feeds_items.index(fi)
-                )
-            self.feeds.pop(
-                self.feeds.index(f)
-            )
+                self.feeds_items.remove(fi)
+            self.feeds.remove(f)
             self.confman.conf['feeds'].pop(
                 f.rss_link
             )

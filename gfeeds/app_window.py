@@ -192,9 +192,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             if not ri in feeds_items_links:
                 to_rm.append(ri)
         for ri in to_rm:
-            self.confman.conf['read_items'].pop(
-                self.confman.conf['read_items'].index(ri)
-            )
+            self.confman.conf['read_items'].remove(ri)
         self.confman.save_conf()
 
     def on_sidebar_row_activated(self, listbox, row):
