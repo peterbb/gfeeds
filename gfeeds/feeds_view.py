@@ -42,7 +42,6 @@ class FeedsViewListboxRow(Gtk.ListBoxRow):
             'gfeeds_full_feed_name_changed',
             self.on_full_feed_name_changed
         )
-        self.on_full_feed_name_changed()
         self.desc_label = self.builder.get_object('description_label')
         self.desc_label.set_no_show_all(not description)
         if description:
@@ -51,6 +50,7 @@ class FeedsViewListboxRow(Gtk.ListBoxRow):
             self.desc_label.hide()
             self.name_label.set_ellipsize(Pango.EllipsizeMode.END)
         self.add(self.hbox)
+        self.on_full_feed_name_changed()
 
     def on_full_feed_name_changed(self, *args):
         self.name_label.set_ellipsize(
