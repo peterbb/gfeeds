@@ -34,6 +34,11 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         self.on_full_article_title_changed()
         self.origin_label = self.builder.get_object('origin_label')
         self.origin_label.set_text(self.feeditem.parent_feed.title)
+        self.confman.connect(
+            'gfeeds_full_feed_name_changed',
+            self.on_full_feed_name_changed
+        )
+        self.on_full_feed_name_changed()
 
         self.icon = self.builder.get_object('icon')
         if isfile(self.feeditem.parent_feed.favicon_path):
@@ -76,6 +81,12 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
     def on_full_article_title_changed(self, *args):
         self.title_label.set_ellipsize(
             Pango.EllipsizeMode.NONE if self.confman.conf['full_article_title']
+            else Pango.EllipsizeMode.END
+        )
+
+    def on_full_feed_name_changed(self, *args):
+        self.origin_label.set_ellipsize(
+            Pango.EllipsizeMode.NONE if self.confman.conf['full_feed_name']
             else Pango.EllipsizeMode.END
         )
 

@@ -23,6 +23,7 @@ class FeedsViewAllListboxRow(Gtk.ListBoxRow):
 class FeedsViewListboxRow(Gtk.ListBoxRow):
     def __init__(self, feed, description=True, **kwargs):
         super().__init__(**kwargs)
+        self.confman = ConfManager()
         self.IS_ALL = False
         self.feed = feed
         self.builder = Gtk.Builder.new_from_resource(
@@ -37,6 +38,11 @@ class FeedsViewListboxRow(Gtk.ListBoxRow):
             self.icon.set_from_file(self.feed.favicon_path)
         self.name_label = self.builder.get_object('title_label')
         self.name_label.set_text(self.feed.title)
+        self.confman.connect(
+            'gfeeds_full_feed_name_changed',
+            self.on_full_feed_name_changed
+        )
+        self.on_full_feed_name_changed()
         self.desc_label = self.builder.get_object('description_label')
         self.desc_label.set_no_show_all(not description)
         if description:
@@ -45,6 +51,12 @@ class FeedsViewListboxRow(Gtk.ListBoxRow):
             self.desc_label.hide()
             self.name_label.set_ellipsize(Pango.EllipsizeMode.END)
         self.add(self.hbox)
+
+    def on_full_feed_name_changed(self, *args):
+        self.name_label.set_ellipsize(
+            Pango.EllipsizeMode.NONE if self.confman.conf['full_feed_name']
+            else Pango.EllipsizeMode.END
+        )
 
 
 class FeedsViewListbox(Gtk.ListBox):

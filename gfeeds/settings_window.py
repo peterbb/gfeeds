@@ -213,6 +213,11 @@ class ViewPreferencesPage(Handy.PreferencesPage):
                 'signal': 'gfeeds_full_article_title_changed'
             },
             {
+                'title': _('Show full feeds names'),
+                'conf_key': 'full_feed_name',
+                'signal': 'gfeeds_full_feed_name_changed'
+            },
+            {
                 'title': _('Use dark theme for reader mode'),
                 'conf_key': 'dark_reader',
                 'signal': None

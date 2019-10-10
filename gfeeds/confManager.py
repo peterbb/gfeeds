@@ -50,7 +50,12 @@ class ConfManagerSignaler(GObject.Object):
             GObject.SIGNAL_RUN_FIRST,
             None,
             (GObject.TYPE_PYOBJECT,)
-        )
+        ),
+        'gfeeds_full_feed_name_changed': (
+            GObject.SIGNAL_RUN_FIRST,
+            None,
+            (str,)
+        ),
     }
 
 class ConfManager(metaclass=Singleton):
@@ -73,7 +78,8 @@ class ConfManager(metaclass=Singleton):
         'colored_border': True,
         'full_article_title': True,
         'default_view': 'webview', # valid values: 'webview', 'reader', 'rsscont'
-        'open_links_externally': True
+        'open_links_externally': True,
+        'full_feed_name': False
     }
 
     def __init__(self):
