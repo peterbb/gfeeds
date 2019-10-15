@@ -1,23 +1,23 @@
 # Portuguese translations for gfeeds package.
 # Copyright (C) 2019 THE gfeeds'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gfeeds package.
-# Gleisson Joaquim <gleisscg2@gmail.com>, 2019.
+# Gleisson Joaquim <gleissoncg2@gmail.com>, 2019.
+# Gleisson Jesuino Joaquim Cardoso  <gleissoncg2@gmail.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gfeeds 0.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-01 18:46+0200\n"
-"PO-Revision-Date: 2019-10-01 18:15-0300\n"
-"Last-Translator: Gleisson Joaquim <gleisscg2@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <ldpbr-translation@lists.sourceforge."
-"net>\n"
+"PO-Revision-Date: 2019-10-15 00:18-0300\n"
+"Last-Translator: Gleisson Jesuino Joaquim Cardoso  <gleissoncg2@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <null>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.2.3\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 3.34.0\n"
 
 #: ../gfeeds/opml_file_chooser.py:6
 msgid "Choose an OPML file to import"
@@ -420,7 +420,7 @@ msgstr "Copiar link para área de transferência !"
 
 #: ../data/ui/webview_filler.glade:42
 msgid "Select an article"
-msgstr "Selecionar um artigo"
+msgstr "Selecione um artigo"
 
 #: ../data/org.gabmus.gfeeds.desktop.in:3
 msgid "@prettyname@"
@@ -451,8 +451,8 @@ msgid ""
 "Feeds is a minimal RSS/Atom feed reader built with speed and simplicity in "
 "mind."
 msgstr ""
-"Feeds é um leitor de feeds RSS / Atom minimalista, construído com "
-"velocidade e simplicidade em mente."
+"Feeds é um leitor de feeds RSS / Atom minimalista, construído com velocidade "
+"e simplicidade em mente."
 
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:11
 msgid ""
@@ -470,8 +470,8 @@ msgid ""
 msgstr ""
 "Os artigos são mostrados em uma visualização da Web por padrão, com o "
 "javascript desativado para uma experiência do usuário mais rápida e menos "
-"invasiva. Há também um modo de leitor incluído, construído a partir do que "
-"o GNOME Web / Epiphany usa."
+"invasiva. Há também um modo de leitor incluído, construído a partir do que o "
+"GNOME Web / Epiphany usa."
 
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:13
 msgid "Feeds can be imported and exported via OPML."
@@ -480,8 +480,7 @@ msgstr "Os feeds podem ser importados e exportados via OPML."
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:54
 msgid "Option to ellipsize article titles for a more compact view"
 msgstr ""
-"Opção de redimensionar títulos de artigos para uma visualização mais "
-"compacta"
+"Opção de redimensionar títulos de artigos para uma visualização mais compacta"
 
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:55
 msgid "Added a search function"
