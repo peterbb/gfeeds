@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gfeeds 0.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-01 18:46+0200\n"
-"PO-Revision-Date: 2019-10-16 23:33-0300\n"
+"PO-Revision-Date: 2019-10-17 21:01-0300\n"
 "Last-Translator: Gleisson Jesuino Joaquim Cardoso <gleissoncg2@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gleissoncg2@gmail.com>\n"
 "Language: pt_BR\n"
@@ -38,12 +38,12 @@ msgstr "Erro: Não é possível analisar a data e hora {0} para o item {1}"
 #: ../gfeeds/rss_parser.py:157
 #, python-brace-format
 msgid "Errors while parsing feed `{0}`"
-msgstr "Erros ao analisar o feed `{0}`"
+msgstr "Erros ao analisar a fonte RSS `{0}`"
 
 #: ../gfeeds/rss_parser.py:192
 #, python-brace-format
 msgid "`{0}` may not be an RSS or Atom feed"
-msgstr "`{0}` pode não ser um feed RSS ou Atom"
+msgstr "`{0}` pode não ser uma fonte RSS ou Atom"
 
 #: ../gfeeds/rss_parser.py:217
 #, python-brace-format
@@ -67,11 +67,11 @@ msgstr ""
 #: ../gfeeds/feeds_manager.py:60
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
-msgstr "O feed {0} já existe, pulando"
+msgstr "A fonte RSS {0} já existe, pulando"
 
 #: ../gfeeds/headerbar.py:154
 msgid "Add new feed"
-msgstr "Nova assinatura RSS"
+msgstr "Adiciona nova fonte RSS"
 
 #: ../gfeeds/get_favicon.py:61
 #, python-brace-format
@@ -100,11 +100,11 @@ msgstr "Modo de leitor indisponível para este site"
 
 #: ../gfeeds/sidebar.py:169
 msgid "Feed"
-msgstr "Feed"
+msgstr "Artigos RSS"
 
 #: ../gfeeds/sidebar.py:175
 msgid "Saved"
-msgstr "Salvo"
+msgstr "Salvos"
 
 #: ../gfeeds/__main__.py:293
 msgid "url"
@@ -198,7 +198,7 @@ msgstr "Máximo de tópicos atualizados"
 
 #: ../gfeeds/settings_window.py:250
 msgid "How many threads to refresh feeds"
-msgstr "Quantidade de assinaturas RSS a serem atualizadas ao mesmo tempo"
+msgstr "Quantidade de fontes RSS a serem atualizadas ao mesmo tempo"
 
 #: ../gfeeds/settings_window.py:288
 msgid "Preferences"
@@ -206,19 +206,19 @@ msgstr "Preferências"
 
 #: ../gfeeds/manage_feeds_window.py:16 ../gfeeds/manage_feeds_window.py:106
 msgid "Manage Feeds"
-msgstr "Gerenciar assinaturas"
+msgstr "Gerenciar fontes RSS"
 
 #: ../gfeeds/manage_feeds_window.py:23
 msgid "Select/Unselect all"
-msgstr "Marcar / Desmarcar tudo"
+msgstr "Marca / Desmarca tudo"
 
 #: ../gfeeds/manage_feeds_window.py:29
 msgid "Delete selected feeds"
-msgstr "Excluir feeds selecionados"
+msgstr "Excluir"
 
 #: ../gfeeds/manage_feeds_window.py:78
 msgid "Do you want to delete these feeds?"
-msgstr "Deseja excluir esses feeds?"
+msgstr "Deseja excluir ?"
 
 #: ../gfeeds/spinner_button.py:15
 msgid "Refresh feeds"
@@ -226,11 +226,11 @@ msgstr "Atualizar artigos RSS"
 
 #: ../gfeeds/confirm_add_dialog.py:14
 msgid "Do you want to import these feeds?"
-msgstr "Deseja importar esses feeds?"
+msgstr "Deseja importar essas fontes RSS ?"
 
 #: ../gfeeds/confirm_add_dialog.py:15
 msgid "Do you want to import this feed?"
-msgstr "Deseja importar o feed ?"
+msgstr "Deseja importar a fonte RSS ?"
 
 #: ../gfeeds/opml_manager.py:8
 msgid "Error: OPML path provided does not exist"
@@ -255,7 +255,7 @@ msgstr "Ignorar"
 
 #: ../gfeeds/suggestion_bar.py:60
 msgid "There were problems with some feeds"
-msgstr "Ocorreram problemas com alguns feeds"
+msgstr "Ocorreram problemas com algumas fontes RSS"
 
 #: ../gfeeds/suggestion_bar.py:72
 msgid "You are offline"
@@ -295,7 +295,7 @@ msgstr "Atalhos do teclado"
 
 #: ../data/ui/menu.xml:42
 msgid "About Feeds"
-msgstr "Sobre o GFeeds"
+msgstr "Sobre o Feeds"
 
 #: ../data/ui/empty_state.glade:42
 msgid "Let's get started"
@@ -303,7 +303,7 @@ msgstr "Vamos começar !"
 
 #: ../data/ui/empty_state.glade:88
 msgid "Add new feeds via URL"
-msgstr "Adiciona artigos RSS via URL"
+msgstr "Adiciona fontes RSS via URL"
 
 #: ../data/ui/empty_state.glade:100
 msgid "Import an OPML file"
@@ -379,7 +379,7 @@ msgstr "Adicionar"
 
 #: ../data/ui/add_feed_box.glade:91
 msgid "You're already subscribed to that feed!"
-msgstr "Você já está inscrito neste feed !"
+msgstr "Você já está inscrito !"
 
 #: ../data/ui/article_right_click_popover_content.glade:48
 msgid "Save article"
@@ -467,14 +467,14 @@ msgid ""
 "faster and less intrusive user experience. There's also a reader mode "
 "included, built from the one GNOME Web/Epiphany uses."
 msgstr ""
-"Os artigos são mostrados em uma visualização da Web por padrão, com o "
+"Os artigos são mostrados em uma visualização Web por padrão, com o "
 "javascript desativado para uma experiência do usuário mais rápida e menos "
 "invasiva. Há também um modo de leitor incluído, construído a partir do que o "
 "GNOME Web / Epiphany usa."
 
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:13
 msgid "Feeds can be imported and exported via OPML."
-msgstr "Os feeds podem ser importados e exportados via OPML."
+msgstr "As fontes RSS podem ser importadas e exportadas via OPML."
 
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:54
 msgid "Option to ellipsize article titles for a more compact view"
