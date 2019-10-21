@@ -52,7 +52,8 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         )
         self.searchbar.connect(
             'notify::search-mode-enabled',
-            lambda caller, enabled: self.headerbar.search_btn.set_active(caller.get_search_mode())
+            lambda caller, enabled: \
+                self.headerbar.search_btn.set_active(caller.get_search_mode())
         )
         self.sidebar_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
         self.sidebar_box.set_size_request(360, 100)

@@ -28,6 +28,7 @@ class AddFeedPopover(Gtk.Popover):
         self.already_subscribed_revealer = self.builder.get_object(
             'already_subscribed_revealer'
         )
+        # about this lambda: low impact, happens rarely
         self.url_entry.connect(
             'changed',
             lambda *args: self.already_subscribed_revealer.set_reveal_child(False)
@@ -112,6 +113,7 @@ class GFeedHeaderbar(Handy.TitleBar):
         )
         self.set_view_mode_icon(self.confman.conf['default_view'])
         self.view_mode_menu = GFeedsViewModeMenu(self.view_mode_menu_btn)
+        # low priority: low impact, happens rarely
         self.view_mode_menu_btn.connect(
             'clicked',
             lambda *args: self.view_mode_menu.popup()
@@ -143,6 +145,8 @@ class GFeedHeaderbar(Handy.TitleBar):
             'filter_btn'
         )
         self.filter_popover = FeedsViewPopover(self.filter_btn)
+        # this activates the "All" feed filter. while this works it's kinda
+        # hacky and needs a proper function
         self.feedman.connect(
             'feedmanager_refresh_start',
             lambda *args: self.filter_popover.scrolled_win.listbox.row_all_activate()

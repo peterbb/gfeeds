@@ -16,15 +16,15 @@ class StackWithEmptyState(Gtk.Stack):
 
         self.feedman.feeds.connect(
             'pop',
-            lambda caller, obj: self.on_feeds_pop()
+            self.on_feeds_pop
         )
         self.feedman.connect(
             'feedmanager_refresh_end',
-            lambda caller, obj: self.on_feeds_pop()
+            self.on_feeds_pop
         )
         self.feedman.feeds.connect(
             'append',
-            lambda caller, obj: self.on_feeds_append()
+            self.on_feeds_append
         )
 
         self.set_transition_type(

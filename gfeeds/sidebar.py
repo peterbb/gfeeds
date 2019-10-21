@@ -99,7 +99,7 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             self.add(GFeedsSidebarRow(i))
             self.show_all()
 
-    def empty(self):
+    def empty(self, *args):
         while True:
             row = self.get_row_at_index(0)
             if row:

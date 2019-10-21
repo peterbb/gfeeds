@@ -40,7 +40,7 @@ class GFeedsErrorsBar(GFeedsInfoBar):
         self.errors = []
         self.show_button = Gtk.Button(_('Show'))
         self.ignore_button = Gtk.Button(_('Ignore'))
-        self.show_button.connect('clicked', lambda *args: self.show_errors())
+        self.show_button.connect('clicked', self.show_errors)
         self.ignore_button.connect('clicked', lambda *args: self.set_revealed(False))
         self.container_box.pack_end(self.ignore_button, False, False, 6)
         self.container_box.pack_end(self.show_button, False, False, 6)
@@ -51,7 +51,7 @@ class GFeedsErrorsBar(GFeedsInfoBar):
         if len(errors) != 0:
             self.set_revealed(True)
 
-    def show_errors(self):
+    def show_errors(self, *args):
         dialog = Gtk.MessageDialog(
             self.parent_win,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,

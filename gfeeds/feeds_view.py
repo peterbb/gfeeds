@@ -73,15 +73,15 @@ class FeedsViewListbox(Gtk.ListBox):
             self.add_feed(feed)
         self.feedman.feeds.connect(
             'empty',
-            lambda *args: self.empty()
+            self.empty
         )
         self.feedman.feeds.connect(
             'append',
-            lambda caller, feed: self.add_feed(feed)
+            self.on_feeds_append
         )
         self.feedman.feeds.connect(
             'pop',
-            lambda caller, feed: self.remove_feed(feed)
+            self.on_feeds_pop
         )
 
         self.set_sort_func(self.gfeeds_sort_func, None, False)
@@ -94,6 +94,12 @@ class FeedsViewListbox(Gtk.ListBox):
         ):
             separator = Gtk.Separator(orientation = Gtk.Orientation.HORIZONTAL)
             row.set_header(separator)
+
+    def on_feeds_pop(self, caller, feed):
+        self.remove_feed(feed)
+
+    def on_feeds_append(self, caller, feed):
+        self.add_feed(feed)
 
     def add_feed(self, feed):
         self.add(FeedsViewListboxRow(feed, self.description))
@@ -115,7 +121,7 @@ class FeedsViewListbox(Gtk.ListBox):
                     self.remove(row)
                     break
 
-    def empty(self):
+    def empty(self, *args):
         while True:
             row = self.get_row_at_index(1)
             if row:
