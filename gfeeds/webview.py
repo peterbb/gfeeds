@@ -5,6 +5,7 @@ from time import sleep
 from .build_reader_html import build_reader_html
 from .confManager import ConfManager
 from .download_manager import download_text
+from .revealer_loading_bar import RevealerLoadingBar
 import threading
 from feedparser import FeedParserDict
 
@@ -36,9 +37,13 @@ class GFeedsWebView(Gtk.Stack):
         )
 
         self.webkitview = WebKit2.WebView()
+        self.loading_bar = RevealerLoadingBar()
         self.webview_notif_builder.get_object(
             'box1'
-        ).pack_start(self.webkitview, True, True, 0)
+        ).pack_start(self.loading_bar, False, False, 0)
+        self.webview_notif_builder.get_object(
+            'box1'
+        ).pack_end(self.webkitview, True, True, 0)
         self.overlay_container = self.webview_notif_builder.get_object(
             'overlay1'
         )
@@ -101,18 +106,13 @@ class GFeedsWebView(Gtk.Stack):
         sleep(tts)
         callback()
 
-    def _show_notif_end_timer_callback(self):
-        GLib.idle_add(
-            self.hide_notif
-        )
-
     def show_notif(self, *args):
         self.notif_revealer.set_reveal_child(True)
         t = threading.Thread(
             group = None,
             target = self._wait_async,
             name = None,
-            args = (5, self._show_notif_end_timer_callback)
+            args = (5, lambda: GLib.idle_add(self.hide_notif))
         )
         t.start()
 
@@ -202,8 +202,25 @@ class GFeedsWebView(Gtk.Stack):
         self.emit('gfeeds_webview_load_start', '')
 
     def on_load_changed(self, webview, event):
-        if self.new_page_loaded and event == WebKit2.LoadEvent.FINISHED:
+        if event != WebKit2.LoadEvent.FINISHED:
+            self.loading_bar.set_reveal_child(True)
+        if event == WebKit2.LoadEvent.STARTED:
+            self.loading_bar.set_fraction(.25)
+        elif event == WebKit2.LoadEvent.REDIRECTED:
+            self.loading_bar.set_fraction(.50)
+        elif event == WebKit2.LoadEvent.COMMITTED:
             self.emit('gfeeds_webview_load_end', '')
+            self.loading_bar.set_fraction(.75)
+        elif self.new_page_loaded and event == WebKit2.LoadEvent.FINISHED:
+            self.loading_bar.set_fraction(1.0)
+            # waits 5 seconds async then hides the loading bar
+            t = threading.Thread(
+                group = None,
+                target = self._wait_async,
+                name = None,
+                args = (3, lambda: GLib.idle_add(self.loading_bar.set_reveal_child, False))
+            )
+            t.start()
             self.new_page_loaded = False
             resource = webview.get_main_resource()
             resource.get_data(None, self._get_data_cb, None)
