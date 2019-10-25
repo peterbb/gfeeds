@@ -21,10 +21,11 @@ def download_text(link):
             fd.close()
         return toret
     res = requests.get(link, headers=GET_HEADERS)
-    if res.status_code == 200:
+    if 200 <= res.status_code <= 299:
         return res.text
     else:
-        raise requests.HTTPError(f'request code {res.status_code}')
+        print(f'requreq.textest code {res.status_code}')
+        raise requests.HTTPError(f'requreq.textest code {res.status_code}')
 
 def download_raw(link, dest):
     res = requests.get(link, headers=GET_HEADERS)

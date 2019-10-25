@@ -1,15 +1,16 @@
 from lxml.html import html5parser
-import requests
-from .download_manager import download_raw
+# import requests
+from .download_manager import download_raw, download_text
 from gettext import gettext as _
 from urllib.parse import urlparse
 from PIL import Image
 
 def get_favicon(link, favicon_path):
-    req = requests.get(link)
-    if req.status_code != 200:
-        return None
-    html = req.text
+    # req = requests.get(link)
+    # if not 200 <= req.status_code <= 299:
+    #     print(f'get_favicon: failed with code {req.status_code}')
+    #     return None
+    html = download_text(link)
     root = html5parser.fromstring(html if type(html) == str else html.decode())
     favicon_els = root.xpath(
         '//x:link',
