@@ -24,8 +24,8 @@ def download_text(link):
     if 200 <= res.status_code <= 299:
         return res.text
     else:
-        print(f'requreq.textest code {res.status_code}')
-        raise requests.HTTPError(f'requreq.textest code {res.status_code}')
+        print(f'response code {res.status_code}')
+        raise requests.HTTPError(f'response code {res.status_code}')
 
 def download_raw(link, dest):
     res = requests.get(link, headers=GET_HEADERS)
@@ -35,7 +35,7 @@ def download_raw(link, dest):
                 fd.write(chunk)
             fd.close()
     else:
-        raise requests.HTTPError(f'request code {res.status_code}')
+        raise requests.HTTPError(f'response code {res.status_code}')
 
 def download_feed(link, get_cached=False):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
