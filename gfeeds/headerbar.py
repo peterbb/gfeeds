@@ -198,17 +198,17 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.title_squeezer.add(Gtk.Label(''))
 
     def set_view_mode_icon(self, mode):
-        iname = 'globe-alt-symbolic'
-        if mode == 'reader':
-            iname = 'ephy-reader-mode-symbolic'
-        elif mode == 'rsscont':
-            iname = 'application-rss+xml-symbolic'
         self.view_mode_menu_btn_icon.set_from_icon_name(
-            iname,
+            {
+                'webview': 'globe-alt-symbolic',
+                'reader': 'ephy-reader-mode-symbolic',
+                'rsscont': 'application-rss+xml-symbolic'
+            }[mode],
             Gtk.IconSize.BUTTON
         )
 
     def on_view_mode_change(self, target):
+        self.view_mode_menu.popdown()
         if target == 'webview':
             self.webview.set_enable_reader_mode(None, False)
         elif target == 'reader':
