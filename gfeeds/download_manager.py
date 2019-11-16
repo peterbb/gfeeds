@@ -18,7 +18,6 @@ def download_text(link):
     if link[:8] == 'file:///':
         with open(link[7:]) as fd:
             toret = fd.read()
-            fd.close()
         return toret
     res = requests.get(link, headers=GET_HEADERS)
     if 200 <= res.status_code <= 299:
@@ -33,7 +32,6 @@ def download_raw(link, dest):
         with open(dest, 'wb') as fd:
             for chunk in res.iter_content(1024):
                 fd.write(chunk)
-            fd.close()
     else:
         raise requests.HTTPError(f'response code {res.status_code}')
 
@@ -64,7 +62,6 @@ def download_feed(link, get_cached=False):
         #         text = brotli.decompress(res.content).decode()
         with open(dest_path, 'w') as fd:
             fd.write(text)
-            fd.close()
         return (dest_path, link)
     elif res.status_code == 304:
         return (dest_path, link)

@@ -107,7 +107,6 @@ class ConfManager(metaclass=Singleton):
             try:
                 with open(self.path) as fd:
                     self.conf = json.loads(fd.read())
-                    fd.close()
                 # verify that the file has all of the schema keys
                 for k in self.BASE_SCHEMA.keys():
                     if not k in self.conf.keys():
@@ -163,4 +162,3 @@ class ConfManager(metaclass=Singleton):
     def save_conf(self, *args):
         with open(self.path, 'w') as fd:
             fd.write(json.dumps(self.conf))
-            fd.close()
