@@ -48,7 +48,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
 import math
-from PIL import Image
 
 class cached_property(object):
     """Decorator that creates converts a method with a single
