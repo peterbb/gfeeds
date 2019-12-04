@@ -1,5 +1,5 @@
 project('gfeeds',
-    version: '0.11',
+    version: '0.12',
     meson_version: '>= 0.50.0',
     license: 'GPL3'
 )
@@ -23,7 +23,8 @@ contributors = '\n'.join([
     'Adrien Plazas (aplazas) &lt;kekun.plazas@laposte.net&gt;',
     'Christopher Davis (BrainBlasted) &lt;brainblasted@disroot.org&gt;',
     'Ivan Kupalov (charlag) &lt;charlag@tuta.io&gt;',
-    'Ignacio Losiggio (iglosiggio) &lt;iglosiggio@dc.uba.ar&gt;'
+    'Ignacio Losiggio (iglosiggio) &lt;iglosiggio@dc.uba.ar&gt;',
+    'Éloi Rivard (azmeuk)'
 ])
 
 translators = '\n'.join([

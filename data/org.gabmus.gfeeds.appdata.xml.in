@@ -48,6 +48,17 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>gabmus@disroot.org</update_contact>
     <releases>
+        <release version="0.12" timestamp="1575482243">
+            <description>
+                <ul>
+                    <li>Added loading progress bar</li>
+                    <li>Added Spanish translation</li>
+                    <li>Various UI improvements</li>
+                    <li>Performance improvements</li>
+                    <li>Various bug fixes</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.11" timestamp="1570369507">
             <description>
                 <ul>
