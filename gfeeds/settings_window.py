@@ -123,7 +123,7 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
         self.set_title(_('General'))
         self.set_icon_name('preferences-other-symbolic')
 
-        
+
         self.general_preferences_group = Handy.PreferencesGroup()
         self.general_preferences_group.set_title(_('General Settings'))
         toggle_settings = [
@@ -153,7 +153,7 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
         self.add(self.general_preferences_group)
 
         self.cache_preferences_group = Handy.PreferencesGroup()
-        self.cache_preferences_group.set_title(_('Cache')) 
+        self.cache_preferences_group.set_title(_('Cache'))
         button_settings = [
             {
                 'title': _('Clear all caches'),
@@ -198,7 +198,7 @@ class ViewPreferencesPage(Handy.PreferencesPage):
         self.set_title(_('View'))
         self.set_icon_name('applications-graphics-symbolic')
 
-        
+
         self.view_preferences_group = Handy.PreferencesGroup()
         self.view_preferences_group.set_title(_('View Settings'))
         toggle_settings = [

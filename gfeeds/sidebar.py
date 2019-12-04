@@ -126,7 +126,7 @@ class GFeedsSidebarScrolledWin(Gtk.ScrolledWindow):
         self.empty = self.listbox.empty
         self.populate = self.listbox.populate
         # self.set_size_request(360, 100)
-        
+
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.add(self.listbox)
 

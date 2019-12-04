@@ -158,7 +158,7 @@ class Feed:
             return
         self.confman = ConfManager()
         self.init_time = pytz.UTC.localize(datetime.utcnow())
-        
+
         self.title = self.fp_feed.feed.get('title', '')
         self.link = self.fp_feed.feed.get('link', '')
         self.description = self.fp_feed.feed.get('subtitle', self.link)

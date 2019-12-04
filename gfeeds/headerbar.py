@@ -11,7 +11,7 @@ class AddFeedPopover(Gtk.Popover):
         super().__init__(**kwargs)
         self.confman = ConfManager()
         self.feedman = FeedsManager()
-        
+
         self.builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gfeeds/ui/add_feed_box.glade'
         )

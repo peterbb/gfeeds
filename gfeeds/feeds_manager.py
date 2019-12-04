@@ -130,4 +130,4 @@ class FeedsManager(metaclass=Singleton):
                 f.rss_link
             )
         self.confman.save_conf()
-            
+

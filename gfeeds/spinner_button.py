@@ -15,7 +15,7 @@ class RefreshSpinnerButton(Gtk.Bin):
         self.btn.set_tooltip_text(_('Refresh feeds'))
         self.add(self.btn)
         self.stack.set_visible_child(self.icon)
-        
+
     def set_spinning(self, state):
         if state:
             self.stack.set_visible_child(self.spinner)

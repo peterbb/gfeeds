@@ -370,7 +370,7 @@ def build_reader_html(og_html, dark_mode=False):
         ).decode().replace('<html:', '<').replace('</html:', '</') + '</article>'
     except:
         article_s = '<h1><i>'+_('Reader mode unavailable for this site')+'</i></h1>'
-    
+
     return f'''<html>
             <head><style>
             {dark_mode_css if dark_mode else ""}

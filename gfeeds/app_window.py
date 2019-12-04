@@ -77,7 +77,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.on_back_button_clicked,
             self.webview
         )
-        
+
         self.headerbar.stack_switcher.set_stack(self.sidebar)
         self.headerbar.connect(
             'gfeeds_headerbar_squeeze',
