@@ -74,10 +74,7 @@ class FeedsManager(metaclass=Singleton):
             GLib.idle_add(
                 self.feeds.append, n_feed
             )
-            for n_feed_item in n_feed.items:
-                GLib.idle_add(
-                    self.feeds_items.append, n_feed_item
-                )
+            GLib.idle_add(self.feeds_items.extend, n_feed.items)
         if not refresh:
             GLib.idle_add(
                 self.emit, 'feedmanager_refresh_end', ''

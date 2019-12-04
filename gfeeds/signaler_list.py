@@ -8,6 +8,11 @@ class SignalerList(GObject.Object):
             None,
             (GObject.TYPE_PYOBJECT,)
         ),
+        'extend': (
+            GObject.SIGNAL_RUN_LAST,
+            None,
+            (GObject.TYPE_PYOBJECT,)
+        ),
         'pop': (
             GObject.SIGNAL_RUN_LAST,
             None,
@@ -30,6 +35,10 @@ class SignalerList(GObject.Object):
 
     def index(self, item):
         return self.__list.index(item)
+
+    def extend(self, ex_list):
+        self.__list.extend(ex_list)
+        self.emit('extend', ex_list)
 
     def empty(self):
         self.__list = []

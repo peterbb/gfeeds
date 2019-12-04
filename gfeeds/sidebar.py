@@ -193,6 +193,10 @@ class GFeedsSidebar(Gtk.Stack):
             lambda caller, obj: self.on_feeds_items_append(obj)
         )
         self.feedman.feeds_items.connect(
+            'extend',
+            self.on_feeds_items_extend
+        )
+        self.feedman.feeds_items.connect(
             'empty',
             lambda *args: self.listbox.empty()
         )
@@ -209,6 +213,13 @@ class GFeedsSidebar(Gtk.Stack):
             'pop',
             lambda caller, obj: self.on_feeds_pop(obj)
         )
+
+
+    def on_feeds_items_extend(self, caller, n_feeds_items_list):
+        [
+            self.listbox.add(GFeedsSidebarRow(feed_item))
+            for feed_item in n_feeds_items_list
+        ]
 
     def on_feeds_pop(self, obj):
         if obj == self.listbox.selected_feed:
