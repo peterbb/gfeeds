@@ -128,7 +128,6 @@ class Feed:
         feedpath = download_res[0]
         with open(feedpath, 'rb') as fd:
             feed_bytes = fd.read()
-            fd.close()
         feed_str = feed_bytes.decode()
         feed_str = feed_str.replace(
             get_encoding(feed_str),
