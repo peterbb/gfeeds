@@ -47,11 +47,12 @@ def download_feed(link, get_cached=False):
     if 'last-modified' in confman.conf['feeds'][link].keys() and isfile(dest_path):
         headers['If-Modified-Since'] = confman.conf['feeds'][link]['last-modified']
     try:
-        res = requests.get(link, headers=headers)
+        res = requests.get(link, headers=headers, allow_redirects=False)
     except:
         return (False, _('`{0}` is not an URL').format(link))
     if 'last-modified' in res.headers.keys():
         confman.conf['feeds'][link]['last-modified'] = res.headers['last-modified']
+    print("RES STATUS CODE", res.status_code)
     if res.status_code == 200:
         text = res.text
         if not 'last-modified' in res.headers.keys():
@@ -65,6 +66,11 @@ def download_feed(link, get_cached=False):
         return (dest_path, link)
     elif res.status_code == 304:
         return (dest_path, link)
+    elif res.status_code in (301, 302):
+        n_link = res.headers.get('Location', link)
+        confman.conf['feeds'][n_link] = confman.conf['feeds'][link]
+        confman.conf['feeds'].pop(link)
+        return download_feed(n_link)
     else:
         error_txt = _('Error downloading `{0}`, code `{1}`').format(link, res.status_code)
         print(error_txt)
