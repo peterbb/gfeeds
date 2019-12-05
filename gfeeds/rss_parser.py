@@ -4,7 +4,7 @@ import pytz
 from dateutil.parser import parse as dateparse
 from dateutil.tz import gettz
 from gettext import gettext as _
-from .download_manager import download_raw, download_text
+from .download_manager import download_raw
 from .get_favicon import get_favicon
 from os.path import isfile
 from os import remove
@@ -148,7 +148,7 @@ class Feed:
         self.rss_link = download_res[1]
         try:
             self.fp_feed = feedparser.parse(feed_str)
-        except Exception as e:
+        except Exception:
             import traceback
             traceback.print_exc()
             self.is_null = True

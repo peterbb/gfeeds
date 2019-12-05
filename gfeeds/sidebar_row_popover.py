@@ -1,5 +1,5 @@
 from os import remove
-from gi.repository import Gtk, Gdk, GLib, Pango
+from gi.repository import Gtk
 from .confManager import ConfManager
 from .download_manager import download_raw
 from .feeds_manager import FeedsManager

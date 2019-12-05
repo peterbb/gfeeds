@@ -10,7 +10,7 @@ Feeds is available as an AUR package: [`gfeeds-git`](https://aur.archlinux.org/p
 
 ```bash
 sudo apt-get install python-html5lib webkit2gtk python-lxml python-requests
-sudo pip install listparser 
+sudo pip install listparser
 
 git clone https://gitlab.gnome.org/World/gfeeds
 cd gfeeds
@@ -26,7 +26,7 @@ ninja install
 
 ```bash
 sudo pacman -S python-html5lib webkit2gtk python-lxml python-requests python-pip python-gobject python-feedparser
-yay -S python-listparser 
+yay -S python-listparser
 
 git clone https://gitlab.gnome.org/GabMus/gfeeds
 cd gfeeds
@@ -36,4 +36,15 @@ meson ..
 meson configure -Dprefix=$PWD/testdir # use this line if you want to avoid installing system wide
 ninja
 ninja install
+```
+
+## Hacking
+
+You might want to check your code with pyflakes before you commit.
+
+- Ubuntu/Debian: `sudo apt install pyflakes`
+- Arch/Manjaro: `sudo pacman -S python-pyflakes`
+
+```bash
+pyflakes gfeeds
 ```

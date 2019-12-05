@@ -30,7 +30,6 @@ from .opml_file_chooser import (
     GFeedsOpmlSavePathChooserDialog
 )
 from .manage_feeds_window import GFeedsManageFeedsWindow
-import threading
 from os.path import isfile
 from .confirm_add_dialog import GFeedsConfirmAddDialog
 
