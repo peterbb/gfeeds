@@ -52,7 +52,6 @@ def download_feed(link, get_cached=False):
         return (False, _('`{0}` is not an URL').format(link))
     if 'last-modified' in res.headers.keys():
         confman.conf['feeds'][link]['last-modified'] = res.headers['last-modified']
-    print("RES STATUS CODE", res.status_code)
     if res.status_code == 200:
         text = res.text
         if not 'last-modified' in res.headers.keys():
