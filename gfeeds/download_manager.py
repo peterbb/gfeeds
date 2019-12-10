@@ -3,7 +3,6 @@ import requests
 from .confManager import ConfManager
 from .sha import shasum
 from os.path import isfile
-# import brotli
 
 confman = ConfManager()
 
@@ -38,39 +37,43 @@ def download_raw(link, dest):
 def download_feed(link, get_cached=False):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
     if get_cached:
-        if isfile(dest_path):
-            return (dest_path, link)
-        else:
-            return ('not_cached', None)
-    # print(_('Downloading `{0}`…').format(link))
+        return (dest_path, link) if isfile(dest_path) else ('not_cached', None)
     headers = GET_HEADERS.copy()
-    if 'last-modified' in confman.conf['feeds'][link].keys() and isfile(dest_path):
+    if 'last-modified' in confman.conf['feeds'][link].keys() and
+            isfile(dest_path):
         headers['If-Modified-Since'] = confman.conf['feeds'][link]['last-modified']
     try:
-        res = requests.get(link, headers=headers, allow_redirects=False)
+        res = requests.get(
+            link, headers=headers, allow_redirects=False
+        )
     except:
         return (False, _('`{0}` is not an URL').format(link))
     if 'last-modified' in res.headers.keys():
         confman.conf['feeds'][link]['last-modified'] = res.headers['last-modified']
-    if res.status_code == 200:
-        text = res.text
-        if not 'last-modified' in res.headers.keys():
-            if 'last-modified' in confman.conf['feeds'][link].keys():
-                confman.conf['feeds'][link].pop('last-modified')
-        # if 'content-encoding' in res.headers.keys():
-        #     if res.headers['content-encoding'] == 'br':
-        #         text = brotli.decompress(res.content).decode()
+
+    def handle_200():
+        if not 'last-modified' in res.headers.keys() and
+                'last-modified' in confman.conf['feeds'][link].keys():
+            confman.conf['feeds'][link].pop('last-modified')
         with open(dest_path, 'w') as fd:
-            fd.write(text)
+            fd.write(res.text)
         return (dest_path, link)
-    elif res.status_code == 304:
-        return (dest_path, link)
-    elif res.status_code in (301, 302):
-        n_link = res.headers.get('Location', link)
+
+    handle_304 = lambda: (dest_path, link)
+
+    def handle_301_302():
+        n_link = res.headers.get('location', link)
         confman.conf['feeds'][n_link] = confman.conf['feeds'][link]
         confman.conf['feeds'].pop(link)
         return download_feed(n_link)
-    else:
-        error_txt = _('Error downloading `{0}`, code `{1}`').format(link, res.status_code)
-        print(error_txt)
-        return (False, error_txt)
+
+    handle_everything_else = lambda: (
+        False,
+        _('Error downloading `{0}`, code `{1}`').format(link, res.status_code)
+    )
+
+    handlers = {
+        200: handle_200, 304: handle_304,
+        301: handle_301_302, 302: handle_301_302
+    }
+    return handlers.get(res.status_code, handle_everything_else)()
