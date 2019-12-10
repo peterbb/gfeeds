@@ -3,6 +3,7 @@ import requests
 from .confManager import ConfManager
 from .sha import shasum
 from os.path import isfile
+from lxml.html import html5parser
 
 confman = ConfManager()
 
@@ -34,13 +35,31 @@ def download_raw(link, dest):
     else:
         raise requests.HTTPError(f'response code {res.status_code}')
 
+def extract_feed_url_from_html(html):
+    root = html5parser.fromstring(html if type(html) == str else html.decode())
+    link_els = root.xpath(
+        '//x:link',
+        namespaces={'x': 'http://www.w3.org/1999/xhtml'}
+    )
+    for el in link_els:
+        if (
+            el.attrib.get('rel', '') == 'alternate' and
+            el.attrib.get('type', '') in (
+                'application/atom+xml', 'application/rss+xml'
+            ) and 'href' in el.attrib.keys()
+        ):
+            return el.attrib['href']
+    return None
+
 def download_feed(link, get_cached=False):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
     if get_cached:
         return (dest_path, link) if isfile(dest_path) else ('not_cached', None)
     headers = GET_HEADERS.copy()
-    if 'last-modified' in confman.conf['feeds'][link].keys() and
-            isfile(dest_path):
+    if (
+            'last-modified' in confman.conf['feeds'][link].keys() and
+            isfile(dest_path)
+    ):
         headers['If-Modified-Since'] = confman.conf['feeds'][link]['last-modified']
     try:
         res = requests.get(
@@ -52,8 +71,10 @@ def download_feed(link, get_cached=False):
         confman.conf['feeds'][link]['last-modified'] = res.headers['last-modified']
 
     def handle_200():
-        if not 'last-modified' in res.headers.keys() and
-                'last-modified' in confman.conf['feeds'][link].keys():
+        if (
+                not 'last-modified' in res.headers.keys() and
+                'last-modified' in confman.conf['feeds'][link].keys()
+        ) :
             confman.conf['feeds'][link].pop('last-modified')
         with open(dest_path, 'w') as fd:
             fd.write(res.text)

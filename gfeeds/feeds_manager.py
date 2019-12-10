@@ -4,7 +4,11 @@ from .singleton import Singleton
 from .confManager import ConfManager
 from .rss_parser import Feed, FeedItem
 import threading
-from .download_manager import download_feed
+from .download_manager import (
+    download_feed,
+    download_text,
+    extract_feed_url_from_html
+)
 from .signaler_list import SignalerList
 from .test_connection import is_online
 from .thread_pool import ThreadPool
@@ -66,10 +70,13 @@ class FeedsManager(metaclass=Singleton):
             return
         n_feed = Feed(download_res)
         if n_feed.is_null:
-            self.errors.append(n_feed.error)
             if uri in self.confman.conf['feeds'].keys():
                 self.confman.conf['feeds'].pop(uri)
                 self.confman.save_conf()
+            feed_uri_from_html = extract_feed_url_from_html(download_text(uri))
+            if feed_uri_from_html != None:
+                return self._add_feed_async_worker(feed_uri_from_html, refresh)
+            self.errors.append(n_feed.error)
         else:
             GLib.idle_add(
                 self.feeds.append, n_feed
