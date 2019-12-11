@@ -353,11 +353,11 @@ from gettext import gettext as _
 
 # Thanks to Eloi Rivard (azmeuk) for the contribution on the media block
 
-_build_media_text = lambda title, content: f'''
+_build_media_text = lambda title, content: '''
     <p>
-        <strong>{title}:</strong>
-        {content}
-    </p>'''
+        <strong>{0}:</strong>
+        {1}
+    </p>'''.format(title, content.replace("\n", "<br />"))
 
 _build_media_link = lambda title, content, link: _build_media_text(
     title, f'<a href="{link}">{content}</a>'

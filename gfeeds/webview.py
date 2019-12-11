@@ -153,7 +153,9 @@ class GFeedsWebView(Gtk.Stack):
             if type(content) in [dict, FeedParserDict]:
                 if 'value' in content.keys():
                     content = content['value']
-        self.html = f'<!-- GFEEDS RSS CONTENT --><article>{content}</article>'
+        self.html = '<!-- GFEEDS RSS CONTENT --><article>{0}</article>'.format(
+            content.replace("\n", "<br />")
+        )
         self.set_enable_reader_mode(None, True, True)
 
     def _load_reader_async(self, callback=None, *args):
