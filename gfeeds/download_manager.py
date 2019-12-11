@@ -4,6 +4,7 @@ from .confManager import ConfManager
 from .sha import shasum
 from os.path import isfile
 from lxml.html import html5parser
+from .url_sanitizer import sanitize
 
 confman = ConfManager()
 
@@ -35,7 +36,8 @@ def download_raw(link, dest):
     else:
         raise requests.HTTPError(f'response code {res.status_code}')
 
-def extract_feed_url_from_html(html):
+def extract_feed_url_from_html(link):
+    html = download_text(link)
     root = html5parser.fromstring(html if type(html) == str else html.decode())
     link_els = root.xpath(
         '//x:link',
@@ -48,7 +50,7 @@ def extract_feed_url_from_html(html):
                 'application/atom+xml', 'application/rss+xml'
             ) and 'href' in el.attrib.keys()
         ):
-            return el.attrib['href']
+            return sanitize(link, el.attrib['href'])
     return None
 
 def download_feed(link, get_cached=False):
