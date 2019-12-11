@@ -1,6 +1,7 @@
 from gi.repository import Gtk, GLib, Pango
 from .colored_box import GFeedsColoredBox
 from .confManager import ConfManager
+from .initials_icon import InitialsIcon
 from .relative_day_formatter import get_date_format
 from .sidebar_row_popover import RowPopover
 from os.path import isfile
@@ -40,11 +41,14 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
         )
         self.on_full_feed_name_changed()
 
-        self.icon = self.builder.get_object('icon')
+        self.icon_container = self.builder.get_object('icon_container')
         if isfile(self.feeditem.parent_feed.favicon_path):
-            self.icon.set_from_file(
+            self.icon = Gtk.Image.new_from_file(
                 self.feeditem.parent_feed.favicon_path
             )
+        else:
+            self.icon = InitialsIcon(self.feeditem.parent_feed.title)
+        self.icon_container.add(self.icon)
 
         # Date & time stuff is long
         self.date_label = self.builder.get_object('date_label')

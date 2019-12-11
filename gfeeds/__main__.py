@@ -43,6 +43,7 @@ class GFeedsApplication(Gtk.Application):
         self.confman = ConfManager()
         self.feedman = FeedsManager()
         self.window = GFeedsAppWindow()
+        self.confman.window = self.window
         self.window.connect('destroy', self.on_destroy_window)
 
     def do_startup(self):

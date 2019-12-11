@@ -18,6 +18,7 @@
     <file preprocess="xml-stripblanks">ui/webview_filler.glade</file>
     <file preprocess="xml-stripblanks">ui/webview_with_notification.glade</file>
 
+    <file preprocess="xml-stripblanks">icons/circle-filled-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/ephy-reader-mode-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/eye-not-looking-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/eye-open-negative-filled-symbolic.svg</file>

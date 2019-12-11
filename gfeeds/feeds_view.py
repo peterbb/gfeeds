@@ -3,6 +3,7 @@ from gi.repository import Gtk, Pango
 from os.path import isfile
 from .confManager import ConfManager
 from .feeds_manager import FeedsManager
+from .initials_icon import InitialsIcon
 
 class FeedsViewAllListboxRow(Gtk.ListBoxRow):
     def __init__(self, **kwargs):
@@ -33,9 +34,16 @@ class FeedsViewListboxRow(Gtk.ListBoxRow):
         self.checkbox = self.builder.get_object('check')
         self.checkbox.set_no_show_all(True)
         self.checkbox.hide()
-        self.icon = self.builder.get_object('icon')
+
+        self.icon_container = self.builder.get_object('icon_container')
         if isfile(self.feed.favicon_path):
-            self.icon.set_from_file(self.feed.favicon_path)
+            self.icon = Gtk.Image.new_from_file(
+                self.feed.favicon_path
+            )
+        else:
+            self.icon = InitialsIcon(self.feed.title)
+        self.icon_container.add(self.icon)
+
         self.name_label = self.builder.get_object('title_label')
         self.name_label.set_text(self.feed.title)
         self.confman.connect(

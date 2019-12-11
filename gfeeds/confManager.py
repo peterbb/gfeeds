@@ -1,5 +1,5 @@
 from .singleton import Singleton
-from gi.repository import GObject, Gio
+from gi.repository import Gtk, GObject, Gio
 from pathlib import Path
 from os.path import isfile, isdir
 from os import makedirs
@@ -9,6 +9,7 @@ from datetime import timedelta
 from .signaler_list import SignalerList
 
 class ConfManagerSignaler(GObject.Object):
+
     __gsignals__ = {
         'gfeeds_new_first_changed': (
             GObject.SIGNAL_RUN_FIRST,
@@ -60,6 +61,8 @@ class ConfManagerSignaler(GObject.Object):
 
 class ConfManager(metaclass=Singleton):
 
+    _background_color = None
+
     BASE_SCHEMA = {
         'feeds': {},
         'dark_reader': False,
@@ -75,7 +78,7 @@ class ConfManager(metaclass=Singleton):
         'saved_items': {},
         'read_items': [],
         'show_read_items': True,
-        'colored_border': True,
+        'colored_border': False,
         'full_article_title': True,
         'default_view': 'webview', # valid values: 'webview', 'reader', 'rsscont'
         'open_links_externally': True,
@@ -83,6 +86,7 @@ class ConfManager(metaclass=Singleton):
     }
 
     def __init__(self):
+        self.window = None
         self.signaler = ConfManagerSignaler()
         self.emit = self.signaler.emit
         self.connect = self.signaler.connect
@@ -108,12 +112,12 @@ class ConfManager(metaclass=Singleton):
                 with open(self.path) as fd:
                     self.conf = json.loads(fd.read())
                 # verify that the file has all of the schema keys
-                for k in self.BASE_SCHEMA.keys():
+                for k in ConfManager.BASE_SCHEMA.keys():
                     if not k in self.conf.keys():
-                        if type(self.BASE_SCHEMA[k]) in [list, dict]:
-                            self.conf[k] = self.BASE_SCHEMA[k].copy()
+                        if type(ConfManager.BASE_SCHEMA[k]) in [list, dict]:
+                            self.conf[k] = ConfManager.BASE_SCHEMA[k].copy()
                         else:
-                            self.conf[k] = self.BASE_SCHEMA[k]
+                            self.conf[k] = ConfManager.BASE_SCHEMA[k]
                 if type(self.conf['feeds']) == list:
                     n_feeds = {}
                     for o_feed in self.conf['feeds']:
@@ -121,10 +125,10 @@ class ConfManager(metaclass=Singleton):
                     self.conf['feeds'] = n_feeds
                     self.save_conf()
             except:
-                self.conf = self.BASE_SCHEMA.copy()
+                self.conf = ConfManager.BASE_SCHEMA.copy()
                 self.save_conf()
         else:
-            self.conf = self.BASE_SCHEMA.copy()
+            self.conf = ConfManager.BASE_SCHEMA.copy()
             self.save_conf()
 
         for p in [
@@ -162,3 +166,14 @@ class ConfManager(metaclass=Singleton):
     def save_conf(self, *args):
         with open(self.path, 'w') as fd:
             fd.write(json.dumps(self.conf))
+
+    def get_background_color(self):
+        if ConfManager._background_color != None:
+            return ConfManager._background_color
+        if not self.window: return "000000"
+        gc = self.window.get_style_context().get_background_color(Gtk.StateFlags.NORMAL)
+        color = ''
+        for channel in (gc.red, gc.green, gc.blue):
+            color += '%02x' % int(channel*255)
+        ConfManager._background_color = color
+        return color
