@@ -1,4 +1,4 @@
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk
 from .confManager import ConfManager
 
 confman = ConfManager()

@@ -228,7 +228,8 @@ class GFeedsWebView(Gtk.Stack):
     def _set_enable_reader_mode_async_callback(self):
         self.webkitview.load_html(build_reader_html(
             self.html,
-            self.confman.conf['dark_reader']
+            self.confman.conf['dark_reader'],
+            self.feeditem.fp_item
         ), self.uri)
 
     def set_enable_reader_mode(self, togglebtn, state=None, is_rss_content=False):

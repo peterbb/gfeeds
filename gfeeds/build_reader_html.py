@@ -348,33 +348,85 @@ body, article, p, h1, h2, h3, h4, h5, h6, h7, table {
 }
 """
 
-from lxml.html import html5parser, tostring
+from lxml.html import html5parser, tostring as html_tostring
 from gettext import gettext as _
 
-def build_reader_html(og_html, dark_mode=False):
-    if not og_html:
-        return
-    root = html5parser.fromstring(og_html if type(og_html) == str else og_html.decode())
-    try:
-        article_els = root.xpath(
-            '//x:article',
-            namespaces={'x': 'http://www.w3.org/1999/xhtml'}
-        )
-        if len(article_els) == 0:
+# Thanks to Eloi Rivard (azmeuk) for the contribution on the media block
+
+_build_media_text = lambda title, content: f'''
+    <p>
+        <strong>{title}:</strong>
+        {content}
+    </p>'''
+
+_build_media_link = lambda title, content, link: _build_media_text(
+    title, f'<a href="{link}">{content}</a>'
+)
+
+# thumbnails aren't supposed to be links, images can be?
+# funnily enough, using `#` as a link opens the main content url
+# that's because the webkitview sets the base url to the feed item link
+_build_media_img = lambda title, imgurl, link='#': _build_media_link(
+    title, f'<br /><img src="{imgurl}" />', link
+)
+
+
+# fp_item should be a FeedItem.fp_item
+def build_reader_html(og_html, dark_mode=False, fp_item=None):
+    assert og_html != None
+    root = html5parser.fromstring(
+        og_html if type(og_html) == str else og_html.decode()
+    )
+
+    def extract_useful_content():
+        try:
             article_els = root.xpath(
-                '//x:body',
+                '//x:article',
                 namespaces={'x': 'http://www.w3.org/1999/xhtml'}
             )
-        article_s = '<article>' + tostring(
-            article_els[0]
-        ).decode().replace('<html:', '<').replace('</html:', '</') + '</article>'
-    except:
-        article_s = '<h1><i>'+_('Reader mode unavailable for this site')+'</i></h1>'
+            if len(article_els) == 0:
+                article_els = root.xpath(
+                    '//x:body',
+                    namespaces={'x': 'http://www.w3.org/1999/xhtml'}
+                )
+            article_s = html_tostring(
+                article_els[0]
+            ).decode().replace('<html:', '<').replace('</html:', '</')
+        except:
+            article_s = '<h1><i>'+_('Reader mode unavailable for this site')+'</i></h1>'
+        return article_s
+
+    def build_media_block():
+        if not fp_item: return ''
+        media_s = '<hr />'
+        for el in fp_item:
+            if el[:6].lower() == 'media_':
+                try:
+                    if el.lower() == 'media_thumbnail':
+                        media_s += _build_media_img(
+                            _('Thumbnail'),
+                            fp_item["media_thumbnail"][0]["url"]
+                        )
+                    else:
+                        for subel in fp_item[el]:
+                            media_s += _build_media_text(
+                                subel.capitalize(),
+                                fp_item[el][subel]
+                            )
+                except:
+                    continue
+        return media_s if media_s != '<hr />' else ''
+
+    article_s = extract_useful_content()
+    article_s += build_media_block()
+    # subsequent alterations to the reader content can be done here
 
     return f'''<html>
-            <head><style>
-            {dark_mode_css if dark_mode else ""}
-            {css}
-            </style></head>
-            <body>{article_s}</body>
-            </html>'''
+        <head><style>
+        {dark_mode_css if dark_mode else ""}
+        {css}
+        </style></head>
+        <body>
+            <article>{article_s}</article>
+        </body>
+        </html>'''
