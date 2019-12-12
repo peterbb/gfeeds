@@ -156,7 +156,7 @@ class GFeedsWebView(Gtk.Stack):
                 if 'value' in content.keys():
                     content = content['value']
         self.html = '<!-- GFEEDS RSS CONTENT --><article>{0}</article>'.format(
-            content if '</' in content else content.replace('\n', '<br />')
+            content if '</' in content else content.replace('\n', '<br>')
         )
         self.set_enable_reader_mode(None, True, True)
 

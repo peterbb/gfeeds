@@ -418,6 +418,7 @@ def build_reader_html(og_html, dark_mode=False, fp_item=None):
         return media_s if media_s != '<hr />' else ''
 
     article_s = extract_useful_content()
+    article_s = article_s.replace('<br></br>', '<br>')
     article_s += build_media_block()
     # subsequent alterations to the reader content can be done here
 
