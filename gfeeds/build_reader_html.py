@@ -372,7 +372,7 @@ _build_media_img = lambda title, imgurl, link='#': _build_media_link(
 
 
 # fp_item should be a FeedItem.fp_item
-def build_reader_html(og_html, dark_mode=False, fp_item=None):
+def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
     assert og_html != None
     root = html5parser.fromstring(
         og_html if type(og_html) == str else og_html.decode()
@@ -431,3 +431,28 @@ def build_reader_html(og_html, dark_mode=False, fp_item=None):
             <article>{article_s}</article>
         </body>
         </html>'''
+
+import readability
+
+def build_reader_html(og_html, dark_mode=False, fp_item=None):
+    try:
+        assert fp_item == None
+        doc = readability.Document(og_html)
+        return f'''<html>
+            <head>
+                <style>
+                    {css}
+                    {dark_mode_css if dark_mode else ""}
+                </style>
+                <title>{doc.short_title()}</title>
+            </head>
+            <body>
+                <article>
+                    <h1>{doc.short_title()}</h1>
+                    {doc.summary(True)}
+                </article>
+            </body>
+        </html>'''
+    except:
+        print('Reader mode: fallback to old...')
+        return build_reader_html_old(og_html, dark_mode, fp_item)

@@ -756,6 +756,86 @@
             ]
         },
         {
+            "name" : "python-cssselect",
+            "buildsystem" : "simple",
+            "build-options" : {
+                "arch" : {
+                    "i386" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    },
+                    "arm" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    }
+                }
+            },
+            "ensure-writable" : [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://files.pythonhosted.org/packages/70/54/37630f6eb2c214cdee2ae56b7287394c8aa2f3bafb8b4eb8c3791aae7a14/cssselect-1.1.0.tar.gz",
+                    "sha256" : "f95f8dedd925fd8f54edb3d2dfb44c190d9d18512377d3c1e2388d16126879bc"
+                },
+                {
+                    "type" : "shell",
+                    "commands" : [
+                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "python-readability",
+            "buildsystem" : "simple",
+            "build-options" : {
+                "arch" : {
+                    "i386" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    },
+                    "arm" : {
+                        "env" : {
+                            "MAX_CONCURRENCY" : "1"
+                        }
+                    }
+                }
+            },
+            "ensure-writable" : [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/buriy/python-readability",
+                    "commit" : "de20908e571bca0d5194cfdb95a7aa20d4c4555f"
+                },
+                {
+                    "type" : "shell",
+                    "commands" : [
+                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                    ]
+                }
+            ]
+        },
+        {
             "name" : "gfeeds",
             "buildsystem" : "meson",
             "builddir" : true,

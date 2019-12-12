@@ -238,6 +238,13 @@ class GFeedsWebView(Gtk.Stack):
         self.webkitview.load_html(build_reader_html(
             self.html,
             self.confman.conf['dark_reader'],
+            None
+        ), self.uri)
+
+    def _set_enable_reader_mode_async_callback_rss(self):
+        self.webkitview.load_html(build_reader_html(
+            self.html,
+            self.confman.conf['dark_reader'],
             self.feeditem.fp_item
         ), self.uri)
 
@@ -255,12 +262,14 @@ class GFeedsWebView(Gtk.Stack):
                     group=None,
                     target=self._load_reader_async,
                     name=None,
-                    args=(self._set_enable_reader_mode_async_callback,)
+                    args=(
+                        self._set_enable_reader_mode_async_callback,
+                    )
                 )
                 # self.on_load_start()
                 t.start()
             else:
-                self._set_enable_reader_mode_async_callback()
+                self._set_enable_reader_mode_async_callback_rss()
         else:
             self.webkitview.load_uri(self.uri)
 
