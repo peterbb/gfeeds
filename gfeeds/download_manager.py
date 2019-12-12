@@ -1,10 +1,10 @@
 from gettext import gettext as _
 import requests
-from .confManager import ConfManager
-from .sha import shasum
+from gfeeds.confManager import ConfManager
+from gfeeds.sha import shasum
 from os.path import isfile
 from lxml.html import html5parser
-from .url_sanitizer import sanitize
+from gfeeds.url_sanitizer import sanitize
 
 confman = ConfManager()
 

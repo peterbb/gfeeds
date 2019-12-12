@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from .confManager import ConfManager
+from gfeeds.confManager import ConfManager
 
 confman = ConfManager()
 

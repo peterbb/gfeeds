@@ -1,5 +1,5 @@
 from gi.repository import Gtk, Pango
-from .feeds_manager import FeedsManager
+from gfeeds.feeds_manager import FeedsManager
 from gettext import gettext as _
 from xml.sax.saxutils import escape
 

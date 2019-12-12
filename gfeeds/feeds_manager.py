@@ -1,17 +1,16 @@
 from gettext import gettext as _
 from gi.repository import GLib, GObject
-from .singleton import Singleton
-from .confManager import ConfManager
-from .rss_parser import Feed, FeedItem
+from gfeeds.singleton import Singleton
+from gfeeds.confManager import ConfManager
+from gfeeds.rss_parser import Feed, FeedItem
 import threading
-from .download_manager import (
+from gfeeds.download_manager import (
     download_feed,
-    download_text,
     extract_feed_url_from_html
 )
-from .signaler_list import SignalerList
-from .test_connection import is_online
-from .thread_pool import ThreadPool
+from gfeeds.signaler_list import SignalerList
+from gfeeds.test_connection import is_online
+from gfeeds.thread_pool import ThreadPool
 
 class FeedsManagerSignaler(GObject.Object):
     __gsignals__ = {

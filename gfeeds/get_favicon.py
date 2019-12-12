@@ -1,6 +1,6 @@
 from lxml.html import html5parser
 # import requests
-from .download_manager import download_raw, download_text
+from gfeeds.download_manager import download_raw, download_text
 from gettext import gettext as _
 from urllib.parse import urlparse
 from PIL import Image

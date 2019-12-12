@@ -1,9 +1,9 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Pango
 from os.path import isfile
-from .confManager import ConfManager
-from .feeds_manager import FeedsManager
-from .initials_icon import InitialsIcon
+from gfeeds.confManager import ConfManager
+from gfeeds.feeds_manager import FeedsManager
+from gfeeds.initials_icon import InitialsIcon
 
 class FeedsViewAllListboxRow(Gtk.ListBoxRow):
     def __init__(self, **kwargs):

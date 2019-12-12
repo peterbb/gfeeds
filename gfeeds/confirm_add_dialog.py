@@ -1,7 +1,7 @@
 from gi.repository import Gtk
 from xml.sax.saxutils import escape
 from gettext import gettext as _
-from .opml_manager import opml_to_rss_list
+from gfeeds.opml_manager import opml_to_rss_list
 
 class GFeedsConfirmAddDialog(Gtk.MessageDialog):
     def __init__(self, parent, f_path, http=False, **kwargs):

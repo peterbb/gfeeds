@@ -1,4 +1,4 @@
-from urllib.parse import urlparse, ParseResult
+from urllib.parse import urlparse
 
 def __build_url(scheme='http', netloc='', path=''):
     return urlparse(

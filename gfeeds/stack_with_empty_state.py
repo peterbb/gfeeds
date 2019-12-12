@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from .feeds_manager import FeedsManager
+from gfeeds.feeds_manager import FeedsManager
 
 class StackWithEmptyState(Gtk.Stack):
     def __init__(self, main_widget, *args, **kwargs):

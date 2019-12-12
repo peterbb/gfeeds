@@ -4,14 +4,14 @@ import pytz
 from dateutil.parser import parse as dateparse
 from dateutil.tz import gettz
 from gettext import gettext as _
-from .download_manager import download_raw
-from .get_favicon import get_favicon
+from gfeeds.download_manager import download_raw
+from gfeeds.get_favicon import get_favicon
 from os.path import isfile
 from os import remove
-from .confManager import ConfManager
-from .sha import shasum
+from gfeeds.confManager import ConfManager
+from gfeeds.sha import shasum
 from PIL import Image
-from .colorthief import ColorThief
+from gfeeds.colorthief import ColorThief
 import json
 
 def get_encoding(in_str):

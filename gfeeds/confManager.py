@@ -1,4 +1,4 @@
-from .singleton import Singleton
+from gfeeds.singleton import Singleton
 from gi.repository import Gtk, GObject, Gio
 from pathlib import Path
 from os.path import isfile, isdir
@@ -6,7 +6,7 @@ from os import makedirs
 from os import environ as Env
 import json
 from datetime import timedelta
-from .signaler_list import SignalerList
+from gfeeds.signaler_list import SignalerList
 
 class ConfManagerSignaler(GObject.Object):
 

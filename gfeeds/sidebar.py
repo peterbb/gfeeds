@@ -1,7 +1,7 @@
 from gi.repository import Gtk, Gdk
-from .confManager import ConfManager
-from .feeds_manager import FeedsManager
-from .sidebar_row import GFeedsSidebarRow
+from gfeeds.confManager import ConfManager
+from gfeeds.feeds_manager import FeedsManager
+from gfeeds.sidebar_row import GFeedsSidebarRow
 from gettext import gettext as _
 
 

@@ -1,10 +1,10 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk, Handy, GObject
-from .confManager import ConfManager
-from .feeds_manager import FeedsManager
-from .spinner_button import RefreshSpinnerButton
-from .feeds_view import FeedsViewPopover
-from .view_mode_menu import GFeedsViewModeMenu
+from gfeeds.confManager import ConfManager
+from gfeeds.feeds_manager import FeedsManager
+from gfeeds.spinner_button import RefreshSpinnerButton
+from gfeeds.feeds_view import FeedsViewPopover
+from gfeeds.view_mode_menu import GFeedsViewModeMenu
 
 class AddFeedPopover(Gtk.Popover):
     def __init__(self, relative_to, **kwargs):

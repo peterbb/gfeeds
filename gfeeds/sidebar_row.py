@@ -1,9 +1,9 @@
 from gi.repository import Gtk, GLib, Pango
-from .colored_box import GFeedsColoredBox
-from .confManager import ConfManager
-from .initials_icon import InitialsIcon
-from .relative_day_formatter import get_date_format
-from .sidebar_row_popover import RowPopover
+from gfeeds.colored_box import GFeedsColoredBox
+from gfeeds.confManager import ConfManager
+from gfeeds.initials_icon import InitialsIcon
+from gfeeds.relative_day_formatter import get_date_format
+from gfeeds.sidebar_row_popover import RowPopover
 from os.path import isfile
 
 

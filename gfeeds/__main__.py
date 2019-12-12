@@ -20,18 +20,18 @@ from gettext import gettext as _
 import sys
 import argparse
 from gi.repository import Gtk, Gdk, Gio, GLib
-from .confManager import ConfManager
-from .feeds_manager import FeedsManager
-from .app_window import GFeedsAppWindow
-from .settings_window import GFeedsSettingsWindow
-from .opml_manager import opml_to_rss_list, feeds_list_to_opml
-from .opml_file_chooser import (
+from gfeeds.confManager import ConfManager
+from gfeeds.feeds_manager import FeedsManager
+from gfeeds.app_window import GFeedsAppWindow
+from gfeeds.settings_window import GFeedsSettingsWindow
+from gfeeds.opml_manager import opml_to_rss_list, feeds_list_to_opml
+from gfeeds.opml_file_chooser import (
     GFeedsOpmlFileChooserDialog,
     GFeedsOpmlSavePathChooserDialog
 )
-from .manage_feeds_window import GFeedsManageFeedsWindow
+from gfeeds.manage_feeds_window import GFeedsManageFeedsWindow
 from os.path import isfile
-from .confirm_add_dialog import GFeedsConfirmAddDialog
+from gfeeds.confirm_add_dialog import GFeedsConfirmAddDialog
 
 class GFeedsApplication(Gtk.Application):
     def __init__(self, **kwargs):

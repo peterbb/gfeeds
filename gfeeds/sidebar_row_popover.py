@@ -1,8 +1,8 @@
 from os import remove
 from gi.repository import Gtk
-from .confManager import ConfManager
-from .download_manager import download_raw
-from .feeds_manager import FeedsManager
+from gfeeds.confManager import ConfManager
+from gfeeds.download_manager import download_raw
+from gfeeds.feeds_manager import FeedsManager
 from gettext import gettext as _
 import threading
 

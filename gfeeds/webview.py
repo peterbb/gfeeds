@@ -2,10 +2,10 @@ from gettext import gettext as _
 from gi.repository import Gtk, GLib, WebKit2, GObject
 from subprocess import Popen
 from time import sleep
-from .build_reader_html import build_reader_html
-from .confManager import ConfManager
-from .download_manager import download_text
-from .revealer_loading_bar import RevealerLoadingBar
+from gfeeds.build_reader_html import build_reader_html
+from gfeeds.confManager import ConfManager
+from gfeeds.download_manager import download_text
+from gfeeds.revealer_loading_bar import RevealerLoadingBar
 import threading
 from feedparser import FeedParserDict
 

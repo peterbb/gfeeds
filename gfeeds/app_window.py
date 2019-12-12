@@ -1,15 +1,15 @@
 from gi.repository import Gtk, Handy
-from .confManager import ConfManager
-from .feeds_manager import FeedsManager
-from .sidebar import GFeedsSidebar
-from .headerbar import GFeedHeaderbar
-from .searchbar import GFeedsSearchbar
-from .suggestion_bar import (
+from gfeeds.confManager import ConfManager
+from gfeeds.feeds_manager import FeedsManager
+from gfeeds.sidebar import GFeedsSidebar
+from gfeeds.headerbar import GFeedHeaderbar
+from gfeeds.searchbar import GFeedsSearchbar
+from gfeeds.suggestion_bar import (
     GFeedsConnectionBar,
     GFeedsErrorsBar
 )
-from .webview import GFeedsWebView
-from .stack_with_empty_state import StackWithEmptyState
+from gfeeds.webview import GFeedsWebView
+from gfeeds.stack_with_empty_state import StackWithEmptyState
 
 
 class GFeedsAppWindow(Gtk.ApplicationWindow):

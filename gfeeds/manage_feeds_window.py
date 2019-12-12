@@ -1,9 +1,9 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk
 from xml.sax.saxutils import escape
-from .confManager import ConfManager
-from .feeds_manager import FeedsManager
-from .feeds_view import (
+from gfeeds.confManager import ConfManager
+from gfeeds.feeds_manager import FeedsManager
+from gfeeds.feeds_view import (
     FeedsViewListbox,
     FeedsViewListboxRow
 )
