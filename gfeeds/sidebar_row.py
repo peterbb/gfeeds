@@ -1,14 +1,14 @@
+from os.path import isfile
 from gi.repository import Gtk, GLib, Pango
 from gfeeds.colored_box import GFeedsColoredBox
 from gfeeds.confManager import ConfManager
 from gfeeds.initials_icon import InitialsIcon
 from gfeeds.relative_day_formatter import get_date_format
 from gfeeds.sidebar_row_popover import RowPopover
-from os.path import isfile
 
 
 class GFeedsSidebarRow(Gtk.ListBoxRow):
-    def __init__(self, feeditem, is_saved = False, **kwargs):
+    def __init__(self, feeditem, is_saved=False, **kwargs):
         super().__init__(**kwargs)
         self.is_saved = is_saved
         self.get_style_context().add_class('activatable')
@@ -102,7 +102,7 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
             self.colored_box.hide()
             self.colored_box.set_no_show_all(True)
 
-    def set_read(self, read = None):
+    def set_read(self, read=None):
         if read != None:
             self.feeditem.set_read(read)
         if self.feeditem.read:
@@ -112,9 +112,9 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
 
     def set_dim(self, state):
         for w in [
-            self.colored_box,
-            self.title_label,
-            self.icon
+                self.colored_box,
+                self.title_label,
+                self.icon
         ]:
             if state:
                 w.get_style_context().add_class('dim-label')

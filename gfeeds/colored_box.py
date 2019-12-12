@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-import cairo
+from cairo import LineJoin
 
 
 class GFeedsColoredBox(Gtk.DrawingArea):
@@ -18,14 +18,14 @@ class GFeedsColoredBox(Gtk.DrawingArea):
         )
         ctx.set_line_width(20 / 4)
         ctx.set_tolerance(0.1)
-        ctx.set_line_join(cairo.LINE_JOIN_BEVEL)
+        ctx.set_line_join(LineJoin.BEVEL)
         ctx.save()
         ctx.new_path()
         ctx.move_to(0, 0)
-        ctx.rel_line_to(12,0)
-        ctx.rel_line_to(0,800)
-        ctx.rel_line_to(-12,0)
-        ctx.rel_line_to(0,-800)
+        ctx.rel_line_to(12, 0)
+        ctx.rel_line_to(0, 800)
+        ctx.rel_line_to(-12, 0)
+        ctx.rel_line_to(0, -800)
         # ctx.close_path()
         ctx.fill()
         ctx.restore()

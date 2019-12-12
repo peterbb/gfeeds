@@ -1,14 +1,14 @@
-from gi.repository import Gtk, Pango
-from gfeeds.feeds_manager import FeedsManager
 from gettext import gettext as _
 from xml.sax.saxutils import escape
+from gi.repository import Gtk, Pango
+from gfeeds.feeds_manager import FeedsManager
 
 class GFeedsInfoBar(Gtk.InfoBar):
-    def __init__(self, text, icon_name = None, message_type=Gtk.MessageType.INFO, **kwargs):
+    def __init__(self, text, icon_name=None, message_type=Gtk.MessageType.INFO, **kwargs):
         super().__init__(**kwargs)
         self.set_message_type(message_type)
         self.text = text
-        self.container_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
+        self.container_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.label = Gtk.Label(self.text)
         self.label.set_line_wrap(True)
         self.label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
@@ -31,9 +31,9 @@ class GFeedsInfoBar(Gtk.InfoBar):
 class GFeedsErrorsBar(GFeedsInfoBar):
     def __init__(self, parent_win, **kwargs):
         super().__init__(
-            text = _('There are some errors'),
-            icon_name = 'computer-fail-symbolic',
-            message_type = Gtk.MessageType.ERROR,
+            text=_('There are some errors'),
+            icon_name='computer-fail-symbolic',
+            message_type=Gtk.MessageType.ERROR,
             **kwargs
         )
         self.parent_win = parent_win
@@ -69,9 +69,9 @@ class GFeedsErrorsBar(GFeedsInfoBar):
 class GFeedsConnectionBar(GFeedsInfoBar):
     def __init__(self, **kwargs):
         super().__init__(
-            text = _('You are offline'),
-            icon_name = 'network-offline-symbolic',
-            message_type = Gtk.MessageType.WARNING,
+            text=_('You are offline'),
+            icon_name='network-offline-symbolic',
+            message_type=Gtk.MessageType.WARNING,
             **kwargs
         )
         self.container_box.set_orientation(Gtk.Orientation.HORIZONTAL)

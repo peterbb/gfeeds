@@ -1,8 +1,9 @@
 from gi.repository import Gtk, Gdk
+from gettext import gettext as _
 from gfeeds.confManager import ConfManager
 from gfeeds.feeds_manager import FeedsManager
 from gfeeds.sidebar_row import GFeedsSidebarRow
-from gettext import gettext as _
+from gfeeds.listbox_tools import separator_header_func
 
 
 class GFeedsSidebarListBox(Gtk.ListBox):
@@ -41,19 +42,11 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             'button-press-event',
             self.on_key_press_event
         )
-        self.set_header_func(self.separator_header_func)
+        self.set_header_func(separator_header_func)
 
     def add(self, *args, **kwargs):
         super().add(*args, **kwargs)
         self.show_all()
-
-    def separator_header_func(self, row, prev_row=None):
-        if (
-            prev_row != None and
-            row.get_header() == None
-        ):
-            separator = Gtk.Separator(orientation = Gtk.Orientation.HORIZONTAL)
-            row.set_header(separator)
 
     def on_show_read_changed(self, *args):
         self.invalidate_filter()
@@ -64,7 +57,8 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             row.popover.popup()
 
     def on_key_press_event(self, what, event):
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3: # right click
+        # right click
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             self.on_right_click(event, event.x, event.y)
 
     def change_filter(self, caller, n_filter):
@@ -148,13 +142,13 @@ class GFeedsSidebarScrolledWin(Gtk.ScrolledWindow):
         current_row = self.listbox.get_selected_row()
         if not current_row:
             return
-        else:
-            target = self.listbox.get_row_at_index(
-                current_row.get_index()-1
-            )
+        target = self.listbox.get_row_at_index(
+            current_row.get_index()-1
+        )
         if target:
             self.listbox.select_row(target)
             self.listbox.emit('row-activated', target)
+
 
 class GFeedsSidebar(Gtk.Stack):
     def __init__(self, **kwargs):
@@ -214,7 +208,6 @@ class GFeedsSidebar(Gtk.Stack):
             lambda caller, obj: self.on_feeds_pop(obj)
         )
 
-
     def on_feeds_items_extend(self, caller, n_feeds_items_list):
         [
             self.listbox.add(GFeedsSidebarRow(feed_item))
@@ -235,7 +228,7 @@ class GFeedsSidebar(Gtk.Stack):
         for row in self.listbox.get_children():
             if row.feeditem.link == deleted_link:
                 with row.popover.save_btn.handler_block(
-                    row.popover.save_btn_handler_id
+                        row.popover.save_btn_handler_id
                 ):
                     row.popover.save_btn.set_active(False)
                 break

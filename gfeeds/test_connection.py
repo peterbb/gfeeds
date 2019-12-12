@@ -1,5 +1,5 @@
-import requests
 import threading
+import requests
 from gi.repository import Gtk
 
 def __is_online_async_worker(ret_value_l):

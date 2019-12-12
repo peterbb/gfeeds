@@ -1,6 +1,6 @@
-from gi.repository import Gtk
 from xml.sax.saxutils import escape
 from gettext import gettext as _
+from gi.repository import Gtk
 from gfeeds.opml_manager import opml_to_rss_list
 
 class GFeedsConfirmAddDialog(Gtk.MessageDialog):

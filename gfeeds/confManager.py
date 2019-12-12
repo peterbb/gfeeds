@@ -1,12 +1,13 @@
-from gfeeds.singleton import Singleton
-from gi.repository import Gtk, GObject, Gio
 from pathlib import Path
 from os.path import isfile, isdir
 from os import makedirs
 from os import environ as Env
 import json
 from datetime import timedelta
+from gi.repository import Gtk, GObject, Gio
+from gfeeds.singleton import Singleton
 from gfeeds.signaler_list import SignalerList
+
 
 class ConfManagerSignaler(GObject.Object):
 
@@ -59,6 +60,7 @@ class ConfManagerSignaler(GObject.Object):
         ),
     }
 
+
 class ConfManager(metaclass=Singleton):
 
     _background_color = None
@@ -80,7 +82,8 @@ class ConfManager(metaclass=Singleton):
         'show_read_items': True,
         'colored_border': False,
         'full_article_title': True,
-        'default_view': 'webview', # valid values: 'webview', 'reader', 'rsscont'
+        # valid values: 'webview', 'reader', 'rsscont'
+        'default_view': 'webview',
         'open_links_externally': True,
         'full_feed_name': False
     }
@@ -98,11 +101,19 @@ class ConfManager(metaclass=Singleton):
         )
 
         if self.is_flatpak:
-            self.path = Path(f'{Env.get("XDG_CONFIG_HOME")}/org.gabmus.gfeeds.json')
-            self.cache_path = Path(f'{Env.get("XDG_CACHE_HOME")}/org.gabmus.gfeeds')
+            self.path = Path(
+                f'{Env.get("XDG_CONFIG_HOME")}/org.gabmus.gfeeds.json'
+            )
+            self.cache_path = Path(
+                f'{Env.get("XDG_CACHE_HOME")}/org.gabmus.gfeeds'
+            )
         else:
-            self.path = Path(f'{Env.get("HOME")}/.config/org.gabmus.gfeeds.json')
-            self.cache_path = Path(f'{Env.get("HOME")}/.cache/org.gabmus.gfeeds')
+            self.path = Path(
+                f'{Env.get("HOME")}/.config/org.gabmus.gfeeds.json'
+            )
+            self.cache_path = Path(
+                f'{Env.get("HOME")}/.cache/org.gabmus.gfeeds'
+            )
         self.thumbs_cache_path = f'{self.cache_path}/thumbnails/'
         self.saved_cache_path = f'{self.cache_path}/saved_articles'
 
@@ -112,13 +123,15 @@ class ConfManager(metaclass=Singleton):
                 with open(self.path) as fd:
                     self.conf = json.loads(fd.read())
                 # verify that the file has all of the schema keys
-                for k in ConfManager.BASE_SCHEMA.keys():
-                    if not k in self.conf.keys():
-                        if type(ConfManager.BASE_SCHEMA[k]) in [list, dict]:
+                for k in ConfManager.BASE_SCHEMA:
+                    if k not in self.conf.keys():
+                        if isinstance(
+                                ConfManager.BASE_SCHEMA[k], (list, dict)
+                        ):
                             self.conf[k] = ConfManager.BASE_SCHEMA[k].copy()
                         else:
                             self.conf[k] = ConfManager.BASE_SCHEMA[k]
-                if type(self.conf['feeds']) == list:
+                if isinstance(self.conf['feeds'], list):
                     n_feeds = {}
                     for o_feed in self.conf['feeds']:
                         n_feeds[o_feed] = {}
@@ -132,9 +145,9 @@ class ConfManager(metaclass=Singleton):
             self.save_conf()
 
         for p in [
-            self.cache_path,
-            self.thumbs_cache_path,
-            self.saved_cache_path
+                self.cache_path,
+                self.thumbs_cache_path,
+                self.saved_cache_path
         ]:
             if not isdir(p):
                 makedirs(p)
@@ -155,7 +168,6 @@ class ConfManager(metaclass=Singleton):
             'minimize:' in bl
         )
 
-
     @property
     def max_article_age(self):
         return timedelta(days=self.conf['max_article_age_days'])
@@ -170,8 +182,10 @@ class ConfManager(metaclass=Singleton):
     def get_background_color(self):
         if ConfManager._background_color != None:
             return ConfManager._background_color
-        if not self.window: return "000000"
-        gc = self.window.get_style_context().get_background_color(Gtk.StateFlags.NORMAL)
+        if not self.window:
+            return "000000"
+        gc = self.window.get_style_context(
+                ).get_background_color(Gtk.StateFlags.NORMAL)
         color = ''
         for channel in (gc.red, gc.green, gc.blue):
             color += '%02x' % int(channel*255)

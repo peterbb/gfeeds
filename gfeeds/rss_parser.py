@@ -1,6 +1,7 @@
+import json
 import feedparser
-from datetime import datetime, timezone
 import pytz
+from datetime import datetime, timezone
 from dateutil.parser import parse as dateparse
 from dateutil.tz import gettz
 from gettext import gettext as _
@@ -12,7 +13,7 @@ from gfeeds.confManager import ConfManager
 from gfeeds.sha import shasum
 from PIL import Image
 from gfeeds.colorthief import ColorThief
-import json
+
 
 def get_encoding(in_str):
     sample = in_str[:200]
@@ -22,8 +23,8 @@ def get_encoding(in_str):
         str_delimiter = "'" if "'" in trim else '"'
         encoding = trim[:trim.index(str_delimiter)]
         return encoding
-    else:
-        return 'utf-8'
+    return 'utf-8'
+
 
 class FeedItem:
     def __init__(self, fp_item, parent_feed):
@@ -38,11 +39,11 @@ class FeedItem:
             'published',
             self.fp_item.get('updated', '')
         )
-        self.pub_date = datetime.now(timezone.utc) # fallback to avoid errors
+        self.pub_date = datetime.now(timezone.utc)  # fallback to avoid errors
         self.parent_feed = parent_feed
 
         try:
-            self.pub_date = dateparse(self.pub_date_str, tzinfos = {
+            self.pub_date = dateparse(self.pub_date_str, tzinfos={
                 'UT': gettz('GMT'),
                 'EST': -18000,
                 'EDT': -14400,
@@ -61,9 +62,9 @@ class FeedItem:
             ).format(self.pub_date_str, self))
 
     def set_read(self, read):
-        if read == self.read: # how could this happen?
+        if read == self.read:  # how could this happen?
             return
-        if read and not self.link in self.confman.read_feeds_items:
+        if read and self.link not in self.confman.read_feeds_items:
             self.confman.read_feeds_items.append(self.link)
         elif self.link in self.confman.read_feeds_items:
             self.confman.read_feeds_items.remove(self.link)
@@ -99,6 +100,7 @@ class FeedItem:
     def new_from_json(cls, fi_json):
         return cls.new_from_dict(json.loads(fi_json))
 
+
 class FakeFeed:
     def __init__(self, f_dict):
         self.title = f_dict.get('title', '')
@@ -117,11 +119,12 @@ class FakeFeed:
     def __repr__(self):
         return f'FakeFeed Object `{self.title}`'
 
+
 class Feed:
     def __init__(self, download_res):
         self.is_null = False
         self.error = None
-        if download_res[0] == False: # indicates failed download
+        if download_res[0] == False:  # indicates failed download
             self.is_null = True
             self.error = download_res[1]
             return
@@ -173,13 +176,12 @@ class Feed:
                 self.items.append(n_item)
             elif n_item.read:
                 self.confman.read_feeds_items.remove(n_item.link)
-        # self.items = [FeedItem(x, self) for x in self.fp_feed.get('entries', [])]
         self.color = [0.0, 0.0, 0.0]
 
         if (
-            not self.title and
-            not self.link and
-            len(raw_entries) == 0
+                not self.title and
+                not self.link and
+                len(raw_entries) == 0
         ):
             # if these conditions are met, there's reason to believe
             # this is not an rss/atom feed
@@ -194,7 +196,8 @@ class Feed:
             if not self.title:
                 self.title = self.rss_link
 
-        self.favicon_path = self.confman.thumbs_cache_path+'/'+shasum(self.link)+'.png'
+        self.favicon_path = self.confman.thumbs_cache_path+'/' + \
+            shasum(self.link)+'.png'
         if not isfile(self.favicon_path):
             if self.image_url:
                 download_raw(self.image_url, self.favicon_path)
@@ -210,8 +213,8 @@ class Feed:
                 self._resize_and_get_color(self.favicon_path)
             except:
                 print(_(
-                    'Error resizing favicon for feed {0}. ' \
-                    'Probably not an image.\n' \
+                    'Error resizing favicon for feed {0}. '
+                    'Probably not an image.\n'
                     'Trying downloading favicon from an article.'
                 ).format(self.title))
                 try:
@@ -219,11 +222,10 @@ class Feed:
                     self._resize_and_get_color(self.favicon_path)
                 except:
                     print(_(
-                        'Error resizing favicon from article for feed {0}.\n' \
+                        'Error resizing favicon from article for feed {0}.\n'
                         'Deleting invalid favicon.'
                     ).format(self.title))
                     remove(self.favicon_path)
-
 
     def _resize_and_get_color(self, img_path):
         favicon = Image.open(img_path)

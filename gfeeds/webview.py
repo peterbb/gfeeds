@@ -1,13 +1,14 @@
-from gettext import gettext as _
-from gi.repository import Gtk, GLib, WebKit2, GObject
 from subprocess import Popen
 from time import sleep
+from gettext import gettext as _
+import threading
+from feedparser import FeedParserDict
+from gi.repository import Gtk, GLib, WebKit2, GObject
 from gfeeds.build_reader_html import build_reader_html
 from gfeeds.confManager import ConfManager
 from gfeeds.download_manager import download_text
 from gfeeds.revealer_loading_bar import RevealerLoadingBar
-import threading
-from feedparser import FeedParserDict
+
 
 class GFeedsWebView(Gtk.Stack):
     __gsignals__ = {
@@ -22,6 +23,7 @@ class GFeedsWebView(Gtk.Stack):
             (str,)
         )
     }
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.confman = ConfManager()
@@ -109,17 +111,17 @@ class GFeedsWebView(Gtk.Stack):
     def show_notif(self, *args):
         self.notif_revealer.set_reveal_child(True)
         t = threading.Thread(
-            group = None,
-            target = self._wait_async,
-            name = None,
-            args = (5, lambda: GLib.idle_add(self.hide_notif))
+            group=None,
+            target=self._wait_async,
+            name=None,
+            args=(5, lambda: GLib.idle_add(self.hide_notif))
         )
         t.start()
 
     def hide_notif(self, *args):
         self.notif_revealer.set_reveal_child(False)
 
-    def set_enable_rss_content(self, togglebtn, state = None, feeditem = None):
+    def set_enable_rss_content(self, togglebtn, state=None, feeditem=None):
         if state == None:
             state = togglebtn.get_active()
         if feeditem:
@@ -147,10 +149,10 @@ class GFeedsWebView(Gtk.Stack):
             content = '<h1><i>'+_(
                 'RSS content or summary not available for this article'
                 )+'</i></h1>'
-        elif type(content) != str:
-            if type(content) == list:
+        elif not isinstance(content, str):
+            if isinstance(content, list):
                 content = content[0]
-            if type(content) in [dict, FeedParserDict]:
+            if isinstance(content, (dict, FeedParserDict)):
                 if 'value' in content.keys():
                     content = content['value']
         self.html = '<!-- GFEEDS RSS CONTENT --><article>{0}</article>'.format(
@@ -166,7 +168,7 @@ class GFeedsWebView(Gtk.Stack):
         if callback:
             GLib.idle_add(callback)
 
-    def load_feeditem(self, feeditem, trigger_on_load_start = True, *args, **kwargs):
+    def load_feeditem(self, feeditem, trigger_on_load_start=True, *args, **kwargs):
         uri = feeditem.link
         if feeditem.is_saved:
             uri = (
@@ -179,9 +181,9 @@ class GFeedsWebView(Gtk.Stack):
         self.set_visible_child(self.overlay_container)
         if self.confman.conf['default_view'] == 'reader':
             t = threading.Thread(
-                group = None,
-                target = self._load_reader_async,
-                name = None,
+                group=None,
+                target=self._load_reader_async,
+                name=None,
                 # args = (uri,)
             )
             if trigger_on_load_start:
@@ -217,10 +219,15 @@ class GFeedsWebView(Gtk.Stack):
             self.loading_bar.set_fraction(1.0)
             # waits 5 seconds async then hides the loading bar
             t = threading.Thread(
-                group = None,
-                target = self._wait_async,
-                name = None,
-                args = (3, lambda: GLib.idle_add(self.loading_bar.set_reveal_child, False))
+                group=None,
+                target=self._wait_async,
+                name=None,
+                args=(
+                    3,
+                    lambda: GLib.idle_add(
+                        self.loading_bar.set_reveal_child, False
+                    )
+                )
             )
             t.start()
             self.new_page_loaded = False
@@ -238,12 +245,17 @@ class GFeedsWebView(Gtk.Stack):
         if state == None:
             state = togglebtn.get_active()
         if state:
-            if not self.html or (not is_rss_content and self.html[:36] == '<!-- GFEEDS RSS CONTENT --><article>'):
+            if (
+                    not self.html or (
+                        not is_rss_content and
+                        self.html[:36] == '<!-- GFEEDS RSS CONTENT --><article>'
+                    )
+            ):
                 t = threading.Thread(
-                    group = None,
-                    target = self._load_reader_async,
-                    name = None,
-                    args = (self._set_enable_reader_mode_async_callback,)
+                    group=None,
+                    target=self._load_reader_async,
+                    name=None,
+                    args=(self._set_enable_reader_mode_async_callback,)
                 )
                 # self.on_load_start()
                 t.start()
@@ -258,11 +270,12 @@ class GFeedsWebView(Gtk.Stack):
     def on_decide_policy(self, webView, decision, decisionType):
         if not self.confman.conf['open_links_externally']:
             return False
-        if (decisionType == WebKit2.PolicyDecisionType.NAVIGATION_ACTION and
-            decision.get_navigation_action().get_mouse_button() != 0):
+        if (
+                decisionType == WebKit2.PolicyDecisionType.NAVIGATION_ACTION and
+                decision.get_navigation_action().get_mouse_button() != 0
+        ):
             decision.ignore()
             uri = decision.get_navigation_action().get_request().get_uri()
             Popen(f'xdg-open {uri}'.split(' '))
             return True
-        else:
-            return False
+        return False

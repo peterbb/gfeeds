@@ -1,9 +1,11 @@
 from gettext import gettext as _
-from gi.repository import Gtk, Pango
 from os.path import isfile
+from gi.repository import Gtk, Pango
 from gfeeds.confManager import ConfManager
 from gfeeds.feeds_manager import FeedsManager
 from gfeeds.initials_icon import InitialsIcon
+from gfeeds.listbox_tools import separator_header_func
+
 
 class FeedsViewAllListboxRow(Gtk.ListBoxRow):
     def __init__(self, **kwargs):
@@ -20,6 +22,7 @@ class FeedsViewAllListboxRow(Gtk.ListBoxRow):
         self.label.set_margin_top(12)
         self.label.set_margin_bottom(12)
         self.add(self.label)
+
 
 class FeedsViewListboxRow(Gtk.ListBoxRow):
     def __init__(self, feed, description=True, **kwargs):
@@ -93,15 +96,7 @@ class FeedsViewListbox(Gtk.ListBox):
         )
 
         self.set_sort_func(self.gfeeds_sort_func, None, False)
-        self.set_header_func(self.separator_header_func)
-
-    def separator_header_func(self, row, prev_row=None):
-        if (
-            prev_row != None and
-            row.get_header() == None
-        ):
-            separator = Gtk.Separator(orientation = Gtk.Orientation.HORIZONTAL)
-            row.set_header(separator)
+        self.set_header_func(separator_header_func)
 
     def on_feeds_pop(self, caller, feed):
         self.remove_feed(feed)
@@ -146,10 +141,9 @@ class FeedsViewListbox(Gtk.ListBox):
     def gfeeds_sort_func(self, row1, row2, data, notify_destroy):
         if row1.IS_ALL:
             return False
-        elif row2.IS_ALL:
+        if row2.IS_ALL:
             return True
-        else:
-            return row1.feed.title.lower() > row2.feed.title.lower()
+        return row1.feed.title.lower() > row2.feed.title.lower()
 
 
 class FeedsViewScrolledWindow(Gtk.ScrolledWindow):
@@ -168,6 +162,7 @@ class FeedsViewScrolledWindow(Gtk.ScrolledWindow):
         self.set_margin_right(6)
         self.set_margin_bottom(6)
         self.set_margin_left(6)
+
 
 class FeedsViewPopover(Gtk.Popover):
     def __init__(self, relative_to, **kwargs):

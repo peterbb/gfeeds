@@ -1,9 +1,9 @@
+import threading
 from gettext import gettext as _
 from gi.repository import GLib, GObject
 from gfeeds.singleton import Singleton
 from gfeeds.confManager import ConfManager
 from gfeeds.rss_parser import Feed, FeedItem
-import threading
 from gfeeds.download_manager import (
     download_feed,
     extract_feed_url_from_html
@@ -11,6 +11,7 @@ from gfeeds.download_manager import (
 from gfeeds.signaler_list import SignalerList
 from gfeeds.test_connection import is_online
 from gfeeds.thread_pool import ThreadPool
+
 
 class FeedsManagerSignaler(GObject.Object):
     __gsignals__ = {
@@ -30,6 +31,7 @@ class FeedsManagerSignaler(GObject.Object):
             (bool,)
         ),
     }
+
 
 class FeedsManager(metaclass=Singleton):
     def __init__(self):
@@ -57,7 +59,7 @@ class FeedsManager(metaclass=Singleton):
 
     def _add_feed_async_worker(self, uri, refresh=False, get_cached=False):
         if not refresh:
-            if not 'http://' in uri and not 'https://' in uri:
+            if 'http://' not in uri and 'https://' not in uri:
                 uri = 'http://' + uri
             if uri in self.confman.conf['feeds'].keys():
                 print(_('Feed {0} exists already, skipping').format(uri))
@@ -102,7 +104,10 @@ class FeedsManager(metaclass=Singleton):
         tp = ThreadPool(
             self.confman.conf['max_refresh_threads'],
             self._add_feed_async_worker,
-            [(f_link, True, get_cached) for f_link in self.confman.conf['feeds'].keys()],
+            [
+                (f_link, True, get_cached)
+                for f_link in self.confman.conf['feeds'].keys()
+            ],
             self.emit,
             ('feedmanager_refresh_end', '')
         )
@@ -136,4 +141,3 @@ class FeedsManager(metaclass=Singleton):
                 f.rss_link
             )
         self.confman.save_conf()
-

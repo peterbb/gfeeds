@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gettext import gettext as _
-
 import sys
 import argparse
+from gettext import gettext as _
+from os.path import isfile
 from gi.repository import Gtk, Gdk, Gio, GLib
 from gfeeds.confManager import ConfManager
 from gfeeds.feeds_manager import FeedsManager
@@ -30,14 +30,14 @@ from gfeeds.opml_file_chooser import (
     GFeedsOpmlSavePathChooserDialog
 )
 from gfeeds.manage_feeds_window import GFeedsManageFeedsWindow
-from os.path import isfile
 from gfeeds.confirm_add_dialog import GFeedsConfirmAddDialog
+
 
 class GFeedsApplication(Gtk.Application):
     def __init__(self, **kwargs):
         super().__init__(
-            application_id = 'org.gabmus.gfeeds',
-            flags = Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
+            application_id='org.gabmus.gfeeds',
+            flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
             **kwargs
         )
         self.confman = ConfManager()
@@ -129,7 +129,7 @@ class GFeedsApplication(Gtk.Application):
             if 'accel' in sa.keys():
                 self.set_accels_for_action(
                     f'app.{sa["name"]}',
-                    [sa['accel'],]
+                    [sa['accel']]
                 )
 
         for a in actions:
@@ -147,7 +147,9 @@ class GFeedsApplication(Gtk.Application):
         self.confman.save_conf()
 
     def show_read_items(self, action, *args):
-        action.change_state(GLib.Variant.new_boolean(not action.get_state().get_boolean()))
+        action.change_state(
+            GLib.Variant.new_boolean(not action.get_state().get_boolean())
+        )
         self.confman.conf['show_read_items'] = action.get_state().get_boolean()
         self.confman.emit('gfeeds_show_read_changed', '')
 
@@ -260,24 +262,23 @@ class GFeedsApplication(Gtk.Application):
                             if res == Gtk.ResponseType.YES:
                                 self.add_opml_feeds(abspath)
                         elif (
-                            abspath[-4:].lower() in ['.rss', '.xml'] or
-                            abspath[-5:].lower() == '.atom'
+                                abspath[-4:].lower() in ('.rss', '.xml') or
+                                abspath[-5:].lower() == '.atom'
                         ):
                             print('Adding single feeds from file not supported')
                 elif (
-                    self.args.argurl[:7].lower() == 'http://' or
-                    self.args.argurl[:8].lower() == 'https://'
+                        self.args.argurl[:7].lower() == 'http://' or
+                        self.args.argurl[:8].lower() == 'https://'
                 ):
                     dialog = GFeedsConfirmAddDialog(
                         self.window,
                         self.args.argurl,
-                        http = True
+                        http=True
                     )
                     res = dialog.run()
                     dialog.close()
                     if res == Gtk.ResponseType.YES:
                         self.feedman.add_feed(self.args.argurl)
-
 
     def do_command_line(self, args):
         """
@@ -285,19 +286,19 @@ class GFeedsApplication(Gtk.Application):
         called if Gio.ApplicationFlags.HANDLES_COMMAND_LINE is set.
         must call the self.do_activate() to get the application up and running.
         """
-        Gtk.Application.do_command_line(self, args)  # call the default commandline handler
+        # call the default commandline handler
+        Gtk.Application.do_command_line(self, args)
         # make a command line parser
         parser = argparse.ArgumentParser()
         parser.add_argument(
             'argurl',
-            metavar = _('url'),
-            type = str,
-            nargs = '?',
-            help = _('opml file local url or rss remote url to import')
+            metavar=_('url'),
+            type=str,
+            nargs='?',
+            help=_('opml file local url or rss remote url to import')
         )
-        #parser.add_argument('-c', '--cli', dest='wallpaper_path', nargs='+', action='append', help=_('set wallpapers from command line'))
-        #parser.add_argument('-r', '--random', dest='set_random', action='store_true', help=_('set wallpapers randomly'))
-        # parse the command line stored in args, but skip the first element (the filename)
+        # parse the command line stored in args,
+        # but skip the first element (the filename)
         self.args = parser.parse_args(args.get_arguments()[1:])
         # call the main program do_activate() to start up the app
         self.do_activate()

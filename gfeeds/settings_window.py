@@ -1,8 +1,9 @@
+from os import remove, listdir
+from os.path import isfile, abspath, join
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 from gfeeds.confManager import ConfManager
-from os.path import isfile, abspath, join
-from os import remove, listdir
+
 
 class PreferencesButtonRow(Handy.ActionRow):
     """
@@ -10,8 +11,10 @@ class PreferencesButtonRow(Handy.ActionRow):
     title: the title shown
     button_label: a label to show inside the button
     onclick: the function that will be called when the button is pressed
-    button_style_class: the style class of the button. Common options: `suggested-action`, `destructive-action`
-    signal: an optional signal to let ConfManager emit when the button is pressed
+    button_style_class: the style class of the button.
+        Common options: `suggested-action`, `destructive-action`
+    signal: an optional signal to let ConfManager emit when the button is
+        pressed
     """
     def __init__(self, title, button_label, onclick, button_style_class=None, signal=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -61,11 +64,11 @@ class PreferencesSpinButtonRow(Handy.ActionRow):
         self.conf_key = conf_key
 
         self.adjustment = Gtk.Adjustment(
-            self.confman.conf[self.conf_key], # initial value
-            min_v, # minimum value
-            max_v, # maximum value
-            1, # step increment
-            7, # page increment (page up, page down? large steps anyway)
+            self.confman.conf[self.conf_key],  # initial value
+            min_v,  # minimum value
+            max_v,  # maximum value
+            1,  # step increment
+            7,  # page increment (page up, page down? large steps anyway)
             0
         )
 
@@ -90,7 +93,8 @@ class PreferencesToggleRow(Handy.ActionRow):
     A preferences row with a title and a toggle
     title: the title shown
     conf_key: the key of the configuration dictionary/json in ConfManager
-    signal: an optional signal to let ConfManager emit when the configuration is set
+    signal: an optional signal to let ConfManager emit when the configuration
+        is set
     """
     def __init__(self, title, conf_key, signal=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -123,7 +127,6 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
         self.set_title(_('General'))
         self.set_icon_name('preferences-other-symbolic')
 
-
         self.general_preferences_group = Handy.PreferencesGroup()
         self.general_preferences_group.set_title(_('General Settings'))
         toggle_settings = [
@@ -147,7 +150,7 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
                 1,
                 9999,
                 'max_article_age_days',
-                subtitle = _('In days')
+                subtitle=_('In days')
             )
         )
         self.add(self.general_preferences_group)
@@ -178,9 +181,9 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
 
     def clear_caches(self, confman, *args):
         for p in [
-            confman.cache_path,
-            confman.thumbs_cache_path,
-            confman.saved_cache_path
+                confman.cache_path,
+                confman.thumbs_cache_path,
+                confman.saved_cache_path
         ]:
             files = [
                 abspath(join(p, f)) for f in listdir(p)
@@ -197,7 +200,6 @@ class ViewPreferencesPage(Handy.PreferencesPage):
         super().__init__(*args, **kwargs)
         self.set_title(_('View'))
         self.set_icon_name('applications-graphics-symbolic')
-
 
         self.view_preferences_group = Handy.PreferencesGroup()
         self.view_preferences_group.set_title(_('View Settings'))
@@ -246,7 +248,6 @@ class AdvancedPreferencesPage(Handy.PreferencesPage):
         super().__init__(*args, **kwargs)
         self.set_title(_('Advanced'))
         self.set_icon_name('system-run-symbolic')
-
 
         self.advanced_preferences_group = Handy.PreferencesGroup()
         self.advanced_preferences_group.set_title(_('Advanced Settings'))

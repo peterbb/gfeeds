@@ -159,9 +159,10 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             if self.headerbar in self.main_box.get_children():
                 self.main_box.remove(self.headerbar)
                 for h in [
-                    self.headerbar.left_headerbar,
-                    self.headerbar.right_headerbar,
-                    self.headerbar]:
+                        self.headerbar.left_headerbar,
+                        self.headerbar.right_headerbar,
+                        self.headerbar
+                ]:
                     h.get_style_context().remove_class('notheaderbar')
             self.set_titlebar(self.headerbar)
         else:
@@ -170,7 +171,8 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             for h in [
                     self.headerbar.left_headerbar,
                     self.headerbar.right_headerbar,
-                    self.headerbar]:
+                    self.headerbar
+            ]:
                 h.get_style_context().add_class('notheaderbar')
 
     def add_accelerator(self, shortcut, callback):
@@ -190,7 +192,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         feeds_items_links = [fi.link for fi in self.feedman.feeds_items]
         to_rm = []
         for ri in self.confman.conf['read_items']:
-            if not ri in feeds_items_links:
+            if ri not in feeds_items_links:
                 to_rm.append(ri)
         for ri in to_rm:
             self.confman.conf['read_items'].remove(ri)
@@ -214,7 +216,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.headerbar.share_btn.set_sensitive(True)
         self.headerbar.open_externally_btn.set_sensitive(True)
         self.leaflet.set_visible_child(self.webview)
-        self.headerbar.leaflet.set_visible_child(self.headerbar.right_headerbar)
+        self.headerbar.leaflet.set_visible_child(
+            self.headerbar.right_headerbar
+        )
         self.on_main_leaflet_folded()
         listbox.invalidate_filter()
         other_listbox.invalidate_filter()
@@ -227,7 +231,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.headerbar.back_button.show()
             self.headerbar.stack_switcher.set_no_show_all(False)
             self.headerbar.stack_switcher.show()
-            self.headerbar.squeezer.set_child_enabled(self.headerbar.stack_switcher, True)
+            self.headerbar.squeezer.set_child_enabled(
+                self.headerbar.stack_switcher, True
+            )
         else:
             if self.confman.wm_decoration_on_left:
                 target = self.headerbar.left_headerbar
@@ -236,7 +242,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.headerbar.back_button.hide()
             self.headerbar.stack_switcher.set_no_show_all(True)
             self.headerbar.stack_switcher.hide()
-            self.headerbar.squeezer.set_child_enabled(self.headerbar.stack_switcher, False)
+            self.headerbar.squeezer.set_child_enabled(
+                self.headerbar.stack_switcher, False
+            )
         self.headerbar.headergroup.set_focus(target)
 
     def on_back_button_clicked(self, *args):
