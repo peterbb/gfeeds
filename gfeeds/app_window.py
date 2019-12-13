@@ -33,15 +33,13 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
         self.webview = GFeedsWebView()
 
-        # separator = Gtk.Separator()
-        # separator.get_style_context().add_class('sidebar')
+        separator = Gtk.Separator()
+        separator.get_style_context().add_class('sidebar')
 
         leaflet_builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gfeeds/ui/gfeeds_leaflet.glade'
         )
         self.leaflet = leaflet_builder.get_object('leaflet')
-        self.leaflet_left_cont = leaflet_builder.get_object('left_container')
-        self.leaflet_right_cont = leaflet_builder.get_object('right_container')
         self.connection_bar = GFeedsConnectionBar()
         self.errors_bar = GFeedsErrorsBar(self)
         self.feedman.connect(
@@ -65,9 +63,10 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.sidebar_box.pack_start(self.errors_bar, False, False, 0)
         self.stack_with_empty_state = StackWithEmptyState(self.sidebar)
         self.sidebar_box.pack_start(self.stack_with_empty_state, True, True, 0)
-        self.leaflet_left_cont.pack_start(self.sidebar_box, True, True, 0)
-        # self.leaflet.add(separator)
-        self.leaflet_right_cont.pack_start(self.webview, True, True, 0)
+        self.leaflet.add(self.sidebar_box)
+        self.leaflet.add(separator)
+        self.leaflet.add(self.webview)
+        self.leaflet.child_set_property(separator, 'allow-visible', False)
         self.leaflet.connect('notify::folded', self.on_main_leaflet_folded)
 
         self.swipe_group = Handy.SwipeGroup()
@@ -228,9 +227,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         )
         self.headerbar.share_btn.set_sensitive(True)
         self.headerbar.open_externally_btn.set_sensitive(True)
-        self.leaflet.set_visible_child(self.leaflet_right_cont)
+        self.leaflet.set_visible_child(self.webview)
         self.headerbar.leaflet.set_visible_child(
-            self.headerbar.leaflet_right_cont
+            self.headerbar.right_headerbar
         )
         self.on_main_leaflet_folded()
         listbox.invalidate_filter()
@@ -240,8 +239,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         target = None
         # other = None
         if self.leaflet.get_fold() == Handy.Fold.FOLDED:
-            target = self.headerbar.leaflet.get_visible_child().get_children()[0]
-            print('RIGHT' if target==self.headerbar.right_headerbar else 'LEFT')
+            target = self.headerbar.leaflet.get_visible_child()
             self.headerbar.back_button.show()
             self.headerbar.stack_switcher.set_no_show_all(False)
             self.headerbar.stack_switcher.show()
@@ -249,12 +247,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
                 self.headerbar.stack_switcher, True
             )
         else:
-            self.headerbar.headergroup.set_focus(None)
-            return
-            if self.confman.wm_decoration_on_left:
-                target = self.headerbar.left_headerbar
-            else:
-                target = self.headerbar.right_headerbar
             self.headerbar.back_button.hide()
             self.headerbar.stack_switcher.set_no_show_all(True)
             self.headerbar.stack_switcher.hide()
@@ -264,7 +256,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.headerbar.headergroup.set_focus(target)
 
     def on_back_button_clicked(self, *args):
-        self.leaflet.set_visible_child(self.leaflet_left_cont)
+        self.leaflet.set_visible_child(self.sidebar_box)
         self.on_main_leaflet_folded()
         self.sidebar.listbox.select_row(None)
         self.sidebar.saved_items_listbox.select_row(None)
