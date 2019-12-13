@@ -435,24 +435,21 @@ def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
 import readability
 
 def build_reader_html(og_html, dark_mode=False, fp_item=None):
-    try:
-        assert fp_item == None
-        doc = readability.Document(og_html)
-        return f'''<html>
-            <head>
-                <style>
-                    {css}
-                    {dark_mode_css if dark_mode else ""}
-                </style>
-                <title>{doc.short_title()}</title>
-            </head>
-            <body>
-                <article>
-                    <h1>{doc.short_title()}</h1>
-                    {doc.summary(True)}
-                </article>
-            </body>
-        </html>'''
-    except:
-        print('Reader mode: fallback to old...')
+    if fp_item == None:
         return build_reader_html_old(og_html, dark_mode, fp_item)
+    doc = readability.Document(og_html)
+    return f'''<html>
+        <head>
+            <style>
+                {css}
+                {dark_mode_css if dark_mode else ""}
+            </style>
+            <title>{doc.short_title()}</title>
+        </head>
+        <body>
+            <article>
+                <h1>{doc.short_title()}</h1>
+                {doc.summary(True)}
+            </article>
+        </body>
+    </html>'''
