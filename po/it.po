@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-04 19:04+0100\n"
-"PO-Revision-Date: 2019-12-04 19:18+0100\n"
+"POT-Creation-Date: 2019-12-13 20:51+0100\n"
+"PO-Revision-Date: 2019-12-13 20:52+0100\n"
 "Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -30,22 +30,22 @@ msgstr "File XML"
 msgid "Choose where to save the exported OPML file"
 msgstr "Scegli dove salvare il file OPML esportato"
 
-#: ../gfeeds/rss_parser.py:60
+#: ../gfeeds/rss_parser.py:61
 #, python-brace-format
 msgid "Error: unable to parse datetime {0} for feeditem {1}"
 msgstr "Errore: impossibile analizzare data e ora {0} per l'articolo {1}"
 
-#: ../gfeeds/rss_parser.py:155
+#: ../gfeeds/rss_parser.py:158
 #, python-brace-format
 msgid "Errors while parsing feed `{0}`"
 msgstr "Errori nell'analisi del feed `{0}`"
 
-#: ../gfeeds/rss_parser.py:188
+#: ../gfeeds/rss_parser.py:190
 #, python-brace-format
 msgid "`{0}` may not be an RSS or Atom feed"
 msgstr "`{0}` potrebbe non essere un feed RSS o Atom"
 
-#: ../gfeeds/rss_parser.py:213
+#: ../gfeeds/rss_parser.py:216
 #, python-brace-format
 msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
@@ -55,7 +55,7 @@ msgstr ""
 "un'immagine.\n"
 "Provo a scaricare la favicon da un articolo."
 
-#: ../gfeeds/rss_parser.py:222
+#: ../gfeeds/rss_parser.py:225
 #, python-brace-format
 msgid ""
 "Error resizing favicon from article for feed {0}.\n"
@@ -64,151 +64,160 @@ msgstr ""
 "Errore nel ridimensionare la favicon da articolo per il feed {0}.\n"
 "Elimino la favicon invalida."
 
-#: ../gfeeds/feeds_manager.py:60
+#: ../gfeeds/feeds_manager.py:65
 #, python-brace-format
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../gfeeds/headerbar.py:158
+#: ../gfeeds/headerbar.py:161
 msgid "Add new feed"
 msgstr "Aggiungi nuovo feed"
 
-#: ../gfeeds/get_favicon.py:62
+#: ../gfeeds/get_favicon.py:70
 #, python-brace-format
 msgid "Error downloading favicon for `{0}`"
 msgstr "Errore nel download della favicon per `{0}`"
 
-#: ../gfeeds/feeds_view.py:15
+#: ../gfeeds/feeds_view.py:18
 msgid "All feeds"
 msgstr "Tutti i feed"
 
-#: ../gfeeds/webview.py:74
+#: ../gfeeds/webview.py:76
 msgid "Web View"
 msgstr "Vista Web"
 
-#: ../gfeeds/webview.py:75
+#: ../gfeeds/webview.py:77
 msgid "Filler View"
 msgstr "Vista Riempitiva"
 
-#: ../gfeeds/webview.py:148
+#: ../gfeeds/webview.py:150
 msgid "RSS content or summary not available for this article"
 msgstr "Contenuto o riassunto dell'RSS non disponibile per questo articolo"
 
-#: ../gfeeds/build_reader_html.py:372
+#: ../gfeeds/build_reader_html.py:396
 msgid "Reader mode unavailable for this site"
 msgstr "Modalità lettura non disponibile per questo sito"
 
-#: ../gfeeds/sidebar.py:173
+#: ../gfeeds/build_reader_html.py:407
+msgid "Thumbnail"
+msgstr "Anteprima"
+
+#: ../gfeeds/sidebar.py:167
 msgid "Feed"
 msgstr "Feed"
 
-#: ../gfeeds/sidebar.py:179
+#: ../gfeeds/sidebar.py:173
 msgid "Saved"
 msgstr "Salvati"
 
-#: ../gfeeds/__main__.py:293
+#: ../gfeeds/__main__.py:295
 msgid "url"
 msgstr "url"
 
-#: ../gfeeds/__main__.py:296
+#: ../gfeeds/__main__.py:298
 msgid "opml file local url or rss remote url to import"
 msgstr "url locale del file opml o url rss remota da importare"
 
-#: ../gfeeds/download_manager.py:52
+#: ../gfeeds/download_manager.py:76
+#, python-brace-format
+msgid "`{0}`: connection timed out"
+msgstr "`{0}`: timeout connessione"
+
+#: ../gfeeds/download_manager.py:78
 #, python-brace-format
 msgid "`{0}` is not an URL"
 msgstr "`{0}` non è un URL"
 
-#: ../gfeeds/download_manager.py:69
+#: ../gfeeds/download_manager.py:102
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Errore nel download di `{0}`, codice `{1}`"
 
-#: ../gfeeds/settings_window.py:123
+#: ../gfeeds/settings_window.py:127
 msgid "General"
 msgstr "Generale"
 
-#: ../gfeeds/settings_window.py:128
+#: ../gfeeds/settings_window.py:131
 msgid "General Settings"
 msgstr "Impostazioni Generali"
 
-#: ../gfeeds/settings_window.py:131
+#: ../gfeeds/settings_window.py:134
 msgid "Show newer articles first"
 msgstr "Mostra nuovi articoli per primi"
 
-#: ../gfeeds/settings_window.py:136
+#: ../gfeeds/settings_window.py:139
 msgid "Open links in your browser"
 msgstr "Apri link nel tuo browser"
 
-#: ../gfeeds/settings_window.py:146
+#: ../gfeeds/settings_window.py:149
 msgid "Maximum article age"
 msgstr "Età massima degli articoli"
 
-#: ../gfeeds/settings_window.py:150
+#: ../gfeeds/settings_window.py:153
 msgid "In days"
 msgstr "In giorni"
 
-#: ../gfeeds/settings_window.py:156
+#: ../gfeeds/settings_window.py:159
 msgid "Cache"
 msgstr "Cache"
 
-#: ../gfeeds/settings_window.py:159
+#: ../gfeeds/settings_window.py:162
 msgid "Clear all caches"
 msgstr "Pulisci tutte le cache"
 
-#: ../gfeeds/settings_window.py:160
+#: ../gfeeds/settings_window.py:163
 msgid "Clear caches"
 msgstr "Pulisci le cache"
 
-#: ../gfeeds/settings_window.py:198
+#: ../gfeeds/settings_window.py:201
 msgid "View"
 msgstr "Vista"
 
-#: ../gfeeds/settings_window.py:203
+#: ../gfeeds/settings_window.py:205
 msgid "View Settings"
 msgstr "Impostazioni della Vista"
 
-#: ../gfeeds/settings_window.py:206
+#: ../gfeeds/settings_window.py:208
 msgid "Show colored border"
 msgstr "Mostra bordo colorato"
 
-#: ../gfeeds/settings_window.py:211
+#: ../gfeeds/settings_window.py:213
 msgid "Show full articles titles"
 msgstr "Mostra i titoli completi degli articoli"
 
-#: ../gfeeds/settings_window.py:216
+#: ../gfeeds/settings_window.py:218
 msgid "Show full feeds names"
 msgstr "Mostra nomi completi dei feed"
 
-#: ../gfeeds/settings_window.py:221
+#: ../gfeeds/settings_window.py:223
 msgid "Use dark theme for reader mode"
 msgstr "Usa tema scuro per la modalità lettura"
 
-#: ../gfeeds/settings_window.py:226
+#: ../gfeeds/settings_window.py:228
 msgid "Enable JavaScript"
 msgstr "Attiva JavaScript"
 
-#: ../gfeeds/settings_window.py:231
+#: ../gfeeds/settings_window.py:233
 msgid "Enable client side decoration"
 msgstr "Attiva decorazione client side"
 
-#: ../gfeeds/settings_window.py:247
+#: ../gfeeds/settings_window.py:249
 msgid "Advanced"
 msgstr "Avanzate"
 
-#: ../gfeeds/settings_window.py:252
+#: ../gfeeds/settings_window.py:253
 msgid "Advanced Settings"
 msgstr "Impostazioni Avanzate"
 
-#: ../gfeeds/settings_window.py:255
+#: ../gfeeds/settings_window.py:256
 msgid "Maximum refresh threads"
 msgstr "Massimi thread per aggiornamento"
 
-#: ../gfeeds/settings_window.py:260
+#: ../gfeeds/settings_window.py:261
 msgid "How many threads to refresh feeds"
 msgstr "Quanti thread per aggiornare i feed"
 
-#: ../gfeeds/settings_window.py:298
+#: ../gfeeds/settings_window.py:299
 msgid "Preferences"
 msgstr "Preferenze"
 
