@@ -74,9 +74,13 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.webview.connect('gfeeds_webview_load_start', self.on_load_start)
         self.webview.connect('gfeeds_webview_load_end', self.on_load_end)
         self.headergroup = Handy.HeaderGroup()
-        self.leaflet = Gtk.Builder.new_from_resource(
+        leaflet_builder = Gtk.Builder.new_from_resource(
             '/org/gabmus/gfeeds/ui/gfeeds_leaflet.glade'
-        ).get_object('leaflet')
+        )
+        self.leaflet = leaflet_builder.get_object('leaflet')
+        self.leaflet.set_can_swipe_back(False)
+        self.leaflet_left_cont = leaflet_builder.get_object('left_container')
+        self.leaflet_right_cont = leaflet_builder.get_object('right_container')
         self.left_headerbar = self.builder.get_object(
             'left_headerbar'
         )
@@ -88,12 +92,12 @@ class GFeedHeaderbar(Handy.TitleBar):
         size_group_right.add_widget(self.right_headerbar)
         self.headergroup.add_header_bar(self.left_headerbar)
         self.headergroup.add_header_bar(self.right_headerbar)
-        separator = Gtk.Separator()
-        separator.get_style_context().add_class('sidebar')
+        # separator = Gtk.Separator()
+        # separator.get_style_context().add_class('sidebar')
 
-        self.leaflet.add(self.left_headerbar)
-        self.leaflet.add(separator)
-        self.leaflet.add(self.right_headerbar)
+        self.leaflet_left_cont.pack_start(self.left_headerbar, True, True, 0)
+        # self.leaflet.add(separator)
+        self.leaflet_right_cont.pack_start(self.right_headerbar, True, True, 0)
         self.add(self.leaflet)
         self.set_headerbar_controls()
         self.confman.connect(
@@ -248,7 +252,7 @@ class GFeedHeaderbar(Handy.TitleBar):
             self.left_headerbar.set_show_close_button(False)
 
     def on_back_button_clicked(self, *args):
-        self.leaflet.set_visible_child(self.left_headerbar)
+        self.leaflet.set_visible_child(self.leaflet_left_cont)
         self.back_btn_func()
 
     def on_menu_btn_clicked(self, *args):
