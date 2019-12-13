@@ -70,9 +70,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.leaflet_right_cont.pack_start(self.webview, True, True, 0)
         self.leaflet.connect('notify::folded', self.on_main_leaflet_folded)
 
-        # TODO: run on back press on swipe back
-        self.leaflet.connect('notify::visible-child', self.on_main_leaflet_folded)
-
         self.swipe_group = Handy.SwipeGroup()
 
         self.size_group_left = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
@@ -106,6 +103,11 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             'gfeeds_enable_csd_changed',
             self.set_headerbar_or_titlebar
         )
+
+
+        # listening on the headerbar leaflet visible-child because of a bug in
+        # libhandy that doesn't notify the correct child on the main leaflet
+        self.headerbar.leaflet.connect('notify::visible-child', self.on_main_leaflet_folded)
 
         self.add(self.main_box)
         self.main_box.pack_end(self.leaflet, True, True, 0)
@@ -233,10 +235,6 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.on_main_leaflet_folded()
         listbox.invalidate_filter()
         other_listbox.invalidate_filter()
-
-    def on_leaflet_transition_running(self, leaflet, t_running):
-        #if self.leaflet.get_property('child-transition-running'):
-        self.on_main_leaflet_folded()
 
     def on_main_leaflet_folded(self, *args):
         target = None
