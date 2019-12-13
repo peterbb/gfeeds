@@ -71,7 +71,7 @@ class GFeedsSidebarListBox(Gtk.ListBox):
             toret = True
         else:
             toret = row.feeditem.parent_feed == self.selected_feed
-        return (
+        return row.is_selected() or (
             toret and (
                 self.confman.conf['show_read_items'] or
                 not row.feeditem.read
