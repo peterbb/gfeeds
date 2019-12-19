@@ -53,10 +53,10 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         )
         self.searchbar.connect(
             'notify::search-mode-enabled',
-            lambda caller, enabled: \
+            lambda caller, enabled:
                 self.headerbar.search_btn.set_active(caller.get_search_mode())
         )
-        self.sidebar_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
+        self.sidebar_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.sidebar_box.set_size_request(360, 100)
         self.sidebar_box.pack_start(self.searchbar, False, False, 0)
         self.sidebar_box.pack_start(self.connection_bar, False, False, 0)
@@ -103,10 +103,11 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.set_headerbar_or_titlebar
         )
 
-
         # listening on the headerbar leaflet visible-child because of a bug in
         # libhandy that doesn't notify the correct child on the main leaflet
-        self.headerbar.leaflet.connect('notify::visible-child', self.on_main_leaflet_folded)
+        self.headerbar.leaflet.connect(
+            'notify::visible-child', self.on_main_leaflet_folded
+        )
 
         self.add(self.main_box)
         self.main_box.pack_end(self.leaflet, True, True, 0)
@@ -190,7 +191,9 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
     def add_accelerator(self, shortcut, callback):
         if shortcut:
             key, mod = Gtk.accelerator_parse(shortcut)
-            self.accel_group.connect(key, mod, Gtk.AccelFlags.VISIBLE, callback)
+            self.accel_group.connect(
+                key, mod, Gtk.AccelFlags.VISIBLE, callback
+            )
 
     def emit_destroy(self, *args):
         self.emit('destroy')

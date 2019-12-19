@@ -16,6 +16,7 @@ GET_HEADERS = {
 
 TIMEOUT = 30
 
+
 # will return the content of a file if it's a file url
 def download_text(link):
     if link[:8] == 'file:///':
@@ -29,6 +30,7 @@ def download_text(link):
         print(f'response code {res.status_code}')
         raise requests.HTTPError(f'response code {res.status_code}')
 
+
 def download_raw(link, dest):
     res = requests.get(link, headers=GET_HEADERS, timeout=TIMEOUT)
     if res.status_code == 200:
@@ -38,10 +40,13 @@ def download_raw(link, dest):
     else:
         raise requests.HTTPError(f'response code {res.status_code}')
 
+
 def extract_feed_url_from_html(link):
     try:
         html = download_text(link)
-        root = html5parser.fromstring(html if type(html) == str else html.decode())
+        root = html5parser.fromstring(
+            html if type(html) == str else html.decode()
+        )
         link_els = root.xpath(
             '//x:link',
             namespaces={'x': 'http://www.w3.org/1999/xhtml'}
@@ -58,6 +63,7 @@ def extract_feed_url_from_html(link):
         print('exception in `extract_feed_from_html`')
     return None
 
+
 def download_feed(link, get_cached=False):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
     if get_cached:
@@ -67,7 +73,8 @@ def download_feed(link, get_cached=False):
             'last-modified' in confman.conf['feeds'][link].keys() and
             isfile(dest_path)
     ):
-        headers['If-Modified-Since'] = confman.conf['feeds'][link]['last-modified']
+        headers['If-Modified-Since'] = \
+            confman.conf['feeds'][link]['last-modified']
     try:
         res = requests.get(
             link, headers=headers, allow_redirects=False, timeout=TIMEOUT
@@ -77,19 +84,20 @@ def download_feed(link, get_cached=False):
     except:
         return (False, _('`{0}` is not an URL').format(link))
     if 'last-modified' in res.headers.keys():
-        confman.conf['feeds'][link]['last-modified'] = res.headers['last-modified']
+        confman.conf['feeds'][link]['last-modified'] = \
+            res.headers['last-modified']
 
     def handle_200():
         if (
-                not 'last-modified' in res.headers.keys() and
+                'last-modified' not in res.headers.keys() and
                 'last-modified' in confman.conf['feeds'][link].keys()
-        ) :
+        ):
             confman.conf['feeds'][link].pop('last-modified')
         with open(dest_path, 'w') as fd:
             fd.write(res.text)
         return (dest_path, link)
 
-    handle_304 = lambda: (dest_path, link)
+    def handle_304(): return (dest_path, link)
 
     def handle_301_302():
         n_link = res.headers.get('location', link)
@@ -97,7 +105,7 @@ def download_feed(link, get_cached=False):
         confman.conf['feeds'].pop(link)
         return download_feed(n_link)
 
-    handle_everything_else = lambda: (
+    def handle_everything_else(): return (
         False,
         _('Error downloading `{0}`, code `{1}`').format(link, res.status_code)
     )

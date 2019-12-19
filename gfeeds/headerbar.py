@@ -6,6 +6,7 @@ from gfeeds.spinner_button import RefreshSpinnerButton
 from gfeeds.feeds_view import FeedsViewPopover
 from gfeeds.view_mode_menu import GFeedsViewModeMenu
 
+
 class AddFeedPopover(Gtk.Popover):
     def __init__(self, relative_to, **kwargs):
         super().__init__(**kwargs)
@@ -31,7 +32,8 @@ class AddFeedPopover(Gtk.Popover):
         # about this lambda: low impact, happens rarely
         self.url_entry.connect(
             'changed',
-            lambda *args: self.already_subscribed_revealer.set_reveal_child(False)
+            lambda *args:
+            self.already_subscribed_revealer.set_reveal_child(False)
         )
         self.add(self.container_box)
 
@@ -55,6 +57,7 @@ class GFeedHeaderbar(Handy.TitleBar):
             (bool,)
         )
     }
+
     def __init__(
             self,
             size_group_left,
@@ -152,7 +155,8 @@ class GFeedHeaderbar(Handy.TitleBar):
         # hacky and needs a proper function
         self.feedman.connect(
             'feedmanager_refresh_start',
-            lambda *args: self.filter_popover.scrolled_win.listbox.row_all_activate()
+            lambda *args:
+            self.filter_popover.scrolled_win.listbox.row_all_activate()
         )
 
         self.add_btn = self.builder.get_object(

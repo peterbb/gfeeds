@@ -1,6 +1,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
+
 class RefreshSpinnerButton(Gtk.Bin):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

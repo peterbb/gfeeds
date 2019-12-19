@@ -1,6 +1,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
+
 def GFeedsOpmlFileChooserDialog(parent_window):
     dialog = Gtk.FileChooserNative.new(
         _('Choose an OPML file to import'),

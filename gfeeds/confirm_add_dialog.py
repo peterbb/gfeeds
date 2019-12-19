@@ -3,6 +3,7 @@ from gettext import gettext as _
 from gi.repository import Gtk
 from gfeeds.opml_manager import opml_to_rss_list
 
+
 class GFeedsConfirmAddDialog(Gtk.MessageDialog):
     def __init__(self, parent, f_path, http=False, **kwargs):
         super().__init__(

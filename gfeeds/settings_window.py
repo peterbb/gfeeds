@@ -107,7 +107,9 @@ class PreferencesToggleRow(Handy.ActionRow):
         self.toggle = Gtk.Switch()
         self.toggle.set_valign(Gtk.Align.CENTER)
         if self.conf_key == 'selection_mode':
-            self.toggle.set_active(self.confman.conf[self.conf_key] == 'double')
+            self.toggle.set_active(
+                self.confman.conf[self.conf_key] == 'double'
+            )
         else:
             self.toggle.set_active(self.confman.conf[self.conf_key])
         self.toggle.connect('state-set', self.on_toggle_state_set)

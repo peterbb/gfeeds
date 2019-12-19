@@ -8,6 +8,7 @@ from gfeeds.feeds_view import (
     FeedsViewListboxRow
 )
 
+
 class ManageFeedsHeaderbar(Gtk.HeaderBar):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -32,6 +33,7 @@ class ManageFeedsHeaderbar(Gtk.HeaderBar):
 
         self.pack_end(self.delete_btn)
         self.pack_start(self.select_all_btn)
+
 
 class ManageFeedsListboxRow(FeedsViewListboxRow):
     def __init__(self, feed, **kwargs):
@@ -60,6 +62,7 @@ class ManageFeedsListbox(FeedsViewListbox):
         with row.checkbox.handler_block(row.checkbox_handler_id):
             row.checkbox.set_active(not row.checkbox.get_active())
 
+
 class ManageFeedsScrolledWindow(Gtk.ScrolledWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -67,6 +70,7 @@ class ManageFeedsScrolledWindow(Gtk.ScrolledWindow):
         self.set_size_request(360, 500)
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.add(self.listbox)
+
 
 class DeleteFeedsConfirmMessageDialog(Gtk.MessageDialog):
     def __init__(self, parent, selected_feeds, **kwargs):
@@ -83,13 +87,14 @@ class DeleteFeedsConfirmMessageDialog(Gtk.MessageDialog):
             '\n'.join([escape(f.title) for f in selected_feeds])
         )
 
+
 class GFeedsManageFeedsWindow(Gtk.Window):
     def __init__(self, appwindow, **kwargs):
         super().__init__(**kwargs)
         self.appwindow = appwindow
         self.confman = ConfManager()
         self.feedman = FeedsManager()
-        self.main_box = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
+        self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.scrolled_window = ManageFeedsScrolledWindow()
         self.listbox = self.scrolled_window.listbox
         self.headerbar = ManageFeedsHeaderbar()

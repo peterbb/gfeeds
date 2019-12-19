@@ -1,6 +1,7 @@
 from datetime import datetime
 import pytz
 
+
 # still not 100% perfect, but good enough, I got tired
 def get_date_format(dt):
     now = datetime.now(pytz.utc)
