@@ -29,7 +29,7 @@ class RowPopover(Gtk.Popover):
 
         self.save_btn = self.builder.get_object('save_btn')
         self.save_btn.set_active(
-            self.parent.feeditem.link in self.confman.conf['saved_items'].keys()
+            self.parent.feeditem.link in self.confman.conf['saved_items']
         )
         self.save_btn_handler_id = self.save_btn.connect(
             'toggled', self.on_save_toggled

@@ -256,7 +256,9 @@ class GFeedsApplication(Gtk.Application):
                     abspath = self.args.argurl[7:]
                     if isfile(abspath):
                         if abspath[-5:].lower() == '.opml':
-                            dialog = GFeedsConfirmAddDialog(self.window, abspath)
+                            dialog = GFeedsConfirmAddDialog(
+                                self.window, abspath
+                            )
                             res = dialog.run()
                             dialog.close()
                             if res == Gtk.ResponseType.YES:
@@ -265,7 +267,9 @@ class GFeedsApplication(Gtk.Application):
                                 abspath[-4:].lower() in ('.rss', '.xml') or
                                 abspath[-5:].lower() == '.atom'
                         ):
-                            print('Adding single feeds from file not supported')
+                            print(
+                                'Adding single feeds from file not supported'
+                            )
                 elif (
                         self.args.argurl[:7].lower() == 'http://' or
                         self.args.argurl[:8].lower() == 'https://'

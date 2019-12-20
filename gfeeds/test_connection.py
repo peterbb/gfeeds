@@ -2,6 +2,7 @@ import threading
 import requests
 from gi.repository import Gtk
 
+
 def __is_online_async_worker(ret_value_l):
     TEST_URL = 'http://httpbin.org/robots.txt'
     EXPECTED_STATUS = 405
@@ -10,6 +11,7 @@ def __is_online_async_worker(ret_value_l):
         ret_value_l[0] = res.status_code == EXPECTED_STATUS
     except requests.exceptions.ConnectionError:
         ret_value_l[0] = False
+
 
 def is_online():
     t_ret = [False]

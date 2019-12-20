@@ -71,7 +71,9 @@ class FeedItem:
         self.read = read
 
     def __repr__(self):
-        return f'FeedItem Object `{self.title}` from Feed {self.parent_feed.title}'
+        return 'FeedItem Object `{0}` from Feed {1}'.format(
+            self.title, self.parent_feed.title
+        )
 
     def to_dict(self):
         return {

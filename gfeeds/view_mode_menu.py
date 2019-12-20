@@ -1,5 +1,6 @@
 from gi.repository import Gtk
 
+
 class GFeedsViewModeMenu(Gtk.PopoverMenu):
     def __init__(self, relative_to, **kwargs):
         super().__init__(**kwargs)

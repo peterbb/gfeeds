@@ -3,8 +3,10 @@ from xml.sax.saxutils import escape
 from gi.repository import Gtk, Pango
 from gfeeds.feeds_manager import FeedsManager
 
+
 class GFeedsInfoBar(Gtk.InfoBar):
-    def __init__(self, text, icon_name=None, message_type=Gtk.MessageType.INFO, **kwargs):
+    def __init__(self, text, icon_name=None,
+                 message_type=Gtk.MessageType.INFO, **kwargs):
         super().__init__(**kwargs)
         self.set_message_type(message_type)
         self.text = text
@@ -24,9 +26,10 @@ class GFeedsInfoBar(Gtk.InfoBar):
         self.container_box.set_halign(Gtk.Align.CENTER)
         self.container_box.set_margin_top(6)
         self.container_box.set_margin_bottom(6)
-        self.get_content_area().set_center_widget(self.container_box) #, True, True, 0)
+        self.get_content_area().set_center_widget(self.container_box)
         self.set_hexpand(False)
         # self.set_size_request(360, -1)
+
 
 class GFeedsErrorsBar(GFeedsInfoBar):
     def __init__(self, parent_win, **kwargs):
@@ -41,7 +44,10 @@ class GFeedsErrorsBar(GFeedsInfoBar):
         self.show_button = Gtk.Button(_('Show'))
         self.ignore_button = Gtk.Button(_('Ignore'))
         self.show_button.connect('clicked', self.show_errors)
-        self.ignore_button.connect('clicked', lambda *args: self.set_revealed(False))
+        self.ignore_button.connect(
+            'clicked',
+            lambda *args: self.set_revealed(False)
+        )
         self.container_box.pack_end(self.ignore_button, False, False, 6)
         self.container_box.pack_end(self.show_button, False, False, 6)
         self.set_revealed(False)
@@ -65,6 +71,7 @@ class GFeedsErrorsBar(GFeedsInfoBar):
         dialog.run()
         dialog.close()
         self.set_revealed(True)
+
 
 class GFeedsConnectionBar(GFeedsInfoBar):
     def __init__(self, **kwargs):

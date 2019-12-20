@@ -168,7 +168,8 @@ class GFeedsWebView(Gtk.Stack):
         if callback:
             GLib.idle_add(callback)
 
-    def load_feeditem(self, feeditem, trigger_on_load_start=True, *args, **kwargs):
+    def load_feeditem(self, feeditem, trigger_on_load_start=True,
+                      *args, **kwargs):
         uri = feeditem.link
         if feeditem.is_saved:
             uri = (
@@ -193,7 +194,7 @@ class GFeedsWebView(Gtk.Stack):
             self.on_load_start()
             self.set_enable_rss_content(None, True, feeditem)
         else:
-            self.webkitview.load_uri(uri) # , *args, **kwargs)
+            self.webkitview.load_uri(uri)
             if trigger_on_load_start:
                 self.on_load_start()
 
@@ -248,14 +249,18 @@ class GFeedsWebView(Gtk.Stack):
             self.feeditem.fp_item
         ), self.uri)
 
-    def set_enable_reader_mode(self, togglebtn, state=None, is_rss_content=False):
+    def set_enable_reader_mode(self, togglebtn, state=None,
+                               is_rss_content=False):
         if state == None:
             state = togglebtn.get_active()
         if state:
             if (
                     not self.html or (
                         not is_rss_content and
-                        self.html[:36] == '<!-- GFEEDS RSS CONTENT --><article>'
+                        (
+                            self.html[:36] ==
+                            '<!-- GFEEDS RSS CONTENT --><article>'
+                        )
                     )
             ):
                 t = threading.Thread(
@@ -280,7 +285,8 @@ class GFeedsWebView(Gtk.Stack):
         if not self.confman.conf['open_links_externally']:
             return False
         if (
-                decisionType == WebKit2.PolicyDecisionType.NAVIGATION_ACTION and
+                decisionType ==
+                WebKit2.PolicyDecisionType.NAVIGATION_ACTION and
                 decision.get_navigation_action().get_mouse_button() != 0
         ):
             decision.ignore()

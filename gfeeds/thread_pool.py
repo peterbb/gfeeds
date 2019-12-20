@@ -3,7 +3,8 @@ from gi.repository import GLib
 
 
 class ThreadPool:
-    def __init__(self, max_threads, worker_func, worker_func_args_l, final_callback, final_callback_args):
+    def __init__(self, max_threads, worker_func, worker_func_args_l,
+                 final_callback, final_callback_args):
         self.worker_func = worker_func
         self.worker_func_args_l = worker_func_args_l
         self.max_threads = max_threads

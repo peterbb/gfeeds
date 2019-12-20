@@ -50,11 +50,16 @@ def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
                 article_els[0]
             ).decode().replace('<html:', '<').replace('</html:', '</')
         except:
-            article_s = '<h1><i>'+_('Reader mode unavailable for this site')+'</i></h1>'
+            article_s = (
+                '<h1><i>' +
+                _('Reader mode unavailable for this site') +
+                '</i></h1>'
+            )
         return article_s
 
     def build_media_block():
-        if not fp_item: return ''
+        if not fp_item:
+            return ''
         media_s = '<hr />'
         for el in fp_item:
             if el[:6].lower() == 'media_':
