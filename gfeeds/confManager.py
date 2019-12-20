@@ -137,7 +137,7 @@ class ConfManager(metaclass=Singleton):
                         n_feeds[o_feed] = {}
                     self.conf['feeds'] = n_feeds
                     self.save_conf()
-            except:
+            except Exception:
                 self.conf = ConfManager.BASE_SCHEMA.copy()
                 self.save_conf()
         else:
@@ -180,7 +180,7 @@ class ConfManager(metaclass=Singleton):
             fd.write(json.dumps(self.conf))
 
     def get_background_color(self):
-        if ConfManager._background_color != None:
+        if ConfManager._background_color is not None:
             return ConfManager._background_color
         if not self.window:
             return "000000"

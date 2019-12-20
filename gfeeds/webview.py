@@ -122,7 +122,7 @@ class GFeedsWebView(Gtk.Stack):
         self.notif_revealer.set_reveal_child(False)
 
     def set_enable_rss_content(self, togglebtn, state=None, feeditem=None):
-        if state == None:
+        if state is None:
             state = togglebtn.get_active()
         if feeditem:
             self.feeditem = feeditem
@@ -251,7 +251,7 @@ class GFeedsWebView(Gtk.Stack):
 
     def set_enable_reader_mode(self, togglebtn, state=None,
                                is_rss_content=False):
-        if state == None:
+        if state is None:
             state = togglebtn.get_active()
         if state:
             if (

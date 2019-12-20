@@ -30,7 +30,7 @@ def _build_media_img(title, imgurl, link='#'):
 
 # fp_item should be a FeedItem.fp_item
 def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
-    assert og_html != None
+    assert og_html is not None
     root = html5parser.fromstring(
         og_html if type(og_html) == str else og_html.decode()
     )
@@ -49,7 +49,7 @@ def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
             article_s = html_tostring(
                 article_els[0]
             ).decode().replace('<html:', '<').replace('</html:', '</')
-        except:
+        except Exception:
             article_s = (
                 '<h1><i>' +
                 _('Reader mode unavailable for this site') +
@@ -75,7 +75,7 @@ def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
                                 subel.capitalize(),
                                 fp_item[el][subel]
                             )
-                except:
+                except Exception:
                     continue
         return media_s if media_s != '<hr />' else ''
 
@@ -96,7 +96,7 @@ def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
 
 
 def build_reader_html(og_html, dark_mode=False, fp_item=None):
-    if fp_item == None:
+    if fp_item is None:
         return build_reader_html_old(og_html, dark_mode, fp_item)
     doc = readability.Document(og_html)
     return f'''<html>

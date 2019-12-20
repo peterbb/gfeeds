@@ -103,7 +103,7 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
             self.colored_box.set_no_show_all(True)
 
     def set_read(self, read=None):
-        if read != None:
+        if read is not None:
             self.feeditem.set_read(read)
         if self.feeditem.read:
             self.set_dim(True)

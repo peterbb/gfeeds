@@ -12,7 +12,7 @@ def opml_to_rss_list(opml_path):
         lp_opml = listparser.parse(opml_path)
         n_feeds_urls_l = [f['url'] for f in lp_opml['feeds']]
         return n_feeds_urls_l
-    except:
+    except Exception:
         print(_('Error parsing OPML file `{0}`').format(opml_path))
         return []
 

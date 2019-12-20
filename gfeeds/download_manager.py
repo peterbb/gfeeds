@@ -59,7 +59,7 @@ def extract_feed_url_from_html(link):
                 ) and 'href' in el.attrib.keys()
             ):
                 return sanitize(link, el.attrib['href'])
-    except:
+    except Exception:
         print('exception in `extract_feed_from_html`')
     return None
 
@@ -81,7 +81,7 @@ def download_feed(link, get_cached=False):
         )
     except requests.exceptions.ConnectTimeout:
         return (False, _('`{0}`: connection timed out').format(link))
-    except:
+    except Exception:
         return (False, _('`{0}` is not an URL').format(link))
     if 'last-modified' in res.headers.keys():
         confman.conf['feeds'][link]['last-modified'] = \

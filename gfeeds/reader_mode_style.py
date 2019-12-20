@@ -93,7 +93,9 @@ css = """
   font-family: ephy-reader-sans;
   src: local('Cantarell Bold'),
        local('DejaVu Sans Bold');
-       url('ephy-resource:///org/gnome/epiphany/fonts/MerriweatherSans-Bold.ttf') format('truetype');
+       url(\
+'ephy-resource:///org/gnome/epiphany/fonts/MerriweatherSans-Bold.ttf')\
+format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: block;

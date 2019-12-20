@@ -56,7 +56,7 @@ class FeedItem:
             })
             if not self.pub_date.tzinfo:
                 self.pub_date = pytz.UTC.localize(self.pub_date)
-        except:
+        except Exception:
             print(_(
                 'Error: unable to parse datetime {0} for feeditem {1}'
             ).format(self.pub_date_str, self))
@@ -126,7 +126,7 @@ class Feed:
     def __init__(self, download_res):
         self.is_null = False
         self.error = None
-        if download_res[0] == False:  # indicates failed download
+        if download_res[0] is False:  # indicates failed download
             self.is_null = True
             self.error = download_res[1]
             return
@@ -208,12 +208,12 @@ class Feed:
                     get_favicon(self.link, self.favicon_path)
                     if not isfile(self.favicon_path):
                         get_favicon(self.items[0].link, self.favicon_path)
-                except:
+                except Exception:
                     print('No favicon')
         if isfile(self.favicon_path):
             try:
                 self._resize_and_get_color(self.favicon_path)
-            except:
+            except Exception:
                 print(_(
                     'Error resizing favicon for feed {0}. '
                     'Probably not an image.\n'
@@ -222,7 +222,7 @@ class Feed:
                 try:
                     get_favicon(self.items[0].link, self.favicon_path)
                     self._resize_and_get_color(self.favicon_path)
-                except:
+                except Exception:
                     print(_(
                         'Error resizing favicon from article for feed {0}.\n'
                         'Deleting invalid favicon.'

@@ -26,7 +26,7 @@ class SignalerList(GObject.Object):
     }
 
     def __init__(self, n_list=None, **kwargs):
-        if n_list == None:
+        if n_list is None:
             n_list = []
         super().__init__(**kwargs)
         self.__list = n_list.copy()

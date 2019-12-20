@@ -113,7 +113,9 @@ class RowPopover(Gtk.Popover):
                 )
             )
             t.start()
-            self.confman.conf['saved_items'][self.parent.feeditem.link] = fi_dict
+            self.confman.conf[
+                'saved_items'
+            ][self.parent.feeditem.link] = fi_dict
         else:
             todel_fi_dict = self.confman.conf['saved_items'].pop(
                 self.parent.feeditem.link

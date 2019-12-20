@@ -75,7 +75,7 @@ class FeedsManager(metaclass=Singleton):
                 self.confman.conf['feeds'].pop(uri)
                 self.confman.save_conf()
             feed_uri_from_html = extract_feed_url_from_html(uri)
-            if feed_uri_from_html != None:
+            if feed_uri_from_html is not None:
                 return self._add_feed_async_worker(feed_uri_from_html, refresh)
             self.errors.append(n_feed.error)
         else:

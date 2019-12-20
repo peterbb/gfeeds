@@ -62,11 +62,11 @@ def get_favicon(link, favicon_path):
         url = f'{up.scheme or "http"}://{up.hostname}/{p}'
         try:
             download_raw(url, favicon_path)
-        except:
+        except Exception:
             try:
                 url = f'{up.scheme or "http"}://{p}'
                 download_raw(url, favicon_path)
-            except:
+            except Exception:
                 print(_('Error downloading favicon for `{0}`').format(link))
     else:
         download_raw(p, favicon_path)
