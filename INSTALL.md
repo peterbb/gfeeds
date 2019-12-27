@@ -9,7 +9,7 @@ Feeds is available as an AUR package: [`gfeeds-git`](https://aur.archlinux.org/p
 ## Building on Ubuntu/Debian
 
 ```bash
-sudo apt-get install python-html5lib webkit2gtk python-lxml python-requests
+sudo apt-get install python-html5lib webkit2gtk python-lxml python-requests python-pygments
 sudo pip install listparser
 
 git clone https://gitlab.gnome.org/World/gfeeds
@@ -25,7 +25,7 @@ ninja install
 ## Building on Arch/Manjaro
 
 ```bash
-sudo pacman -S python-html5lib webkit2gtk python-lxml python-requests python-pip python-gobject python-feedparser
+sudo pacman -S python-html5lib webkit2gtk python-lxml python-requests python-pip python-gobject python-feedparser python-pygments
 yay -S python-listparser
 
 git clone https://gitlab.gnome.org/GabMus/gfeeds

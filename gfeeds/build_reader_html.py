@@ -3,6 +3,9 @@ from gfeeds.reader_mode_style import css, dark_mode_css
 from lxml.html import html5parser, tostring as html_tostring
 from gettext import gettext as _
 
+import pygments
+import pygments.lexers
+import pygments.formatters
 
 # Thanks to Eloi Rivard (azmeuk) for the contribution on the media block
 def _build_media_text(title, content):
@@ -28,12 +31,53 @@ def _build_media_img(title, imgurl, link='#'):
     )
 
 
+def build_syntax_highlight(root):
+    syntax_highlight_css = ""
+
+    code_nodes = root.xpath('//x:pre/x:code',
+        namespaces={'x': 'http://www.w3.org/1999/xhtml'}
+    )
+
+    for code_node in code_nodes:
+        classes = code_node.attrib.get("class", "").split(" ")
+        for klass in classes:
+            try:
+                lexer = pygments.lexers.get_lexer_by_name(
+                    klass.replace("language-", ""),
+                    stripall=True,
+                )
+                break
+            except pygments.util.ClassNotFound:
+                pass
+
+        if not lexer:
+            try:
+                lexer = pygments.lexers.guess_lexer(code_node.text)
+            except pygments.util.ClassNotFound:
+                continue
+
+        formatter = pygments.formatters.HtmlFormatter(style='solarized-dark')
+
+        if not syntax_highlight_css:
+            syntax_highlight_css = formatter.get_style_defs()
+
+        newtext = pygments.highlight(code_node.text, lexer, formatter)
+        newhtml = html5parser.fromstring(newtext)
+
+        pre_node = code_node.getparent()
+        pre_node.getparent().replace(pre_node, newhtml)
+
+    return syntax_highlight_css, root
+
+
 # fp_item should be a FeedItem.fp_item
 def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
     assert og_html is not None
     root = html5parser.fromstring(
         og_html if type(og_html) == str else og_html.decode()
     )
+
+    syntax_highlight_css, root = build_syntax_highlight(root)
 
     def extract_useful_content():
         try:
@@ -88,6 +132,7 @@ def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
         <head><style>
         {dark_mode_css if dark_mode else ""}
         {css}
+        {syntax_highlight_css}
         </style></head>
         <body>
             <article>{article_s}</article>

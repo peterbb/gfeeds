@@ -338,6 +338,18 @@ body.dark mark {
   background: #282828;
   color: #efefef;
 }
+
+div.highlight {
+    border: 3px solid rgba(69, 76, 82, 0.25);
+    background: rgba(64, 68, 70, 0.05);
+    margin: 0.4em 0em 1.4em 0em;
+    padding: 0;
+}
+
+div.highlight pre {
+    padding: 0.8em ;
+    margin: 0;
+}
 """
 
 dark_mode_css = """
