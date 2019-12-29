@@ -11,7 +11,7 @@ class GFeedsInfoBar(Gtk.InfoBar):
         self.set_message_type(message_type)
         self.text = text
         self.container_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.label = Gtk.Label(self.text)
+        self.label = Gtk.Label(label=self.text)
         self.label.set_line_wrap(True)
         self.label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
         self.label.set_xalign(0.0)
@@ -41,8 +41,8 @@ class GFeedsErrorsBar(GFeedsInfoBar):
         )
         self.parent_win = parent_win
         self.errors = []
-        self.show_button = Gtk.Button(_('Show'))
-        self.ignore_button = Gtk.Button(_('Ignore'))
+        self.show_button = Gtk.Button(label=_('Show'))
+        self.ignore_button = Gtk.Button(label=_('Ignore'))
         self.show_button.connect('clicked', self.show_errors)
         self.ignore_button.connect(
             'clicked',

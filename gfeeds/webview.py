@@ -13,12 +13,12 @@ from gfeeds.revealer_loading_bar import RevealerLoadingBar
 class GFeedsWebView(Gtk.Stack):
     __gsignals__ = {
         'gfeeds_webview_load_end': (
-            GObject.SIGNAL_RUN_LAST,
+            GObject.SignalFlags.RUN_LAST,
             None,
             (str,)
         ),
         'gfeeds_webview_load_start': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (str,)
         )

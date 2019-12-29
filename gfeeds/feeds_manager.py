@@ -16,17 +16,17 @@ from gfeeds.thread_pool import ThreadPool
 class FeedsManagerSignaler(GObject.Object):
     __gsignals__ = {
         'feedmanager_refresh_start': (
-            GObject.SIGNAL_RUN_LAST,
+            GObject.SignalFlags.RUN_LAST,
             None,
             (str,)
         ),
         'feedmanager_refresh_end': (
-            GObject.SIGNAL_RUN_LAST,
+            GObject.SignalFlags.RUN_LAST,
             None,
             (str,)
         ),
         'feedmanager_online_changed': (
-            GObject.SIGNAL_RUN_LAST,
+            GObject.SignalFlags.RUN_LAST,
             None,
             (bool,)
         ),

@@ -13,48 +13,48 @@ class ConfManagerSignaler(GObject.Object):
 
     __gsignals__ = {
         'gfeeds_new_first_changed': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (str,)
         ),
         'gfeeds_repopulation_required': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (str,)
         ),
         'gfeeds_webview_settings_changed': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (str,)
         ),
         'gfeeds_enable_csd_changed': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (str,)
         ),
         'gfeeds_show_read_changed': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (str,)
         ),
         'gfeeds_colored_border_changed': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (str,)
         ),
         'gfeeds_full_article_title_changed': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (str,)
         ),
         # Signals down here don't have to do with the config
         'gfeeds_filter_changed': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (GObject.TYPE_PYOBJECT,)
         ),
         'gfeeds_full_feed_name_changed': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (str,)
         ),
