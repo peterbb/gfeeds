@@ -70,6 +70,14 @@ def build_syntax_highlight(root):
     return syntax_highlight_css, root
 
 
+def build_syntax_highlight_from_raw_html(raw_html):
+    return build_syntax_highlight(
+        html5parser.fromstring(
+            raw_html if type(raw_html) == str else raw_html.decode()
+        )
+    )[0]
+
+
 # fp_item should be a FeedItem.fp_item
 def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
     assert og_html is not None
@@ -144,18 +152,22 @@ def build_reader_html(og_html, dark_mode=False, fp_item=None):
     if fp_item is None:
         return build_reader_html_old(og_html, dark_mode, fp_item)
     doc = readability.Document(og_html)
+    content = doc.summary(True)
+    print(build_syntax_highlight_from_raw_html(content))
+    print('HERE')
     return f'''<html>
         <head>
             <style>
                 {css}
                 {dark_mode_css if dark_mode else ""}
+                {build_syntax_highlight_from_raw_html(content)}
             </style>
             <title>{doc.short_title()}</title>
         </head>
         <body>
             <article>
                 <h1>{doc.short_title()}</h1>
-                {doc.summary(True)}
+                {content}
             </article>
         </body>
     </html>'''
