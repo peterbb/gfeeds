@@ -153,8 +153,8 @@ def build_reader_html(og_html, dark_mode=False, fp_item=None):
         return build_reader_html_old(og_html, dark_mode, fp_item)
     doc = readability.Document(og_html)
     content = doc.summary(True)
+    # TODO: remove print below
     print(build_syntax_highlight_from_raw_html(content))
-    print('HERE')
     return f'''<html>
         <head>
             <style>
