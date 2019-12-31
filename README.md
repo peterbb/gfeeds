@@ -56,7 +56,7 @@ ninja install
 
 ```bash
 sudo pacman -S python-html5lib webkit2gtk python-lxml python-requests python-pip python-gobject python-feedparser
-yay -S python-listparser 
+yay -S python-listparser python-readability-lxml
 
 git clone https://gitlab.gnome.org/GabMus/gfeeds
 cd gfeeds

@@ -4,22 +4,22 @@ from gi.repository import GObject
 class SignalerList(GObject.Object):
     __gsignals__ = {
         'append': (
-            GObject.SIGNAL_RUN_LAST,
+            GObject.SignalFlags.RUN_LAST,
             None,
             (GObject.TYPE_PYOBJECT,)
         ),
         'extend': (
-            GObject.SIGNAL_RUN_LAST,
+            GObject.SignalFlags.RUN_LAST,
             None,
             (GObject.TYPE_PYOBJECT,)
         ),
         'pop': (
-            GObject.SIGNAL_RUN_LAST,
+            GObject.SignalFlags.RUN_LAST,
             None,
             (GObject.TYPE_PYOBJECT,)
         ),
         'empty': (
-            GObject.SIGNAL_RUN_LAST,
+            GObject.SignalFlags.RUN_LAST,
             None,
             (str,)
         )

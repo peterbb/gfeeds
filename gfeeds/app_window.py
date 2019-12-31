@@ -71,8 +71,8 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
         self.swipe_group = Handy.SwipeGroup()
 
-        self.size_group_left = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
-        self.size_group_right = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
+        self.size_group_left = Gtk.SizeGroup(mode=Gtk.SizeGroupMode.HORIZONTAL)
+        self.size_group_right = Gtk.SizeGroup(mode=Gtk.SizeGroupMode.HORIZONTAL)
         self.size_group_left.add_widget(self.sidebar_box)
         self.size_group_right.add_widget(self.webview)
         self.headerbar = GFeedHeaderbar(

@@ -159,9 +159,9 @@ class FeedsViewScrolledWindow(Gtk.ScrolledWindow):
         self.set_size_request(250, 400)
         self.get_style_context().add_class('frame')
         self.set_margin_top(6)
-        self.set_margin_right(6)
+        self.set_margin_end(6)
         self.set_margin_bottom(6)
-        self.set_margin_left(6)
+        self.set_margin_start(6)
 
 
 class FeedsViewPopover(Gtk.Popover):
