@@ -52,7 +52,7 @@ class AddFeedPopover(Gtk.Popover):
 class GFeedHeaderbar(Handy.TitleBar):
     __gsignals__ = {
         'gfeeds_headerbar_squeeze': (
-            GObject.SIGNAL_RUN_FIRST,
+            GObject.SignalFlags.RUN_FIRST,
             None,
             (bool,)
         )
@@ -177,8 +177,8 @@ class GFeedHeaderbar(Handy.TitleBar):
         self.nobox.set_size_request(1, -1)
         self.stack_switcher = Handy.ViewSwitcher()
         self.stack_switcher.set_policy(Handy.ViewSwitcherPolicy.WIDE)
-        self.stack_switcher.set_margin_left(12)
-        self.stack_switcher.set_margin_right(12)
+        self.stack_switcher.set_margin_start(12)
+        self.stack_switcher.set_margin_end(12)
         self.squeezer.add(self.stack_switcher)
         self.squeezer.add(self.nobox)
         self.squeezer.connect('notify::visible-child', self.on_squeeze)
@@ -202,7 +202,7 @@ class GFeedHeaderbar(Handy.TitleBar):
         )
         self.title_label = self.builder.get_object('title_label')
         self.title_squeezer.add(self.right_title_container)
-        self.title_squeezer.add(Gtk.Label(''))
+        self.title_squeezer.add(Gtk.Label(label=''))
 
     def set_view_mode_icon(self, mode):
         self.view_mode_menu_btn_icon.set_from_icon_name(
