@@ -1,6 +1,5 @@
 from os.path import isfile
 from gi.repository import Gtk, GLib, Pango
-from gfeeds.colored_box import GFeedsColoredBox
 from gfeeds.confManager import ConfManager
 from gfeeds.initials_icon import InitialsIcon
 from gfeeds.relative_day_formatter import get_date_format
@@ -19,13 +18,6 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
             '/org/gabmus/gfeeds/ui/sidebar_listbox_row.glade'
         )
         self.container_box = self.builder.get_object('container_box')
-        self.colored_box = GFeedsColoredBox(self.feeditem.parent_feed.color)
-        self.builder.get_object('colored_box_container').add(self.colored_box)
-        self.on_show_colored_border_changed()
-        self.confman.connect(
-            'gfeeds_colored_border_changed',
-            self.on_show_colored_border_changed
-        )
         self.title_label = self.builder.get_object('title_label')
         self.title_label.set_text(self.feeditem.title)
         self.confman.connect(
@@ -94,14 +86,6 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
             else Pango.EllipsizeMode.END
         )
 
-    def on_show_colored_border_changed(self, *args):
-        if self.confman.conf['colored_border']:
-            self.colored_box.show()
-            self.colored_box.set_no_show_all(False)
-        else:
-            self.colored_box.hide()
-            self.colored_box.set_no_show_all(True)
-
     def set_read(self, read=None):
         if read is not None:
             self.feeditem.set_read(read)
@@ -111,11 +95,10 @@ class GFeedsSidebarRow(Gtk.ListBoxRow):
             self.set_dim(False)
 
     def set_dim(self, state):
-        for w in [
-                self.colored_box,
+        for w in (
                 self.title_label,
                 self.icon
-        ]:
+        ):
             if state:
                 w.get_style_context().add_class('dim-label')
             else:
