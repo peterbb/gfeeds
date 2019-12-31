@@ -12,7 +12,6 @@ from os import remove
 from gfeeds.confManager import ConfManager
 from gfeeds.sha import shasum
 from PIL import Image
-from gfeeds.colorthief import ColorThief
 
 
 def get_encoding(in_str):
@@ -108,14 +107,11 @@ class FakeFeed:
         self.title = f_dict.get('title', '')
         self.link = f_dict.get('link', '')
         self.favicon_path = f_dict.get('favicon_path', '')
-        self.color = [0, 0, 0]
         if isfile(self.favicon_path):
             favicon = Image.open(self.favicon_path)
             if favicon.width != 32:
                 favicon = favicon.resize((32, 32), Image.BILINEAR)
                 favicon.save(self.favicon_path, 'PNG')
-            self.color = ColorThief(favicon).get_color(quality=1)
-            self.color = [c/255.0 for c in self.color]
             favicon.close()
 
     def __repr__(self):
@@ -212,7 +208,7 @@ class Feed:
                     print('No favicon')
         if isfile(self.favicon_path):
             try:
-                self._resize_and_get_color(self.favicon_path)
+                self._resize_favicon(self.favicon_path)
             except Exception:
                 print(_(
                     'Error resizing favicon for feed {0}. '
@@ -221,7 +217,7 @@ class Feed:
                 ).format(self.title))
                 try:
                     get_favicon(self.items[0].link, self.favicon_path)
-                    self._resize_and_get_color(self.favicon_path)
+                    self._resize_favicon(self.favicon_path)
                 except Exception:
                     print(_(
                         'Error resizing favicon from article for feed {0}.\n'
@@ -229,13 +225,11 @@ class Feed:
                     ).format(self.title))
                     remove(self.favicon_path)
 
-    def _resize_and_get_color(self, img_path):
+    def _resize_favicon(self, img_path):
         favicon = Image.open(img_path)
         if favicon.width != 32:
             favicon = favicon.resize((32, 32), Image.BILINEAR)
             favicon.save(self.favicon_path, 'PNG')
-        self.color = ColorThief(favicon).get_color(quality=1)
-        self.color = [c/255.0 for c in self.color]
         favicon.close()
 
     def __repr__(self):

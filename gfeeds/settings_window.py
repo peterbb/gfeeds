@@ -210,11 +210,6 @@ class ViewPreferencesPage(Handy.PreferencesPage):
         self.view_preferences_group.set_title(_('View Settings'))
         toggle_settings = [
             {
-                'title': _('Show colored border'),
-                'conf_key': 'colored_border',
-                'signal': 'gfeeds_colored_border_changed'
-            },
-            {
                 'title': _('Show full articles titles'),
                 'conf_key': 'full_article_title',
                 'signal': 'gfeeds_full_article_title_changed'

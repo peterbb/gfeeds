@@ -37,11 +37,6 @@ class ConfManagerSignaler(GObject.Object):
             None,
             (str,)
         ),
-        'gfeeds_colored_border_changed': (
-            GObject.SignalFlags.RUN_FIRST,
-            None,
-            (str,)
-        ),
         'gfeeds_full_article_title_changed': (
             GObject.SignalFlags.RUN_FIRST,
             None,
@@ -80,7 +75,6 @@ class ConfManager(metaclass=Singleton):
         'saved_items': {},
         'read_items': [],
         'show_read_items': True,
-        'colored_border': False,
         'full_article_title': True,
         # valid values: 'webview', 'reader', 'rsscont'
         'default_view': 'webview',
