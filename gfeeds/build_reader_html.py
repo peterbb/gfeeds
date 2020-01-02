@@ -75,40 +75,10 @@ def build_syntax_highlight_from_raw_html(raw_html):
         html5parser.fromstring(
             raw_html if type(raw_html) == str else raw_html.decode()
         )
-    )[0]
-
-
-# fp_item should be a FeedItem.fp_item
-def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
-    assert og_html is not None
-    root = html5parser.fromstring(
-        og_html if type(og_html) == str else og_html.decode()
     )
 
-    syntax_highlight_css, root = build_syntax_highlight(root)
 
-    def extract_useful_content():
-        try:
-            article_els = root.xpath(
-                '//x:article',
-                namespaces={'x': 'http://www.w3.org/1999/xhtml'}
-            )
-            if len(article_els) == 0:
-                article_els = root.xpath(
-                    '//x:body',
-                    namespaces={'x': 'http://www.w3.org/1999/xhtml'}
-                )
-            article_s = html_tostring(
-                article_els[0]
-            ).decode().replace('<html:', '<').replace('</html:', '</')
-        except Exception:
-            article_s = (
-                '<h1><i>' +
-                _('Reader mode unavailable for this site') +
-                '</i></h1>'
-            )
-        return article_s
-
+def build_reader_html(og_html, dark_mode=False, fp_item=None):
     def build_media_block():
         if not fp_item:
             return ''
@@ -131,42 +101,25 @@ def build_reader_html_old(og_html, dark_mode=False, fp_item=None):
                     continue
         return media_s if media_s != '<hr />' else ''
 
-    article_s = extract_useful_content()
-    article_s = article_s.replace('<br></br>', '<br>')
-    article_s += build_media_block()
-    # subsequent alterations to the reader content can be done here
-
-    return f'''<html>
-        <head><style>
-        {dark_mode_css if dark_mode else ""}
-        {css}
-        {syntax_highlight_css}
-        </style></head>
-        <body>
-            <article>{article_s}</article>
-        </body>
-        </html>'''
-
-
-def build_reader_html(og_html, dark_mode=False, fp_item=None):
-    if fp_item is None:
-        return build_reader_html_old(og_html, dark_mode, fp_item)
     doc = readability.Document(og_html)
     content = doc.summary(True)
-    # TODO: remove print below
-    print(build_syntax_highlight_from_raw_html(content))
+    syntax_highlight_css, root = build_syntax_highlight_from_raw_html(content)
+    content = html_tostring(
+        root
+    ).decode().replace('<html:', '<').replace('</html:', '</')
+    content += build_media_block()
     return f'''<html>
         <head>
             <style>
                 {css}
                 {dark_mode_css if dark_mode else ""}
-                {build_syntax_highlight_from_raw_html(content)}
+                {syntax_highlight_css}
             </style>
             <title>{doc.short_title()}</title>
         </head>
         <body>
             <article>
-                <h1>{doc.short_title()}</h1>
+                <h1>{doc.short_title() or fp_item["title"]}</h1>
                 {content}
             </article>
         </body>
