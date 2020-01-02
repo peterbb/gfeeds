@@ -825,7 +825,7 @@
                 {
                     "type" : "git",
                     "url" : "https://github.com/buriy/python-readability",
-                    "commit" : "de20908e571bca0d5194cfdb95a7aa20d4c4555f"
+                    "commit" : "615ce803c6a19a6a0699eaff685ef99a2a51eee7"
                 },
                 {
                     "type" : "shell",
