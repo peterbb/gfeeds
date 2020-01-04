@@ -5,7 +5,7 @@ from gettext import gettext as _
 
 import pygments
 import pygments.lexers
-import pygments.formatters
+from pygments.formatters import HtmlFormatter
 
 # Thanks to Eloi Rivard (azmeuk) for the contribution on the media block
 def _build_media_text(title, content):
@@ -34,7 +34,8 @@ def _build_media_img(title, imgurl, link='#'):
 def build_syntax_highlight(root):
     syntax_highlight_css = ""
 
-    code_nodes = root.xpath('//x:pre/x:code',
+    code_nodes = root.xpath(
+        '//x:pre/x:code',
         namespaces={'x': 'http://www.w3.org/1999/xhtml'}
     )
 
@@ -56,7 +57,7 @@ def build_syntax_highlight(root):
             except pygments.util.ClassNotFound:
                 continue
 
-        formatter = pygments.formatters.HtmlFormatter(style='solarized-dark')
+        formatter = HtmlFormatter(style='solarized-dark')
 
         if not syntax_highlight_css:
             syntax_highlight_css = formatter.get_style_defs()
