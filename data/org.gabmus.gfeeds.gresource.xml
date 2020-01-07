@@ -3,8 +3,8 @@
   <gresource prefix="/org/gabmus/gfeeds">
     <file compressed="true">org.gabmus.gfeeds.service.desktop</file>
 
-    <file>reader_mode_style.css</file>
-    <file>reader_mode_dark_style.css</file>
+    <file compressed="true">reader_mode_style.css</file>
+    <file compressed="true">reader_mode_dark_style.css</file>
     <!-- TODO: bundle fonts as gresources
     <file>fonts/reader_serif.ttf</file>
     <file>fonts/reader_sans.ttf</file>
