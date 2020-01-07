@@ -3,6 +3,9 @@
   <gresource prefix="/org/gabmus/gfeeds">
     <file compressed="true">org.gabmus.gfeeds.service.desktop</file>
 
+    <file>reader_mode_style.css</file>
+    <file>reader_mode_dark_style.css</file>
+
     <file preprocess="xml-stripblanks">aboutdialog.glade</file>
     <file preprocess="xml-stripblanks">ui/add_feed_box.glade</file>
     <file preprocess="xml-stripblanks">ui/article_right_click_popover_content.glade</file>

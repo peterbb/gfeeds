@@ -1,5 +1,5 @@
 import readability
-from gfeeds.reader_mode_style import css, dark_mode_css
+from gfeeds.reader_mode_style import CSS, DARK_MODE_CSS
 from lxml.html import html5parser, tostring as html_tostring
 from gettext import gettext as _
 
@@ -113,8 +113,8 @@ def build_reader_html(og_html, dark_mode=False, fp_item=None):
     return f'''<html>
         <head>
             <style>
-                {css}
-                {dark_mode_css if dark_mode else ""}
+                {CSS}
+                {DARK_MODE_CSS if dark_mode else ""}
                 {syntax_highlight_css}
             </style>
             <title>{doc.short_title()}</title>
