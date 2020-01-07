@@ -7,6 +7,7 @@ import pygments
 import pygments.lexers
 from pygments.formatters import HtmlFormatter
 
+
 # Thanks to Eloi Rivard (azmeuk) for the contribution on the media block
 def _build_media_text(title, content):
     return '''
