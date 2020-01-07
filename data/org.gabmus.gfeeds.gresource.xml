@@ -5,6 +5,10 @@
 
     <file>reader_mode_style.css</file>
     <file>reader_mode_dark_style.css</file>
+    <!-- TODO: bundle fonts as gresources
+    <file>fonts/reader_serif.ttf</file>
+    <file>fonts/reader_sans.ttf</file>
+    -->
 
     <file preprocess="xml-stripblanks">aboutdialog.glade</file>
     <file preprocess="xml-stripblanks">ui/add_feed_box.glade</file>
