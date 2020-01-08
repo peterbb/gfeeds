@@ -39,7 +39,7 @@ def build_syntax_highlight(root):
         '//x:pre/x:code',
         namespaces={'x': 'http://www.w3.org/1999/xhtml'}
     )
-
+    lexer = None
     for code_node in code_nodes:
         classes = code_node.attrib.get("class", "").split(" ")
         for klass in classes:
