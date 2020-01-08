@@ -56,7 +56,7 @@
 
 @font-face {
   font-family: ephy-reader-serif;
-  src: local('DejaVu Serif Bold');
+  src:local('DejaVu Serif Bold');
   font-weight: bold;
   font-style: normal;
   font-display: block;
@@ -64,7 +64,7 @@
 
 @font-face {
   font-family: ephy-reader-serif;
-  src: local('DejaVu Serif Bold Italic');
+  src:local('DejaVu Serif Bold Italic');
   font-weight: bold;
   font-style: italic;
   font-display: block;
@@ -91,11 +91,8 @@
 @font-face {
   font-family: ephy-reader-sans;
   src: local('Cantarell Bold'),
-       local('DejaVu Sans Bold');
-       url(
-           'ephy-resource:///org/gnome/epiphany/fonts/MerriweatherSans-Bold.ttf'
-  )
-  format('truetype');
+       local('DejaVu Sans Bold')
+       format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: block;
@@ -112,7 +109,9 @@
 
 @font-face {
   font-family: ephy-reader-mono;
-  src: local('DejaVu Sans Mono'),
+  src: local('Fira Mono'),
+       local('Source Code Pro'),
+       local('DejaVu Sans Mono'),
        local('DejaVu Sans Mono Book');
   font-weight: normal;
   font-style: normal;
@@ -121,7 +120,9 @@
 
 @font-face {
   font-family: ephy-reader-mono;
-  src: local('DejaVu Sans Mono Italic'),
+  src: local('Fira Mono Italic'),
+       local('Source Code Pro Italic'),
+       local('DejaVu Sans Mono Italic'),
        local('DejaVu Sans Mono Oblique');
   font-weight: normal;
   font-style: italic;
@@ -130,7 +131,9 @@
 
 @font-face {
   font-family: ephy-reader-mono;
-  src: local('DejaVu Sans Mono Bold');
+  src: local('Fira Mono Bold'),
+       local('Source Code Pro Bold'),
+       local('DejaVu Sans Mono Bold');
   font-weight: bold;
   font-style: normal;
   font-display: block;
@@ -138,7 +141,9 @@
 
 @font-face {
   font-family: ephy-reader-mono;
-  src: local('DejaVu Sans Mono Bold Italic'),
+  src: local('Fira Mono Bold Italic'),
+       local('Source Code Pro Bold Italic'),
+       local('DejaVu Sans Mono Bold Italic'),
        local('DejaVu Sans Mono Bold Oblique');
   font-weight: bold;
   font-style: italic;
