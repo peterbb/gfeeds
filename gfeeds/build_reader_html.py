@@ -108,8 +108,21 @@ def build_reader_html(og_html, dark_mode=False, fp_item=None):
     syntax_highlight_css, root = build_syntax_highlight_from_raw_html(content)
     content = html_tostring(
         root
-    ).decode().replace('<html:', '<').replace('</html:', '</')
+    ).decode().replace(
+        '<html:', '<'
+    ).replace(
+        '</html:', '</'
+    ).replace(
+        '</p><a ', '<a '
+    ).replace(
+        '</a><p>', '</a>'
+    ).replace(
+        '</p><em>', '<em>'
+    ).replace(
+        '</em><p>', '</em>'
+    )
     content += build_media_block()
+    print(content)
     return f'''<html>
         <head>
             <style>
