@@ -164,7 +164,11 @@ class Feed:
         self.link = self.fp_feed.feed.get('link', '')
         self.description = self.fp_feed.feed.get('subtitle', self.link)
         # self.language = self.fp_feed.get('', '')
-        self.image_url = self.fp_feed.get('image', {'href': ''})['href']
+        image_tag = self.fp_feed.get('feed', {}).get('image', {})
+        self.image_url = image_tag.get(
+            'href',
+            image_tag.get('url', '')
+        )
         self.items = []
         raw_entries = self.fp_feed.get('entries', [])
         for entry in raw_entries:
