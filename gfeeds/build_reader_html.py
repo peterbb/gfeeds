@@ -122,7 +122,6 @@ def build_reader_html(og_html, dark_mode=False, fp_item=None):
         '</em><p>', '</em>'
     )
     content += build_media_block()
-    print(content)
     return f'''<html>
         <head>
             <style>
