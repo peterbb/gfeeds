@@ -39,7 +39,7 @@ can be useful to you. If not, just install the flatpak.
 ## Building on Ubuntu/Debian
 
 ```bash
-sudo apt-get install python-html5lib webkit2gtk python-lxml python-requests
+sudo apt-get install python-html5lib webkit2gtk python-lxml python-requests python-bs4
 sudo pip install listparser 
 
 git clone https://gitlab.gnome.org/World/gfeeds
@@ -55,7 +55,7 @@ ninja install
 ## Building on Arch/Manjaro
 
 ```bash
-sudo pacman -S python-html5lib webkit2gtk python-lxml python-requests python-pip python-gobject python-feedparser
+sudo pacman -S python-html5lib webkit2gtk python-lxml python-requests python-pip python-gobject python-feedparser python-beautifulsoup4
 yay -S python-listparser python-readability-lxml
 
 git clone https://gitlab.gnome.org/GabMus/gfeeds
