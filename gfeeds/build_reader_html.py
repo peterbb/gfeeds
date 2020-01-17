@@ -1,12 +1,14 @@
 import readability
 from gfeeds.reader_mode_style import CSS, DARK_MODE_CSS
-from lxml.html import html5parser, tostring as html_tostring
+from lxml.html import (
+    fromstring as html_fromstring,
+    tostring as html_tostring
+)
 from gettext import gettext as _
 
 import pygments
 import pygments.lexers
 from pygments.formatters import HtmlFormatter
-
 
 # Thanks to Eloi Rivard (azmeuk) for the contribution on the media block
 def _build_media_text(title, content):
@@ -33,19 +35,17 @@ def _build_media_img(title, imgurl, link='#'):
 
 
 def build_syntax_highlight(root):
-    syntax_highlight_css = ""
-
+    syntax_highlight_css = ''
     code_nodes = root.xpath(
-        '//x:pre/x:code',
-        namespaces={'x': 'http://www.w3.org/1999/xhtml'}
+        '//pre/code'
     )
     lexer = None
     for code_node in code_nodes:
-        classes = code_node.attrib.get("class", "").split(" ")
+        classes = code_node.attrib.get('class', '').split(' ')
         for klass in classes:
             try:
                 lexer = pygments.lexers.get_lexer_by_name(
-                    klass.replace("language-", ""),
+                    klass.replace('language-', ''),
                     stripall=True,
                 )
                 break
@@ -64,7 +64,7 @@ def build_syntax_highlight(root):
             syntax_highlight_css = formatter.get_style_defs()
 
         newtext = pygments.highlight(code_node.text, lexer, formatter)
-        newhtml = html5parser.fromstring(newtext)
+        newhtml = html_fromstring(newtext)
 
         pre_node = code_node.getparent()
         pre_node.getparent().replace(pre_node, newhtml)
@@ -74,7 +74,7 @@ def build_syntax_highlight(root):
 
 def build_syntax_highlight_from_raw_html(raw_html):
     return build_syntax_highlight(
-        html5parser.fromstring(
+        html_fromstring(
             raw_html if type(raw_html) == str else raw_html.decode()
         )
     )
@@ -107,12 +107,8 @@ def build_reader_html(og_html, dark_mode=False, fp_item=None):
     content = doc.summary(True)
     syntax_highlight_css, root = build_syntax_highlight_from_raw_html(content)
     content = html_tostring(
-        root
+        root, encoding='utf-8'
     ).decode().replace(
-        '<html:', '<'
-    ).replace(
-        '</html:', '</'
-    ).replace(
         '</p><a ', '<a '
     ).replace(
         '</a><p>', '</a>'
@@ -124,6 +120,7 @@ def build_reader_html(og_html, dark_mode=False, fp_item=None):
     content += build_media_block()
     return f'''<html>
         <head>
+            <meta charset="UTF-8">
             <style>
                 {CSS}
                 {DARK_MODE_CSS if dark_mode else ""}
