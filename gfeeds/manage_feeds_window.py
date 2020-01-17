@@ -138,6 +138,7 @@ class GFeedsManageFeedsWindow(Gtk.Window):
         dialog.close()
         if res == Gtk.ResponseType.YES:
             self.feedman.delete_feeds(selected_feeds)
+            self.headerbar.delete_btn.set_sensitive(False)
 
     def on_select_all_clicked(self, *args):
         unselect = True
