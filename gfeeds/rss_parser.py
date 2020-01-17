@@ -12,6 +12,7 @@ from os import remove
 from gfeeds.confManager import ConfManager
 from gfeeds.sha import shasum
 from PIL import Image
+from bs4 import UnicodeDammit
 
 
 def get_encoding(in_str):
@@ -127,9 +128,10 @@ class Feed:
             self.error = download_res[1]
             return
         feedpath = download_res[0]
-        with open(feedpath, 'rb') as fd:
-            feed_bytes = fd.read()
-        feed_str = feed_bytes.decode()
+        with open(feedpath, 'r') as fd:
+            feed_str = fd.read()
+        udammit = UnicodeDammit(feed_str)
+        feed_str = udammit.unicode_markup
         feed_str = feed_str.replace(
             get_encoding(feed_str),
             'utf-8'
