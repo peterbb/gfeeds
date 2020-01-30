@@ -217,11 +217,11 @@ class GFeedHeaderbar(Handy.TitleBar):
     def on_view_mode_change(self, target):
         self.view_mode_menu.popdown()
         if target == 'webview':
-            self.webview.set_enable_reader_mode(None, False)
+            self.webview.set_enable_reader_mode(False)
         elif target == 'reader':
-            self.webview.set_enable_reader_mode(None, True)
+            self.webview.set_enable_reader_mode(True)
         elif target == 'rsscont':
-            self.webview.set_enable_rss_content(None, True)
+            self.webview.set_enable_rss_content(True)
         self.set_view_mode_icon(target)
 
     def set_article_title(self, title):

@@ -137,7 +137,7 @@ class GFeedsWebView(Gtk.Stack):
 
     def _load_rss_content(self, feeditem):
         if feeditem.is_saved:
-            self.set_enable_reader_mode(None, True, False)
+            self.set_enable_reader_mode(True, False)
             return
         self.set_visible_child(self.overlay_container)
         self.feeditem = feeditem
@@ -158,12 +158,12 @@ class GFeedsWebView(Gtk.Stack):
         self.html = '<!-- GFEEDS RSS CONTENT --><article>{0}</article>'.format(
             content if '</' in content else content.replace('\n', '<br>')
         )
-        self.set_enable_reader_mode(None, True, True)
+        self.set_enable_reader_mode(True, True)
 
     def _load_reader_async(self, callback=None, *args):
         self.html = download_text(self.uri)
         GLib.idle_add(
-            self.set_enable_reader_mode, None, True
+            self.set_enable_reader_mode, True
         )
         if callback:
             GLib.idle_add(callback)
@@ -218,7 +218,7 @@ class GFeedsWebView(Gtk.Stack):
             self.loading_bar.set_fraction(.75)
         elif self.new_page_loaded and event == WebKit2.LoadEvent.FINISHED:
             self.loading_bar.set_fraction(1.0)
-            # waits 5 seconds async then hides the loading bar
+            # waits 3 seconds async then hides the loading bar
             t = threading.Thread(
                 group=None,
                 target=self._wait_async,
@@ -242,32 +242,18 @@ class GFeedsWebView(Gtk.Stack):
             self.feeditem.fp_item
         ), self.uri)
 
-    def set_enable_reader_mode(self, togglebtn, state=None,
+    def set_enable_reader_mode(self, state=True,
                                is_rss_content=False):
-        if state is None:
-            state = togglebtn.get_active()
         if state:
-            if (
-                    not self.html or (
-                        not is_rss_content and
-                        (
-                            self.html[:36] ==
-                            '<!-- GFEEDS RSS CONTENT --><article>'
-                        )
-                    )
-            ):
-                t = threading.Thread(
-                    group=None,
-                    target=self._load_reader_async,
-                    name=None,
-                    args=(
-                        self._set_enable_reader_mode_async_callback,
-                    )
+            t = threading.Thread(
+                group=None,
+                target=self._load_reader_async,
+                name=None,
+                args=(
+                    self._set_enable_reader_mode_async_callback,
                 )
-                # self.on_load_start()
-                t.start()
-            else:
-                self._set_enable_reader_mode_async_callback()
+            )
+            t.start()
         else:
             self.webkitview.load_uri(self.uri)
 
