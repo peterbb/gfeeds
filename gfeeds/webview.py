@@ -242,18 +242,28 @@ class GFeedsWebView(Gtk.Stack):
             self.feeditem.fp_item
         ), self.uri)
 
-    def set_enable_reader_mode(self, state=True,
-                               is_rss_content=False):
+    def set_enable_reader_mode(self, state=True, is_rss_content=False):
         if state:
-            t = threading.Thread(
-                group=None,
-                target=self._load_reader_async,
-                name=None,
-                args=(
-                    self._set_enable_reader_mode_async_callback,
+            if (
+                    not self.html or (
+                        not is_rss_content and
+                        (
+                            self.html[:36] ==
+                            '<!-- GFEEDS RSS CONTENT --><article>'
+                        )
+                    )
+            ):
+                t = threading.Thread(
+                    group=None,
+                    target=self._load_reader_async,
+                    name=None,
+                    args=(
+                        self._set_enable_reader_mode_async_callback,
+                    )
                 )
-            )
-            t.start()
+                t.start()
+            else:
+                self._set_enable_reader_mode_async_callback()
         else:
             self.webkitview.load_uri(self.uri)
 
