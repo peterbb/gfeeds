@@ -121,9 +121,7 @@ class GFeedsWebView(Gtk.Stack):
     def hide_notif(self, *args):
         self.notif_revealer.set_reveal_child(False)
 
-    def set_enable_rss_content(self, togglebtn, state=None, feeditem=None):
-        if state is None:
-            state = togglebtn.get_active()
+    def set_enable_rss_content(self, state=True, feeditem=None):
         if feeditem:
             self.feeditem = feeditem
         if state:
@@ -192,7 +190,7 @@ class GFeedsWebView(Gtk.Stack):
             t.start()
         elif self.confman.conf['default_view'] == 'rsscont':
             self.on_load_start()
-            self.set_enable_rss_content(None, True, feeditem)
+            self.set_enable_rss_content(True, feeditem)
         else:
             self.webkitview.load_uri(uri)
             if trigger_on_load_start:
