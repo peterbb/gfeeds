@@ -10,6 +10,8 @@ from gfeeds.suggestion_bar import (
 )
 from gfeeds.webview import GFeedsWebView
 from gfeeds.stack_with_empty_state import StackWithEmptyState
+from gfeeds.shortcuts_window import show_shortcuts_window
+from gfeeds.settings_window import show_settings_window
 
 
 class GFeedsAppWindow(Gtk.ApplicationWindow):
@@ -71,8 +73,12 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
 
         self.swipe_group = Handy.SwipeGroup()
 
-        self.size_group_left = Gtk.SizeGroup(mode=Gtk.SizeGroupMode.HORIZONTAL)
-        self.size_group_right = Gtk.SizeGroup(mode=Gtk.SizeGroupMode.HORIZONTAL)
+        self.size_group_left = Gtk.SizeGroup(
+            mode=Gtk.SizeGroupMode.HORIZONTAL
+        )
+        self.size_group_right = Gtk.SizeGroup(
+            mode=Gtk.SizeGroupMode.HORIZONTAL
+        )
         self.size_group_left.add_widget(self.sidebar_box)
         self.size_group_right.add_widget(self.webview)
         self.headerbar = GFeedHeaderbar(
@@ -129,8 +135,12 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.add_accel_group(self.accel_group)
         shortcuts_l = [
             {
-                'combo': '<Control>q',
-                'cb': self.emit_destroy
+                'combo': 'F10',
+                'cb': lambda *args: (
+                    self.headerbar.menu_popover.popup
+                    if not self.headerbar.menu_popover.is_visible()
+                    else self.headerbar.menu_popover.popdown
+                )()
             },
             {
                 'combo': '<Control>r',

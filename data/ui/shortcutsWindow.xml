@@ -9,6 +9,24 @@
             <property name="title" translatable="yes">General</property>
             <child>
               <object class="GtkShortcutsShortcut">
+                  <property name="accelerator">&lt;ctrl&gt;question</property>
+                <property name="title" translatable="yes">Open Keyboard Shortcuts</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">F10</property>
+                <property name="title" translatable="yes">Open Menu</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                  <property name="accelerator">&lt;ctrl&gt;comma</property>
+                <property name="title" translatable="yes">Open Preferences</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;ctrl&gt;Q</property>
                 <property name="title" translatable="yes">Quit</property>
               </object>

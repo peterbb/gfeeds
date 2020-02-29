@@ -23,7 +23,7 @@ from gi.repository import Gtk, Gdk, Gio, GLib
 from gfeeds.confManager import ConfManager
 from gfeeds.feeds_manager import FeedsManager
 from gfeeds.app_window import GFeedsAppWindow
-from gfeeds.settings_window import GFeedsSettingsWindow
+from gfeeds.settings_window import show_settings_window
 from gfeeds.opml_manager import opml_to_rss_list, feeds_list_to_opml
 from gfeeds.opml_file_chooser import (
     GFeedsOpmlFileChooserDialog,
@@ -31,6 +31,7 @@ from gfeeds.opml_file_chooser import (
 )
 from gfeeds.manage_feeds_window import GFeedsManageFeedsWindow
 from gfeeds.confirm_add_dialog import GFeedsConfirmAddDialog
+from gfeeds.shortcuts_window import show_shortcuts_window
 
 
 class GFeedsApplication(Gtk.Application):
@@ -48,6 +49,7 @@ class GFeedsApplication(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
+        self.feedman.refresh(get_cached=True, is_startup=True)
 
         stateful_actions = [
             {
@@ -88,11 +90,13 @@ class GFeedsApplication(Gtk.Application):
             },
             {
                 'name': 'settings',
-                'func': self.show_settings_window
+                'func': lambda *args: show_settings_window(self.window),
+                'accel': '<Primary>comma'
             },
             {
                 'name': 'shortcuts',
-                'func': self.show_shortcuts_window
+                'func': lambda *args: show_shortcuts_window(self.window),
+                'accel': '<Primary>question'
             },
             {
                 'name': 'about',
@@ -100,7 +104,8 @@ class GFeedsApplication(Gtk.Application):
             },
             {
                 'name': 'quit',
-                'func': self.on_destroy_window
+                'func': self.on_destroy_window,
+                'accel': '<Primary>q'
             }
         ]
 
@@ -136,6 +141,11 @@ class GFeedsApplication(Gtk.Application):
             c_action = Gio.SimpleAction.new(a['name'], None)
             c_action.connect('activate', a['func'])
             self.add_action(c_action)
+            if 'accel' in a.keys():
+                self.set_accels_for_action(
+                    f'app.{a["name"]}',
+                    [a['accel']]
+                )
 
     def view_mode_change(self, action, target, *args):
         action.change_state(target)
@@ -205,22 +215,6 @@ class GFeedsApplication(Gtk.Application):
         self.window.on_destroy()
         self.quit()
 
-    def show_shortcuts_window(self, *args):
-        shortcuts_win = Gtk.Builder.new_from_resource(
-            '/org/gabmus/gfeeds/ui/shortcutsWindow.xml'
-        ).get_object('shortcuts-gfeeds')
-        shortcuts_win.props.section_name = 'shortcuts'
-        shortcuts_win.set_transient_for(self.window)
-        shortcuts_win.set_modal(True)
-        shortcuts_win.present()
-        shortcuts_win.show_all()
-
-    def show_settings_window(self, *args):
-        settings_win = GFeedsSettingsWindow()
-        settings_win.set_transient_for(self.window)
-        settings_win.set_modal(True)
-        settings_win.present()
-
     def do_activate(self):
         self.add_window(self.window)
         stylecontext = Gtk.StyleContext()
@@ -249,7 +243,7 @@ class GFeedsApplication(Gtk.Application):
         )
         self.window.present()
         self.window.show_all()
-        self.feedman.refresh(get_cached=True)
+        # self.feedman.refresh(get_cached=True)
         if self.args:
             if self.args.argurl:
                 if self.args.argurl[:8].lower() == 'file:///':

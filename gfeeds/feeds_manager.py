@@ -88,8 +88,11 @@ class FeedsManager(metaclass=Singleton):
                 self.emit, 'feedmanager_refresh_end', ''
             )
 
-    def refresh(self, *args, get_cached=False):
-        self.emit('feedmanager_refresh_start', '')
+    def refresh(self, *args, get_cached=False, is_startup=False):
+        self.emit(
+            'feedmanager_refresh_start',
+            'startup' if is_startup else ''
+        )
         self.errors = []
         if is_online():
             self.emit('feedmanager_online_changed', True)

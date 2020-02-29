@@ -133,7 +133,9 @@ class FeedsViewListbox(Gtk.ListBox):
             else:
                 break
 
-    def row_all_activate(self):
+    def row_all_activate(self, skip=False):
+        if skip:
+            return
         for row in self.get_children():
             if row.IS_ALL:
                 row.activate()

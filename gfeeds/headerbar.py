@@ -155,8 +155,10 @@ class GFeedHeaderbar(Handy.TitleBar):
         # hacky and needs a proper function
         self.feedman.connect(
             'feedmanager_refresh_start',
-            lambda *args:
-            self.filter_popover.scrolled_win.listbox.row_all_activate()
+            lambda caller, msg:
+            self.filter_popover.scrolled_win.listbox.row_all_activate(
+                skip=(msg == 'startup')
+            )
         )
 
         self.add_btn = self.builder.get_object(

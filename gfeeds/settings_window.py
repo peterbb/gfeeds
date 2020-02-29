@@ -5,6 +5,13 @@ from gi.repository import Gtk, Handy
 from gfeeds.confManager import ConfManager
 
 
+def show_settings_window(parent_win, *args):
+    settings_win = GFeedsSettingsWindow()
+    settings_win.set_transient_for(parent_win)
+    settings_win.set_modal(True)
+    settings_win.present()
+
+
 class PreferencesButtonRow(Handy.ActionRow):
     """
     A preferences row with a title and a button
