@@ -302,6 +302,13 @@ class GFeedsSettingsWindow(Handy.PreferencesWindow):
         self.set_default_size(630, 700)
         self.get_titlebar().set_show_close_button(True)
 
+        self.accel_group = Gtk.AccelGroup()
+        self.accel_group.connect(
+            *Gtk.accelerator_parse('Escape'), Gtk.AccelFlags.VISIBLE,
+            lambda *args: self.close()
+        )
+        self.add_accel_group(self.accel_group)
+
         if not self.confman.conf['enable_csd']:
             self.set_title(_('Preferences'))
             self.set_titlebar(None)
