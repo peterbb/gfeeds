@@ -120,6 +120,13 @@ class GFeedsManageFeedsWindow(Gtk.Window):
         self.main_box.pack_start(self.scrolled_window, True, True, 0)
         self.add(self.main_box)
 
+        self.accel_group = Gtk.AccelGroup()
+        self.accel_group.connect(
+            *Gtk.accelerator_parse('Escape'), Gtk.AccelFlags.VISIBLE,
+            lambda *args: self.close()
+        )
+        self.add_accel_group(self.accel_group)
+
         self.set_type_hint(Gdk.WindowTypeHint.DIALOG)
         self.set_modal(True)
         self.set_transient_for(self.appwindow)
