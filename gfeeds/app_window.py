@@ -10,8 +10,6 @@ from gfeeds.suggestion_bar import (
 )
 from gfeeds.webview import GFeedsWebView
 from gfeeds.stack_with_empty_state import StackWithEmptyState
-from gfeeds.shortcuts_window import show_shortcuts_window
-from gfeeds.settings_window import show_settings_window
 
 
 class GFeedsAppWindow(Gtk.ApplicationWindow):
