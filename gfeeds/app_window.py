@@ -188,6 +188,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.set_titlebar(self.headerbar)
         else:
             self.set_titlebar(None)
+            self.headerbar.set_vexpand(False)
             self.main_box.pack_start(self.headerbar, False, False, 0)
             for h in [
                     self.headerbar.left_headerbar,
