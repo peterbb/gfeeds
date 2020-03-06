@@ -36,7 +36,7 @@ class GFeedsErrorsBar(GFeedsInfoBar):
         super().__init__(
             text=_('There are some errors'),
             icon_name='computer-fail-symbolic',
-            message_type=Gtk.MessageType.ERROR,
+            message_type=Gtk.MessageType.INFO,
             **kwargs
         )
         self.parent_win = parent_win
@@ -78,7 +78,7 @@ class GFeedsConnectionBar(GFeedsInfoBar):
         super().__init__(
             text=_('You are offline'),
             icon_name='network-offline-symbolic',
-            message_type=Gtk.MessageType.WARNING,
+            message_type=Gtk.MessageType.INFO,
             **kwargs
         )
         self.container_box.set_orientation(Gtk.Orientation.HORIZONTAL)
