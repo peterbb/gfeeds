@@ -25,7 +25,7 @@ def download_text(link):
         return toret
     res = requests.get(link, headers=GET_HEADERS, timeout=TIMEOUT)
     if 200 <= res.status_code <= 299:
-        res.encoding='utf-8'
+        res.encoding = 'utf-8'
         return res.text
     else:
         print(f'response code {res.status_code}')
@@ -78,7 +78,7 @@ def download_feed(link, get_cached=False):
             confman.conf['feeds'][link]['last-modified']
     try:
         res = requests.get(
-            link, headers=headers, allow_redirects=False, timeout=TIMEOUT
+            link, headers=headers, allow_redirects=True, timeout=TIMEOUT
         )
     except requests.exceptions.ConnectTimeout:
         return (False, _('`{0}`: connection timed out').format(link))

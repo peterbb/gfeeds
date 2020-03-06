@@ -184,7 +184,6 @@ class Feed:
 
         if (
                 not self.title and
-                not self.link and
                 len(raw_entries) == 0
         ):
             # if these conditions are met, there's reason to believe
