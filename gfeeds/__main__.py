@@ -49,7 +49,10 @@ class GFeedsApplication(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
-        self.feedman.refresh(get_cached=True, is_startup=True)
+        self.feedman.refresh(
+            get_cached=not self.confman.conf['refresh_on_startup'],
+            is_startup=True
+        )
 
         stateful_actions = [
             {

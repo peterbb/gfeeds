@@ -143,6 +143,11 @@ class GeneralPreferencesPage(Handy.PreferencesPage):
         self.general_preferences_group.set_title(_('General Settings'))
         toggle_settings = [
             {
+                'title': _('Refresh articles on startup'),
+                'conf_key': 'refresh_on_startup',
+                'signal': None
+            },
+            {
                 'title': _('Show newer articles first'),
                 'conf_key': 'new_first',
                 'signal': 'gfeeds_new_first_changed'

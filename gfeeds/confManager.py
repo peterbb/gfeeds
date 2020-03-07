@@ -79,7 +79,8 @@ class ConfManager(metaclass=Singleton):
         # valid values: 'webview', 'reader', 'rsscont'
         'default_view': 'webview',
         'open_links_externally': True,
-        'full_feed_name': False
+        'full_feed_name': False,
+        'refresh_on_startup': False
     }
 
     def __init__(self):
