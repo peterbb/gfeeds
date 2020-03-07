@@ -272,8 +272,11 @@ class GFeedsWebView(Gtk.Stack):
         if not self.confman.conf['open_links_externally']:
             return False
         if (
-                decisionType ==
-                WebKit2.PolicyDecisionType.NAVIGATION_ACTION and
+                decisionType in
+                (
+                    WebKit2.PolicyDecisionType.NAVIGATION_ACTION,
+                    WebKit2.PolicyDecisionType.NEW_WINDOW_ACTION
+                ) and
                 decision.get_navigation_action().get_mouse_button() != 0
         ):
             decision.ignore()
