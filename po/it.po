@@ -7,26 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-13 20:51+0100\n"
-"PO-Revision-Date: 2019-12-13 20:52+0100\n"
-"Last-Translator: Gabriele Musco <emaildigabry@gmail.com>\n"
+"POT-Creation-Date: 2020-03-07 17:22+0100\n"
+"PO-Revision-Date: 2020-03-07 17:23+0100\n"
+"Last-Translator: Gabriele Musco <gabmus@disroot.org>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 
-#: ../gfeeds/opml_file_chooser.py:6
+#: ../gfeeds/opml_file_chooser.py:7
 msgid "Choose an OPML file to import"
 msgstr "Scegli un file OPML da importare"
 
-#: ../gfeeds/opml_file_chooser.py:13 ../gfeeds/opml_file_chooser.py:30
+#: ../gfeeds/opml_file_chooser.py:14 ../gfeeds/opml_file_chooser.py:31
 msgid "XML files"
 msgstr "File XML"
 
-#: ../gfeeds/opml_file_chooser.py:21
+#: ../gfeeds/opml_file_chooser.py:22
 msgid "Choose where to save the exported OPML file"
 msgstr "Scegli dove salvare il file OPML esportato"
 
@@ -40,12 +40,12 @@ msgstr "Errore: impossibile analizzare data e ora {0} per l'articolo {1}"
 msgid "Errors while parsing feed `{0}`"
 msgstr "Errori nell'analisi del feed `{0}`"
 
-#: ../gfeeds/rss_parser.py:190
+#: ../gfeeds/rss_parser.py:193
 #, python-brace-format
 msgid "`{0}` may not be an RSS or Atom feed"
 msgstr "`{0}` potrebbe non essere un feed RSS o Atom"
 
-#: ../gfeeds/rss_parser.py:216
+#: ../gfeeds/rss_parser.py:219
 #, python-brace-format
 msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
@@ -55,7 +55,7 @@ msgstr ""
 "un'immagine.\n"
 "Provo a scaricare la favicon da un articolo."
 
-#: ../gfeeds/rss_parser.py:225
+#: ../gfeeds/rss_parser.py:228
 #, python-brace-format
 msgid ""
 "Error resizing favicon from article for feed {0}.\n"
@@ -69,7 +69,7 @@ msgstr ""
 msgid "Feed {0} exists already, skipping"
 msgstr "Il feed {0} esiste già, lo salto"
 
-#: ../gfeeds/headerbar.py:161
+#: ../gfeeds/headerbar.py:167
 msgid "Add new feed"
 msgstr "Aggiungi nuovo feed"
 
@@ -90,15 +90,11 @@ msgstr "Vista Web"
 msgid "Filler View"
 msgstr "Vista Riempitiva"
 
-#: ../gfeeds/webview.py:150
+#: ../gfeeds/webview.py:148
 msgid "RSS content or summary not available for this article"
 msgstr "Contenuto o riassunto dell'RSS non disponibile per questo articolo"
 
-#: ../gfeeds/build_reader_html.py:396
-msgid "Reader mode unavailable for this site"
-msgstr "Modalità lettura non disponibile per questo sito"
-
-#: ../gfeeds/build_reader_html.py:407
+#: ../gfeeds/build_reader_html.py:93
 msgid "Thumbnail"
 msgstr "Anteprima"
 
@@ -110,171 +106,171 @@ msgstr "Feed"
 msgid "Saved"
 msgstr "Salvati"
 
-#: ../gfeeds/__main__.py:295
+#: ../gfeeds/__main__.py:296
 msgid "url"
 msgstr "url"
 
-#: ../gfeeds/__main__.py:298
+#: ../gfeeds/__main__.py:299
 msgid "opml file local url or rss remote url to import"
 msgstr "url locale del file opml o url rss remota da importare"
 
-#: ../gfeeds/download_manager.py:76
+#: ../gfeeds/download_manager.py:84
 #, python-brace-format
 msgid "`{0}`: connection timed out"
 msgstr "`{0}`: timeout connessione"
 
-#: ../gfeeds/download_manager.py:78
+#: ../gfeeds/download_manager.py:86
 #, python-brace-format
 msgid "`{0}` is not an URL"
 msgstr "`{0}` non è un URL"
 
-#: ../gfeeds/download_manager.py:102
+#: ../gfeeds/download_manager.py:111
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Errore nel download di `{0}`, codice `{1}`"
 
-#: ../gfeeds/settings_window.py:127
+#: ../gfeeds/settings_window.py:139
 msgid "General"
 msgstr "Generale"
 
-#: ../gfeeds/settings_window.py:131
+#: ../gfeeds/settings_window.py:143
 msgid "General Settings"
 msgstr "Impostazioni Generali"
 
-#: ../gfeeds/settings_window.py:134
+#: ../gfeeds/settings_window.py:146
+msgid "Refresh articles on startup"
+msgstr "Aggiorna articoli all'avvio"
+
+#: ../gfeeds/settings_window.py:151
 msgid "Show newer articles first"
 msgstr "Mostra nuovi articoli per primi"
 
-#: ../gfeeds/settings_window.py:139
+#: ../gfeeds/settings_window.py:156
 msgid "Open links in your browser"
 msgstr "Apri link nel tuo browser"
 
-#: ../gfeeds/settings_window.py:149
+#: ../gfeeds/settings_window.py:166
 msgid "Maximum article age"
 msgstr "Età massima degli articoli"
 
-#: ../gfeeds/settings_window.py:153
+#: ../gfeeds/settings_window.py:170
 msgid "In days"
 msgstr "In giorni"
 
-#: ../gfeeds/settings_window.py:159
+#: ../gfeeds/settings_window.py:176
 msgid "Cache"
 msgstr "Cache"
 
-#: ../gfeeds/settings_window.py:162
+#: ../gfeeds/settings_window.py:179
 msgid "Clear all caches"
 msgstr "Pulisci tutte le cache"
 
-#: ../gfeeds/settings_window.py:163
+#: ../gfeeds/settings_window.py:180
 msgid "Clear caches"
 msgstr "Pulisci le cache"
 
-#: ../gfeeds/settings_window.py:201
+#: ../gfeeds/settings_window.py:218
 msgid "View"
 msgstr "Vista"
 
-#: ../gfeeds/settings_window.py:205
+#: ../gfeeds/settings_window.py:222
 msgid "View Settings"
 msgstr "Impostazioni della Vista"
 
-#: ../gfeeds/settings_window.py:208
-msgid "Show colored border"
-msgstr "Mostra bordo colorato"
-
-#: ../gfeeds/settings_window.py:213
+#: ../gfeeds/settings_window.py:225
 msgid "Show full articles titles"
 msgstr "Mostra i titoli completi degli articoli"
 
-#: ../gfeeds/settings_window.py:218
+#: ../gfeeds/settings_window.py:230
 msgid "Show full feeds names"
 msgstr "Mostra nomi completi dei feed"
 
-#: ../gfeeds/settings_window.py:223
+#: ../gfeeds/settings_window.py:235
 msgid "Use dark theme for reader mode"
 msgstr "Usa tema scuro per la modalità lettura"
 
-#: ../gfeeds/settings_window.py:228
+#: ../gfeeds/settings_window.py:240
 msgid "Enable JavaScript"
 msgstr "Attiva JavaScript"
 
-#: ../gfeeds/settings_window.py:233
+#: ../gfeeds/settings_window.py:245
 msgid "Enable client side decoration"
 msgstr "Attiva decorazione client side"
 
-#: ../gfeeds/settings_window.py:249
+#: ../gfeeds/settings_window.py:261
 msgid "Advanced"
 msgstr "Avanzate"
 
-#: ../gfeeds/settings_window.py:253
+#: ../gfeeds/settings_window.py:265
 msgid "Advanced Settings"
 msgstr "Impostazioni Avanzate"
 
-#: ../gfeeds/settings_window.py:256
+#: ../gfeeds/settings_window.py:268
 msgid "Maximum refresh threads"
 msgstr "Massimi thread per aggiornamento"
 
-#: ../gfeeds/settings_window.py:261
+#: ../gfeeds/settings_window.py:273
 msgid "How many threads to refresh feeds"
 msgstr "Quanti thread per aggiornare i feed"
 
-#: ../gfeeds/settings_window.py:299
+#: ../gfeeds/settings_window.py:318
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: ../gfeeds/manage_feeds_window.py:16 ../gfeeds/manage_feeds_window.py:106
+#: ../gfeeds/manage_feeds_window.py:17 ../gfeeds/manage_feeds_window.py:111
 msgid "Manage Feeds"
 msgstr "Gestisci Feed"
 
-#: ../gfeeds/manage_feeds_window.py:23
+#: ../gfeeds/manage_feeds_window.py:24
 msgid "Select/Unselect all"
 msgstr "Seleziona/Deseleziona tutto"
 
-#: ../gfeeds/manage_feeds_window.py:29
+#: ../gfeeds/manage_feeds_window.py:30
 msgid "Delete selected feeds"
 msgstr "Elimina i feed selezionati"
 
-#: ../gfeeds/manage_feeds_window.py:78
+#: ../gfeeds/manage_feeds_window.py:82
 msgid "Do you want to delete these feeds?"
 msgstr "Vuoi eliminare questi feed?"
 
-#: ../gfeeds/spinner_button.py:15
+#: ../gfeeds/spinner_button.py:16
 msgid "Refresh feeds"
 msgstr "Aggiorna feed"
 
-#: ../gfeeds/confirm_add_dialog.py:14
+#: ../gfeeds/confirm_add_dialog.py:15
 msgid "Do you want to import these feeds?"
 msgstr "Vuoi importare questi feed?"
 
-#: ../gfeeds/confirm_add_dialog.py:15
+#: ../gfeeds/confirm_add_dialog.py:16
 msgid "Do you want to import this feed?"
 msgstr "Vuoi importare questo feed?"
 
-#: ../gfeeds/opml_manager.py:8
+#: ../gfeeds/opml_manager.py:9
 msgid "Error: OPML path provided does not exist"
 msgstr "Errore: il percorso all'OPML fornito non esiste"
 
-#: ../gfeeds/opml_manager.py:15
+#: ../gfeeds/opml_manager.py:16
 #, python-brace-format
 msgid "Error parsing OPML file `{0}`"
 msgstr "Errore nell'analisi del file OPML `{0}`"
 
-#: ../gfeeds/suggestion_bar.py:34
+#: ../gfeeds/suggestion_bar.py:37
 msgid "There are some errors"
 msgstr "C'è qualche errore"
 
-#: ../gfeeds/suggestion_bar.py:41
+#: ../gfeeds/suggestion_bar.py:44
 msgid "Show"
 msgstr "Mostra"
 
-#: ../gfeeds/suggestion_bar.py:42
+#: ../gfeeds/suggestion_bar.py:45
 msgid "Ignore"
 msgstr "Ignora"
 
-#: ../gfeeds/suggestion_bar.py:60
+#: ../gfeeds/suggestion_bar.py:66
 msgid "There were problems with some feeds"
 msgstr "Ci sono stati dei problemi con alcuni feed"
 
-#: ../gfeeds/suggestion_bar.py:72
+#: ../gfeeds/suggestion_bar.py:79
 msgid "You are offline"
 msgstr "Sei offline"
 
@@ -327,38 +323,50 @@ msgid "Import an OPML file"
 msgstr "Importa un file OPML"
 
 #: ../data/ui/shortcutsWindow.xml:13
+msgid "Open Keyboard Shortcuts"
+msgstr "Apri Scorciatoie da tastiera"
+
+#: ../data/ui/shortcutsWindow.xml:19
+msgid "Open Menu"
+msgstr "Apri Menu"
+
+#: ../data/ui/shortcutsWindow.xml:25
+msgid "Open Preferences"
+msgstr "Apri Preferenze"
+
+#: ../data/ui/shortcutsWindow.xml:31
 msgid "Quit"
 msgstr "Esci"
 
-#: ../data/ui/shortcutsWindow.xml:19
+#: ../data/ui/shortcutsWindow.xml:37
 msgid "Refresh articles"
 msgstr "Aggiorna articoli"
 
-#: ../data/ui/shortcutsWindow.xml:25
+#: ../data/ui/shortcutsWindow.xml:43
 msgid "Search articles"
 msgstr "Cerca articoli"
 
-#: ../data/ui/shortcutsWindow.xml:31
+#: ../data/ui/shortcutsWindow.xml:49
 msgid "Next article"
 msgstr "Prossimo articolo"
 
-#: ../data/ui/shortcutsWindow.xml:37
+#: ../data/ui/shortcutsWindow.xml:55
 msgid "Previous article"
 msgstr "Articolo precedente"
 
-#: ../data/ui/shortcutsWindow.xml:43
+#: ../data/ui/shortcutsWindow.xml:61
 msgid "Show/Hide read articles"
 msgstr "Mostra/Nascondi articoli letti"
 
-#: ../data/ui/shortcutsWindow.xml:49
+#: ../data/ui/shortcutsWindow.xml:67
 msgid "Zoom in"
 msgstr "Ingrandisci"
 
-#: ../data/ui/shortcutsWindow.xml:55
+#: ../data/ui/shortcutsWindow.xml:73
 msgid "Zoom out"
 msgstr "Riduci"
 
-#: ../data/ui/shortcutsWindow.xml:61
+#: ../data/ui/shortcutsWindow.xml:79
 msgid "Reset zoom"
 msgstr "Resetta zoom"
 
@@ -733,6 +741,12 @@ msgstr "Aggiunta traduzione italiana"
 #: ../data/org.gabmus.gfeeds.appdata.xml.in:215
 msgid "First release"
 msgstr "Prima release"
+
+#~ msgid "Reader mode unavailable for this site"
+#~ msgstr "Modalità lettura non disponibile per questo sito"
+
+#~ msgid "Show colored border"
+#~ msgstr "Mostra bordo colorato"
 
 #~ msgid "Use reader mode by default"
 #~ msgstr "Usa modalità lettura come predefinita"
