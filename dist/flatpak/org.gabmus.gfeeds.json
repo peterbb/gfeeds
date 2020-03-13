@@ -2,7 +2,7 @@
     "app-id" : "org.gabmus.gfeeds",
     "command" : "gfeeds",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "3.34",
+    "runtime-version" : "3.36",
     "sdk" : "org.gnome.Sdk",
     "finish-args" : [
     	"--device=dri",
@@ -26,28 +26,14 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.12/libhandy-v0.0.12.tar.gz",
-                    "sha256" : "87407b6d423042bed897a80b1bf38ec6708d1cb3e0c7283cbcb4a3464ca31b98"
+                    "url" : "https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.13/libhandy-v0.0.13.tar.gz",
+                    "sha256" : "138bec94e66d15a7a19350b65845d4529bcd969ea913ab3eb438f56fe47d5d37"
                 }
             ]
         },
         {
             "name" : "cython",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -63,8 +49,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://files.pythonhosted.org/packages/a5/1f/c7c5450c60a90ce058b47ecf60bb5be2bfe46f952ed1d3b95d1d677588be/Cython-0.29.13.tar.gz",
-                    "sha256" : "c29d069a4a30f472482343c866f7486731ad638ef9af92bfe5fca9c7323d638e"
+                    "url" : "https://files.pythonhosted.org/packages/d9/82/d01e767abb9c4a5c07a6a1e6f4d5a8dfce7369318d31f48a52374094372e/Cython-0.29.15.tar.gz",
+                    "sha256" : "60d859e1efa5cc80436d58aecd3718ff2e74b987db0518376046adedba97ac30"
                 }
             ]
         },
@@ -97,8 +83,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/27/c0/fbd352ca76050952a03db776d241959d5a2ee1abddfeb9e2a53fdb489be4/pytz-2019.2.tar.gz",
-                    "sha256": "26c0b32e437e54a18161324a2fca3c4b9846b74a8dccddd843113109e1116b32"
+                    "url": "https://files.pythonhosted.org/packages/82/c3/534ddba230bd4fbbd3b7a3d35f3341d014cca213f369a9940925e7e5f691/pytz-2019.3.tar.gz",
+                    "sha256": "b02c06db6cf09c12dd25137e563b31700d3b80fcc4ad23abb7a315f2789819be"
                 },
                 {
                     "type": "shell",
@@ -142,8 +128,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/pypa/setuptools_scm",
-                    "tag": "v3.3.1",
-                    "commit": "fcf7c5e8705285ed8653cae878fc8881ad2c04ab"
+                    "tag": "v3.5.0",
+                    "commit": "7b21089a545667f0ae7852e1039f8028be288f48"
                 },
                 {
                     "type": "shell",
@@ -183,8 +169,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/dateutil/dateutil",
-                    "tag": "2.7.5",
-                    "commit": "03fa92bfedbe020724de5dde8864e3a9539162b4"
+                    "tag": "2.8.1",
+                    "commit": "fc9b1625ebc729f01e449879b6b140abd12ae621"
                 },
                 {
                     "type": "shell",
@@ -197,20 +183,6 @@
         {
             "name" : "python-lxml",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -223,9 +195,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/lxml/lxml/archive/lxml-4.4.0.tar.gz",
-                    "sha256" : "977e804757a911dc501b52916bd41408358eac16ad88c84c4325ce9370a93da3"
+                    "type" : "git",
+                    "url" : "https://github.com/lxml/lxml",
+                    "tag" : "lxml-4.5.0",
+                    "commit" : "8d23c0caa4aee4f36ba553ad58bb506a14d2b33a"
                 },
                 {
                     "type" : "shell",
@@ -238,20 +211,6 @@
         {
             "name" : "python-idna",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -263,9 +222,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/kjd/idna/archive/v2.8.tar.gz",
-                    "sha256" : "db438aeba52c606cf1dd9671cb746377b4baeaea923397152e91576e8404d87a"
+                    "type" : "git",
+                    "url" : "https://github.com/kjd/idna",
+                    "tag" : "v2.9",
+                    "commit" : "1233a730bc26811b5ae65c9ca9d5cc9ded2bdf9b"
                 },
                 {
                     "type" : "shell",
@@ -278,20 +238,6 @@
         {
             "name" : "python-listparser",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -318,20 +264,6 @@
         {
             "name" : "python-certifi",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -343,9 +275,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/certifi/python-certifi/archive/2019.06.16.tar.gz",
-                    "sha256" : "fcbaea367cf3a4e8df94271e13326e1482d492569081bb465862bcb1d2019839"
+                    "type" : "git",
+                    "url" : "https://github.com/certifi/python-certifi",
+                    "tag" : "2019.11.28",
+                    "commit" : "21abb9b9bbf4c0cfecf652fadafee3eb9615d553"
                 },
                 {
                     "type" : "shell",
@@ -358,20 +291,6 @@
         {
             "name" : "python-chardet",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -383,9 +302,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/chardet/chardet/archive/3.0.4.tar.gz",
-                    "sha256" : "d5620025cfca430f6c2e28ddbc87c3c66a5c82fa65570ae975c92911c2190189"
+                    "type" : "git",
+                    "url" : "https://github.com/chardet/chardet",
+                    "tag" : "3.0.4",
+                    "commit" : "9b8c5c2fb118d76c6beeab9affd01c332732a530"
                 },
                 {
                     "type" : "shell",
@@ -398,20 +318,6 @@
         {
             "name" : "python-urllib3",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -423,9 +329,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/urllib3/urllib3/archive/1.25.3.tar.gz",
-                    "sha256" : "fd0376d5a0d8ac633693dcbefc8f4b7acecae81e5aee7c824682cd11b3edb635"
+                    "type" : "git",
+                    "url" : "https://github.com/urllib3/urllib3",
+                    "tag" : "1.25.8",
+                    "commit" : "2a57bc5758075a9248cc0d87f66a2ff678338478"
                 },
                 {
                     "type" : "shell",
@@ -438,20 +345,6 @@
         {
             "name" : "python-requests",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -463,9 +356,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/psf/requests/archive/v2.22.0.tar.gz",
-                    "sha256" : "dcacea1b6a7bfd2cbb6c6a05743606b428f2739f37825e41fbf79af3cc2fd240"
+                    "type" : "git",
+                    "url" : "https://github.com/psf/requests",
+                    "tag" : "v2.23.0",
+                    "commit" : "c7e0fc087ceeadb8b4c84a0953a422c474093d6d"
                 },
                 {
                     "type" : "shell",
@@ -478,20 +372,6 @@
         {
             "name" : "python-webencodings",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -503,9 +383,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/gsnedders/python-webencodings/archive/v0.5.1.tar.gz",
-                    "sha256" : "082367f568a7812aa5f6922ffe3d9d027cd83829dc32bcaac4c874eeed618000"
+                    "type" : "git",
+                    "url" : "https://github.com/gsnedders/python-webencodings",
+                    "tag" : "v0.5.1",
+                    "commit" : "fa2cb5d75ab41e63ace691bc0825d3432ba7d694"
                 },
                 {
                     "type" : "shell",
@@ -518,20 +399,6 @@
         {
             "name" : "python-html5lib",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -543,9 +410,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/html5lib/html5lib-python/archive/1.0.1.tar.gz",
-                    "sha256" : "fabbebd6a55d07842087f13849076eeed350aa8bb6c9ec840f6a6aba9388db06"
+                    "type" : "git",
+                    "url" : "https://github.com/html5lib/html5lib-python",
+                    "tag" : "1.0.1",
+                    "commit" : "93eb5c193892b7fdc5e08d28c2984249b43e0cd1"
                 },
                 {
                     "type" : "shell",
@@ -558,20 +426,6 @@
         {
             "name" : "python-feedparser",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -583,9 +437,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/kurtmckee/feedparser/archive/5.2.1.tar.gz",
-                    "sha256" : "09367f95e58b9c5f70da70061d3e7f397ed8ec5d3c970e231ef011ff62de462f"
+                    "type" : "git",
+                    "url" : "https://github.com/kurtmckee/feedparser",
+                    "tag" : "5.2.1",
+                    "commit" : "cf4185144c5ae012ada8203d0f33bcc57e4aeb6f"
                 },
                 {
                     "type" : "shell",
@@ -598,20 +453,6 @@
         {
             "name" : "python-pillow",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -623,9 +464,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/python-pillow/Pillow/archive/6.2.1.tar.gz",
-                    "sha256" : "7bf2d6bdb68fa6ccec15c0fd9aa20fac9641cd20dc6079344f5a6534e13a70f9"
+                    "type" : "git",
+                    "url" : "https://github.com/python-pillow/Pillow",
+                    "tag" : "7.0.0",
+                    "commit" : "1cecf08d16509c20473766b4cdb7a65169844819"
                 },
                 {
                     "type" : "shell",
@@ -638,20 +480,6 @@
         {
             "name" : "python-pycparser",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -663,9 +491,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz",
-                    "sha256" : "a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3"
+                    "type" : "git",
+                    "url" : "https://github.com/eliben/pycparser",
+                    "tag" : "release_v2.20",
+                    "sha256" : "0055facfb5b5289ce8ef2ef12b18e34a223f9d20"
                 },
                 {
                     "type" : "shell",
@@ -678,20 +507,6 @@
         {
             "name" : "python-cffi",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -704,8 +519,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://files.pythonhosted.org/packages/93/1a/ab8c62b5838722f29f3daffcc8d4bd61844aa9b5f437341cc890ceee483b/cffi-1.12.3.tar.gz",
-                    "sha256" : "041c81822e9f84b1d9c401182e174996f0bae9991f33725d059b771744290774"
+                    "url" : "https://files.pythonhosted.org/packages/05/54/3324b0c46340c31b909fcec598696aaec7ddc8c18a63f2db352562d3354c/cffi-1.14.0.tar.gz",
+                    "sha256" : "2d384f4a127a15ba701207f7639d94106693b6cd64173d6c8988e2c25f3ac2b6"
                 },
                 {
                     "type" : "shell",
@@ -718,20 +533,6 @@
         {
             "name" : "python-brotlipy",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -743,9 +544,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://files.pythonhosted.org/packages/d9/91/bc79b88590e4f662bd40a55a2b6beb0f15da4726732efec5aa5a3763d856/brotlipy-0.7.0.tar.gz",
-                    "sha256" : "36def0b859beaf21910157b4c33eb3b06d8ce459c942102f16988cca6ea164df"
+                    "type" : "git",
+                    "url" : "https://github.com/python-hyper/brotlipy",
+                    "tag" : "v0.7.0",
+                    "commit" : "da3be6051386791ea7f5372230caecc2328262ff"
                 },
                 {
                     "type" : "shell",
@@ -758,20 +560,6 @@
         {
             "name" : "python-cssselect",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -783,9 +571,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://files.pythonhosted.org/packages/70/54/37630f6eb2c214cdee2ae56b7287394c8aa2f3bafb8b4eb8c3791aae7a14/cssselect-1.1.0.tar.gz",
-                    "sha256" : "f95f8dedd925fd8f54edb3d2dfb44c190d9d18512377d3c1e2388d16126879bc"
+                    "type" : "git",
+                    "url" : "https://github.com/scrapy/cssselect",
+                    "tag" : "v1.1.0",
+                    "commit" : "518e3e1babcc3db38ab8afe948c05a4799693108"
                 },
                 {
                     "type" : "shell",
@@ -798,20 +587,6 @@
         {
             "name" : "python-readability",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -825,7 +600,7 @@
                 {
                     "type" : "git",
                     "url" : "https://github.com/buriy/python-readability",
-                    "commit" : "615ce803c6a19a6a0699eaff685ef99a2a51eee7"
+                    "commit" : "5800210e9957793f1126578bbcbeeded8e426760"
                 },
                 {
                     "type" : "shell",
@@ -838,20 +613,6 @@
         {
             "name" : "python-pygments",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
@@ -863,9 +624,10 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/pygments/pygments/archive/2.5.2.tar.gz",
-                    "sha256" : "7b90dc3fac7d0925aecffb8caa27a039f2b7c34ad6d02696c509a629d0f14f30"
+                    "type" : "git",
+                    "url" : "https://github.com/pygments/pygments",
+                    "tag" : "2.6.1",
+                    "commit" : "d2eae8580d7e363bca03554e3b516d0fd77b25cb"
                 },
                 {
                     "type" : "shell",
@@ -878,20 +640,6 @@
         {
             "name" : "python-beautifulsoup",
             "buildsystem" : "simple",
-            "build-options" : {
-                "arch" : {
-                    "i386" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    },
-                    "arm" : {
-                        "env" : {
-                            "MAX_CONCURRENCY" : "1"
-                        }
-                    }
-                }
-            },
             "ensure-writable" : [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
