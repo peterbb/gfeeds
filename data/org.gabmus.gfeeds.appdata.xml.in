@@ -54,7 +54,7 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>gabmus@disroot.org</update_contact>
     <releases>
-        <release version="0.13" timestamp="">
+        <release version="0.13" timestamp="1584181344">
             <description>
                 <ul>
                     <li>You can now add some feeds by just using the website URL</li>
