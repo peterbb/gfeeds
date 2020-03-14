@@ -118,9 +118,9 @@ if ascli_exe.found()
         ascli_exe,
         args: [
             'validate',
-            '--no-net',
-            '--pedantic',
-            app_id + '.appdata.xml.in'
+            #'--no-net',
+            #'--pedantic',
+            'data/' + app_id + '.appdata.xml'
         ]
     )
 endif
