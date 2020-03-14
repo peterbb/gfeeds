@@ -1,11 +1,12 @@
 [Desktop Entry]
+Version=1.0
+Type=Application
 Name=@prettyname@
 Comment=News reader for GNOME
-Exec=@bindir@/@projectname@ %u
+Categories=Network;Feed;GTK;GNOME;
 Icon=@appid@
+Exec=@bindir@/@projectname@ %u
 Terminal=false
-Type=Application
 StartupNotify=true
 MimeType=application/xml;text/xml;text/x-opml;
-Categories=Network;GTK;GNOME;
 Keywords=rss;reader;feed;news;
