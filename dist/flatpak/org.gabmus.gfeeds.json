@@ -25,9 +25,9 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.13/libhandy-v0.0.13.tar.gz",
-                    "sha256" : "138bec94e66d15a7a19350b65845d4529bcd969ea913ab3eb438f56fe47d5d37"
+                    "type" : "git",
+                    "url" : "https://source.puri.sm/Librem5/libhandy",
+                    "tag" : "v0.0.13"
                 }
             ]
         },
@@ -356,10 +356,9 @@
             ],
             "sources" : [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/psf/requests",
-                    "tag" : "v2.23.0",
-                    "commit" : "c7e0fc087ceeadb8b4c84a0953a422c474093d6d"
+                    "type" : "archive",
+                    "url" : "https://github.com/psf/requests/archive/v2.23.0.tar.gz",
+                    "sha256" : "bf063ded6c5c3f238f89189a791df4a22270d1ccd88b1a21687ecb6a9c6b1335"
                 },
                 {
                     "type" : "shell",
