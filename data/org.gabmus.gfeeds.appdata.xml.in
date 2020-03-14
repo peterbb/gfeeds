@@ -48,6 +48,23 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>gabmus@disroot.org</update_contact>
     <releases>
+        <release version="0.13" timestamp="">
+            <description>
+                <ul>
+                    <li>You can now add some feeds by just using the website URL</li>
+                    <li>New generated placeholder icon for feeds without one</li>
+                    <li>Improved reader mode</li>
+                    <li>Swipe left on your touchscreen to move back from an article</li>
+                    <li>Code blocks in articles now have syntax highlighting</li>
+                    <li>Added French translation</li>
+                    <li>Removed the colored border left of the articles</li>
+                    <li>More keyboard shortcuts</li>
+                    <li>Added option to refresh articles on startup</li>
+                    <li>Updated to the GNOME 3.36 runtime</li>
+                    <li>Various improvements and bug fixes</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.12" timestamp="1575482243">
             <description>
                 <ul>
