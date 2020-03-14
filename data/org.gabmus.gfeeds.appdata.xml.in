@@ -54,6 +54,14 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>gabmus@disroot.org</update_contact>
     <releases>
+        <release version="0.13.1" timestamp="1584193485">
+            <description>
+                <ul>
+                    <li>Updated version number</li>
+                    <li>Updated Italian translation</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.13" timestamp="1584181344">
             <description>
                 <ul>
