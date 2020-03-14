@@ -111,6 +111,20 @@ app_settings = gnome.compile_schemas()
 #    install_dir: join_paths(datadir, 'metainfo')
 #)
 
+ascli_exe = find_program('appstreamcli', required: false)
+if ascli_exe.found()
+    test(
+        'validate metainfo file',
+        ascli_exe,
+        args: [
+            'validate',
+            '--no-net',
+            '--pedantic',
+            app_id + '.appdata.xml.in'
+        ]
+    )
+endif
+
 i18n.merge_file(
     input: app_id + '.appdata.xml.in',
     output: app_id + '.appdata.xml',
