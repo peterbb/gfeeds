@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-14 14:45+0100\n"
+"POT-Creation-Date: 2020-03-19 09:49+0100\n"
 "PO-Revision-Date: 2020-03-14 14:49+0100\n"
 "Last-Translator: Gabriele Musco <gabmus@disroot.org>\n"
 "Language-Team: Italian\n"
@@ -45,7 +45,7 @@ msgstr "Errori nell'analisi del feed `{0}`"
 msgid "`{0}` may not be an RSS or Atom feed"
 msgstr "`{0}` potrebbe non essere un feed RSS o Atom"
 
-#: ../gfeeds/rss_parser.py:219
+#: ../gfeeds/rss_parser.py:222
 #, python-brace-format
 msgid ""
 "Error resizing favicon for feed {0}. Probably not an image.\n"
@@ -55,7 +55,7 @@ msgstr ""
 "un'immagine.\n"
 "Provo a scaricare la favicon da un articolo."
 
-#: ../gfeeds/rss_parser.py:228
+#: ../gfeeds/rss_parser.py:231
 #, python-brace-format
 msgid ""
 "Error resizing favicon from article for feed {0}.\n"
@@ -114,17 +114,17 @@ msgstr "url"
 msgid "opml file local url or rss remote url to import"
 msgstr "url locale del file opml o url rss remota da importare"
 
-#: ../gfeeds/download_manager.py:84
+#: ../gfeeds/download_manager.py:86
 #, python-brace-format
 msgid "`{0}`: connection timed out"
 msgstr "`{0}`: timeout connessione"
 
-#: ../gfeeds/download_manager.py:86
+#: ../gfeeds/download_manager.py:88
 #, python-brace-format
 msgid "`{0}` is not an URL"
 msgstr "`{0}` non è un URL"
 
-#: ../gfeeds/download_manager.py:111
+#: ../gfeeds/download_manager.py:113
 #, python-brace-format
 msgid "Error downloading `{0}`, code `{1}`"
 msgstr "Errore nel download di `{0}`, codice `{1}`"
