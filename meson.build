@@ -1,5 +1,5 @@
 project('gfeeds',
-    version: '0.13.1',
+    version: '0.13.2',
     meson_version: '>= 0.50.0',
     license: 'GPL3'
 )
