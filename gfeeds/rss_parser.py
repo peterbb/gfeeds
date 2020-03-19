@@ -203,8 +203,11 @@ class Feed:
             shasum(self.link)+'.png'
         if not isfile(self.favicon_path):
             if self.image_url:
-                download_raw(self.image_url, self.favicon_path)
-            else:
+                try:
+                    download_raw(self.image_url, self.favicon_path)
+                except Exception:
+                    self.image_url = None
+            if not self.image_url:
                 try:
                     get_favicon(self.link, self.favicon_path)
                     if not isfile(self.favicon_path):

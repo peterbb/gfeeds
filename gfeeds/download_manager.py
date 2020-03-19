@@ -39,7 +39,9 @@ def download_raw(link, dest):
             for chunk in res.iter_content(1024):
                 fd.write(chunk)
     else:
-        raise requests.HTTPError(f'response code {res.status_code}')
+        raise requests.HTTPError(
+            f'response code {res.status_code} for url `{link}`'
+        )
 
 
 def extract_feed_url_from_html(link):
