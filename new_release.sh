@@ -12,7 +12,7 @@ PROJECT_NAME=$(grep "project('" meson.build | sed "s/project('//;s/',//")
 n_version="$1"
 changelog="$2"
 
-sed -i "s/    version: '.*',/    version: '$n_version'/" meson.build
+sed -i "s/    version: '.*',/    version: '$n_version',/" meson.build
 
 MANIFEST_PATH="dist/flatpak/org.$AUTHOR.$PROJECT_NAME.json"
 TARGET_MODULE="$PROJECT_NAME"
