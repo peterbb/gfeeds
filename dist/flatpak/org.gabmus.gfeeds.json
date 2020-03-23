@@ -1,11 +1,11 @@
 {
-    "app-id" : "org.gabmus.gfeeds",
-    "command" : "gfeeds",
-    "runtime" : "org.gnome.Platform",
-    "runtime-version" : "3.36",
-    "sdk" : "org.gnome.Sdk",
-    "finish-args" : [
-    	"--device=dri",
+    "app-id": "org.gabmus.gfeeds",
+    "command": "gfeeds",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.36",
+    "sdk": "org.gnome.Sdk",
+    "finish-args": [
+        "--device=dri",
         "--share=ipc",
         "--socket=x11",
         "--share=network",
@@ -16,41 +16,41 @@
         "--talk-name=ca.desrt.dconf",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
-    "modules" : [
+    "modules": [
         {
-            "name" : "libhandy",
-            "buildsystem" : "meson",
-            "config-opts" : [
+            "name": "libhandy",
+            "buildsystem": "meson",
+            "config-opts": [
                 "--buildtype=release"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://source.puri.sm/Librem5/libhandy",
-                    "tag" : "v0.0.13"
+                    "type": "git",
+                    "url": "https://source.puri.sm/Librem5/libhandy",
+                    "tag": "v0.0.13"
                 }
             ]
         },
         {
-            "name" : "cython",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "cython",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "config-opts" : [
+            "config-opts": [
                 "--buildtype=release"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "archive",
-                    "url" : "https://files.pythonhosted.org/packages/d9/82/d01e767abb9c4a5c07a6a1e6f4d5a8dfce7369318d31f48a52374094372e/Cython-0.29.15.tar.gz",
-                    "sha256" : "60d859e1efa5cc80436d58aecd3718ff2e74b987db0518376046adedba97ac30"
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/d9/82/d01e767abb9c4a5c07a6a1e6f4d5a8dfce7369318d31f48a52374094372e/Cython-0.29.15.tar.gz",
+                    "sha256": "60d859e1efa5cc80436d58aecd3718ff2e74b987db0518376046adedba97ac30"
                 }
             ]
         },
@@ -118,10 +118,10 @@
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
             "build-commands": [
-            	"pwd",
-            	"ls",
-            	"python3 setup.py build",
-            	"python3 setup.py egg_info",
+                "pwd",
+                "ls",
+                "python3 setup.py build",
+                "python3 setup.py egg_info",
                 "python3 setup.py install --prefix=/app --root=/"
             ],
             "sources": [
@@ -139,7 +139,7 @@
                 }
             ]
         },
-	{
+        {
             "name": "python-dateutil",
             "buildsystem": "simple",
             "build-options": {
@@ -181,499 +181,499 @@
             ]
         },
         {
-            "name" : "python-lxml",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-lxml",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py build --with-cython",
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/lxml/lxml",
-                    "tag" : "lxml-4.5.0",
-                    "commit" : "8d23c0caa4aee4f36ba553ad58bb506a14d2b33a"
+                    "type": "git",
+                    "url": "https://github.com/lxml/lxml",
+                    "tag": "lxml-4.5.0",
+                    "commit": "8d23c0caa4aee4f36ba553ad58bb506a14d2b33a"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-idna",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-idna",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/kjd/idna",
-                    "tag" : "v2.9",
-                    "commit" : "1233a730bc26811b5ae65c9ca9d5cc9ded2bdf9b"
+                    "type": "git",
+                    "url": "https://github.com/kjd/idna",
+                    "tag": "v2.9",
+                    "commit": "1233a730bc26811b5ae65c9ca9d5cc9ded2bdf9b"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-listparser",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-listparser",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/kurtmckee/listparser/archive/v0.18.tar.gz",
-                    "sha256" : "cee2d369b8e494142e045ac72848727543f3391ad8b8489ff8a3e8a53b6b0a48"
+                    "type": "archive",
+                    "url": "https://github.com/kurtmckee/listparser/archive/v0.18.tar.gz",
+                    "sha256": "cee2d369b8e494142e045ac72848727543f3391ad8b8489ff8a3e8a53b6b0a48"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-certifi",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-certifi",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/certifi/python-certifi",
-                    "tag" : "2019.11.28",
-                    "commit" : "21abb9b9bbf4c0cfecf652fadafee3eb9615d553"
+                    "type": "git",
+                    "url": "https://github.com/certifi/python-certifi",
+                    "tag": "2019.11.28",
+                    "commit": "21abb9b9bbf4c0cfecf652fadafee3eb9615d553"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-chardet",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-chardet",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/chardet/chardet",
-                    "tag" : "3.0.4",
-                    "commit" : "9b8c5c2fb118d76c6beeab9affd01c332732a530"
+                    "type": "git",
+                    "url": "https://github.com/chardet/chardet",
+                    "tag": "3.0.4",
+                    "commit": "9b8c5c2fb118d76c6beeab9affd01c332732a530"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-urllib3",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-urllib3",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/urllib3/urllib3",
-                    "tag" : "1.25.8",
-                    "commit" : "2a57bc5758075a9248cc0d87f66a2ff678338478"
+                    "type": "git",
+                    "url": "https://github.com/urllib3/urllib3",
+                    "tag": "1.25.8",
+                    "commit": "2a57bc5758075a9248cc0d87f66a2ff678338478"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-requests",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-requests",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "archive",
-                    "url" : "https://github.com/psf/requests/archive/v2.23.0.tar.gz",
-                    "sha256" : "bf063ded6c5c3f238f89189a791df4a22270d1ccd88b1a21687ecb6a9c6b1335"
+                    "type": "archive",
+                    "url": "https://github.com/psf/requests/archive/v2.23.0.tar.gz",
+                    "sha256": "bf063ded6c5c3f238f89189a791df4a22270d1ccd88b1a21687ecb6a9c6b1335"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-webencodings",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-webencodings",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/gsnedders/python-webencodings",
-                    "tag" : "v0.5.1",
-                    "commit" : "fa2cb5d75ab41e63ace691bc0825d3432ba7d694"
+                    "type": "git",
+                    "url": "https://github.com/gsnedders/python-webencodings",
+                    "tag": "v0.5.1",
+                    "commit": "fa2cb5d75ab41e63ace691bc0825d3432ba7d694"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-html5lib",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-html5lib",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/html5lib/html5lib-python",
-                    "tag" : "1.0.1",
-                    "commit" : "93eb5c193892b7fdc5e08d28c2984249b43e0cd1"
+                    "type": "git",
+                    "url": "https://github.com/html5lib/html5lib-python",
+                    "tag": "1.0.1",
+                    "commit": "93eb5c193892b7fdc5e08d28c2984249b43e0cd1"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-feedparser",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-feedparser",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/kurtmckee/feedparser",
-                    "tag" : "5.2.1",
-                    "commit" : "cf4185144c5ae012ada8203d0f33bcc57e4aeb6f"
+                    "type": "git",
+                    "url": "https://github.com/kurtmckee/feedparser",
+                    "tag": "5.2.1",
+                    "commit": "cf4185144c5ae012ada8203d0f33bcc57e4aeb6f"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-pillow",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-pillow",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/python-pillow/Pillow",
-                    "tag" : "7.0.0",
-                    "commit" : "1cecf08d16509c20473766b4cdb7a65169844819"
+                    "type": "git",
+                    "url": "https://github.com/python-pillow/Pillow",
+                    "tag": "7.0.0",
+                    "commit": "1cecf08d16509c20473766b4cdb7a65169844819"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-pycparser",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-pycparser",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/eliben/pycparser",
-                    "tag" : "release_v2.20",
-                    "sha256" : "0055facfb5b5289ce8ef2ef12b18e34a223f9d20"
+                    "type": "git",
+                    "url": "https://github.com/eliben/pycparser",
+                    "tag": "release_v2.20",
+                    "sha256": "0055facfb5b5289ce8ef2ef12b18e34a223f9d20"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-cffi",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-cffi",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "archive",
-                    "url" : "https://files.pythonhosted.org/packages/05/54/3324b0c46340c31b909fcec598696aaec7ddc8c18a63f2db352562d3354c/cffi-1.14.0.tar.gz",
-                    "sha256" : "2d384f4a127a15ba701207f7639d94106693b6cd64173d6c8988e2c25f3ac2b6"
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/05/54/3324b0c46340c31b909fcec598696aaec7ddc8c18a63f2db352562d3354c/cffi-1.14.0.tar.gz",
+                    "sha256": "2d384f4a127a15ba701207f7639d94106693b6cd64173d6c8988e2c25f3ac2b6"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-brotlipy",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-brotlipy",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/python-hyper/brotlipy",
-                    "tag" : "v0.7.0",
-                    "commit" : "da3be6051386791ea7f5372230caecc2328262ff"
+                    "type": "git",
+                    "url": "https://github.com/python-hyper/brotlipy",
+                    "tag": "v0.7.0",
+                    "commit": "da3be6051386791ea7f5372230caecc2328262ff"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-cssselect",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-cssselect",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/scrapy/cssselect",
-                    "tag" : "v1.1.0",
-                    "commit" : "518e3e1babcc3db38ab8afe948c05a4799693108"
+                    "type": "git",
+                    "url": "https://github.com/scrapy/cssselect",
+                    "tag": "v1.1.0",
+                    "commit": "518e3e1babcc3db38ab8afe948c05a4799693108"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-readability",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-readability",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/buriy/python-readability",
-                    "commit" : "5800210e9957793f1126578bbcbeeded8e426760"
+                    "type": "git",
+                    "url": "https://github.com/buriy/python-readability",
+                    "commit": "5800210e9957793f1126578bbcbeeded8e426760"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-pygments",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-pygments",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://github.com/pygments/pygments",
-                    "tag" : "2.6.1",
-                    "commit" : "d2eae8580d7e363bca03554e3b516d0fd77b25cb"
+                    "type": "git",
+                    "url": "https://github.com/pygments/pygments",
+                    "tag": "2.6.1",
+                    "commit": "d2eae8580d7e363bca03554e3b516d0fd77b25cb"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "python-beautifulsoup",
-            "buildsystem" : "simple",
-            "ensure-writable" : [
+            "name": "python-beautifulsoup",
+            "buildsystem": "simple",
+            "ensure-writable": [
                 "/lib/python*/site-packages/easy-install.pth",
                 "/lib/python*/site-packages/setuptools.pth",
                 "/app/lib/python*/site-packages/easy-install.pth",
                 "/app/lib/python*/site-packages/setuptools.pth"
             ],
-            "build-commands" : [
+            "build-commands": [
                 "python3 setup.py install --prefix=/app --root=/"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "archive",
-                    "url" : "https://files.pythonhosted.org/packages/52/ba/0e121661f529e7f456e903bf5c4d255b8051d8ce2b5e629c5212efe4c3f1/beautifulsoup4-4.8.2.tar.gz",
-                    "sha256" : "05fd825eb01c290877657a56df4c6e4c311b3965bda790c613a3d6fb01a5462a"
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/52/ba/0e121661f529e7f456e903bf5c4d255b8051d8ce2b5e629c5212efe4c3f1/beautifulsoup4-4.8.2.tar.gz",
+                    "sha256": "05fd825eb01c290877657a56df4c6e4c311b3965bda790c613a3d6fb01a5462a"
                 },
                 {
-                    "type" : "shell",
-                    "commands" : [
+                    "type": "shell",
+                    "commands": [
                         "sed -i 's/if not platform_/if not dirs/' setup.py"
                     ]
                 }
             ]
         },
         {
-            "name" : "gfeeds",
-            "buildsystem" : "meson",
-            "builddir" : true,
-            "config-opts" : [
+            "name": "gfeeds",
+            "buildsystem": "meson",
+            "builddir": true,
+            "config-opts": [
                 "--buildtype=release"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/World/gfeeds",
-                    "tag" : "0.13.2"
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/World/gfeeds",
+                    "tag": "0.13.3"
                 }
             ]
         }
