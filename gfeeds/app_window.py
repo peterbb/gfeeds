@@ -1,4 +1,5 @@
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Handy, GObject
+from typing import Callable
 from gfeeds.confManager import ConfManager
 from gfeeds.feeds_manager import FeedsManager
 from gfeeds.sidebar import GFeedsSidebar
@@ -172,7 +173,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         for s in shortcuts_l:
             self.add_accelerator(s['combo'], s['cb'])
 
-    def on_headerbar_squeeze(self, caller, squeezed):
+    def on_headerbar_squeeze(self, caller: GObject.Object, squeezed: bool):
         self.bottom_bar.set_reveal(squeezed)
 
     def set_headerbar_or_titlebar(self, *args):
@@ -197,7 +198,7 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             ]:
                 h.get_style_context().add_class('notheaderbar')
 
-    def add_accelerator(self, shortcut, callback):
+    def add_accelerator(self, shortcut: str, callback: Callable):
         if shortcut:
             key, mod = Gtk.accelerator_parse(shortcut)
             self.accel_group.connect(
@@ -222,7 +223,11 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
             self.confman.conf['read_items'].remove(ri)
         self.confman.save_conf()
 
-    def on_sidebar_row_activated(self, listbox, row):
+    def on_sidebar_row_activated(
+            self,
+            listbox: Gtk.ListBox,
+            row: Gtk.ListBoxRow
+    ):
         row.popover.set_read(True)
         other_listbox = (
             self.sidebar.listbox

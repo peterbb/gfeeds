@@ -1,9 +1,9 @@
 from gettext import gettext as _
+from os.path import isfile
 import requests
+from lxml.html import html5parser
 from gfeeds.confManager import ConfManager
 from gfeeds.sha import shasum
-from os.path import isfile
-from lxml.html import html5parser
 from gfeeds.url_sanitizer import sanitize
 
 confman = ConfManager()
@@ -18,7 +18,7 @@ TIMEOUT = 30
 
 
 # will return the content of a file if it's a file url
-def download_text(link):
+def download_text(link: str) -> str:
     if link[:8] == 'file:///':
         with open(link[7:]) as fd:
             toret = fd.read()
@@ -32,7 +32,7 @@ def download_text(link):
         raise requests.HTTPError(f'response code {res.status_code}')
 
 
-def download_raw(link, dest):
+def download_raw(link: str, dest: str):
     res = requests.get(link, headers=GET_HEADERS, timeout=TIMEOUT)
     if res.status_code == 200:
         with open(dest, 'wb') as fd:
@@ -44,7 +44,7 @@ def download_raw(link, dest):
         )
 
 
-def extract_feed_url_from_html(link):
+def extract_feed_url_from_html(link: str) -> str:
     try:
         html = download_text(link)
         root = html5parser.fromstring(
@@ -67,7 +67,8 @@ def extract_feed_url_from_html(link):
     return None
 
 
-def download_feed(link, get_cached=False):
+# TODO: refactor this, the returned typeS(!) are a mess
+def download_feed(link: str, get_cached: bool = False):
     dest_path = confman.cache_path.joinpath(shasum(link)+'.rss')
     if get_cached:
         return (dest_path, link) if isfile(dest_path) else ('not_cached', None)

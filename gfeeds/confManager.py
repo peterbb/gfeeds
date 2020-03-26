@@ -164,7 +164,7 @@ class ConfManager(metaclass=Singleton):
         )
 
     @property
-    def max_article_age(self):
+    def max_article_age(self) -> timedelta:
         return timedelta(days=self.conf['max_article_age_days'])
 
     def dump_read_items_to_conf(self, *args):
@@ -174,7 +174,7 @@ class ConfManager(metaclass=Singleton):
         with open(self.path, 'w') as fd:
             fd.write(json.dumps(self.conf))
 
-    def get_background_color(self):
+    def get_background_color(self) -> str:
         if ConfManager._background_color is not None:
             return ConfManager._background_color
         if not self.window:

@@ -150,7 +150,12 @@ class GFeedsApplication(Gtk.Application):
                     [a['accel']]
                 )
 
-    def view_mode_change(self, action, target, *args):
+    def view_mode_change(
+            self,
+            action: Gio.SimpleAction,
+            target: GLib.Variant,
+            *args
+    ):
         action.change_state(target)
         target_s = str(target).strip("'")
         if target_s not in ['webview', 'reader', 'rsscont']:
@@ -159,7 +164,7 @@ class GFeedsApplication(Gtk.Application):
         self.confman.conf['default_view'] = target_s
         self.confman.save_conf()
 
-    def show_read_items(self, action, *args):
+    def show_read_items(self, action: Gio.SimpleAction, *args):
         action.change_state(
             GLib.Variant.new_boolean(not action.get_state().get_boolean())
         )
@@ -180,7 +185,7 @@ class GFeedsApplication(Gtk.Application):
         )
         mf_win.present()
 
-    def add_opml_feeds(self, f_path):
+    def add_opml_feeds(self, f_path: str):
         n_feeds_urls_l = opml_to_rss_list(f_path)
         for url in n_feeds_urls_l:
             self.feedman.add_feed(url)
@@ -281,7 +286,7 @@ class GFeedsApplication(Gtk.Application):
                     if res == Gtk.ResponseType.YES:
                         self.feedman.add_feed(self.args.argurl)
 
-    def do_command_line(self, args):
+    def do_command_line(self, args: list):
         """
         GTK.Application command line handler
         called if Gio.ApplicationFlags.HANDLES_COMMAND_LINE is set.

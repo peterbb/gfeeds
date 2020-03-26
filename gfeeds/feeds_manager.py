@@ -57,7 +57,12 @@ class FeedsManager(metaclass=Singleton):
                 FeedItem.new_from_dict(si)
             )
 
-    def _add_feed_async_worker(self, uri, refresh=False, get_cached=False):
+    def _add_feed_async_worker(
+            self,
+            uri: str,
+            refresh: bool = False,
+            get_cached: bool = False
+    ):
         if not refresh:
             if 'http://' not in uri and 'https://' not in uri:
                 uri = 'http://' + uri
@@ -76,7 +81,8 @@ class FeedsManager(metaclass=Singleton):
                 self.confman.save_conf()
             feed_uri_from_html = extract_feed_url_from_html(uri)
             if feed_uri_from_html is not None:
-                return self._add_feed_async_worker(feed_uri_from_html, refresh)
+                self._add_feed_async_worker(feed_uri_from_html, refresh)
+                return
             self.errors.append(n_feed.error)
         else:
             GLib.idle_add(
@@ -88,7 +94,12 @@ class FeedsManager(metaclass=Singleton):
                 self.emit, 'feedmanager_refresh_end', ''
             )
 
-    def refresh(self, *args, get_cached=False, is_startup=False):
+    def refresh(
+            self,
+            *args,
+            get_cached: bool = False,
+            is_startup: bool = False
+    ):
         self.emit(
             'feedmanager_refresh_start',
             'startup' if is_startup else ''
@@ -116,7 +127,7 @@ class FeedsManager(metaclass=Singleton):
         )
         tp.start()
 
-    def add_feed(self, uri, is_new=False):
+    def add_feed(self, uri: str, is_new: bool = False) -> bool:
         if is_new and uri in self.confman.conf['feeds'].keys():
             return False
         self.emit('feedmanager_refresh_start', '')
