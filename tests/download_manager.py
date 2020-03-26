@@ -3,17 +3,12 @@ import httpretty
 import sure
 from os import remove
 from os.path import isfile
-
-from .sample_html import SAMPLE_HTML, RSS_URL, ATOM_URL
-
-import gi
-gi.require_version('Gtk', '3.0')
-
 from gfeeds.download_manager import (
     download_text,
     download_raw,
     extract_feed_url_from_html
 )
+from .sample_html import SAMPLE_HTML, RSS_URL, ATOM_URL
 
 
 class TestDownloadManager(unittest.TestCase):
