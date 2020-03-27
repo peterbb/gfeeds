@@ -2,6 +2,7 @@ from gettext import gettext as _
 from xml.sax.saxutils import escape
 from gi.repository import Gtk, Pango
 from gfeeds.feeds_manager import FeedsManager
+from gfeeds.confManager import ConfManager
 
 
 class GFeedsInfoBar(Gtk.InfoBar):
@@ -39,8 +40,10 @@ class GFeedsErrorsBar(GFeedsInfoBar):
             message_type=Gtk.MessageType.INFO,
             **kwargs
         )
+        self.confman = ConfManager()
         self.parent_win = parent_win
         self.errors = []
+        self.problematic_feeds = []
         self.show_button = Gtk.Button(label=_('Show'))
         self.ignore_button = Gtk.Button(label=_('Ignore'))
         self.show_button.connect('clicked', self.show_errors)
@@ -52,8 +55,9 @@ class GFeedsErrorsBar(GFeedsInfoBar):
         self.container_box.pack_end(self.show_button, False, False, 6)
         self.set_revealed(False)
 
-    def engage(self, errors):
+    def engage(self, errors: list, problematic_feeds: list):
         self.errors = errors
+        self.problematic_feeds = problematic_feeds
         if len(errors) != 0:
             self.set_revealed(True)
 
@@ -61,16 +65,24 @@ class GFeedsErrorsBar(GFeedsInfoBar):
         dialog = Gtk.MessageDialog(
             self.parent_win,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            Gtk.MessageType.INFO,
-            Gtk.ButtonsType.OK,
-            _('There were problems with some feeds')
+            Gtk.MessageType.QUESTION,
+            Gtk.ButtonsType.YES_NO,
+            _(
+                'There were problems with some feeds. '
+                'Do you want to remove them?'
+            )
         )
         dialog.format_secondary_markup(
             escape('\n'.join(self.errors))
         )
-        dialog.run()
+        if (dialog.run() == Gtk.ResponseType.YES):
+            for pf in self.problematic_feeds:
+                if pf in self.confman.conf['feeds'].keys():
+                    self.confman.conf['feeds'].pop(pf)
+            self.set_revealed(False)
+        else:
+            self.set_revealed(True)
         dialog.close()
-        self.set_revealed(True)
 
 
 class GFeedsConnectionBar(GFeedsInfoBar):

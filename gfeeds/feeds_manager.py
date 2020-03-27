@@ -49,6 +49,7 @@ class FeedsManager(metaclass=Singleton):
         self.saved_feeds_items = SignalerList()
 
         self.errors = []
+        self.problematic_feeds = []
 
     def populate_saved_feeds_items(self):
         self.saved_feeds_items.empty()
@@ -76,14 +77,15 @@ class FeedsManager(metaclass=Singleton):
             return
         n_feed = Feed(download_res)
         if n_feed.is_null:
-            if uri in self.confman.conf['feeds'].keys():
-                self.confman.conf['feeds'].pop(uri)
-                self.confman.save_conf()
             feed_uri_from_html = extract_feed_url_from_html(uri)
             if feed_uri_from_html is not None:
+                if uri in self.confman.conf['feeds'].keys():
+                    self.confman.conf['feeds'].pop(uri)
+                    self.confman.save_conf()
                 self._add_feed_async_worker(feed_uri_from_html, refresh)
                 return
             self.errors.append(n_feed.error)
+            self.problematic_feeds.append(uri)
         else:
             GLib.idle_add(
                 self.feeds.append, n_feed
@@ -105,6 +107,7 @@ class FeedsManager(metaclass=Singleton):
             'startup' if is_startup else ''
         )
         self.errors = []
+        self.problematic_feeds = []
         if is_online():
             self.emit('feedmanager_online_changed', True)
         else:

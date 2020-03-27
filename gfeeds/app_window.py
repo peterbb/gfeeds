@@ -45,7 +45,10 @@ class GFeedsAppWindow(Gtk.ApplicationWindow):
         self.errors_bar = GFeedsErrorsBar(self)
         self.feedman.connect(
             'feedmanager_refresh_end',
-            lambda *args: self.errors_bar.engage(self.feedman.errors)
+            lambda *args: self.errors_bar.engage(
+                self.feedman.errors,
+                self.feedman.problematic_feeds
+            )
         )
         self.searchbar = GFeedsSearchbar()
         self.searchbar.entry.connect(
