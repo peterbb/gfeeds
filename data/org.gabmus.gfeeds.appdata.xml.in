@@ -54,6 +54,14 @@
     <url type="bugtracker">https://gitlab.com/gabmus/gnome-feeds/issues</url>
     <update_contact>gabmus@disroot.org</update_contact>
     <releases>
+        <release version="0.13.4" timestamp="1585301719">
+            <description>
+                <ul>
+                    <li>Don't remove feeds automatically if they have errors, instead ask the user what to do</li>
+                    <li>Updated Italian translation</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.13.3" timestamp="1584954312">
             <description>
                 <ul>
@@ -61,7 +69,6 @@
                 </ul>
             </description>
         </release>
-
         <release version="0.13.2" timestamp="1584607863">
             <description>
                 <ul>
