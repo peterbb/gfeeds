@@ -20,6 +20,7 @@
     <file preprocess="xml-stripblanks">ui/spinner_button.glade</file>
     <file preprocess="xml-stripblanks">ui/webview_filler.glade</file>
     <file preprocess="xml-stripblanks">ui/webview_with_notification.glade</file>
+    <file preprocess="xml-stripblanks">ui/scrolled_label.glade</file>
 
     <file preprocess="xml-stripblanks">icons/circle-filled-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/ephy-reader-mode-symbolic.svg</file>

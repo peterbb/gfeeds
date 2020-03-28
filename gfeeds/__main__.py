@@ -24,7 +24,11 @@ from gfeeds.confManager import ConfManager
 from gfeeds.feeds_manager import FeedsManager
 from gfeeds.app_window import GFeedsAppWindow
 from gfeeds.settings_window import show_settings_window
-from gfeeds.opml_manager import opml_to_rss_list, feeds_list_to_opml
+from gfeeds.opml_manager import (
+    opml_to_rss_list,
+    feeds_list_to_opml,
+    add_feeds_from_opml
+)
 from gfeeds.opml_file_chooser import (
     GFeedsOpmlFileChooserDialog,
     GFeedsOpmlSavePathChooserDialog
@@ -185,17 +189,12 @@ class GFeedsApplication(Gtk.Application):
         )
         mf_win.present()
 
-    def add_opml_feeds(self, f_path: str):
-        n_feeds_urls_l = opml_to_rss_list(f_path)
-        for url in n_feeds_urls_l:
-            self.feedman.add_feed(url)
-
     def import_opml(self, *args):
         dialog = GFeedsOpmlFileChooserDialog(self.window)
         res = dialog.run()
         # dialog.close()
         if res == Gtk.ResponseType.ACCEPT:
-            self.add_opml_feeds(dialog.get_filename())
+            add_feeds_from_opml(dialog.get_filename())
 
     def export_opml(self, *args):
         dialog = GFeedsOpmlSavePathChooserDialog(self.window)
@@ -264,7 +263,7 @@ class GFeedsApplication(Gtk.Application):
                             res = dialog.run()
                             dialog.close()
                             if res == Gtk.ResponseType.YES:
-                                self.add_opml_feeds(abspath)
+                                add_feeds_from_opml(abspath)
                         elif (
                                 abspath[-4:].lower() in ('.rss', '.xml') or
                                 abspath[-5:].lower() == '.atom'

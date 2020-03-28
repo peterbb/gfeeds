@@ -2,9 +2,10 @@ from xml.sax.saxutils import escape
 from gettext import gettext as _
 from gi.repository import Gtk
 from gfeeds.opml_manager import opml_to_rss_list
+from gfeeds.scrolled_message_dialog import ScrolledMessageDialog
 
 
-class GFeedsConfirmAddDialog(Gtk.MessageDialog):
+class GFeedsConfirmAddDialog(ScrolledMessageDialog):
     def __init__(self, parent, f_path, http=False, **kwargs):
         super().__init__(
             parent,

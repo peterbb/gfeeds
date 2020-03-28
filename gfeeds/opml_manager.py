@@ -1,7 +1,30 @@
+from gi.repository import GLib
 from gettext import gettext as _
 import listparser
+from threading import Thread
 from os.path import isfile
 from xml.sax.saxutils import escape
+from gfeeds.feeds_manager import FeedsManager
+
+feedman = FeedsManager()
+
+
+def __add_feeds_from_opml_callback(n_feeds_urls_l):
+    for url in n_feeds_urls_l:
+        feedman.add_feed(url)
+
+
+def __add_feeds_from_opml_worker(opml_path):
+    n_feeds_urls_l = opml_to_rss_list(opml_path)
+    GLib.idle_add(
+        __add_feeds_from_opml_callback,
+        n_feeds_urls_l
+    )
+
+
+def add_feeds_from_opml(opml_path):
+    t = Thread(target=__add_feeds_from_opml_worker, args=(opml_path,))
+    t.start()
 
 
 def opml_to_rss_list(opml_path):

@@ -7,6 +7,7 @@ from gfeeds.feeds_view import (
     FeedsViewListbox,
     FeedsViewListboxRow
 )
+from gfeeds.scrolled_message_dialog import ScrolledMessageDialog
 
 
 class ManageFeedsHeaderbar(Gtk.HeaderBar):
@@ -72,7 +73,7 @@ class ManageFeedsScrolledWindow(Gtk.ScrolledWindow):
         self.add(self.listbox)
 
 
-class DeleteFeedsConfirmMessageDialog(Gtk.MessageDialog):
+class DeleteFeedsConfirmMessageDialog(ScrolledMessageDialog):
     def __init__(self, parent, selected_feeds, **kwargs):
         super().__init__(
             parent,
