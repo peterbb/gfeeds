@@ -438,13 +438,12 @@
                 {
                     "type": "git",
                     "url": "https://github.com/kurtmckee/feedparser",
-                    "tag": "5.2.1",
-                    "commit": "cf4185144c5ae012ada8203d0f33bcc57e4aeb6f"
+                    "commit": "7e255f06b7ace0a286c4ae311969e51fb1ddfd1c"
                 },
                 {
                     "type": "shell",
                     "commands": [
-                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                        "sed -i '46i_SGML_AVAILABLE = 0\\; sgmllib = None\\; charref = None\\; tagfind = None\\; attrfind = None\\; entityref = None\\; incomplete = None\\; interesting = None\\; shorttag = None\\; shorttagopen = None\\; starttagopen = None\\; endbracket = None' feedparser/sgml.py"
                     ]
                 }
             ]
