@@ -4,14 +4,18 @@ import listparser
 from threading import Thread
 from os.path import isfile
 from xml.sax.saxutils import escape
+from gfeeds.confManager import ConfManager
 from gfeeds.feeds_manager import FeedsManager
 
+confman = ConfManager()
 feedman = FeedsManager()
 
 
 def __add_feeds_from_opml_callback(n_feeds_urls_l):
     for url in n_feeds_urls_l:
-        feedman.add_feed(url)
+        if url not in confman.conf['feeds'].keys():
+            confman.conf['feeds'][url] = {}
+    feedman.refresh()
 
 
 def __add_feeds_from_opml_worker(opml_path):

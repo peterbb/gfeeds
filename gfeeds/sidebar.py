@@ -1,4 +1,4 @@
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, GLib
 from gettext import gettext as _
 from gfeeds.confManager import ConfManager
 from gfeeds.feeds_manager import FeedsManager
@@ -184,11 +184,19 @@ class GFeedsSidebar(Gtk.Stack):
         )
         self.feedman.feeds_items.connect(
             'append',
-            lambda caller, obj: self.on_feeds_items_append(obj)
+            lambda caller, obj: GLib.idle_add(
+                self.on_feeds_items_append,
+                obj,
+                priority=GLib.PRIORITY_LOW)
         )
         self.feedman.feeds_items.connect(
             'extend',
-            self.on_feeds_items_extend
+            lambda caller, obj: GLib.idle_add(
+                self.on_feeds_items_extend,
+                caller,
+                obj,
+                priority=GLib.PRIORITY_LOW
+            )
         )
         self.feedman.feeds_items.connect(
             'empty',

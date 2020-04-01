@@ -50,6 +50,10 @@ class FeedsManager(metaclass=Singleton):
 
         self.errors = []
         self.problematic_feeds = []
+        self.connect(
+            'feedmanager_refresh_end',
+            lambda *args: self.confman.save_conf()
+        )
 
     def populate_saved_feeds_items(self):
         self.saved_feeds_items.empty()
@@ -71,7 +75,6 @@ class FeedsManager(metaclass=Singleton):
                 print(_('Feed {0} exists already, skipping').format(uri))
                 return
             self.confman.conf['feeds'][uri] = {}
-            self.confman.save_conf()
         download_res = download_feed(uri, get_cached=get_cached)
         if get_cached and download_res[0] == 'not_cached':
             return
@@ -81,16 +84,19 @@ class FeedsManager(metaclass=Singleton):
             if feed_uri_from_html is not None:
                 if uri in self.confman.conf['feeds'].keys():
                     self.confman.conf['feeds'].pop(uri)
-                    self.confman.save_conf()
                 self._add_feed_async_worker(feed_uri_from_html, refresh)
                 return
             self.errors.append(n_feed.error)
             self.problematic_feeds.append(uri)
         else:
             GLib.idle_add(
-                self.feeds.append, n_feed
+                self.feeds.append, n_feed, priority=GLib.PRIORITY_LOW
             )
-            GLib.idle_add(self.feeds_items.extend, n_feed.items)
+            GLib.idle_add(
+                self.feeds_items.extend,
+                n_feed.items,
+                priority=GLib.PRIORITY_LOW
+            )
         if not refresh:
             GLib.idle_add(
                 self.emit, 'feedmanager_refresh_end', ''
