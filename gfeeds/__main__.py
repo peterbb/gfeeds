@@ -25,7 +25,6 @@ from gfeeds.feeds_manager import FeedsManager
 from gfeeds.app_window import GFeedsAppWindow
 from gfeeds.settings_window import show_settings_window
 from gfeeds.opml_manager import (
-    opml_to_rss_list,
     feeds_list_to_opml,
     add_feeds_from_opml
 )
