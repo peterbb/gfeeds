@@ -3,6 +3,7 @@ from xml.sax.saxutils import escape
 from gi.repository import Gtk, Pango
 from gfeeds.feeds_manager import FeedsManager
 from gfeeds.confManager import ConfManager
+from gfeeds.scrolled_message_dialog import ScrolledMessageDialog
 
 
 class GFeedsInfoBar(Gtk.InfoBar):
@@ -62,7 +63,7 @@ class GFeedsErrorsBar(GFeedsInfoBar):
             self.set_revealed(True)
 
     def show_errors(self, *args):
-        dialog = Gtk.MessageDialog(
+        dialog = ScrolledMessageDialog(
             self.parent_win,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.QUESTION,
