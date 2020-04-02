@@ -636,6 +636,33 @@
             ]
         },
         {
+            "name": "python-markupsafe",
+            "buildsystem": "simple",
+            "ensure-writable": [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "build-commands": [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/pallets/markupsafe",
+                    "tag": "1.1.1",
+                    "commit": "22c946de28c2f5916f8c88a983a3e48e1cdbd2fd"
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                    ]
+                }
+            ]
+        },
+        {
             "name": "python-beautifulsoup",
             "buildsystem": "simple",
             "ensure-writable": [
