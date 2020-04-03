@@ -54,6 +54,9 @@ def build_syntax_highlight(root: HtmlElement) -> Tuple[str, HtmlElement]:
             except pygments.util.ClassNotFound:
                 pass
 
+        if not code_node.text:
+            continue
+
         if not lexer:
             try:
                 lexer = pygments.lexers.guess_lexer(code_node.text)
