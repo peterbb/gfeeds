@@ -104,19 +104,9 @@ class GFeedsWebView(Gtk.Stack):
     def key_zoom_reset(self, *args):
         self.webkitview.set_zoom_level(1.0)
 
-    def _wait_async(self, tts, callback):
-        sleep(tts)
-        callback()
-
     def show_notif(self, *args):
         self.notif_revealer.set_reveal_child(True)
-        t = threading.Thread(
-            group=None,
-            target=self._wait_async,
-            name=None,
-            args=(5, lambda: GLib.idle_add(self.hide_notif))
-        )
-        t.start()
+        GLib.timeout_add_seconds(5, self.hide_notif)
 
     def hide_notif(self, *args):
         self.notif_revealer.set_reveal_child(False)
@@ -217,18 +207,10 @@ class GFeedsWebView(Gtk.Stack):
         elif self.new_page_loaded and event == WebKit2.LoadEvent.FINISHED:
             self.loading_bar.set_fraction(1.0)
             # waits 3 seconds async then hides the loading bar
-            t = threading.Thread(
-                group=None,
-                target=self._wait_async,
-                name=None,
-                args=(
-                    3,
-                    lambda: GLib.idle_add(
-                        self.loading_bar.set_reveal_child, False
-                    )
-                )
+            GLib.timeout_add_seconds(
+                3,
+                self.loading_bar.set_reveal_child, False
             )
-            t.start()
             self.new_page_loaded = False
             resource = webview.get_main_resource()
             resource.get_data(None, self._get_data_cb, None)
