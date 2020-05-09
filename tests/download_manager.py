@@ -12,9 +12,17 @@ from gfeeds.download_manager import (
 )
 from .sample_html import SAMPLE_HTML, RSS_URL, ATOM_URL
 from .sample_rss import SAMPLE_RSS
+import warnings
 
 
 class TestDownloadManager(unittest.TestCase):
+
+    def setUp(self):
+        warnings.filterwarnings(
+            "ignore",
+            category=ResourceWarning,
+            message="unclosed.*"
+        )
 
     @httpretty.activate
     def test_download_text(self):
