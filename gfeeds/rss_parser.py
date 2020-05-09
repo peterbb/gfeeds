@@ -72,7 +72,8 @@ class FeedItem:
 
     def __repr__(self):
         return 'FeedItem Object `{0}` from Feed {1}'.format(
-            self.title, self.parent_feed.title
+            self.title,
+            self.parent_feed.title
         )
 
     def to_dict(self):
