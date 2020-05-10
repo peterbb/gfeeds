@@ -1,5 +1,4 @@
 from subprocess import Popen
-from time import sleep
 from gettext import gettext as _
 import threading
 from feedparser import FeedParserDict
