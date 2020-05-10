@@ -47,3 +47,7 @@ class TestFeedItem(unittest.TestCase):
         (
             datetime.now(timezone.utc) - feeditem.pub_date
         ).seconds.should.be.lower_than(1)
+
+    # @patch('gfeeds.rss_parser.ConfManager')
+    # def test_Feed_create(self, ConfManager_mock):
+    #     pass
