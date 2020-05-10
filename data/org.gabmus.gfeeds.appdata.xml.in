@@ -6,11 +6,11 @@
     <summary>News reader for GNOME</summary>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
-    <recommends>
+    <!--<recommends>
         <control>pointing</control>
         <control>keyboard</control>
         <control>touch</control>
-    </recommends>
+    </recommends>-->
     <description>
         <p>Feeds is a minimal RSS/Atom feed reader built with speed and simplicity in mind.</p>
         <p>It offers a simple user interface that only shows the latest news from your subscriptions.</p>
