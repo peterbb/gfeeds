@@ -6,8 +6,15 @@
 
 ## Running
 
-Should be integrated in meson at some point, for now
-
 ```bash
 python -m unittest tests
+```
+
+or alternatively
+
+```bash
+mkdir build
+cd build
+meson ..
+ninja test
 ```
