@@ -689,6 +689,60 @@
             ]
         },
         {
+            "name": "python-httpretty",
+            "buildsystem": "simple",
+            "ensure-writable": [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "build-commands": [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/gabrielfalcao/HTTPretty",
+                    "tag": "1.0.2",
+                    "commit": "cd6559d8001bb21163c6d66436e482fc043131ce"
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "python-sure",
+            "buildsystem": "simple",
+            "ensure-writable": [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "build-commands": [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/gabrielfalcao/sure",
+                    "tag": "v1.4.7",
+                    "commit": "4370d1280127ee6afd15ea7485342249b47651af"
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                    ]
+                }
+            ]
+        },
+        {
             "name": "gfeeds",
             "buildsystem": "meson",
             "builddir": true,
