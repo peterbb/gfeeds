@@ -16,6 +16,11 @@
         "--talk-name=ca.desrt.dconf",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
+    "cleanup": [
+        "/usr/lib/python3.*/site-packages/httpretty*",
+        "/usr/lib/python3.*/site-packages/sure*",
+        "/usr/lib/python3.*/site-packages/mock*"
+    ],
     "modules": [
         {
             "name": "libhandy",
@@ -706,6 +711,32 @@
                     "url": "https://github.com/gabrielfalcao/HTTPretty",
                     "tag": "1.0.2",
                     "commit": "cd6559d8001bb21163c6d66436e482fc043131ce"
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "sed -i 's/if not platform_/if not dirs/' setup.py"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "python-mock",
+            "buildsystem": "simple",
+            "ensure-writable": [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "build-commands": [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/2e/35/594f501b2a0fb3732c8190ca885dfdf60af72d678cd5fa8169c358717567/mock-4.0.2.tar.gz",
+                    "sha256": "dd33eb70232b6118298d516bbcecd26704689c386594f0f3c4f13867b2c56f72"
                 },
                 {
                     "type": "shell",
