@@ -5,6 +5,8 @@ from datetime import datetime, timezone, timedelta
 from .sample_rss import SAMPLE_RSS
 
 from gfeeds.rss_parser import FeedItem, FakeFeed, Feed
+from os import remove, makedirs, rmdir, listdir
+from os.path import isfile, isdir
 
 
 class TestFeedItem(unittest.TestCase):
@@ -50,13 +52,21 @@ class TestFeedItem(unittest.TestCase):
         ).seconds.should.be.lower_than(1)
 
     # TODO: test with atom feed, feeds with non utf encodings
+    @patch('gfeeds.rss_parser.get_favicon')
+    @patch('gfeeds.rss_parser.download_raw')
     @patch(
             'builtins.open',
             new_callable=mock_open,
             read_data=SAMPLE_RSS.encode()  # wants bytes
     )
     @patch('gfeeds.rss_parser.ConfManager')
-    def test_Feed_create(self, ConfManager_mock, mock_file):
+    def test_Feed_create(
+            self,
+            ConfManager_mock,
+            mock_file,
+            download_raw_mock,
+            get_favicon_mock
+    ):
         confman_mock = ConfManager_mock()
         download_res = (
             '/some/path',  # feedpath
@@ -70,6 +80,12 @@ class TestFeedItem(unittest.TestCase):
             ) +
             timedelta(days=100)
         )
+        confman_mock.thumbs_cache_path = '/tmp/org.gabmus.gfeeds_test_thumbs'
+        if isdir(confman_mock.thumbs_cache_path):
+            for f in listdir(confman_mock.thumbs_cache_path):
+                remove(f)
+        else:
+            makedirs(confman_mock.thumbs_cache_path)
         feed = Feed(download_res)
 
         feed.is_null.should.be.false
@@ -89,3 +105,9 @@ class TestFeedItem(unittest.TestCase):
         )
         feed.items.should.have.length_of(1)
         # TODO: complete this test, there's more
+
+        # cleanup
+        if isdir(confman_mock.thumbs_cache_path):
+            for f in listdir(confman_mock.thumbs_cache_path):
+                remove(f)
+            rmdir(confman_mock.thumbs_cache_path)
