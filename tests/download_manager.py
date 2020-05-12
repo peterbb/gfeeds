@@ -2,8 +2,11 @@ import unittest
 from unittest.mock import Mock, MagicMock, patch
 import httpretty
 import sure
+import sys
 from os import remove, makedirs, rmdir
 from os.path import isfile
+from gfeeds.confManager import ConfManager
+sys.modules['gfeeds.confManager'].ConfManager = Mock(ConfManager)
 from gfeeds.download_manager import (
     download_text,
     download_raw,
