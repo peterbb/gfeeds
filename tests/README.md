@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-`python-sure python-httpretty`
+`python-sure python-httpretty python-parameterized`
 
 ## Running
 
