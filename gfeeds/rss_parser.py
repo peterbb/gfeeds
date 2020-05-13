@@ -172,6 +172,12 @@ class Feed:
             'href',
             image_tag.get('url', '')
         )
+
+        self.self_link = next(
+            (l.href for l in self.fp_feed.feed.links if l.rel == "self"),
+            None
+        )
+
         self.items = []
         raw_entries = self.fp_feed.get('entries', [])
         for entry in raw_entries:

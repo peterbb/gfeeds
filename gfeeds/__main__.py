@@ -35,6 +35,7 @@ from gfeeds.opml_file_chooser import (
 from gfeeds.manage_feeds_window import GFeedsManageFeedsWindow
 from gfeeds.confirm_add_dialog import GFeedsConfirmAddDialog
 from gfeeds.shortcuts_window import show_shortcuts_window
+from gfeeds.rss_parser import (Feed)
 
 
 class GFeedsApplication(Gtk.Application):
@@ -251,9 +252,24 @@ class GFeedsApplication(Gtk.Application):
         self.window.show_all()
         # self.feedman.refresh(get_cached=True)
         if self.args:
-            if self.args.argurl:
-                if self.args.argurl[:8].lower() == 'file:///':
-                    abspath = self.args.argurl[7:]
+            argurl = self.args.argurl
+            if argurl:
+                if argurl[:7].lower() == 'http://' or argurl[:8].lower() == 'https://':
+                    dialog = GFeedsConfirmAddDialog(
+                        self.window,
+                        argurl,
+                        http=True
+                    )
+                    res = dialog.run()
+                    dialog.close()
+                    if res == Gtk.ResponseType.YES:
+                        self.feedman.add_feed(argurl)
+                else:
+                    if argurl[:8].lower() == 'file:///':
+                        abspath = argurl[:7]
+                    else:
+                        abspath = argurl
+
                     if isfile(abspath):
                         if abspath[-5:].lower() == '.opml':
                             dialog = GFeedsConfirmAddDialog(
@@ -267,22 +283,15 @@ class GFeedsApplication(Gtk.Application):
                                 abspath[-4:].lower() in ('.rss', '.xml') or
                                 abspath[-5:].lower() == '.atom'
                         ):
-                            print(
-                                'Adding single feeds from file not supported'
-                            )
-                elif (
-                        self.args.argurl[:7].lower() == 'http://' or
-                        self.args.argurl[:8].lower() == 'https://'
-                ):
-                    dialog = GFeedsConfirmAddDialog(
-                        self.window,
-                        self.args.argurl,
-                        http=True
-                    )
-                    res = dialog.run()
-                    dialog.close()
-                    if res == Gtk.ResponseType.YES:
-                        self.feedman.add_feed(self.args.argurl)
+                            self_link = Feed([abspath, abspath]).self_link
+                            if self_link:
+                                dialog = GFeedsConfirmAddDialog(
+                                    self.window, self_link, http=True
+                                )
+                                res = dialog.run()
+                                dialog.close()
+                                if res == Gtk.ResponseType.YES:
+                                    self.feedman.add_feed(self_link)
 
     def do_command_line(self, args: list):
         """
